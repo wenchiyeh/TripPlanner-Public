@@ -15,10 +15,14 @@ function Card(props) {
   return (
     <>
       <div className="card-wrapper">
+        <div className="card-label">{location}</div>
         <figure className="card-figure">
-          <img className="card-image" />
+          <img className="card-image" alt={title} />
         </figure>
-        <div className="card-content"></div>
+        <div className="card-content">
+          <h4>{title}</h4>
+          <p className="small-p">{text}</p>
+        </div>
       </div>
     </>
   )

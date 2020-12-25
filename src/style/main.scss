@@ -1,1 +1,36 @@
 @import './custom.scss';
+//變數宣告區
+
+//卡片相關
+$card-widhth: 330px;
+$card-height: 380px;
+$card-border-radius: 10px;
+//變數區結尾
+
+//文字相關
+@font-face {
+  font-family: standarFont;
+  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
+  unicode-range: U+4E00-9FFF;
+  //所有中文
+}
+@font-face {
+  font-family: standarFont;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+  unicode-range: U+00-024F;
+  //所有拉丁字
+}
+body {
+  font-family: standarFont, sans-serif;
+}
+//標準字級
+// h1 {
+//   font-family: ;
+// }
+
+.card-wrapper {
+  width: $card-widhth;
+  height: $card-height;
+  border-radius: $card-border-radius;
+  position: relative;
+}

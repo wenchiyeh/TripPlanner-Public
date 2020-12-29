@@ -5,6 +5,7 @@ function StrCutter(str, cutLength) {
   let strLenth = 0
   let strArray = Array.from(str)
   let breakPoint = 0
+  let outputString = ''
   for (let i = 0; i < strArray.length; ++i) {
     if (strLenth >= cutLength * 2) {
       breakPoint = i - 1
@@ -16,8 +17,12 @@ function StrCutter(str, cutLength) {
       strLenth++
     }
   }
-  let outputString = strArray.slice(0, breakPoint).join('')
-  outputString += '...'
+  if (breakPoint > 0) {
+    outputString = strArray.slice(0, breakPoint).join('')
+    outputString += '...'
+  } else {
+    outputString = str
+  }
   return outputString
 }
 

@@ -1,5 +1,7 @@
+import { Component } from 'react'
 import Card from './components/main/Card'
 import TestWrap from './components/main/TestWrap'
+import SearchBar from './components/main/SearchBar'
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         like={222}
         mark={222}
       />
+      <SearchBar />
     </TestWrap>
   )
 }

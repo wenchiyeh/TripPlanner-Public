@@ -20,6 +20,9 @@ $card-figure-height: 240px;
 $card-button-height: 50px;
 $card-content-height: 110px;
 $card-border-radius: 10px;
+//searchbar相關
+$searchbar-width: 1080px;
+$searchbar-height: 65px;
 //變數區結尾
 
 //文字相關
@@ -43,17 +46,30 @@ p {
 p.content-small {
   font-size: 14px;
 }
+
 //
 //tag樣式
 body {
   font-family: 'Roboto', 'Noto Sans TC', sans-serif;
   font-weight: 500;
-  background-color: $sub-dark-gray;
+  background-color: $sub-green;
 }
+
+//
 //class樣式
+//組件
 .test-wrap {
   padding: 100px;
 }
+.form-custom {
+  //表單設計樣式
+  height: 45px;
+  border: 1px solid $main-gray;
+  border-radius: 3px;
+  padding: 10px 16px;
+  margin: 0 12px;
+}
+//card
 .card-wrapper {
   width: $card-widhth;
   height: $card-height;
@@ -94,7 +110,6 @@ body {
   }
 }
 .card-content {
-  // width: 100%;
   padding: 16px 24px 0;
   height: $card-content-height;
   h4 {
@@ -126,4 +141,35 @@ body {
   height: 24px;
   background: $sub-dark-gray;
   margin: 13px;
+}
+
+//searchbar
+.searchbar-wrapper {
+  width: $searchbar-width;
+  height: $searchbar-height;
+  background: #fff;
+  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
+  border-radius: 6px 50px 50px 6px;
+  padding-left: 12px;
+}
+.searchbar-form-wrapper {
+  width: $searchbar-width - $searchbar-height;
+}
+.searchbar-area {
+  width: 100px;
+}
+.searchbar-town {
+  width: 100px;
+}
+.searchbar-day {
+  width: 100px;
+}
+.searchbar-input {
+  width: 100%;
+}
+.do-search-button {
+  width: $searchbar-height;
+  height: $searchbar-height;
+  border-radius: 50%;
+  background-color: $main-lightblue;
 }

@@ -1,7 +1,12 @@
 import React from 'react'
+import SpotsBox from '../components/Itinerary/SpotsBox'
 
 function Itinerary(props) {
-  return <></>
+  return (
+    <>
+      <SpotsBox />
+    </>
+  )
 }
 
 export default Itinerary

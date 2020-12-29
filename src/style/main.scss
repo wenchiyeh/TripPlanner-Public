@@ -2,26 +2,28 @@
 @import './custom.scss';
 //
 //SCSS變數宣告區
+//顏色相關
+$main-gray: #e9edf0;
+$main-red: #f9669c;
+$main-lightblue: #46beeb;
+$main-darkblue: #4464be;
+$sub-gray: #f5f3f4;
+$sub-silver: #f0efe6;
+$sub-green: #8fc69a;
+$sub-dark-gray: #707070;
+$font-black: #040404;
 
 //卡片相關
-$card-widhth: 330px;
-$card-height: 380px;
+$card-widhth: 350px;
+$card-height: 450px;
+$card-figure-height: 240px;
+$card-button-height: 50px;
+$card-content-height: 110px;
 $card-border-radius: 10px;
 //變數區結尾
 
 //文字相關
-@font-face {
-  font-family: standarFont;
-  src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap');
-  unicode-range: U+4E00-9FFF;
-  //所有中文
-}
-@font-face {
-  font-family: standarFont;
-  src: url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
-  unicode-range: U+00-024F;
-  //所有拉丁字
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Roboto&display=swap');
 //標準字級
 h1 {
   font-size: 36px;
@@ -35,15 +37,93 @@ h3 {
 h4 {
   font-size: 20px;
 }
+p {
+  margin: 0;
+}
+p.content-small {
+  font-size: 14px;
+}
 //
 //tag樣式
 body {
-  font-family: standarFont, sans-serif;
+  font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+  background-color: $sub-dark-gray;
 }
 //class樣式
+.test-wrap {
+  padding: 100px;
+}
 .card-wrapper {
   width: $card-widhth;
   height: $card-height;
   border-radius: $card-border-radius;
   position: relative;
+  background: #fff;
+  color: $font-black;
+  svg {
+    margin-bottom: 3px;
+  }
+}
+.card-label {
+  width: 80px;
+  height: 26px;
+  background-color: $main-red;
+  color: #fff;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 2;
+  top: -13px;
+  text-align: center;
+  span {
+    line-height: 28px;
+  }
+}
+.card-figure {
+  width: $card-widhth;
+  height: $card-figure-height;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0 0;
+  overflow: hidden;
+  :hover.card-image {
+    transform: scale(1.07);
+  }
+  .card-image {
+    width: 100%;
+    transition: 0.3s;
+  }
+}
+.card-content {
+  // width: 100%;
+  padding: 16px 24px 0;
+  height: $card-content-height;
+  h4 {
+    margin: 8px 0;
+  }
+  .card-text {
+    width: 100%;
+    color: $sub-dark-gray;
+  }
+}
+.card-info {
+  padding: 12px 24px;
+  border-bottom: 1px solid $sub-silver;
+  a {
+    color: $main-lightblue;
+  }
+}
+.card-button {
+  width: 175px;
+  height: 50px;
+  cursor: pointer;
+  p {
+    text-align: center;
+    line-height: 50px;
+  }
+}
+.card-slice {
+  width: 2px;
+  height: 24px;
+  background: $sub-dark-gray;
+  margin: 13px;
 }

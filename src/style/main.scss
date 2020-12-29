@@ -1,5 +1,7 @@
+//bootstrap樣式
 @import './custom.scss';
-//變數宣告區
+//
+//SCSS變數宣告區
 
 //卡片相關
 $card-widhth: 330px;
@@ -20,14 +22,25 @@ $card-border-radius: 10px;
   unicode-range: U+00-024F;
   //所有拉丁字
 }
+//標準字級
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 26px;
+}
+h4 {
+  font-size: 20px;
+}
+//
+//tag樣式
 body {
   font-family: standarFont, sans-serif;
 }
-//標準字級
-// h1 {
-//   font-family: ;
-// }
-
+//class樣式
 .card-wrapper {
   width: $card-widhth;
   height: $card-height;

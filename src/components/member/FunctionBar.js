@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MeFavorites from '../MeFavorites'
 import MemberEdit from '../../pages/MemberEdit'
+import Notice from '../../pages/Notice'
 function FunctionBar() {
   return (
     <Router>
@@ -19,6 +20,9 @@ function FunctionBar() {
         </Route>
         <Route path="/mefavorites">
           <MeFavorites />
+        </Route>
+        <Route path="/myNotice">
+          <Notice />
         </Route>
 
         <Switch></Switch>

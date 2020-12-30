@@ -3,6 +3,7 @@ import Header from './components/main/Header'
 import Footer from './components/main/Footer'
 import StarRating from './components/main/StarRating'
 import MemberList from './components/main/MemberList'
+import CalendarApp from './components/main/CalendarApp'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <MemberList />
       <StarRating />
+      <CalendarApp />
       <Footer />
     </>
   )

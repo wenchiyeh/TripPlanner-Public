@@ -1,27 +1,37 @@
 import React from 'react'
-import Header from './components/main/Header'
-import Footer from './components/main/Footer'
-import StarRating from './components/main/StarRating'
-import MemberList from './components/main/MemberList'
-import CalendarApp from './components/main/CalendarApp'
-import FunctionBar from './components/main/FunctionBar'
+
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import Member from './pages/Member'
+//
+//header footer wrapper
+//
+//pages
+import Itinerary from '../src/pages/Itinerary'
 
 function App() {
   return (
-    <>
-      <Header />
-      <article>
-        <section>
-          <MemberList />
-          <StarRating />
-          <CalendarApp />
-        </section>
-        <nav>
-          <FunctionBar />
-        </nav>
-      </article>
-      <Footer />
-    </>
+    <Router>
+      <>
+        <Link to="/">Home</Link>
+        <Link to="/member">Member</Link>
+        <Link to="/itinerary">Itinerary</Link>
+        <Link to="/group">Group</Link>
+        <Link to="/cash">Cash</Link>
+        <Link to="/product">Product</Link>
+
+        <Switch>
+          <Route path="/member">
+            <Member />
+          </Route>
+          <Route path="/itinerary">
+            <Itinerary />
+          </Route>
+          <Route path="/">
+            <h1>Hello World</h1>
+          </Route>
+        </Switch>
+      </>
+    </Router>
   )
 }
 

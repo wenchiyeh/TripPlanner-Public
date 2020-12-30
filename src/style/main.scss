@@ -20,6 +20,9 @@ $card-figure-height: 240px;
 $card-button-height: 50px;
 $card-content-height: 110px;
 $card-border-radius: 10px;
+//searchbar相關
+$searchbar-width: 1080px;
+$searchbar-height: 65px;
 //變數區結尾
 
 //文字相關
@@ -43,6 +46,7 @@ p {
 p.content-small {
   font-size: 14px;
 }
+
 //
 //tag樣式
 body {
@@ -52,9 +56,19 @@ body {
 }
 
 //class樣式
+//組件
 .test-wrap {
   padding: 100px;
 }
+.form-custom {
+  //表單設計樣式
+  height: 45px;
+  border: 1px solid $main-gray;
+  border-radius: 3px;
+  padding: 10px 16px;
+  margin: 0 12px;
+}
+//card
 .card-wrapper {
   width: $card-widhth;
   height: $card-height;
@@ -95,7 +109,6 @@ body {
   }
 }
 .card-content {
-  // width: 100%;
   padding: 16px 24px 0;
   height: $card-content-height;
   h4 {

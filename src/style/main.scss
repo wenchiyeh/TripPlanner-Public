@@ -1,1 +1,241 @@
 @import './custom.scss';
+//bootstrap樣式
+//
+//SCSS變數宣告區
+//顏色相關
+$main-gray: #e9edf0;
+$main-red: #f9669c;
+$main-lightblue: #46beeb;
+$main-darkblue: #4464be;
+$sub-gray: #f5f3f4;
+$sub-silver: #f0efe6;
+$sub-green: #8fc69a;
+$sub-dark-gray: #707070;
+$font-black: #040404;
+
+//卡片相關
+$card-widhth: 350px;
+$card-height: 450px;
+$card-figure-height: 240px;
+$card-button-height: 50px;
+$card-content-height: 110px;
+$card-border-radius: 10px;
+//searchbar相關
+$searchbar-width: 1080px;
+$searchbar-height: 65px;
+//變數區結尾
+
+//文字相關
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Roboto&display=swap');
+//標準字級
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 26px;
+}
+h4 {
+  font-size: 20px;
+}
+p {
+  margin: 0;
+}
+p.content-small {
+  font-size: 14px;
+}
+
+//
+//tag樣式
+body {
+  font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+  font-weight: 500;
+  background-color: $main-gray;
+}
+
+//class樣式
+//組件
+.test-wrap {
+  padding: 100px;
+}
+.form-custom {
+  //表單設計樣式
+  height: 45px;
+  border: 1px solid $main-gray;
+  border-radius: 3px;
+  padding: 10px 16px;
+  margin: 0 12px;
+}
+//card
+.card-wrapper {
+  width: $card-widhth;
+  height: $card-height;
+  border-radius: $card-border-radius;
+  position: relative;
+  background: #fff;
+  color: $font-black;
+  svg {
+    margin-bottom: 3px;
+  }
+}
+.card-label {
+  width: 80px;
+  height: 26px;
+  background-color: $main-red;
+  color: #fff;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 2;
+  top: -13px;
+  text-align: center;
+  span {
+    line-height: 28px;
+  }
+}
+.card-figure {
+  width: $card-widhth;
+  height: $card-figure-height;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0 0;
+  overflow: hidden;
+  :hover.card-image {
+    transform: scale(1.07);
+  }
+  .card-image {
+    width: 100%;
+    transition: 0.3s;
+  }
+}
+.card-content {
+  padding: 16px 24px 0;
+  height: $card-content-height;
+  h4 {
+    margin: 8px 0;
+  }
+  .card-text {
+    width: 100%;
+    color: $sub-dark-gray;
+  }
+}
+.card-info {
+  padding: 12px 24px;
+  border-bottom: 1px solid $sub-silver;
+  a {
+    color: $main-lightblue;
+  }
+}
+.card-button {
+  width: 175px;
+  height: 50px;
+  cursor: pointer;
+  p {
+    text-align: center;
+    line-height: 50px;
+  }
+}
+.card-slice {
+  width: 2px;
+  height: 24px;
+  background: $sub-dark-gray;
+  margin: 13px;
+}
+
+// 評分星星
+
+.star-rating-wrapper {
+  width: 250px;
+  height: 115px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px #000;
+  background-color: #fff;
+  margin: 1rem auto;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  p {
+    color: #000;
+    font-size: 16px;
+    font-family: 'Noto Sans TC';
+  }
+  label {
+    font-size: 36px;
+    font-family: 'Roboto';
+    margin-left: 1rem;
+  }
+  span {
+    color: #46beeb;
+    font-size: 30px;
+    cursor: default;
+  }
+}
+
+// 左邊的會員
+.person {
+  background: #ffffff;
+  width: 250px;
+  height: 350px;
+  padding-top: 1rem;
+  margin: 1rem auto;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 3px 6px #000;
+
+  h3 {
+    font-family: 'Noto Sans TC';
+    color: #4464be;
+    margin-bottom: 24px;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  h4 {
+    font-family: 'Noto Sans TC';
+    margin-top: 1rem;
+    margin-bottom: 24px;
+  }
+  button {
+    width: 150px;
+    height: 35px;
+    background-color: #4464be;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'Noto Sans TC';
+    border: 1px solid transparent;
+    color: #fff;
+  }
+}
+
+// 月曆的
+@import 'react-calendar/dist/Calendar.css';
+
+.react-calendar {
+  width: 250px;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px #000;
+  font-size: 12px;
+  margin: 1rem auto;
+  font-family: 'Roboto';
+}
+
+// 上面那條導覽
+.FunctionBar {
+  width: 810px;
+  margin: 1rem auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 20px;
+    margin: 0 27px;
+  }
+}
+
+.article {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.section {
+  margin-right: 1rem;
+}

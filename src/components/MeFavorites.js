@@ -25,7 +25,7 @@ function MeFavorites() {
             <div className="card-body">
               <h3 className="card-title">台南蔥油餅吃到飽之旅台南蔥油餅</h3>
               <p className="card-text">
-                <small className="text-muted">icon</small>
+                <small className="text-muted">icon&svg</small>
               </p>
             </div>
           </div>

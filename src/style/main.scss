@@ -50,6 +50,7 @@ body {
   font-weight: 500;
   background-color: $main-gray;
 }
+
 //class樣式
 .test-wrap {
   padding: 100px;
@@ -128,7 +129,7 @@ body {
   margin: 13px;
 }
 
-// star-rating
+// 評分星星
 
 .star-rating-wrapper {
   width: 250px;
@@ -156,7 +157,7 @@ body {
   }
 }
 
-// leftMember
+// 左邊的會員
 .person {
   background: #ffffff;
   width: 250px;
@@ -204,4 +205,24 @@ body {
   font-size: 12px;
   margin: 1rem auto;
   font-family: 'Roboto';
+}
+
+// 上面那條導覽
+.FunctionBar {
+  width: 810px;
+  margin: 1rem auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 20px;
+    margin: 0 27px;
+  }
+}
+
+article {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+section {
+  margin-right: 1rem;
 }

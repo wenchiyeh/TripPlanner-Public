@@ -8,6 +8,10 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Itinerary from '../src/pages/Itinerary'
 import Member from './pages/Member'
 import SearchBar from './components/main/SearchBar'
+import Footer from './components/main/Footer'
+import Header from './components/main/Header'
+
+
 
 function App() {
   return (
@@ -35,6 +39,8 @@ function App() {
             <h1>Hello World</h1>
           </Route>
         </Switch>
+        <Header />
+        <Footer />
       </>
     </Router>
   )

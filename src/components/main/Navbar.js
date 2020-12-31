@@ -18,7 +18,7 @@ import { FaRegBell } from "react-icons/fa";
 
 
 
-function Header(props) {
+function MyNavbar(props) {
 
   const imagePath = './images/testImage.jpg' 
 
@@ -100,4 +100,4 @@ function Header(props) {
 }
 
 
-export default Header
+export default MyNavbar

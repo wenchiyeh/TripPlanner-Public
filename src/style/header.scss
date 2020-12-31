@@ -1,0 +1,50 @@
+.navbar {
+  padding: 1px;
+}
+.Navbar-Logo {
+  margin: 0px 200px 0px 60px;
+}
+.navbar img {
+  margin: 0;
+}
+.Navbar-Title {
+  transition: 0.5s;
+  margin: 0 100px 0 0;
+}
+
+.Navbar-icon {
+  width: 30px;
+  height: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+  transition: 0.5s;
+  margin-right: 40px;
+}
+.Navebar-figure {
+  width: 45px;
+  height: 45px;
+  margin-right: 60px;
+  margin-top: 10px;
+
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+.Navebar-figure:hover {
+  opacity: 1;
+}
+
+.Navebar-figure img {
+  height: 100%;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-menu {
+  height: 300px;
+  transform: translateX(-30%);
+  position: relative;
+  opacity: 0.8;
+}

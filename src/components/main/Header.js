@@ -9,40 +9,61 @@ import {
 } from 'react-bootstrap'
 
 import { NavLink } from 'react-router-dom'
-import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { VscBell } from 'react-icons/vsc'
+import Logo from '../../logo.svg'
+import { FiShoppingCart } from 'react-icons/fi'
+import { FaCoins } from 'react-icons/fa'
+import { FaRegBell } from 'react-icons/fa'
 
 function Header(props) {
+  const imagePath = './images/testImage.jpg'
+
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
-        <Navbar.Brand href="#home">
-          <img src="http://localhost:3000/images/Logo.png" />
+      <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
+        <Navbar.Brand href="#home" className="Navbar-Logo">
+          <img src={Logo} width="150" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="center-text">
-            <Nav.Link as={NavLink} to="/" exact>
-              <p>行程規劃</p>
+          <Nav className="mr-auto">
+            <Nav.Link as={NavLink} to="/" exact className="Navbar-Title h5 ">
+              行程規劃
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/about">
-              <p>揪團旅行</p>
+            <Nav.Link as={NavLink} to="/about" className="Navbar-Title h5 ">
+              揪團旅行
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/login">
-              <p>達人講座</p>
+            <Nav.Link as={NavLink} to="/login" className="Navbar-Title h5 ">
+              達人講座
             </Nav.Link>
           </Nav>
-          <Nav className="icons">
+          <Nav>
             <Nav.Link href="#deets">
-              <VscBell />
+              <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#deets">
-              <AiOutlineShoppingCart />
+            <Nav.Link href="#memes">
+              <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-
-            <Nav.Link eventKey={2} href="#memes">
-              <img src="http://localhost:3000/images/testImage.jpg" />
+            <Nav.Link href="#mell">
+              <FaRegBell className="Navbar-icon" />
             </Nav.Link>
+            <NavDropdown
+              title={
+                <figure className="Navebar-figure ">
+                  <img src={imagePath} />
+                </figure>
+              }
+            >
+              <NavDropdown.Item as={NavLink} to="/product/men">
+                MEN 男性
+              </NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/product/baby">
+                Baby 嬰兒
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={NavLink} to="/product/women">
+                WOMEN 女性
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

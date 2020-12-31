@@ -14,6 +14,7 @@ import {
 
 function Card(props) {
   const {
+    id, //供連結用
     title, //標題
     text, //內文
     location, //左上角的地標
@@ -24,11 +25,11 @@ function Card(props) {
     price = -1, //價格
     person, //卡片內顯示的人名
     like, //愛心人數
+    setLike, //控制愛心狀態
     mark, //收藏人數
+    setMark, //控制收藏狀態
   } = props
   const imagePath = './images/' + image
-  const [nowLike, setNowLike] = useState(like)
-  const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
   let handelText = StrCutter(text, 62)
   return (

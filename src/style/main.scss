@@ -20,6 +20,9 @@ $card-figure-height: 240px;
 $card-button-height: 50px;
 $card-content-height: 110px;
 $card-border-radius: 10px;
+//searchbar相關
+$searchbar-width: 1080px;
+$searchbar-height: 65px;
 //變數區結尾
 
 //文字相關
@@ -43,87 +46,48 @@ p {
 p.content-small {
   font-size: 14px;
 }
+
 //
 //tag樣式
 body {
   font-family: 'Roboto', 'Noto Sans TC', sans-serif;
   font-weight: 500;
-  background-color: $sub-dark-gray;
+  background-color: $main-gray;
 }
+
 //class樣式
+//組件
 .test-wrap {
   padding: 100px;
 }
-.card-wrapper {
-  width: $card-widhth;
-  height: $card-height;
-  border-radius: $card-border-radius;
-  position: relative;
-  background: #fff;
-  color: $font-black;
-  svg {
-    margin-bottom: 3px;
-  }
+.form-custom {
+  //表單設計樣式
+  height: 45px;
+  border: 1px solid $main-gray;
+  border-radius: 3px;
+  padding: 10px 16px;
+  margin: 0 12px;
 }
-.card-label {
-  width: 80px;
-  height: 26px;
-  background-color: $main-red;
-  color: #fff;
-  border-radius: 16px;
-  position: absolute;
-  z-index: 2;
-  top: -13px;
-  text-align: center;
-  span {
-    line-height: 28px;
-  }
-}
-.card-figure {
-  width: $card-widhth;
-  height: $card-figure-height;
-  margin: 0;
-  border-radius: $card-border-radius $card-border-radius 0 0;
-  overflow: hidden;
-  :hover.card-image {
-    transform: scale(1.07);
-  }
-  .card-image {
-    width: 100%;
-    transition: 0.3s;
-  }
-}
-.card-content {
-  // width: 100%;
-  padding: 16px 24px 0;
-  height: $card-content-height;
-  h4 {
-    margin: 8px 0;
-  }
-  .card-text {
-    width: 100%;
-    color: $sub-dark-gray;
-  }
-}
-.card-info {
-  padding: 12px 24px;
-  border-bottom: 1px solid $sub-silver;
-  a {
-    color: $main-lightblue;
-  }
-}
-.card-button {
-  width: 175px;
-  height: 50px;
-  cursor: pointer;
-  p {
-    text-align: center;
-    line-height: 50px;
-  }
-}
-.card-slice {
-  width: 2px;
-  height: 24px;
-  background: $sub-dark-gray;
-  margin: 13px;
-}
+//card
+@import './card.scss';
+
+//searchbar
+@import './searchbar.scss';
+
+// 評分星星
+@import './star-rating.scss';
+
+// 左邊的會員
+@import './person.scss';
+
+// 月曆的
+@import './calendar.scss';
+
+// 上面那條導覽
+@import './function-bar.scss';
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';

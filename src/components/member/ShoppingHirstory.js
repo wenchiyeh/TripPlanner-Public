@@ -26,18 +26,57 @@ function ShoppingHirstory() {
             </td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <th scope="row">1</th>
+            <td>2020/11/18</td>
+            <td>1313869028421103-1-7</td>
+            <td>1張</td>
+            <td>NT$ 4000</td>
+            <td>
+              <button>明細</button>
+            </td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+            <th scope="row">1</th>
+            <td>2020/11/18</td>
+            <td>1313869028421103-1-7</td>
+            <td>1張</td>
+            <td>NT$ 4000</td>
+            <td>
+              <button>明細</button>
+            </td>
           </tr>
         </tbody>
       </table>
+
+      <div aria-label="Page navigation example" className="page">
+        <ul className="pagination">
+          <li className="page-item">
+            <a className="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              1
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              2
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#">
+              3
+            </a>
+          </li>
+          <li className="page-item">
+            <a className="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </>
   )
 }

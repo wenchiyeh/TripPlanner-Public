@@ -87,50 +87,7 @@ body {
 @import './function-bar.scss';
 
 // header
+@import './header.scss';
 
-.navbar {
-  height: 80px;
-  width: 100%;
-
-  img {
-    margin-left: 64px;
-    height: 60px;
-    width: 150px;
-  }
-}
-.navbar-collapse {
-  justify-content: flex-start;
-
-  .center-text {
-    flex: 1 0 0;
-    justify-content: center;
-
-    p {
-      font-size: 20px;
-      padding: 0 48px;
-    }
-  }
-  .icons {
-    flex: 0 0 0;
-  }
-}
-.nav-link {
-  p {
-    color: #fff;
-    font-size: 20;
-    font-family: 'Noto Sans TC';
-  }
-  img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-left: 28px;
-    margin-right: 32px;
-  }
-  svg {
-    width: 25px;
-    height: 30px;
-    margin: 0 14px;
-    color: #fff;
-  }
-}
+//footer
+@import './footer.scss';

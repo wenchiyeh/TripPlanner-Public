@@ -1,5 +1,8 @@
 //登入
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
+import Register from '.././pages/Register'
 //import { useParams, useHistory } from 'react-router-dom'
 
 function Login(props) {
@@ -51,6 +54,12 @@ function Login(props) {
           密碼為必填欄位
         </div>
       </div>
+      <small>
+        <Link to="/register">註冊</Link>
+        <Route path="/register">
+          <Register />
+        </Route>
+      </small>
       <button
         className="btn btn-primary "
         onClick={() => {

@@ -24,7 +24,9 @@ function FunctionBar() {
         <Route path="/myNotice">
           <Notice />
         </Route>
-
+        <Route path="/member/edit/:id?">
+          <MemberEdit />
+        </Route>
         <Switch></Switch>
       </>
     </Router>

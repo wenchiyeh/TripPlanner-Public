@@ -1,7 +1,7 @@
 //目前沒有用
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import CoverSpinner from '../components/CoverSpinner'
+//import CoverSpinner from '../components/CoverSpinner'
 
 import requestToServer from '../utils/requestToServer'
 
@@ -121,30 +121,21 @@ function MemberInput(props) {
     getMembers()
   }, [])
 
-  const spinner = <CoverSpinner show="true" />
+  //const spinner = <CoverSpinner show="true" />
 
-  //   const spinner = (
-  //     <>
-  //       <div
-  //         className="spinner-grow text-success"
-  //         role="status"
-  //       >
-  //         <span className="sr-only">Loading...</span>
-  //       </div>
-  //       <div
-  //         className="spinner-grow text-danger"
-  //         role="status"
-  //       >
-  //         <span className="sr-only">Loading...</span>
-  //       </div>
-  //       <div
-  //         className="spinner-grow text-warning"
-  //         role="status"
-  //       >
-  //         <span className="sr-only">Loading...</span>
-  //       </div>
-  //     </>
-  //   )
+  const spinner = (
+    <>
+      <div className="spinner-grow text-success" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div className="spinner-grow text-danger" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+      <div className="spinner-grow text-warning" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </>
+  )
 
   const display = (
     <>

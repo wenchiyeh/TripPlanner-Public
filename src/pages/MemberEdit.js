@@ -162,7 +162,7 @@ function MemberEdit(props) {
 
   const display = (
     <>
-      <div className="form-group">
+      <div className="form-group memberedit">
         <label htmlFor="nameInput">姓名</label>
         {/* is-invalid為不合法時的樣式，is-valid是合法欄位的樣式 */}
         <input
@@ -223,49 +223,52 @@ function MemberEdit(props) {
             setPassword(e.target.value)
           }}
         />
+
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            // 作檢查
+            // 切換已進入檢查
+            setInChecked(true)
+
+            const newInvalidFields = []
+
+            if (!name) {
+              newInvalidFields.push('name')
+            }
+
+            if (!email) {
+              newInvalidFields.push('email')
+            }
+
+            //設定檢查的樣式
+            setInvalidFields(newInvalidFields)
+
+            // 如果有錯誤則不送出
+            if (newInvalidFields.length > 0) {
+              return
+            }
+
+            if (props.type === 'new') {
+              addMember()
+            }
+
+            if (props.type === 'edit') {
+              updateMember(id)
+            }
+          }}
+        >
+          {props.type === 'new' ? '新增' : '更新'}
+        </button>
       </div>
-      <button
-        className="btn btn-primary"
-        onClick={() => {
-          // 作檢查
-          // 切換已進入檢查
-          setInChecked(true)
-
-          const newInvalidFields = []
-
-          if (!name) {
-            newInvalidFields.push('name')
-          }
-
-          if (!email) {
-            newInvalidFields.push('email')
-          }
-
-          //設定檢查的樣式
-          setInvalidFields(newInvalidFields)
-
-          // 如果有錯誤則不送出
-          if (newInvalidFields.length > 0) {
-            return
-          }
-
-          if (props.type === 'new') {
-            addMember()
-          }
-
-          if (props.type === 'edit') {
-            updateMember(id)
-          }
-        }}
-      >
-        {props.type === 'new' ? '新增' : '更新'}
-      </button>
     </>
   )
 
   return (
     <>
-      <h1>會員管理 - {props.type === 'new' ? '新增' : '編輯'}</h1>
+      <h1 className="memberedit">
+        會員管理 - {props.type === 'new' ? '新增' : '編輯'}
+      </h1>
       {isLoading ? spinner : display}
     </>
   )

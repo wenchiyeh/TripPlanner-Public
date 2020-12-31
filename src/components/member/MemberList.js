@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+//import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 function MemberList() {
+  let history = useHistory()
   const Person = ({ img, name }) => {
     const url = `http://randomuser.me/api/portraits/thumb/men/${img}.jpg`
     return (
@@ -9,8 +10,12 @@ function MemberList() {
         <h3>一般會員</h3>
         <img src={url} />
         <h4> {name}</h4>
-        <button>
-          <Link to="/member/edit/:id?">修改資料</Link>
+        <button
+          onClick={() => {
+            history.push('/myAccount')
+          }}
+        >
+          修改資料
         </button>
       </div>
     )

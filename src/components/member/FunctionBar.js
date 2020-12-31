@@ -1,7 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import MeFavorites from './MeFavorites'
-import MemberEdit from '../../pages/MemberEdit'
 
 function FunctionBar() {
   return (
@@ -15,14 +13,7 @@ function FunctionBar() {
           <Link to="/myNotice">我的通知</Link>
           <Link to="/shoppingRecord">購物紀錄</Link>
         </div>
-        <Switch>
-        <Route path="/myAccount">
-            <MemberEdit />
-          </Route>
-        <Route path="/myCollection">
-            <MeFavorites />
-          </Route>
-        </Switch>
+        <Switch></Switch>
       </>
     </Router>
   )

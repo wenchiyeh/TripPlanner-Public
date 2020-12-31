@@ -3,7 +3,7 @@ import React from 'react'
 import Header from '../components/main/Header'
 import Footer from '../components/main/Footer'
 import StarRating from '../components/member/StarRating'
-import MemberList from '../components/member/MemberList'
+import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 
@@ -13,7 +13,7 @@ function Member() {
       <Header />
       <article className="article">
         <section className="section">
-          <MemberList />
+          <MemberProfile />
           <StarRating />
           <CalendarApp />
         </section>

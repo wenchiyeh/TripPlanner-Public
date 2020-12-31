@@ -52,30 +52,32 @@ function Notice(props) {
   )
   const NoticeList = (
     <>
-      <table className="table notice-style">
-        <tr>
-          <th scope="col">No.</th>
-          <th>旅行日期</th>
-          <th className="text-right" scope="col">
-            時間
-          </th>
-        </tr>
-        <tbody>
-          {members.length > 0 &&
-            members.map((v, i) => {
-              return (
-                <tr key={i}>
-                  {/* 更改下面資料 */}
-                  <td>{v.id}</td>
-                  <td>{v.name}</td>
-                  <td>{v.email}</td>
-                  <td>{v.username}</td>
-                  <td>{v.password}</td>
-                </tr>
-              )
-            })}
-        </tbody>
-      </table>
+      <div className="notice-style">
+        <table className="table">
+          <tr>
+            <th scope="col">No.</th>
+            <th>旅行日期</th>
+            <th className="text-right" scope="col">
+              時間
+            </th>
+          </tr>
+          <tbody>
+            {members.length > 0 &&
+              members.map((v, i) => {
+                return (
+                  <tr key={i}>
+                    {/* 更改下面資料 */}
+                    <td>{v.id}</td>
+                    <td>{v.name}</td>
+                    <td>{v.email}</td>
+                    <td>{v.username}</td>
+                    <td>{v.password}</td>
+                  </tr>
+                )
+              })}
+          </tbody>
+        </table>
+      </div>
     </>
   )
   return <h6>通知{isLoading ? spinner : NoticeList}</h6>

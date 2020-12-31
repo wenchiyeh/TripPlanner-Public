@@ -1,3 +1,4 @@
+//我的收藏
 import React from 'react'
 
 function MeFavorites() {
@@ -11,8 +12,8 @@ function MeFavorites() {
   }
   return (
     <>
-      <div className="card mb-3" style={cardstyle}>
-        <div className="row no-gutters">
+      <div className="card mb-3 me-favorites-style" style={cardstyle}>
+        <div className="row no-gutters me-favorites-back-style">
           <div className="col-md-4">
             <img
               // 要放絕對路徑

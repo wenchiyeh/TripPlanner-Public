@@ -258,3 +258,17 @@ body {
     margin: 1rem auto;
     border-radius: 6px;
 }
+
+//會員收藏
+.me-favorites-style{
+  background: #ffffff;
+  max-width: 850px;
+  height: 600px;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 6px;
+  .me-favorites-back-style {
+    background: #707070;
+    }
+}
+

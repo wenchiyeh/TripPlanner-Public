@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import ShoppingHirstory from './ShoppingHirstory'
 
 function FunctionBar() {
   return (
@@ -11,9 +12,13 @@ function FunctionBar() {
           <Link to="/myGroup">我的揪團</Link>
           <Link to="/myCollection">我的收藏</Link>
           <Link to="/myNotice">我的通知</Link>
-          <Link to="/shoppingRecord">購物紀錄</Link>
+          <Link to="/shoppingHirstory">購物紀錄</Link>
         </div>
-        <Switch></Switch>
+        <Switch>
+          <Route path="/shoppingHirstory">
+            <ShoppingHirstory />
+          </Route>
+        </Switch>
       </>
     </Router>
   )

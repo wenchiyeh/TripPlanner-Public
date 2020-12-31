@@ -52,7 +52,7 @@ function Notice(props) {
   )
   const NoticeList = (
     <>
-      <table className="table noticestyle">
+      <table className="table notice-style">
         <tr>
           <th scope="col">No.</th>
           <th>旅行日期</th>

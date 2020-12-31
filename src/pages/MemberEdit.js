@@ -162,7 +162,7 @@ function MemberEdit(props) {
 
   const display = (
     <>
-      <div className="form-group memberedit">
+      <div className="form-group member-edit-style">
         <label htmlFor="nameInput">姓名</label>
         {/* is-invalid為不合法時的樣式，is-valid是合法欄位的樣式 */}
         <input

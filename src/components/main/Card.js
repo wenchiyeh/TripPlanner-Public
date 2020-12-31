@@ -30,6 +30,8 @@ function Card(props) {
     setMark, //控制收藏狀態
   } = props
   const imagePath = './images/' + image
+  const [nowLike, setNowLike] = useState(like)
+  const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
   let handelText = StrCutter(text, 62)
   return (

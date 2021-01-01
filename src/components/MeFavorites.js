@@ -1,5 +1,6 @@
 //我的收藏
 import React from 'react'
+import LinkMeFavorites from './member/LinkMeFavorites'
 
 function MeFavorites() {
   const cardstyle = {
@@ -13,6 +14,8 @@ function MeFavorites() {
   return (
     <>
       <div className="card mb-3 me-favorites-style" style={cardstyle}>
+        <LinkMeFavorites />
+        <hr />
         <div className="row no-gutters me-favorites-back-style">
           <div className="col-md-4">
             <img

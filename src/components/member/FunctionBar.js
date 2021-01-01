@@ -34,7 +34,3 @@ function FunctionBar() {
 }
 
 export default FunctionBar
-
-// 這是上面那條工具列 Ray
-
-//路徑還沒做

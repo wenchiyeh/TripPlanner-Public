@@ -268,7 +268,16 @@ body {
   margin: 1rem auto;
   border-radius: 6px;
   .me-favorites-back-style {
-    background: #707070;
+    background: #cecece;
     }
 }
-
+//會員收藏列表
+.Link-Me-Favorites{
+  width: 745px;
+  margin: 1px auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    margin: 0 15px;
+  }
+}

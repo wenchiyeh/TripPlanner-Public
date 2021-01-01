@@ -3,13 +3,9 @@ import React from 'react'
 import LinkMeFavorites from './member/LinkMeFavorites'
 
 function MeFavorites() {
-  const cardstyle = {
-    width: '745px',
-    hight: '200px',
-  }
   return (
     <>
-      <div className="card mb-3 me-favorites-style" style={cardstyle}>
+      <div className="card mb-3 me-favorites-style">
         <LinkMeFavorites />
       </div>
     </>

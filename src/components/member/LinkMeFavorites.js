@@ -2,6 +2,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MeFavoritesgroup from '../member/MeFavoritesgroup'
+import MeFavoritesLecture from '../member/MeFavoritesLecture'
 function LinkMeFavorites() {
   return (
     <Router>
@@ -9,7 +10,7 @@ function LinkMeFavorites() {
         <div className="Link-Me-Favorites">
           <Link to="/mefavorites111">我的行程</Link>
           <Link to="/meFavoritesgroup">我的揪團</Link>
-          <Link to="/mefavorites333">我的講座</Link>
+          <Link to="/MeFavoritesLecture">我的講座</Link>
           <hr />
           <Switch>
             <Route path="/mefavorites111">
@@ -18,8 +19,8 @@ function LinkMeFavorites() {
             <Route path="/meFavoritesgroup">
               <MeFavoritesgroup />
             </Route>
-            <Route path="/mefavorites333">
-              <MeFavoritesgroup />
+            <Route path="/MeFavoritesLecture">
+              <MeFavoritesLecture />
             </Route>
           </Switch>
         </div>

@@ -8,6 +8,7 @@ import Member from './pages/Member'
 //pages
 import Itinerary from '../src/pages/Itinerary'
 import Login from './pages/Login'
+import Demo from './pages/demo'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Link to="/cash">Cash</Link>
         <Link to="/product">Product</Link>
         <Link to="/login">Login</Link>
+        <Link to="demo">Demo</Link>
         <Switch>
           <Route path="/member">
             <Member />
@@ -29,6 +31,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/demo">
+            <Demo />
           </Route>
           <Route path="/">
             <h1>Hello World</h1>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import MeFavorites from '../MeFavorites'
+import MeFavorites from '../main/MeFavorites'
 import MemberEdit from '../../pages/MemberEdit'
 import Notice from '../../pages/Notice'
 function FunctionBar() {

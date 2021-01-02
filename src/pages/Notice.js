@@ -80,7 +80,7 @@ function Notice(props) {
       </div>
     </>
   )
-  return <h6>通知{isLoading ? spinner : NoticeList}</h6>
+  return <h6>{isLoading ? spinner : NoticeList}</h6>
 }
 
 export default Notice

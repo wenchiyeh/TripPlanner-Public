@@ -1,6 +1,6 @@
 //登入
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Route, Link } from 'react-router-dom'
 
 import Register from '.././pages/Register'
 //import { useParams, useHistory } from 'react-router-dom'

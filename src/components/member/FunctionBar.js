@@ -1,8 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MeFavorites from '../main/MeFavorites'
-import MemberEdit from '../../pages/MemberEdit'
+//import MemberEdit from '../../pages/MemberEdit'
 import Notice from '../../pages/Notice'
+//import MemberInput from '../member/MemberInput'
 function FunctionBar() {
   return (
     <Router>
@@ -15,18 +16,18 @@ function FunctionBar() {
           <Link to="/myNotice">我的通知</Link>
           <Link to="/shoppingRecord">購物紀錄</Link>
         </div>
-        <Route path="/myAccount">
-          <MemberEdit />
-        </Route>
+        {/* <Route path="/myAccount">
+          <MemberInput />
+        </Route> */}
         <Route path="/mefavorites">
           <MeFavorites />
         </Route>
         <Route path="/myNotice">
           <Notice />
         </Route>
-        <Route path="/member/edit/:id?">
+        {/* <Route path="/member/edit/:id?">
           <MemberEdit />
-        </Route>
+        </Route> */}
         <Switch></Switch>
       </>
     </Router>

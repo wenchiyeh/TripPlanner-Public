@@ -1,5 +1,5 @@
 //表單
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 function Notice(props) {
   //這裡改通知的狀態

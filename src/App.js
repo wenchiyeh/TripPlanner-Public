@@ -15,7 +15,7 @@ function App() {
     <Router>
       <>
         <Link to="/">Home</Link>
-        <Link to="/member">Member</Link>
+        <Link to="/myAccount">Member</Link>
         <Link to="/itinerary">Itinerary</Link>
         <Link to="/group">Group</Link>
         <Link to="/cash">Cash</Link>
@@ -23,7 +23,7 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/LineChart">LineChart</Link>
         <Switch>
-          <Route path="/member">
+          <Route path="/myAccount">
             <Member />
           </Route>
           <Route path="/itinerary">

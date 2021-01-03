@@ -1,3 +1,4 @@
+//修改會員資料卡片
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -24,6 +25,7 @@ function MemberList() {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          className="member-List-modal-box"
         >
           <Modal.Header closeButton>
             <Modal.Title>個人資料</Modal.Title>

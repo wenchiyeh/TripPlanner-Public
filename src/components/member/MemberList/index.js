@@ -38,7 +38,9 @@ function MemberList() {
             <Button variant="secondary" onClick={handleClose}>
               取消
             </Button>
-            <Button variant="primary">確定</Button>
+            <Button className="member-List-btn-enter" variant="primary">
+              確定
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>

@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Itinerary from '../src/pages/Itinerary'
 import Member from './pages/Member'
 import SearchBar from './components/main/SearchBar'
+import ProductList from './components/products/ProductList'
 
 function App() {
   return (
@@ -31,8 +32,8 @@ function App() {
           <Route path="/search">
             <SearchBar />
           </Route>
-          <Route path="/">
-            <h1>Hello World</h1>
+          <Route path="/product">
+            <ProductList />
           </Route>
         </Switch>
       </>

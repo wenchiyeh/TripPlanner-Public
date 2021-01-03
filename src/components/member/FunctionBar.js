@@ -15,19 +15,17 @@ function FunctionBar() {
           <Link to="/myNotice">我的通知</Link>
           <Link to="/shoppingRecord">購物紀錄</Link>
         </div>
-        <Route path="/myAccount">
-          <MyAccount />
-        </Route>
-        <Route path="/mefavorites">
-          <MeFavorites />
-        </Route>
-        <Route path="/myNotice">
-          <Notice />
-        </Route>
-        {/* <Route path="/member/edit/:id?">
-          <MemberEdit />
-        </Route> */}
-        <Switch></Switch>
+        <Switch>
+          <Route path="/myAccount">
+            <MyAccount />
+          </Route>
+          <Route path="/mefavorites">
+            <MeFavorites />
+          </Route>
+          <Route path="/myNotice">
+            <Notice />
+          </Route>
+        </Switch>
       </>
     </Router>
   )

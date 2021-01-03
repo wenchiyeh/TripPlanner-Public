@@ -1,12 +1,19 @@
 //我的帳戶
 import React from 'react'
-import MemberList from '../components/member/LineChart'
+import LineChart from '../components/member/LineChart'
+import Ingroup from '../components/member/Ingroup'
 
 function MyAccount() {
   return (
     <>
-      <h3>我的帳戶</h3>
-      <MemberList />
+      <div className="notice-style">
+        <h4 className="MyAccount-title">收藏行程的人數：</h4>
+        <LineChart />
+      </div>
+      <div className="notice-style">
+        <h4 className="MyAccount-title">正在參加的揪團：</h4>
+        <Ingroup />
+      </div>
     </>
   )
 }

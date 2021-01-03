@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Itinerary from '../src/pages/Itinerary'
 import Member from './pages/Member'
 import SearchBar from './components/main/SearchBar'
-import ProductList from './components/products/ProductList'
+import ProductList from './pages/ProductList'
 
 function App() {
   return (

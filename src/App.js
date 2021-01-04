@@ -8,21 +8,25 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Itinerary from '../src/pages/Itinerary'
 import Member from './pages/Member'
 import SearchBar from './components/main/SearchBar'
+import Login from './pages/Login'
+import LineChart from './pages/LineChart '
 
 function App() {
   return (
     <Router>
       <>
         <Link to="/">Home</Link>
-        <Link to="/member">Member</Link>
+        <Link to="/myAccount">Member</Link>
         <Link to="/itinerary">Itinerary</Link>
         <Link to="/group">Group</Link>
         <Link to="/cash">Cash</Link>
         <Link to="/product">Product</Link>
         <Link to="/search">SearchBar</Link>
 
+        <Link to="/login">Login</Link>
+        <Link to="/LineChart">LineChart</Link>
         <Switch>
-          <Route path="/member">
+          <Route path="/myAccount">
             <Member />
           </Route>
           <Route path="/itinerary">
@@ -30,6 +34,12 @@ function App() {
           </Route>
           <Route path="/search">
             <SearchBar />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/LineChart">
+            <LineChart />
           </Route>
           <Route path="/">
             <h1>Hello World</h1>

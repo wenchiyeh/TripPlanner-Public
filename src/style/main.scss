@@ -95,6 +95,9 @@ body {
 //footer
 @import './footer.scss';
 
+//會員收藏卡片樣式
+@import './meFavorites.scss';
+
 .article {
   display: flex;
   max-width: 1440px;
@@ -135,16 +138,5 @@ body {
     margin: 1rem 1rem;
   }
 }
-//收藏卡片樣式
-.card-style-mef{
-  width: 80px;
-  height: 26px;
-  background-color: $main-red;
-  color: #fff;
-  border-radius: 16px;
-  text-align: center;
-}
-.mef-icno-style{
-  margin-top: 1rem;
-}
+
 

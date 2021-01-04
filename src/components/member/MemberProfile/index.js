@@ -26,7 +26,7 @@ function MemberList() {
           size="lg"
           show={show}
           onHide={handleClose}
-          backdrop="static"
+          // backdrop="static"
           keyboard={false}
         >
           <Modal.Header closeButton>

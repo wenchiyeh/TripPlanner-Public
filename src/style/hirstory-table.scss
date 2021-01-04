@@ -1,0 +1,57 @@
+.table {
+  thead {
+    text-align: center;
+    font-family: 'Noto Sans TC';
+    font-weight: normal;
+    color: #707070;
+    font-size: 16px;
+  }
+
+  tbody {
+    text-align: center;
+    font-family: 'Roboto';
+    font-weight: normal;
+
+    th {
+      font-size: 16px;
+    }
+
+    td {
+      font-size: 14px;
+      line-height: 30px;
+      Button {
+        width: 80px;
+        height: 30px;
+      }
+      .btn {
+        border-radius: 3px;
+        font-family: 'Noto Sans TC';
+        font-weight: normal;
+
+        font-size: 14px;
+        padding-top: 4px;
+        padding-bottom: 8px;
+      }
+    }
+  }
+}
+
+// pages
+.pagination {
+  position: absolute;
+  bottom: 8%;
+  left: 40%;
+}
+.page-link {
+  color: #fff;
+  background-color: $info;
+  border-radius: 5px;
+}
+.page-item.active .page-link {
+  background-color: transparent;
+  color: $info;
+  border: 1px solid transparent;
+}
+.page-item {
+  margin: 0 3px;
+}

@@ -12,20 +12,19 @@ import {
   FaRegBookmark,
 } from 'react-icons/fa'
 
-function Card(props) {
-  const {
-    title, //標題
-    text, //內文
-    location, //左上角的地標
-    image, //圖片的檔名與附檔名ex: 'testImage.jpg'
-    time1 = -1, //第一個日期
-    time2 = -1, //第二個日期
-    duration = -1, //天數
-    price = -1, //價格
-    person, //卡片內顯示的人名
-    like, //愛心人數
-    mark, //收藏人數
-  } = props
+function Card({
+  title, //標題
+  text, //內文
+  location, //左上角的地標
+  image, //圖片的檔名與附檔名ex: 'testImage.jpg'
+  time1 = -1, //第一個日期
+  time2 = -1, //第二個日期
+  duration = -1, //天數
+  price = -1, //價格
+  person, //卡片內顯示的人名
+  like, //愛心人數
+  mark, //收藏人數
+}) {
   const imagePath = './images/' + image
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)

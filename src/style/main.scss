@@ -1,5 +1,5 @@
-//bootstrap樣式
 @import './custom.scss';
+//bootstrap樣式
 //
 //SCSS變數宣告區
 //顏色相關
@@ -20,6 +20,9 @@ $card-figure-height: 240px;
 $card-button-height: 50px;
 $card-content-height: 110px;
 $card-border-radius: 10px;
+//searchbar相關
+$searchbar-width: 1080px;
+$searchbar-height: 65px;
 //變數區結尾
 
 //文字相關
@@ -43,89 +46,124 @@ p {
 p.content-small {
   font-size: 14px;
 }
+
 //
 //tag樣式
 body {
   font-family: 'Roboto', 'Noto Sans TC', sans-serif;
   font-weight: 500;
-  background-color: $sub-dark-gray;
+  background-color: $main-gray;
 }
+
 //class樣式
+//組件
 .test-wrap {
   padding: 100px;
 }
-.card-wrapper {
-  width: $card-widhth;
-  height: $card-height;
-  border-radius: $card-border-radius;
-  position: relative;
-  background: #fff;
-  color: $font-black;
-  svg {
-    margin-bottom: 3px;
+.form-custom {
+  //表單設計樣式
+  height: 45px;
+  border: 1px solid $main-gray;
+  border-radius: 3px;
+  padding: 10px 16px;
+  margin: 0 12px;
+}
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
+//card
+@import './card.scss';
+
+//searchbar
+@import './searchbar.scss';
+
+// 評分星星
+@import './star-rating.scss';
+
+// 左邊的會員
+@import './person.scss';
+
+// 月曆的
+@import './calendar.scss';
+
+// 上面那條導覽
+@import './function-bar.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
+
+//行程相關
+@import './itinerary.scss';
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
+
+.article {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.section {
+  margin-right: 1rem;
+}
+
+//通知表單&我的帳戶
+.notice-style {
+  background: #ffffff;
+  border-radius: 6px;
+  max-width: 810px;
+  box-shadow: 0 3px 6px #000;
+  padding-bottom: 10px;
+}
+
+//會員收藏
+.me-favorites-style {
+  background: #ffffff;
+  text-align: left;
+  margin: 1rem;
+  border-radius: 6px;
+  .me-favorites-back-style {
+    max-width: 810px;
+    max-height: 156px;
+    background: #e9e9e9;
   }
 }
-.card-label {
+//會員收藏列表
+.Link-Me-Favorites {
+  max-width: 710px;
+  margin: 1rem auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    margin: 1rem 1rem;
+  }
+}
+//收藏卡片樣式
+.card-style-mef {
   width: 80px;
   height: 26px;
   background-color: $main-red;
   color: #fff;
   border-radius: 16px;
-  position: absolute;
-  z-index: 2;
-  top: -13px;
   text-align: center;
-  span {
-    line-height: 28px;
-  }
 }
-.card-figure {
-  width: $card-widhth;
-  height: $card-figure-height;
-  margin: 0;
-  border-radius: $card-border-radius $card-border-radius 0 0;
-  overflow: hidden;
-  :hover.card-image {
-    transform: scale(1.07);
-  }
-  .card-image {
-    width: 100%;
-    transition: 0.3s;
-  }
+.mef-icno-style {
+  margin-top: 1rem;
 }
-.card-content {
-  // width: 100%;
-  padding: 16px 24px 0;
-  height: $card-content-height;
-  h4 {
-    margin: 8px 0;
-  }
-  .card-text {
-    width: 100%;
-    color: $sub-dark-gray;
-  }
-}
-.card-info {
-  padding: 12px 24px;
-  border-bottom: 1px solid $sub-silver;
-  a {
-    color: $main-lightblue;
-  }
-}
-.card-button {
-  width: 175px;
-  height: 50px;
-  cursor: pointer;
-  p {
-    text-align: center;
-    line-height: 50px;
-  }
-}
-.card-slice {
-  width: 2px;
-  height: 24px;
-  background: $sub-dark-gray;
-  margin: 13px;
+//我的帳戶標題
+.MyAccount-title {
+  padding: 1rem;
+  margin: 1rem;
 }
 
 //Carousel

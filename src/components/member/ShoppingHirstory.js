@@ -1,82 +1,66 @@
 import React from 'react'
+import { Table } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import Pages from '../main/Pages'
 
 function ShoppingHirstory() {
   return (
     <>
-      <table className="table table-sm">
+      <Table striped bordered hover>
         <thead>
           <tr>
-            <th scope="col">No.</th>
-            <th scope="col">日期</th>
-            <th scope="col">編號</th>
-            <th scope="col">數量</th>
-            <th scope="col">價格</th>
-            <th scope="col"></th>
+            <th>No.</th>
+            <th>日期</th>
+            <th>編號</th>
+            <th>數量</th>
+            <th>價格</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
+            <td>1</td>
             <td>2020/11/18</td>
             <td>1313869028421103-1-7</td>
             <td>1張</td>
             <td>NT$ 4000</td>
             <td>
-              <button>明細</button>
+              <Button variant="info">明細</Button>
             </td>
           </tr>
           <tr>
-            <th scope="row">1</th>
+            <td>1</td>
             <td>2020/11/18</td>
             <td>1313869028421103-1-7</td>
             <td>1張</td>
             <td>NT$ 4000</td>
             <td>
-              <button>明細</button>
+              <Button variant="info">明細</Button>
             </td>
           </tr>
           <tr>
-            <th scope="row">1</th>
+            <td>1</td>
             <td>2020/11/18</td>
             <td>1313869028421103-1-7</td>
             <td>1張</td>
             <td>NT$ 4000</td>
             <td>
-              <button>明細</button>
+              <Button variant="info">明細</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2020/11/18</td>
+            <td>1313869028421103-1-7</td>
+            <td>1張</td>
+            <td>NT$ 4000</td>
+            <td>
+              <Button variant="info">明細</Button>
             </td>
           </tr>
         </tbody>
-      </table>
-
-      <div aria-label="Page navigation example" className="page">
-        <ul className="pagination">
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              1
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              2
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              3
-            </a>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+      </Table>
+      <Pages />
     </>
   )
 }

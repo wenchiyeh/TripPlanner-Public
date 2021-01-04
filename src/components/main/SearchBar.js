@@ -6,6 +6,7 @@ function SearchBar(props) {
     <>
       <div className="searchbar-wrapper d-flex justify-content-between">
         <div className="searchbar-form-wrapper d-flex align-items-center">
+          <input className="form-custom searchbar-input" type="text" />
           <select className="form-custom searchbar-area" name="searchbar-area">
             <option value="test1">text1</option>
           </select>
@@ -17,7 +18,6 @@ function SearchBar(props) {
             className="form-custom searchbar-day"
             name="searchbar-day"
           ></select>
-          <input className="form-custom searchbar-input" type="text" />
         </div>
         <div role="button" className="do-search-button"></div>
       </div>

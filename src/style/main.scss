@@ -68,6 +68,13 @@ body {
   padding: 10px 16px;
   margin: 0 12px;
 }
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
 //card
 @import './card.scss';
 
@@ -86,6 +93,7 @@ body {
 // 上面那條導覽
 @import './function-bar.scss';
 
+
 //行程相關
 @import './itinerary.scss';
 
@@ -94,6 +102,9 @@ body {
 
 //footer
 @import './footer.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
 
 .article {
   display: flex;

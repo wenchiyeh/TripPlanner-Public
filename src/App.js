@@ -39,15 +39,16 @@ function App() {
           </Route>
           <Route path="/product">
             <ProductList />
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/LineChart">
-              <LineChart />
-            </Route>
-            <Route path="/">
-              <h1>Hello World</h1>
-            </Route>
+          </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/LineChart">
+            <LineChart />
+          </Route>
+          <Route path="/">
+            <h1>Hello World</h1>
           </Route>
         </Switch>
       </>

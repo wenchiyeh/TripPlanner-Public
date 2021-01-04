@@ -1,8 +1,8 @@
 //我的帳戶
 import React from 'react'
-import LineChart from '../../member/LineChart'
-import Ingroup from '../../member/Ingroup'
-import './MyAccount.scss'
+
+import LineChart from '.././LineChart'
+import Ingroup from '.././Ingroup'
 
 function MyAccount() {
   return (

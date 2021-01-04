@@ -1,12 +1,13 @@
 import React from 'react'
 
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import Member from './pages/Member'
 //
 //header footer wrapper
 //
 //pages
 import Itinerary from '../src/pages/Itinerary'
+import Member from './pages/Member'
+import SearchBar from './components/main/SearchBar'
 import Login from './pages/Login'
 import LineChart from './pages/LineChart '
 
@@ -20,6 +21,8 @@ function App() {
         <Link to="/group">Group</Link>
         <Link to="/cash">Cash</Link>
         <Link to="/product">Product</Link>
+        <Link to="/search">SearchBar</Link>
+
         <Link to="/login">Login</Link>
         <Link to="/LineChart">LineChart</Link>
         <Switch>
@@ -28,6 +31,9 @@ function App() {
           </Route>
           <Route path="/itinerary">
             <Itinerary />
+          </Route>
+          <Route path="/search">
+            <SearchBar />
           </Route>
           <Route path="/login">
             <Login />

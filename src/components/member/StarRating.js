@@ -39,3 +39,4 @@ export default StarRating
 
 // 這是星星評分 Ray
 // 分數跟星星還沒連動
+// 小數點還要重寫邏輯判斷

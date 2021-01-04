@@ -129,7 +129,12 @@ function MemberEdit(props) {
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom01">
             <Form.Label>自我介紹</Form.Label>
-            <Form.Control required type="text" placeholder="" defaultValue="" />
+            <Form.Control
+              required
+              type="text"
+              placeholder="我是誰?"
+              defaultValue=""
+            />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>

@@ -9,10 +9,12 @@ function ProductList() {
   return (
     <>
       <Header />
-      <MyBreadCrumb />
-      <h1>達人講座</h1>
-      <SearchBar />
-      <CardList />
+      <div className="container">
+        <MyBreadCrumb />
+        <h1>達人講座</h1>
+        <SearchBar />
+        <CardList />
+      </div>
       <MyFooter />
     </>
   )

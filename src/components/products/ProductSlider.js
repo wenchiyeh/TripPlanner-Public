@@ -6,8 +6,8 @@ function ProductSlider() {
     <Carousel>
       <Carousel.Item>
         <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=First slide&bg=373940"
+          className="d-block"
+          src="http://localhost:3000/images/testImage.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -17,8 +17,8 @@ function ProductSlider() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
+          className="d-block"
+          src="http://localhost:3000/images/testImage.jpg"
           alt="Third slide"
         />
 
@@ -29,8 +29,8 @@ function ProductSlider() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
+          className="d-block "
+          src="http://localhost:3000/images/testImage.jpg"
           alt="Third slide"
         />
 

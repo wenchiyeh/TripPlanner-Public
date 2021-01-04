@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/main/Header'
-import Footer from '../components/main/Footer'
+import MyFooter from '../components/main/MyFooter'
 import StarRating from '../components/member/StarRating'
 import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
@@ -19,7 +19,7 @@ function Member() {
           <FunctionBar />
         </nav>
       </article>
-      <Footer />
+      <MyFooter />
     </>
   )
 }
@@ -27,3 +27,4 @@ function Member() {
 export default Member
 
 //這是會員的共用項目 Ray
+//這裡要麵包屑嗎？

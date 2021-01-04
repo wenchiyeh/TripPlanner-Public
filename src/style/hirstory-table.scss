@@ -39,6 +39,19 @@
 // pages
 .pagination {
   position: absolute;
-  bottom: 2rem;
-  left: 45%;
+  bottom: 8%;
+  left: 40%;
+}
+.page-link {
+  color: #fff;
+  background-color: #4464be;
+  border-radius: 5px;
+}
+.page-item.active .page-link {
+  background-color: transparent;
+  color: #4464be;
+  border: 1px solid transparent;
+}
+.page-item {
+  margin: 0 3px;
 }

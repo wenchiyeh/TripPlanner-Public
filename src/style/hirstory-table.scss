@@ -44,12 +44,12 @@
 }
 .page-link {
   color: #fff;
-  background-color: #4464be;
+  background-color: $info;
   border-radius: 5px;
 }
 .page-item.active .page-link {
   background-color: transparent;
-  color: #4464be;
+  color: $info;
   border: 1px solid transparent;
 }
 .page-item {

@@ -11,6 +11,7 @@ function ProductList() {
     <>
       <Header />
       <MyBreadCrumb />
+      <h1>達人講座</h1>
       <ProductSlider />
       <SearchBar />
       <CardList />

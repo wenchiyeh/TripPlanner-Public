@@ -108,14 +108,11 @@ body {
 // 訂單紀錄 Table
 @import './hirstory-table.scss';
 
-.article {
-  display: flex;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.section {
-  margin-right: 1rem;
-}
+
+// 商品總攬頁排版
+@import './productList.scss';
+
+
 
 //通知表單&我的帳戶
 .notice-style {

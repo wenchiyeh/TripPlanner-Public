@@ -89,32 +89,54 @@ function LineChart() {
         </Form.Row>
         {/* 性別 */}
         <Form>
-          {['radio'].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                label="男性"
-                type={type}
-                id={`inline-${type}-1`}
-              />
-              <Form.Check
-                inline
-                label="女性"
-                type={type}
-                id={`inline-${type}-2`}
-              />
-            </div>
-          ))}
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+              checked
+            />
+            <label class="form-check-label" for="flexRadioDefault1">
+              男性
+            </label>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+            />
+            <label class="form-check-label" for="flexRadioDefault2">
+              女性
+            </label>
+          </div>
         </Form>
+        {/* 暱稱 */}
         <Form.Row>
-          {/* 暱稱 */}
           <Form.Group as={Col} md="4" controlId="validationCustom01">
             <Form.Label>暱稱</Form.Label>
             <Form.Control required type="text" placeholder="" defaultValue="" />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
-        {/* 七 */}
+        {/* 自我介紹 */}
+        <Form.Row>
+          <Form.Group
+            className="Med-Input-height"
+            as={Col}
+            md="4"
+            controlId="validationCustom01"
+          >
+            <Form.Label>自我介紹</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="我是大木小智"
+              defaultValue=""
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
         <Button type="submit">Submit form</Button>
       </Form>
     </>

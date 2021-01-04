@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import MemberEdit from '../MemberEdit'
+import MemberEdit from '../MemberEdit/index'
 import './MemberProfile.scss'
-function MemberProfile() {
+function MemberList() {
   const Person = ({ img, name }) => {
     const [show, setShow] = useState(false)
 
@@ -16,33 +16,38 @@ function MemberProfile() {
       <div className="person">
         <h3>一般會員</h3>
         <img src={urlapi} alt="" />
-
+        {/* className="member-List-modal-box" */}
         <h4> {name}</h4>
         <Button variant="primary" onClick={handleShow}>
           修改資料
         </Button>
 
         <Modal
+          size="lg"
           show={show}
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
-          className="member-List-modal-box"
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal title</Modal.Title>
+            <Modal.Title>個人資料</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <MemberEdit />
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+          <Modal.Footer className="Line-none"></Modal.Footer>
+          {/* <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="mef-secondary-close"
+              onClick={handleClose}
+            >
               取消
             </Button>
-            <Button variant="primary" className="member-List-btn-enter">
-              確定
+            <Button variant="primary" className="mef-secondary-none">
+              Understood
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </div>
     )
@@ -56,7 +61,7 @@ function MemberProfile() {
     </div>
   )
 }
-export default MemberProfile
+export default MemberList
 
 // 這是左邊會員卡 Ray
 // 照片跟名字要再改

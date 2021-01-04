@@ -1,7 +1,8 @@
 //我的帳戶
 import React from 'react'
-import LineChart from '../components/member/LineChart'
-// import Ingroup from '../components/member/Ingroup'
+
+import LineChart from '.././LineChart'
+import Ingroup from '.././Ingroup'
 
 function MyAccount() {
   return (
@@ -12,7 +13,7 @@ function MyAccount() {
       </div>
       <div className="notice-style">
         <h4 className="MyAccount-title">正在參加的揪團：</h4>
-        {/* <Ingroup /> */}
+        <Ingroup />
       </div>
     </>
   )

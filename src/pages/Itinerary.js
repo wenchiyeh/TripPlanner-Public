@@ -67,7 +67,7 @@ function Itinerary(props) {
   )
 
   const searchTest = <SearchBar />
-  return <div className="testMapWrap">{drapTest}</div>
+  return <div className="testMapWrap">{searchTest}</div>
 }
 
 export default Itinerary

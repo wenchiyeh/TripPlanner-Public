@@ -95,6 +95,7 @@ body {
 
 // 訂單紀錄 Table
 @import './hirstory-table.scss';
+
 //行程相關
 @import './itinerary.scss';
 
@@ -103,6 +104,9 @@ body {
 
 //footer
 @import './footer.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
 
 .article {
   display: flex;

@@ -87,7 +87,7 @@ function BigMap(props) {
       <GoogleMapReact
         className="map-comp-wrapper"
         bootstrapURLKeys={{
-          key: Key,
+          // key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         center={currentCenter}

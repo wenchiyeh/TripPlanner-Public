@@ -4,7 +4,7 @@ import ShoppingHirstory from './ShoppingHirstory'
 
 import MeFavorites from '../main/MeFavorites'
 import Notice from '../../pages/Notice'
-import MyAccount from '../../pages/MyAccount'
+import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
     <Router>

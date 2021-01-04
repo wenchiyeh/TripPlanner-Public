@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import MeFavorites from '../main/MeFavorites'
 import Notice from '../../pages/Notice'
-import MyAccount from '../../pages/MyAccount'
+import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
     <Router>

@@ -2,6 +2,9 @@ import React from 'react'
 import Card from '../components/main/Card'
 import TestWrap from '../components/main/TestWrap'
 import SearchBar from '../components/main/SearchBar'
+import BigMap from '../components/Itinerary/BigMap'
+//
+//
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function Itinerary(props) {
@@ -30,43 +33,42 @@ function Itinerary(props) {
     { id: '3', title: 'test3', content: 'con3' },
     { id: '4', title: 'test4', content: 'con4' },
   ]
+  const drapTest = (
+    <DragDropContext>
+      <Droppable droppableId="test">
+        {(provided) => (
+          <ul
+            className="testDropArea"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {testArr.map(({ id, title, content }, index) => {
+              return (
+                <Draggable key={id} draggableId={id} index={index}>
+                  {(provided) => (
+                    <li
+                      className="testDragBox"
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                    >
+                      <h4>{title}</h4>
+                      <p>{content}</p>
+                      <input type="text" value={content} />
+                    </li>
+                  )}
+                </Draggable>
+              )
+            })}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
+    </DragDropContext>
+  )
 
   const searchTest = <SearchBar />
-  return (
-    <TestWrap>
-      <DragDropContext>
-        <Droppable droppableId="test">
-          {(provided) => (
-            <ul
-              className="testDropArea"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {testArr.map(({ id, title, content }, index) => {
-                return (
-                  <Draggable key={id} draggableId={id} index={index}>
-                    {(provided) => (
-                      <li
-                        className="testDragBox"
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        <h4>{title}</h4>
-                        <p>{content}</p>
-                        <input type="text" value={content} />
-                      </li>
-                    )}
-                  </Draggable>
-                )
-              })}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </TestWrap>
-  )
+  return <div className="testMapWrap">{drapTest}</div>
 }
 
 export default Itinerary

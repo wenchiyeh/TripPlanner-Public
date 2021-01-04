@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../components/main/Card'
 import TestWrap from '../components/main/TestWrap'
 import SearchBar from '../components/main/SearchBar'
-import BigMap from '../components/Itinerary/BigMap'
+// import BigMap from '../components/Itinerary/BigMap'
 //
 //
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'

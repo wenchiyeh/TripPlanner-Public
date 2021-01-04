@@ -9,7 +9,7 @@ function FunctionBar() {
   return (
     <Router>
       <>
-        <div className="FunctionBar">
+        <div className="functio-bar">
           <Link to="/myAccount">我的帳戶</Link>
           <Link to="/myStroke">我的行程</Link>
           <Link to="/myGroup">我的揪團</Link>

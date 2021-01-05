@@ -67,6 +67,7 @@ function Home(props) {
           <div className="p1-card ">
             <h2>熱門行程</h2>
           </div>
+          <div className="card-background" />
           <div className="Carousel">
             <Carousel responsive={responsive}>
               <div>

@@ -15,9 +15,9 @@ function ProductList() {
       <div className="container">
         <MyBreadCrumb />
         <h1>達人講座</h1>
-
-        <Carousel />
-
+      </div>
+      <Carousel />
+      <div className="container">
         <SearchBar />
 
         <CardList />

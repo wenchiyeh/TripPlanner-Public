@@ -15,11 +15,11 @@ function CardList() {
               image={'testImage.jpg'}
               time1={'2020/12/24'}
               time2={-1}
-              duration={3}
+              duration={10}
               price={-1}
               person={'王大明'}
-              like={222}
-              mark={222}
+              like={282}
+              mark={1111}
             />
           </Col>
           <Col xs={6} md={4}>

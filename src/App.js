@@ -12,7 +12,7 @@ import Member from './pages/Member'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
 import LineChart from './pages/LineChart '
-import BuyProducts from './pages/BuyProducts'
+import BuyProducts from './pages/BuyProducts/BuyProducts'
 
 function App() {
   return (

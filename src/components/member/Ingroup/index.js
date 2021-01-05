@@ -1,6 +1,6 @@
 //正在參加的揪團
 import React from 'react'
-import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 function MeFavoritesgroup({

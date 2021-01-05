@@ -27,7 +27,7 @@ function Card({
   like, //愛心人數
   mark, //收藏人數
 }) {
-  const imagePath = './images/' + image
+  const imagePath = '/images/' + image
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)

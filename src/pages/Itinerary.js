@@ -2,11 +2,14 @@ import React from 'react'
 import Card from '../components/main/Card'
 import TestWrap from '../components/main/TestWrap'
 import SearchBar from '../components/main/SearchBar'
+import CardListPublic from '../components/main/CardListPublic'
 //
 //
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function Itinerary(props) {
+  const searchTest = <SearchBar />
+  let cardData = require('../components/Itinerary/testJsonData.json')
   const cardTest = (
     <Card
       title={'新北耶誕'}
@@ -61,9 +64,16 @@ function Itinerary(props) {
       </Droppable>
     </DragDropContext>
   )
-
-  const searchTest = <SearchBar />
-  return <div className="testMapWrap">{cardTest}</div>
+  return (
+    <div className="testMapWrap">
+      <CardListPublic data={cardData[2].data} />
+      <TestWrap />
+      {searchTest}
+      {drapTest}
+      {cardTest}
+    </div>
+    // <div className="testMapWrap">{console.log(cardData[2].data)}</div>
+  )
 }
 
 export default Itinerary

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Link, Switch, useParams } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
+import CardListPublic from '../main/CardListPublic'
 
 function Test() {
   let { id } = useParams()
@@ -12,6 +13,9 @@ function ItinRoute() {
     <Switch>
       <Route path="/itinerary/view/:id">
         <Test />
+      </Route>
+      <Route path="/itinerary/test">
+        <CardListPublic />
       </Route>
       <Route exact path="/itinerary">
         <Itinerary />

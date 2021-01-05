@@ -1,5 +1,6 @@
 .navbar {
   padding: 1px;
+  height: 80px;
 }
 .Navbar-Logo {
   margin: 0px 200px 0px 60px;
@@ -43,8 +44,18 @@
   display: none;
 }
 .dropdown-menu {
-  height: 300px;
+  text-align: center;
+  height: 100px;
   transform: translateX(-30%);
   position: relative;
   opacity: 0.8;
+}
+//鈴鐺位置
+.badge {
+  color: #ffffff;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 155px;
 }

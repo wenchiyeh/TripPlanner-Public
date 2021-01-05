@@ -6,6 +6,7 @@ import {
   FormControl,
   Button,
   NavDropdown,
+  Badge,
 } from 'react-bootstrap'
 
 import { NavLink } from 'react-router-dom'
@@ -19,14 +20,8 @@ function Header(props) {
 
   return (
     <>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg={'primary'}
-        variant="dark"
-        fixed="top"
-      >
-        <Navbar.Brand href="Home" className="Navbar-Logo">
+      <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
+        <Navbar.Brand href="#home" className="Navbar-Logo">
           <img src={Logo} width="150" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -51,23 +46,21 @@ function Header(props) {
             </Nav.Link>
             <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
+              <Badge variant="light">5</Badge>
             </Nav.Link>
             <NavDropdown
               title={
-                <figure className="Navebar-figure ">
+                <figure className="Navebar-figure">
                   <img src={imagePath} />
                 </figure>
               }
             >
-              <NavDropdown.Item as={NavLink} to="/product/men">
-                MEN 男性
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/product/baby">
-                Baby 嬰兒
+              <NavDropdown.Item as={NavLink} to="/myAccount/">
+                會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/product/women">
-                WOMEN 女性
+              <NavDropdown.Item as={NavLink} to="/product/home">
+                登出
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

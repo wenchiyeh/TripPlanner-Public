@@ -1,5 +1,5 @@
-//bootstrap樣式
 @import './custom.scss';
+//bootstrap樣式
 //
 //SCSS變數宣告區
 //顏色相關
@@ -68,257 +68,132 @@ body {
   padding: 10px 16px;
   margin: 0 12px;
 }
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
+//memberPage
+@import './memberPage.scss';
+
 //card
-.card-wrapper {
-  width: $card-widhth;
-  height: $card-height;
-  border-radius: $card-border-radius;
-  position: relative;
-  background: #fff;
-  color: $font-black;
-  svg {
-    margin-bottom: 3px;
+@import './card.scss';
+
+//searchbar
+@import './searchbar.scss';
+
+// 評分星星
+@import './star-rating.scss';
+
+// 左邊的會員
+@import './person.scss';
+
+// 月曆的
+@import './calendar.scss';
+
+// 上面那條導覽
+@import './function-bar.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
+
+//行程相關
+@import './itinerary.scss';
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
+
+// 商品總攬頁排版
+@import './productList.scss';
+
+//通知表單&我的帳戶
+.notice-style {
+  background: #ffffff;
+  border-radius: 6px;
+  max-width: 810px;
+  box-shadow: 0 3px 6px #000;
+  padding-bottom: 10px;
+}
+
+//會員收藏
+.me-favorites-style {
+  background: #ffffff;
+  text-align: left;
+  margin: 1rem;
+  border-radius: 6px;
+  .me-favorites-back-style {
+    max-width: 810px;
+    max-height: 156px;
+    background: #e9e9e9;
   }
 }
-.card-label {
+//會員收藏列表
+.Link-Me-Favorites {
+  max-width: 710px;
+  margin: 1rem auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    margin: 1rem 1rem;
+  }
+}
+//收藏卡片樣式
+.card-style-mef {
   width: 80px;
   height: 26px;
   background-color: $main-red;
   color: #fff;
   border-radius: 16px;
-  position: absolute;
-  z-index: 2;
-  top: -13px;
   text-align: center;
-  span {
-    line-height: 28px;
-  }
 }
-.card-figure {
-  width: $card-widhth;
-  height: $card-figure-height;
-  margin: 0;
-  border-radius: $card-border-radius $card-border-radius 0 0;
+.mef-icno-style {
+  margin-top: 1rem;
+}
+//我的帳戶標題
+.MyAccount-title {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+//Carousel
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+.carousel-main {
+  position: relative;
+  width: 100%;
+  height: 360px;
   overflow: hidden;
-  :hover.card-image {
-    transform: scale(1.07);
-  }
-  .card-image {
-    width: 100%;
-    transition: 0.3s;
-  }
-}
-.card-content {
-  padding: 16px 24px 0;
-  height: $card-content-height;
-  h4 {
-    margin: 8px 0;
-  }
-  .card-text {
-    width: 100%;
-    color: $sub-dark-gray;
-  }
-}
-.card-info {
-  padding: 12px 24px;
-  border-bottom: 1px solid $sub-silver;
-  a {
-    color: $main-lightblue;
-  }
-}
-.card-button {
-  width: 175px;
-  height: 50px;
-  cursor: pointer;
-  p {
-    text-align: center;
-    line-height: 50px;
-  }
-}
-.card-slice {
-  width: 2px;
-  height: 24px;
-  background: $sub-dark-gray;
-  margin: 13px;
-}
-
-//searchbar
-.searchbar-wrapper {
-  width: $searchbar-width;
-  height: $searchbar-height;
-  background: #fff;
-  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
-  border-radius: 6px 50px 50px 6px;
-  padding-left: 12px;
-}
-.searchbar-form-wrapper {
-  width: $searchbar-width - $searchbar-height;
-}
-.searchbar-area {
-  width: 100px;
-}
-.searchbar-town {
-  width: 100px;
-}
-.searchbar-day {
-  width: 100px;
-}
-.searchbar-input {
-  width: 100%;
-}
-.do-search-button {
-  width: $searchbar-height;
-  height: $searchbar-height;
-  border-radius: 50%;
-  background-color: $main-lightblue;
-}
-// 評分星星
-
-.star-rating-wrapper {
-  width: 250px;
-  height: 115px;
-  border-radius: 6px;
-  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
-  background-color: #fff;
-  margin: 1rem auto;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  p {
-    color: #000;
-    font-size: 16px;
-    font-family: 'Noto Sans TC';
-  }
-  label {
-    font-size: 36px;
-    font-family: 'Roboto';
-    margin-left: 1rem;
-  }
-  span {
-    color: #46beeb;
-    font-size: 30px;
-    cursor: default;
-  }
-}
-
-// 左邊的會員
-.person {
-  background: #ffffff;
-  width: 250px;
-  height: 350px;
-  padding-top: 1rem;
-  margin: 1rem auto;
-  border-radius: 6px;
   text-align: center;
-  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
-
-  h3 {
-    font-family: 'Noto Sans TC';
-    color: #4464be;
-    margin-bottom: 24px;
-  }
-  img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-  h4 {
-    font-family: 'Noto Sans TC';
-    margin-top: 1rem;
-    margin-bottom: 24px;
-  }
-  button {
-    width: 150px;
-    height: 35px;
-    background-color: #4464be;
-    border-radius: 3px;
-    font-size: 14px;
-    font-family: 'Noto Sans TC';
-    border: 1px solid transparent;
-    color: #fff;
-  }
+  margin: 21px auto;
+}
+.carousel-outbox {
+  position: relative;
+}
+.carousel-slide img {
+  width: 872px;
+  height: 360px;
+  margin: 0px auto;
+}
+.carousel-slide {
+  transform: scale(0.9);
+  margin: 0px auto;
+  top: 50%;
+}
+.carousel-active-slide {
+  transform: scale(1);
+  margin: 0px auto;
 }
 
-// 月曆的
-@import 'react-calendar/dist/Calendar.css';
-
-.react-calendar {
-  width: 250px;
-  border-radius: 6px;
-  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
-  font-size: 12px;
-  margin: 1rem auto;
-  font-family: 'Roboto';
-  border: 1px solid transparent;
-}
-
-// 上面那條導覽
-.FunctionBar {
-  width: 810px;
-  margin: 1rem auto;
-  a {
-    font-family: 'Noto Sans TC';
-    font-size: 20px;
-    margin: 0 27px;
-  }
-}
-
-.article {
-  display: flex;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.section {
-  margin-right: 1rem;
-}
-
-// header
-
-.navbar {
-  height: 80px;
-  width: 100%;
-
-  img {
-    margin-left: 64px;
-    height: 60px;
-    width: 150px;
-  }
-}
-.navbar-collapse {
-  justify-content: flex-start;
-
-  .center-text {
-    flex: 1 0 0;
-    justify-content: center;
-
-    p {
-      font-size: 20px;
-      padding: 0 48px;
-    }
-  }
-  .icons {
-    flex: 0 0 0;
-  }
-}
-.nav-link {
-  p {
-    color: #fff;
-    font-size: 20;
-    font-family: 'Noto Sans TC';
-  }
-  img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-left: 28px;
-    margin-right: 32px;
-  }
-  svg {
-    width: 25px;
-    height: 30px;
-    margin: 0 14px;
-    color: #fff;
-  }
-}
+//新增揪團
+@import './addTravelBuddies.scss';
 
 //navbar
 .navbar {
@@ -599,4 +474,13 @@ body {
 .card-background {
   width: 500px;
   height: 100px;
+}
+.carousel-slide {
+  transform: scale(0.9);
+  margin: 0px auto;
+  top: 50%;
+}
+.carousel-active-slide {
+  transform: scale(1);
+  margin: 0px auto;
 }

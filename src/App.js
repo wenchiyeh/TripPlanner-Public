@@ -3,23 +3,55 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //
 //header footer wrapper
+import Header from './components/main/Header'
+import MyFooter from './components/main/MyFooter'
 //
 //pages
-import Itinerary from '../src/pages/Itinerary'
+import ItinRoute from './components/Itinerary/ItinRoute'
 import Member from './pages/Member'
-import SearchBar from './components/main/SearchBar'
-import Footer from './components/main/Footer'
-import Header from './components/main/Header'
-import Home from './pages/Home'
+import ProductsRoute from './components/products/ProductsRoute'
+import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
+import Login from './pages/Login'
+import LineChart from './pages/LineChart '
+import AddTravelBuddies from './pages/AddTravelBuddies'
 
 function App() {
   return (
     <Router>
       <>
-        <Home />
-        <Header />
+        <Link to="/">Home</Link>
+        <Link to="/myAccount">Member</Link>
+        <Link to="/itinerary">Itinerary</Link>
+        <Link to="/group">Group</Link>
+        <Link to="/cash">Cash</Link>
+        <Link to="/products">Product</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/LineChart">LineChart</Link>
+        <Link to="/travelBuddy">TravelBuddy</Link>
 
-        <Footer />
+        <Route exact path="/">
+          <h1>Hello World</h1>
+        </Route>
+        <Switch>
+          <Route path="/myAccount">
+            <Member />
+          </Route>
+          <Route path="/itinerary">
+            <ItinRoute />
+          </Route>
+          <Route path="/products">
+            <ProductsRoute />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/LineChart">
+            <LineChart />
+          </Route>
+          <Route path="/travelBuddy">
+            <TravelBuddyRoute />
+          </Route>
+        </Switch>
       </>
     </Router>
   )

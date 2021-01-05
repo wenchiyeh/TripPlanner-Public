@@ -1,0 +1,30 @@
+//正式
+.map-comp-wrapper {
+  position: relative;
+}
+.map-search-wrapper {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+//測試用
+.testDragBox {
+  border: 1px solid #000;
+  margin-bottom: 10px;
+  p,
+  h4 {
+    margin: 0;
+  }
+}
+.testDropArea {
+  background: red;
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+.testMapWrap {
+  height: 100vh;
+  width: 100vw;
+}
+// 檔案負責人: 柯政安

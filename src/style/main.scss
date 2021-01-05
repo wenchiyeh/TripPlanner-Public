@@ -68,8 +68,15 @@ body {
   padding: 10px 16px;
   margin: 0 12px;
 }
-//登入
-@import './login.scss';
+
+// header
+@import './header.scss';
+
+//footer
+@import './footer.scss';
+
+//memberPage
+@import './memberPage.scss';
 
 //card
 @import './card.scss';
@@ -89,6 +96,9 @@ body {
 // 上面那條導覽
 @import './function-bar.scss';
 
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
+
 //行程相關
 @import './itinerary.scss';
 
@@ -98,24 +108,86 @@ body {
 //footer
 @import './footer.scss';
 
-//會員nav-magin
-@import './membernav.scss';
+// 訂單紀錄 Table
+@import './hirstory-table.scss';
 
-//會員收藏卡片樣式
-@import './meFavorites.scss';
+// 商品總攬頁排版
+@import './productList.scss';
 
-//會員通知
-@import "./notice.scss";
-
-
-.article {
-  display: flex;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-.section {
-  margin-right: 1rem;
+//通知表單&我的帳戶
+.notice-style {
+  background: #ffffff;
+  border-radius: 6px;
+  max-width: 810px;
+  box-shadow: 0 3px 6px #000;
+  padding-bottom: 10px;
 }
 
+//會員收藏
+.me-favorites-style {
+  background: #ffffff;
+  text-align: left;
+  margin: 1rem;
+  border-radius: 6px;
+  .me-favorites-back-style {
+    max-width: 810px;
+    max-height: 156px;
+    background: #e9e9e9;
+  }
+}
+//會員收藏列表
+.Link-Me-Favorites {
+  max-width: 710px;
+  margin: 1rem auto;
+  a {
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    margin: 1rem 1rem;
+  }
+}
+//收藏卡片樣式
+.card-style-mef {
+  width: 80px;
+  height: 26px;
+  background-color: $main-red;
+  color: #fff;
+  border-radius: 16px;
+  text-align: center;
+}
+.mef-icno-style {
+  margin-top: 1rem;
+}
+//我的帳戶標題
+.MyAccount-title {
+  padding: 1rem;
+  margin: 1rem;
+}
 
-
+//Carousel
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+.carousel-main {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  text-align: center;
+  margin: 21px auto;
+}
+.carousel-outbox {
+  position: relative;
+}
+.carousel-slide img {
+  width: 872px;
+  height: 360px;
+  margin: 0px auto;
+}
+.carousel-slide {
+  transform: scale(0.9);
+  margin: 0px auto;
+  top: 50%;
+}
+.carousel-active-slide {
+  transform: scale(1);
+  margin: 0px auto;
+}

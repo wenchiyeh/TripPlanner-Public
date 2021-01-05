@@ -7,6 +7,7 @@ import {
   Button,
   NavDropdown,
 } from 'react-bootstrap'
+import { Badge } from 'antd'
 
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
@@ -43,9 +44,15 @@ function Header(props) {
             <Nav.Link href="#memes">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#mell">
+            {/* 原本的鈴鐺 */}
+            {/* <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
-            </Nav.Link>
+            </Nav.Link> */}
+            {/* 新的鈴鐺有數字 */}
+            <Badge size="default" count={99} overflowCount={10}>
+              <FaRegBell className="Navbar-icon head-example" />
+              {/* <a href="#" className="head-example" /> */}
+            </Badge>
             <NavDropdown
               title={
                 <figure className="Navebar-figure ">

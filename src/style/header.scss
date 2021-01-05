@@ -20,6 +20,7 @@
   position: relative;
   transition: 0.5s;
   margin-right: 40px;
+  color: #ffffff;
 }
 .Navebar-figure {
   width: 45px;
@@ -48,4 +49,12 @@
   transform: translateX(-30%);
   position: relative;
   opacity: 0.8;
+}
+//移動鈴鐺數字
+.ant-scroll-number {
+  color: red;
+  font-size: 16px;
+  position: absolute;
+  top: 50px;
+  right: 140px;
 }

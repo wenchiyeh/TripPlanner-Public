@@ -15,7 +15,7 @@ function Member() {
           <StarRating />
           <CalendarApp />
         </section>
-        <nav>
+        <nav className="member-nav-mag">
           <FunctionBar />
         </nav>
       </article>

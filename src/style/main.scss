@@ -95,11 +95,15 @@ body {
 //footer
 @import './footer.scss';
 
+//會員nav-magin
+@import './membernav.scss';
+
 //會員收藏卡片樣式
 @import './meFavorites.scss';
 
 //會員通知
 @import "./notice.scss";
+
 
 .article {
   display: flex;

@@ -7,11 +7,13 @@
     margin: 0 27px;
   }
 }
-
+//左右兩側
 .article {
   display: flex;
   max-width: 1440px;
   margin: 0 auto;
+  padding-left: 120px;
+  padding-right: 120px;
 }
 .section {
   margin-right: 1rem;

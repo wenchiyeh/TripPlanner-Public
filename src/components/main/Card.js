@@ -3,6 +3,7 @@
 //
 import React, { useState } from 'react'
 import StrCutter from './StrCutter'
+import { Link } from 'react-router-dom'
 import {
   FaMapMarkerAlt,
   FaUsers,
@@ -13,6 +14,7 @@ import {
 } from 'react-icons/fa'
 
 function Card({
+  id = 1, //資料的id
   title, //標題
   text, //內文
   location, //左上角的地標
@@ -30,6 +32,31 @@ function Card({
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
   let handelText = StrCutter(text, 62)
+  let type = 'itinerary'
+  if (time1 === -1) {
+    type = 'itinerary'
+  } else if (time2 !== -1) {
+    type = 'travelBuddy'
+  } else if (price !== -1) {
+    type = 'products'
+  }
+  let detailUrl = `/${type}/view/${id}`
+  const calenderMark = (
+    <>
+      <FaRegCalendarCheck />
+      &emsp;
+      {duration + '天'}
+      &emsp;&emsp;
+    </>
+  )
+  const priceMark = (
+    <>
+      <FaDollarSign />
+      &emsp;
+      {price}
+      &emsp;&emsp;
+    </>
+  )
   return (
     <>
       <div className="card-wrapper">
@@ -38,7 +65,9 @@ function Card({
           <span> {location}</span>
         </p>
         <figure className="card-figure">
-          <img className="card-image" alt={title} src={imagePath} />
+          <Link to={detailUrl}>
+            <img className="card-image" alt={title} src={imagePath} />
+          </Link>
         </figure>
         <div className="card-content">
           <p className="content-small">
@@ -54,15 +83,13 @@ function Card({
             &emsp;
             {person}
             &emsp;&emsp;
-            <FaRegCalendarCheck />
-            &emsp;
-            {duration !== -1 && duration + '天'}
-            {price !== -1 && <FaDollarSign /> + price}
+            {duration !== -1 && calenderMark}
+            {price !== -1 && priceMark}
           </span>
 
-          <a className="card-detail" href="./">
+          <Link to={detailUrl} className="card-detail">
             詳細 &gt;
-          </a>
+          </Link>
         </p>
         <div className="buttonWrap d-flex">
           <div role="button" className="card-button">

@@ -21,7 +21,15 @@ $main-red: #f9669c;
 .me-favorites-back-style{
     background: rgb(230, 230, 230);
     img{
-    height: 100%;
+        padding: 5px;
+        height: 100%;
     }
+    :hover img {
+        transform: scale(1.07);
+      }
+      .img {
+        width: 100%;
+        transition: 0.3s;
+      }
   }
   

@@ -1,3 +1,42 @@
 .body-login{
-    background: url();
+    max-width: 1920px;
+    width: 100%;
+    height: 900px;
+    background: url('http://localhost:3000/images/DSC_2125-36.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left bottom;
+    background-size: cover;
+    margin: 0 auto;
+    position: relative;
+}
+.login-container{
+    text-align: center;
+    
+}
+.login-form{
+    position: absolute;
+    top: 227px;
+    left: 700px;
+    width: 440px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    padding-bottom: 2rem;
+    h1{
+        text-align: center;
+    }
+}
+.form-control{
+    margin: 1rem auto;
+    width: 350px;
+}
+.login-btn{
+    width: 350px;
+    border: none;
+    background:#46BEEB;
+    margin: 0 auto;
+    margin-left: 45px;
 }

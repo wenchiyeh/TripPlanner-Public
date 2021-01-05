@@ -12,6 +12,7 @@ import Member from './pages/Member'
 import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
+import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import AddTravelBuddies from './pages/AddTravelBuddies'
 
@@ -26,6 +27,7 @@ function App() {
         <Link to="/cash">Cash</Link>
         <Link to="/products">Product</Link>
         <Link to="/login">Login</Link>
+        <Link to="/sigon">Sigon</Link>
         <Link to="/LineChart">LineChart</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
@@ -44,6 +46,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/sigon">
+            <Sigon />
           </Route>
           <Route path="/LineChart">
             <LineChart />

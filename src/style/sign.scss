@@ -1,20 +1,22 @@
-.body-login{
+//註冊
+
+.body-sigon{
     max-width: 1920px;
     width: 100%;
     height: 900px;
-    background: url('http://localhost:3000/images/DSC_2125-36.jpg');
+    background: url('http://localhost:3000/images/sigon.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: left bottom;
+    background-position: left center;
     background-size: cover;
     margin: 0 auto;
     position: relative;
 }
 
-.login-form{
+.sogin-form{
     position: absolute;
     top: 227px;
-    left: 700px;
+    right: 300px;
     width: 440px;
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -37,12 +39,12 @@
         height: 50px;
     }
 }
-.login-btn{
+.sogin-btn{
     background: #46BEEB;
     width: 364.98px;
     margin-left: 32px;
 }
-.login-line-center{
+.sogin-line-center{
     margin-right: 10px;
     align-items: center;
     justify-content: center;    
@@ -51,13 +53,13 @@
         margin: 0 20px;
     }
 }
-.login-line{
+.sogin-line{
     color: #ffffff;
     border: 1px solid #ffffff;
     width: 130px;
     height: 1px;
 }
-.login-icon-fa{
+.sogin-icon-fa{
     margin-right: 10px;
     align-items: center;
     justify-content: center;
@@ -68,7 +70,7 @@
         height: 60px;
     }
 }
-.login-samp-text{
+.sogin-samp-text{
     margin-left: 16px;
     color: #ffffff;
     span{
@@ -76,7 +78,7 @@
         margin:10px 20px;
     }
 }
-.login-samp-text-pas{
+.sogin-samp-text-pas{
     position: absolute;
     right: 30px;
 }

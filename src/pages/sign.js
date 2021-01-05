@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
-import '.././style/login.scss'
+import '../style/sign.scss'
 function Login(props) {
   const [validated, setValidated] = useState(false)
 
@@ -17,9 +17,9 @@ function Login(props) {
   }
   return (
     <>
-      <body className="body-login">
-        <div className="login-form form-group">
-          <h1>會員帳號登入</h1>
+      <body className="body-sigon">
+        <div className="sogin-form form-group">
+          <h1>免費註冊</h1>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} md="10" controlId="validationCustomUsername">
@@ -50,7 +50,7 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
-                    className="login-input-br"
+                    className="sogin-input-br"
                     type="text"
                     placeholder="Username"
                     aria-describedby="inputGroupPrepend"
@@ -63,18 +63,17 @@ function Login(props) {
               </Form.Group>
             </Form.Row>
             <Button type="submit" className="login-btn">
-              登入
+              註冊
             </Button>
-            <div className="login-samp-text d-flex">
-              <span>註冊</span>
-              <span className="login-samp-text-pas">忘記密碼</span>
+            <div className="sogin-samp-text d-flex">
+              <span>忘記密碼</span>
             </div>
             <div className="d-flex login-line-center">
-              <span className="login-line"></span>
+              <span className="sogin-line"></span>
               <h1>OR</h1>
-              <span className="login-line"></span>
+              <span className="sogin-line"></span>
             </div>
-            <div className="login-icon-fa d-flex">
+            <div className="sogin-icon-fa d-flex">
               <span>
                 <FaFacebook />
               </span>

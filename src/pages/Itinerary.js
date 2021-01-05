@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 //
@@ -9,10 +9,14 @@ import Pages from '../components//main/Pages'
 import Carousel from '../components/travelBuddy/Carousel'
 
 function Itinerary(props) {
+  const [searchFilter, setSearchFilter] = useState({})
   let history = useHistory()
   function createItinerary() {
     history.push('/itinerary/create')
   }
+  useEffect(() => {
+    console.log(searchFilter)
+  }, [searchFilter])
   return (
     <>
       <div className="container">
@@ -27,7 +31,7 @@ function Itinerary(props) {
       <Carousel />
       <div className="container">
         <Col md={8}>
-          <SearchBar areaList={[]} townList={[]} day={[]} />
+          <SearchBar setSearchFilter={setSearchFilter} />
         </Col>
         <CardListPublic />
         <Pages />

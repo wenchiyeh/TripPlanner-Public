@@ -70,8 +70,6 @@ function Notice(props) {
                     <td>{v.id}</td>
                     <td>{v.name}</td>
                     <td>{v.email}</td>
-                    <td>{v.username}</td>
-                    <td>{v.password}</td>
                   </tr>
                 )
               })}

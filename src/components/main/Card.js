@@ -41,6 +41,22 @@ function Card({
     type = 'products'
   }
   let detailUrl = `/${type}/view/${id}`
+  const calenderMark = (
+    <>
+      <FaRegCalendarCheck />
+      &emsp;
+      {duration + '天'}
+      &emsp;&emsp;
+    </>
+  )
+  const priceMark = (
+    <>
+      <FaDollarSign />
+      &emsp;
+      {price}
+      &emsp;&emsp;
+    </>
+  )
   return (
     <>
       <div className="card-wrapper">
@@ -67,10 +83,8 @@ function Card({
             &emsp;
             {person}
             &emsp;&emsp;
-            <FaRegCalendarCheck />
-            &emsp;
-            {duration !== -1 && duration + '天'}
-            {price !== -1 && <FaDollarSign /> + price}
+            {duration !== -1 && calenderMark}
+            {price !== -1 && priceMark}
           </span>
 
           <Link to={detailUrl} className="card-detail">

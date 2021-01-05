@@ -8,13 +8,14 @@ import {
   AiFillMinusCircle,
   AiOutlineHeart,
 } from 'react-icons/ai'
-import Button from 'react-bootstrap/Button'
+import { Button } from 'react-bootstrap'
 
 function BuyProducts() {
   return (
     <>
       <div className="container">
         <MyBreadCrumb />
+        {/* 麵包屑 */}
         <figure className="heroPhoto">
           <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
         </figure>
@@ -23,7 +24,11 @@ function BuyProducts() {
           <Button variant="info">收藏</Button>
         </div>
         <div className="buyTheTicket">
+          {/* 上半部買票區 */}
+
           <div className="aboutClass">
+            {/* 上半部左邊 資訊區 */}
+
             <div className="aboutIcon">
               <FiClock />
               <div>
@@ -63,6 +68,8 @@ function BuyProducts() {
           </div>
 
           <div className="IWantBuy">
+            {/* 上半部右邊選擇區 */}
+
             <p>雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活</p>
             <div className="clock-time">
               <FiClock />
@@ -106,6 +113,8 @@ function BuyProducts() {
               </div>
             </div>
             <div className="buttonAndHeart">
+              {/* 上半部右邊下面按鈕 */}
+
               <Button variant="info">加入購物車</Button>
               <div className="followMyHeart">
                 <Button variant="light">
@@ -116,6 +125,7 @@ function BuyProducts() {
             </div>
           </div>
         </div>
+        {/* 上半部結束 */}
       </div>
     </>
   )

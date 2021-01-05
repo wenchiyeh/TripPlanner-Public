@@ -39,7 +39,33 @@
 }
 
 .login-btn{
-    color: #46BEEB;
+    background: #46BEEB;
     width: 364.98px;
     margin-left: 32px;
+}
+.login-line-center{
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;    
+    h1{
+        color: #ffffff;
+        margin: 0 20px;
+    }
+}
+.login-line{
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    width: 130px;
+    height: 1px;
+}
+.login-icon-fa{
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    svg{
+        color: #ffffff;
+        margin: 10px 60px;
+        width: 60px;
+        height: 60px;
+    }
 }

@@ -1,6 +1,6 @@
 //登入
 import React, { useState } from 'react'
-import { FaUserAlt, FaUnlockAlt } from 'react-icons/fa'
+import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import '.././style/login.scss'
 function Login(props) {
@@ -64,6 +64,23 @@ function Login(props) {
             <Button type="submit" className="login-btn">
               登入
             </Button>
+            <div className="">
+              <span>註冊</span>
+              <span>忘記密碼</span>
+            </div>
+            <div className="d-flex login-line-center">
+              <span className="login-line"></span>
+              <h1>OR</h1>
+              <span className="login-line"></span>
+            </div>
+            <div className="login-icon-fa d-flex">
+              <span>
+                <FaFacebook />
+              </span>
+              <span>
+                <FaGoogle />
+              </span>
+            </div>
           </Form>
         </div>
       </body>

@@ -3,6 +3,7 @@ import React from 'react'
 
 import LineChart from '.././LineChart'
 import Ingroup from '.././Ingroup'
+import './MyAccount.scss'
 
 function MyAccount() {
   return (

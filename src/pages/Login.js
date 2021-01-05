@@ -64,9 +64,9 @@ function Login(props) {
             <Button type="submit" className="login-btn">
               登入
             </Button>
-            <div className="">
+            <div className="login-samp-text d-flex">
               <span>註冊</span>
-              <span>忘記密碼</span>
+              <span className="login-samp-text-pas">忘記密碼</span>
             </div>
             <div className="d-flex login-line-center">
               <span className="login-line"></span>

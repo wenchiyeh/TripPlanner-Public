@@ -1,13 +1,13 @@
 import React from 'react'
 import Card from '../main/Card'
-import { Col, Row, Container } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 function CardList() {
   return (
     <>
-      <Container>
+      <div className="card-style">
         <Row>
-          <Col xs={6} md={4} className="card-style">
+          <Col xs={6} md={4}>
             <Card
               title={'新北耶誕'}
               text={`刻年在一真升友在，夜長能前路大她力去主保：頭的母打字會，然算子在待的際和體`}
@@ -143,7 +143,7 @@ function CardList() {
             />
           </Col>
         </Row>
-      </Container>
+      </div>
     </>
   )
 }

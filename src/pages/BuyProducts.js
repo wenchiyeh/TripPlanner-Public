@@ -1,9 +1,13 @@
 import React from 'react'
+import MyBreadCrumb from '../components/main/MyBreadCrumb'
 
 function BuyProducts() {
   return (
     <>
-      <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
+      <div className="container">
+        <MyBreadCrumb />
+        <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
+      </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Breadcrumb } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import BuyProducts from '../../pages/BuyProducts'
+
 function MyBreadCrumb() {
   return (
     <Router>

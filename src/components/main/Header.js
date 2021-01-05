@@ -6,8 +6,8 @@ import {
   FormControl,
   Button,
   NavDropdown,
+  Badge,
 } from 'react-bootstrap'
-import { Badge } from 'antd'
 
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
@@ -45,17 +45,13 @@ function Header(props) {
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             {/* 原本的鈴鐺 */}
-            {/* <Nav.Link href="#mell">
+            <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
-            </Nav.Link> */}
-            {/* 新的鈴鐺有數字 */}
-            <Badge size="default" count={99} overflowCount={10}>
-              <FaRegBell className="Navbar-icon head-example" />
-              {/* <a href="#" className="head-example" /> */}
-            </Badge>
+              <Badge variant="light">9</Badge>
+            </Nav.Link>
             <NavDropdown
               title={
-                <figure className="Navebar-figure ">
+                <figure className="Navebar-figure">
                   <img src={imagePath} />
                 </figure>
               }

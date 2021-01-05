@@ -50,6 +50,7 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
+                    className="login-input-br"
                     type="text"
                     placeholder="Username"
                     aria-describedby="inputGroupPrepend"

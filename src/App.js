@@ -12,6 +12,7 @@ import Member from './pages/Member'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
 import LineChart from './pages/LineChart '
+import Sigon from './pages/sign'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Link to="/cash">Cash</Link>
         <Link to="/product">Product</Link>
         <Link to="/login">Login</Link>
+        <Link to="/sigon">Sigon</Link>
         <Link to="/LineChart">LineChart</Link>
 
         <Route exact path="/">
@@ -41,6 +43,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/sigon">
+            <Sigon />
           </Route>
           <Route path="/LineChart">
             <LineChart />

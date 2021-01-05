@@ -44,8 +44,17 @@
   display: none;
 }
 .dropdown-menu {
-  height: 300px;
+  height: 100px;
   transform: translateX(-30%);
   position: relative;
   opacity: 0.8;
+}
+//鈴鐺位置
+.badge {
+  color: #ffffff;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 155px;
 }

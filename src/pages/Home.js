@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../components/main/Card'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
+import '../style/home.scss'
 function Home(props) {
   const responsive = {
     superLargeDesktop: {

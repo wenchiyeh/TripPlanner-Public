@@ -16,6 +16,7 @@ import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Link to="/travelBuddy">TravelBuddy</Link>
 
         <Route exact path="/">
-          <h1>Hello World</h1>
+          <Home />
         </Route>
         <Switch>
           <Route path="/myAccount">

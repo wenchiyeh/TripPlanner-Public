@@ -8,6 +8,7 @@ import {
   NavDropdown,
   Badge,
 } from 'react-bootstrap'
+import '../../style/header.scss'
 
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'

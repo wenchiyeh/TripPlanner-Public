@@ -3,8 +3,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //
 //header footer wrapper
-import Header from './components/main/Header'
-import MyFooter from './components/main/MyFooter'
+// import Header from './components/main/Header'
+// import MyFooter from './components/main/MyFooter'
 //
 //pages
 import ItinRoute from './components/Itinerary/ItinRoute'
@@ -14,6 +14,7 @@ import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
+import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/sigon">Sigon</Link>
         <Link to="/LineChart">LineChart</Link>
+        <Link to="/buy">buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
         <Route exact path="/">
@@ -53,6 +55,10 @@ function App() {
           <Route path="/LineChart">
             <LineChart />
           </Route>
+          <Route path="/buy">
+            <BuyProducts />
+          </Route>
+
           <Route path="/travelBuddy">
             <TravelBuddyRoute />
           </Route>

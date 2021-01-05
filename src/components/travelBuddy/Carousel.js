@@ -5,7 +5,7 @@ import Yilan002 from '../../images/travelBuddy/yilan_002.jpg'
 import Newtp001 from '../../images/travelBuddy/newtp_001.jpg'
 import Newtp002 from '../../images/travelBuddy/newtp_002.jpg'
 import Brunch001 from '../../images/travelBuddy/brunch_001.jpg'
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+// import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 const images = [Yilan001, Yilan002, Newtp001, Newtp002, Brunch001]
 

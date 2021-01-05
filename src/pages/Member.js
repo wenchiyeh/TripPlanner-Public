@@ -11,7 +11,7 @@ function Member() {
       <Header />
       <article className="article">
         <div className="aside">
-          <section className="section">
+          <section className="aboutMember">
             <MemberProfile />
             <StarRating />
             <CalendarApp />

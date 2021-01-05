@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa'
 
 function Card({
+  id, //資料的id
   title, //標題
   text, //內文
   location, //左上角的地標

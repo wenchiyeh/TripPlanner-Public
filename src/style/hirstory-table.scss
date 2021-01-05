@@ -37,21 +37,12 @@
 }
 
 // pages
-.pagination {
-  position: absolute;
-  bottom: 8%;
-  left: 40%;
+.table-hirstory {
+  .pagination {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+  }
 }
-.page-link {
-  color: #fff;
-  background-color: $info;
-  border-radius: 5px;
-}
-.page-item.active .page-link {
-  background-color: transparent;
-  color: $info;
-  border: 1px solid transparent;
-}
-.page-item {
-  margin: 0 3px;
-}
+
+@import './pages.scss';

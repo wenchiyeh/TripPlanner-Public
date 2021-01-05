@@ -10,14 +10,16 @@ function Member() {
     <>
       <Header />
       <article className="article">
-        <section className="section">
-          <MemberProfile />
-          <StarRating />
-          <CalendarApp />
-        </section>
-        <nav>
-          <FunctionBar />
-        </nav>
+        <div className="aside">
+          <section className="section">
+            <MemberProfile />
+            <StarRating />
+            <CalendarApp />
+          </section>
+          <nav>
+            <FunctionBar />
+          </nav>
+        </div>
       </article>
       <MyFooter />
     </>

@@ -75,6 +75,9 @@ body {
 //footer
 @import './footer.scss';
 
+//memberPage
+@import './memberPage.scss';
+
 //card
 @import './card.scss';
 
@@ -108,11 +111,8 @@ body {
 // 訂單紀錄 Table
 @import './hirstory-table.scss';
 
-
 // 商品總攬頁排版
 @import './productList.scss';
-
-
 
 //通知表單&我的帳戶
 .notice-style {

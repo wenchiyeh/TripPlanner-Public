@@ -37,13 +37,12 @@
 }
 
 // pages
-.table-hirstory{
+.table-hirstory {
   .pagination {
-  position: absolute;
-  bottom: 8%;
-  left: 40%;
-}
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+  }
 }
 
-
-@import './pages.scss'
+@import './pages.scss';

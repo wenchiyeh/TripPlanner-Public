@@ -53,15 +53,12 @@ function Header(props) {
                 </figure>
               }
             >
-              <NavDropdown.Item as={NavLink} to="/product/men">
-                MEN 男性
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/product/baby">
-                Baby 嬰兒
+              <NavDropdown.Item as={NavLink} to="/myAccount">
+                會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={NavLink} to="/product/women">
-                WOMEN 女性
+                登出
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

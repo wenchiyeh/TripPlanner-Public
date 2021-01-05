@@ -44,10 +44,9 @@ function Header(props) {
             <Nav.Link href="#memes">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-            {/* 原本的鈴鐺 */}
             <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
-              <Badge variant="light">9</Badge>
+              <Badge variant="light">5</Badge>
             </Nav.Link>
             <NavDropdown
               title={
@@ -56,11 +55,11 @@ function Header(props) {
                 </figure>
               }
             >
-              <NavDropdown.Item as={NavLink} to="/myAccount">
+              <NavDropdown.Item as={NavLink} to="/myAccount/">
                 會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/product/women">
+              <NavDropdown.Item as={NavLink} to="/product/home">
                 登出
               </NavDropdown.Item>
             </NavDropdown>

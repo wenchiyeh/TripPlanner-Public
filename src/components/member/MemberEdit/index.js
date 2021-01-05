@@ -91,7 +91,7 @@ function MemberEdit(props) {
         </Form.Row>
         {/* 性別 */}
         <Form>
-          <div class="form-checkk d-flex">
+          <div class="form-check d-flex">
             <div className="mefed-form-check">
               <input
                 class="form-check-input"

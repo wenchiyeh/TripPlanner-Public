@@ -9,7 +9,6 @@ import Itinerary from '../src/pages/Itinerary'
 import Member from './pages/Member'
 import SearchBar from './components/main/SearchBar'
 import Login from './pages/Login'
-import LineChart from './pages/LineChart '
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
         <Link to="/search">SearchBar</Link>
 
         <Link to="/login">Login</Link>
-        <Link to="/LineChart">LineChart</Link>
         <Switch>
           <Route path="/myAccount">
             <Member />
@@ -38,9 +36,7 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/LineChart">
-            <LineChart />
-          </Route>
+
           <Route path="/">
             <h1>Hello World</h1>
           </Route>

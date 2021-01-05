@@ -1,7 +1,6 @@
 //修改會員資料卡片
 import React, { useState } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit/index'
 import './MemberProfile.scss'
 function MemberList() {

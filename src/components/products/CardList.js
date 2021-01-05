@@ -1,8 +1,7 @@
 import React from 'react'
 import Card from '../main/Card'
-import { Col } from 'react-bootstrap'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
+import { Col, Row, Container } from 'react-bootstrap'
+
 function CardList() {
   return (
     <>

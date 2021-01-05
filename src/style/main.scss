@@ -381,3 +381,106 @@ body {
 .social-icons a.dribbble:hover {
   background-color: #ea4c89;
 }
+//kv
+.home-kv-figure {
+  height: 800px;
+  overflow: hidden;
+}
+
+//p1
+.home-body {
+  background-color: #f5f3f4;
+}
+.home-vlr {
+  writing-mode: vertical-lr;
+  letter-spacing: 5px;
+}
+.home-line {
+  border-right: black solid 3px;
+  height: 40px;
+  padding: 0px;
+}
+.home-title {
+  padding: 80px 0 60px 0px;
+}
+.home-p1 {
+  height: 500px;
+}
+.home-p1 figure {
+  padding: 0px;
+  margin: 0px;
+}
+.home-p1 div {
+  padding: 0px;
+  margin: 0px;
+}
+
+.home-p1-figure-left {
+  height: 250px;
+  overflow: hidden;
+}
+.home-p1-figure-left h2 {
+  position: absolute;
+  top: 400px;
+  left: 20px;
+  color: white;
+}
+.home-p1-figure-left .line {
+  position: absolute;
+  top: 445px;
+  left: 0px;
+  width: 320px;
+  height: 50px;
+
+  border-top: white 3px solid;
+}
+.home-p1-figure-right-top {
+  height: 380px;
+  overflow: hidden;
+}
+.home-p1-figure-right-bottom {
+  padding: 0 15px;
+  height: 120px;
+  overflow: hidden;
+}
+.home-p1 img {
+  width: 100%;
+}
+
+.Carousel {
+  margin: 200px auto 80px;
+}
+.react-multi-carousel-list {
+  height: 500px;
+  padding: 0 20px;
+}
+.btn {
+  // border: solid black 2px;
+  padding: 10px 54px;
+  border-radius: 5px;
+}
+.btn:hover {
+  background-color: black;
+  color: width;
+  transition: 0.4s;
+}
+.p1-card {
+  position: absolute;
+  top: 1680px;
+  padding: 0px;
+  margin: 0px;
+  border-bottom: black 5px solid;
+}
+.card-background {
+  width: 500px;
+  height: 100px;
+}
+.carousel-slide {
+  transform: scale(0.9);
+  margin: 0px auto;
+  top: 50%;
+}
+.carousel-active-slide {
+  transform: scale(1);
+  margin: 0px auto;
+}

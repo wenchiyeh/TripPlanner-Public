@@ -52,7 +52,7 @@ function Login(props) {
                   <Form.Control
                     className="login-input-br"
                     type="text"
-                    placeholder="Username"
+                    placeholder="Userpassword"
                     aria-describedby="inputGroupPrepend"
                     required
                   />

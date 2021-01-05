@@ -52,7 +52,7 @@ function Login(props) {
                   <Form.Control
                     className="sogin-input-br"
                     type="text"
-                    placeholder="Username"
+                    placeholder="Userpassword"
                     aria-describedby="inputGroupPrepend"
                     required
                   />
@@ -68,7 +68,7 @@ function Login(props) {
             <div className="sogin-samp-text d-flex">
               <span>忘記密碼</span>
             </div>
-            <div className="d-flex login-line-center">
+            <div className="d-flex sogin-line-center">
               <span className="sogin-line"></span>
               <h1>OR</h1>
               <span className="sogin-line"></span>

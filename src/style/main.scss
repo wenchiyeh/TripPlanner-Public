@@ -241,7 +241,7 @@ body {
   display: none;
 }
 .dropdown-menu {
-  height: 300px;
+  height: 100px;
   transform: translateX(-30%);
   position: relative;
   opacity: 0.8;
@@ -454,16 +454,16 @@ body {
   height: 500px;
   padding: 0 20px;
 }
-.btn {
-  // border: solid black 2px;
-  padding: 10px 54px;
-  border-radius: 5px;
-}
-.btn:hover {
-  background-color: black;
-  color: width;
-  transition: 0.4s;
-}
+// .btn {
+//   // border: solid black 2px;
+//   padding: 10px 54px;
+//   border-radius: 5px;
+// }
+// .btn:hover {
+//   background-color: black;
+//   color: width;
+//   transition: 0.4s;
+// }
 .p1-card {
   position: absolute;
   top: 1680px;

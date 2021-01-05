@@ -15,7 +15,7 @@ import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import { FaRegBell } from 'react-icons/fa'
-
+import '../../style/header.scss'
 function Header(props) {
   const imagePath = './images/testImage.jpg'
 

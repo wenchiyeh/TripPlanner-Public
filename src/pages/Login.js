@@ -1,102 +1,90 @@
 //登入
 import React, { useState } from 'react'
-import { Route, Link } from 'react-router-dom'
-
-import Register from '.././pages/Register'
-//import { useParams, useHistory } from 'react-router-dom'
-
+import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
+import { Form, Button, Col, InputGroup } from 'react-bootstrap'
+import '.././style/login.scss'
 function Login(props) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  // 目前不合法的欄位有哪些(記錄狀態名稱)
-  const [invalidFields, setInvalidFields] = useState([])
-  // 按下送出按鈕才開始進入檢查狀態
-  const [inChecked, setInChecked] = useState(false)
+  const [validated, setValidated] = useState(false)
 
-  // let { id } = useParams()
-  // let history = useHistory()
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    setValidated(true)
+  }
   return (
     <>
       <body className="body-login">
-        <h1 className="container">登入</h1>
-        <div className="form-group">
-          <label htmlFor="exampleInput">Email</label>
-          <input
-            type="text"
-            className={`form-control ${
-              inChecked && invalidFields.includes('email') ? 'is-invalid' : ''
-            } ${
-              inChecked && !invalidFields.includes('email') ? 'is-valid' : ''
-            }`}
-            id="exampleInput"
-            style={{ width: '300px' }}
-            aria-describedby="exampleInput"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-          />
-          <div id="f2" className="invalid-feedback">
-            Email為必填欄位
-          </div>
-          <label htmlFor="passwordInput">密碼</label>
-          <input
-            type="password"
-            className={`form-control ${
-              inChecked && invalidFields.includes('email') ? 'is-invalid' : ''
-            } ${
-              inChecked && !invalidFields.includes('email') ? 'is-valid' : ''
-            }`}
-            id="passwordInput"
-            style={{ width: '300px' }}
-            aria-describedby="passwordInput"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-          />
-          <div id="f1" className="invalid-feedback">
-            密碼為必填欄位
-          </div>
+        <div className="login-form form-group">
+          <h1>會員帳號登入</h1>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Row>
+              <Form.Group as={Col} md="10" controlId="validationCustomUsername">
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroupPrepend">
+                      <FaUserAlt />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a username.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} md="10" controlId="validationCustomUsername">
+                <InputGroup>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroupPrepend">
+                      <FaUnlockAlt />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    aria-describedby="inputGroupPrepend"
+                    required
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a username.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+            </Form.Row>
+            <Button type="submit" className="login-btn">
+              登入
+            </Button>
+            <div className="login-samp-text d-flex">
+              <span>註冊</span>
+              <span className="login-samp-text-pas">忘記密碼</span>
+            </div>
+            <div className="d-flex login-line-center">
+              <span className="login-line"></span>
+              <h1>OR</h1>
+              <span className="login-line"></span>
+            </div>
+            <div className="login-icon-fa d-flex">
+              <span>
+                <FaFacebook />
+              </span>
+              <span>
+                <FaGoogle />
+              </span>
+            </div>
+          </Form>
         </div>
-        <small>
-          <Link to="/register">註冊</Link>
-          <Route path="/register">
-            <Register />
-          </Route>
-        </small>
-        <button
-          className="btn btn-primary "
-          onClick={() => {
-            // 作檢查
-            // 切換已進入檢查
-            setInChecked(true)
-
-            const newInvalidFields = []
-            if (!email) {
-              newInvalidFields.push('email')
-            }
-            if (!password) {
-              newInvalidFields.push('password')
-            }
-            //設定檢查的樣式
-            setInvalidFields(newInvalidFields)
-
-            // 如果有錯誤則不送出
-            if (newInvalidFields.length > 0) {
-              return
-            }
-
-            if (props.type === 'new') {
-              //addMember()
-            }
-          }}
-        >
-          {props.type === 'new' ? '確定' : '確定'}
-        </button>
       </body>
     </>
   )
 }
-
 export default Login

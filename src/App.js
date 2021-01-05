@@ -13,6 +13,7 @@ import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
 import LineChart from './pages/LineChart '
+import AddTravelBuddies from './pages/AddTravelBuddies'
 
 function App() {
   return (

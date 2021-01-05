@@ -11,6 +11,7 @@ import SearchBar from './components/main/SearchBar'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
 import LineChart from './pages/LineChart '
+import AddTravelBuddies from './pages/AddTravelBuddies'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 
         <Link to="/login">Login</Link>
         <Link to="/LineChart">LineChart</Link>
+        <Link to="/addTravelBuddies">addTravelBuddies</Link>
 
         <Switch>
           <Route path="/myAccount">
@@ -46,6 +48,9 @@ function App() {
           </Route>
           <Route path="/LineChart">
             <LineChart />
+          </Route>
+          <Route path="/addTravelBuddies">
+            <AddTravelBuddies />
           </Route>
           <Route path="/">
             <h1>Hello World</h1>

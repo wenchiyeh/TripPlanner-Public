@@ -17,6 +17,10 @@ import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import IconRouter from './components/products/Cash/IconRouter'
+import AddTravelBuddies from './pages/AddTravelBuddies'
+import Forgetpassword from './pages/forgetpassword'
+
+//
 import MainRoute from './components/main/MainRoute'
 
 function App() {
@@ -44,31 +48,38 @@ function App() {
         <Link to="/buy">Buy</Link>
         --
         <Link to="/travelBuddy">TravelBuddy</Link>
-        <Route exact path="/">
-          <Home />
-        </Route>
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
+
           <Route exact path="/login">
             <Login />
           </Route>
+
           <Route exact path="/sigon">
             <Sigon />
           </Route>
           <Route path="/LineChart">
             <LineChart />
           </Route>
+
           <Route path="/buy">
             <BuyProducts />
           </Route>
+
           <Route path="/shoppingcar">
             <IconRouter />
           </Route>
+
+          <Route path="/forgetpassword">
+            <Forgetpassword />
+          </Route>
+
           <Route path="/">
             <MainRoute />
           </Route>
+
           {/* <Switch>
             <Route path="/myAccount">
               <Member />

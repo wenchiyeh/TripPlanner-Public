@@ -13,7 +13,6 @@ import { Button, Modal } from 'react-bootstrap'
 function BuyProducts() {
   const [smShow, setSmShow] = useState(false)
 
-  const handleClose = () => setSmShow(false)
   const handleShow = () => setSmShow(true)
 
   return (

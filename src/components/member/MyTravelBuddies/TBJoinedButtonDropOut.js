@@ -1,26 +1,26 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 
-function TBMineButtonDelete() {
-  const [tbMineDelete, settbMineDelete] = useState(false)
+function TBJoinedButtonDropOut() {
+  const [tbJoinedDropOut, settbJoinedDropOut] = useState(false)
   return (
     <>
       <Button
-        className="tbmine-button-delete"
-        onClick={() => settbMineDelete(true)}
+        className="tbjoined-button-dropout"
+        onClick={() => settbJoinedDropOut(true)}
       >
-        刪除
+        取消報名
       </Button>{' '}
       <Modal
         size="lg"
-        show={tbMineDelete}
-        onHide={() => settbMineDelete(false)}
-        aria-labelledby="tbMineDelete"
+        show={tbJoinedDropOut}
+        onHide={() => settbJoinedDropOut(false)}
+        aria-labelledby="tbJoinedDrop"
       >
         <Form>
           <Modal.Header closeButton>
-            <Modal.Title id="tbMineDelete" className="tbmine-delete-title">
-              您確定要刪除旅行揪團並通知團員嗎？
+            <Modal.Title id="tbJoinedDrop" className="tbjoined-dropout-title">
+              您確定要退出旅行揪團並通知團員嗎？
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -30,10 +30,10 @@ function TBMineButtonDelete() {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="" className="tbmine-button-delete-cancel">
+            <Button variant="" className="tbjoined-button-dropout-cancel">
               取消
             </Button>
-            <Button variant="" className="tbmine-button-delete-confirm">
+            <Button variant="" className="tbjoined-button-dropout-confirm">
               確定
             </Button>
           </Modal.Footer>
@@ -43,4 +43,4 @@ function TBMineButtonDelete() {
   )
 }
 
-export default TBMineButtonDelete
+export default TBJoinedButtonDropOut

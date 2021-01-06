@@ -18,7 +18,6 @@ import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
 import Cash from './components/member/Cash/Cash'
-import Notification from './components/main/Notification'
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
         <Link to="/LineChart">LineChart</Link>
         <Link to="/buy">Buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
-        <Link to="/notification">Notification</Link>
 
         <Route exact path="/">
           <Home />
@@ -67,9 +65,6 @@ function App() {
           </Route>
           <Route path="/travelBuddy">
             <TravelBuddyRoute />
-          </Route>
-          <Route path="/notification">
-            <Notification />
           </Route>
         </Switch>
       </>

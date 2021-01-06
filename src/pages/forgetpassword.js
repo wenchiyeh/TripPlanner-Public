@@ -1,6 +1,6 @@
-//登入
+//忘記密碼
 import React, { useState } from 'react'
-import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
+import { FaUserAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import '../pages/sign/sign.scss'
 function Login(props) {

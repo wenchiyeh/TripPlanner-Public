@@ -9,13 +9,12 @@ import {
   Badge,
 } from 'react-bootstrap'
 import '../../style/header.scss'
-//import { FaRegBell } from 'react-icons/fa'
-import Notification from './Notification'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
+import MebPopover from './MebPopover'
 function Header(props) {
   const imagePath = './images/testImage.jpg'
 
@@ -45,9 +44,10 @@ function Header(props) {
             <Nav.Link href="#memes">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#mell">
+            <Nav.Link>
               <div className="not-icon-mover">
-                <Notification className="Navbar-icon " />
+                <MebPopover className="Navbar-icon" />
+                {/* <Notification className="Navbar-icon " /> */}
               </div>
               {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>

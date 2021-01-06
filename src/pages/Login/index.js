@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
-import '.././style/login.scss'
+import './login.scss'
 function Login(props) {
   const [validated, setValidated] = useState(false)
 
@@ -31,12 +31,12 @@ function Login(props) {
                   </InputGroup.Prepend>
                   <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please choose a username.
+                    請輸入正確的信箱格式
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
@@ -52,12 +52,12 @@ function Login(props) {
                   <Form.Control
                     className="login-input-br"
                     type="text"
-                    placeholder="Userpassword"
+                    placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please choose a username.
+                    請輸入正確的密碼格式
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>

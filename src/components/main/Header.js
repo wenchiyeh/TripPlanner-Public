@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-  Badge,
-} from 'react-bootstrap'
+import React from 'react'
+import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
@@ -22,7 +14,7 @@ function Header(props) {
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
         <Navbar.Brand href="#home" className="Navbar-Logo">
-          <img src={Logo} width="150" />
+          <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -55,7 +47,7 @@ function Header(props) {
             <NavDropdown
               title={
                 <figure className="Navebar-figure">
-                  <img className="header-img-br" src={imagePath} alt="User Avatar" />
+                  <img src={imagePath} alt="圖片替代文字" />
                 </figure>
               }
             >

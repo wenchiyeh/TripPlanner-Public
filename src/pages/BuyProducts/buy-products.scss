@@ -195,17 +195,18 @@
   }
 }
 
-.modal-content {
+.modalPage {
   border-radius: 6px;
 
   .modal-header {
     border-bottom: 1px solid transparent;
+    .close {
+      margin: 0 0;
+      padding: 0 0;
+    }
   }
-  .close {
-    margin: 0 0;
-    padding: 0 0;
-  }
-  .modal-title {
+
+  .modalPhoto {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -218,7 +219,8 @@
       object-fit: cover;
     }
   }
-  .modal-body {
+  .nameAndTitle {
+    width: 100%;
     text-align: center;
     ul {
       text-align: left;

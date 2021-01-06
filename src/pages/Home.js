@@ -28,7 +28,7 @@ function Home(props) {
     <>
       <div className="home-body">
         <figure className="home-kv-figure ">
-          <img src="./images/kv.jpg" width="100%" />
+          <img src="./images/kv.jpg" width="100%" alt="圖片替代文字" />
         </figure>
 
         <div className="container">
@@ -39,28 +39,28 @@ function Home(props) {
           <div className="row home-p1">
             <div className="col-5">
               <figure className="home-p1-figure-left">
-                <img src="./images/p3.jpg" />
+                <img src="./images/p3.jpg" alt="圖片替代文字" />
               </figure>
               <figure className="home-p1-figure-left">
-                <img src="./images/p2.jpg" />
+                <img src="./images/p2.jpg" alt="圖片替代文字" />
                 <h2>個人化旅歷製作</h2>
                 <div className="line" />
               </figure>
             </div>
             <div className="col-7">
               <figure className="home-p1-figure-right-top">
-                <img src="./images/p4.png" />
+                <img src="./images/p4.png" alt="圖片替代文字" />
               </figure>
 
               <div className="row home-p1-figure-right-bottom">
                 <figure className="col-4">
-                  <img src="./images/p5.png" />
+                  <img src="./images/p5.png" alt="圖片替代文字" />
                 </figure>
                 <figure className="col-4">
-                  <img src="./images/p6.jpg" />
+                  <img src="./images/p6.jpg" alt="圖片替代文字" />
                 </figure>
                 <figure className="col-4">
-                  <img src="./images/p7.png" />
+                  <img src="./images/p7.png" alt="圖片替代文字" />
                 </figure>
               </div>
             </div>
@@ -148,3 +148,5 @@ function Home(props) {
 }
 
 export default Home
+
+//建議 img 使用絕對路徑

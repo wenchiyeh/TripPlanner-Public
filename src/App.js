@@ -15,11 +15,8 @@ import Login from './pages/Login'
 import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
-import AddTravelBuddies from './pages/AddTravelBuddies'
-import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
-import Cash from './components/member/Cash/Cash'
-//
+import IconRouter from './components/products/Cash/IconRouter'
 import MainRoute from './components/main/MainRoute'
 
 function App() {
@@ -27,18 +24,29 @@ function App() {
     <Router>
       <>
         <Link to="/">Home</Link>
+        --
         <Link to="/myAccount">Member</Link>
+        --
         <Link to="/itinerary">Itinerary</Link>
+        --
         <Link to="/group">Group</Link>
-        <Link to="/cash">Cash</Link>
+        --
+        <Link to="/shoppingcar">Shoppingcar</Link>
+        --
         <Link to="/products">Product</Link>
+        --
         <Link to="/login">Login</Link>
+        --
         <Link to="/sigon">Sigon</Link>
-        <Link to="/forgetpassword">forgetpassword</Link>
+        --
         <Link to="/LineChart">LineChart</Link>
+        --
         <Link to="/buy">Buy</Link>
+        --
         <Link to="/travelBuddy">TravelBuddy</Link>
-
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Switch>
           <Route exact path="/">
             <Home />
@@ -49,8 +57,14 @@ function App() {
           <Route exact path="/sigon">
             <Sigon />
           </Route>
-          <Route path="/forgetpassword">
-            <Forgetpassword />
+          <Route path="/LineChart">
+            <LineChart />
+          </Route>
+          <Route path="/buy">
+            <BuyProducts />
+          </Route>
+          <Route path="/shoppingcar">
+            <IconRouter />
           </Route>
           <Route path="/">
             <MainRoute />

@@ -11,7 +11,7 @@ import TravelBuddyRoute from '../travelBuddy/TravelBuddyRoute'
 import LineChart from '../../pages/LineChart '
 import BuyProducts from '../../pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from '../../pages/AddTravelBuddies'
-import Cash from '../member/Cash/Cash'
+//import Cash from '../main'
 
 function MainRoute() {
   return (
@@ -33,9 +33,9 @@ function MainRoute() {
         <Route path="/buy">
           <BuyProducts />
         </Route>
-        <Route path="/cash">
+        {/* <Route path="/cash">
           <Cash />
-        </Route>
+        </Route> */}
         <Route path="/travelBuddy">
           <TravelBuddyRoute />
         </Route>

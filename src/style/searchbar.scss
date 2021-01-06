@@ -27,7 +27,11 @@
   height: $searchbar-height;
   border-radius: 50%;
   background-color: $main-lightblue;
-  background-image: url(../public/images/paperPlane.png);
+  background-image: url(http://localhost:3000/images/paperPlane.png);
+  background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
+  &:hover {
+    background-color: $main-darkblue;
+  }
 }

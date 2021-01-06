@@ -1,13 +1,14 @@
-.mef-secondary-close{
-    background: #707070;
-    border: none;
-    position: absolute;
-    top: 859px;
-    right: 160px;
+.modal-body{
+    width: 760px;
 }
+.MemberList-title{  
+    padding-left: 1rem;
+}
+
 //隱藏排版用
 .Line-none{
     padding: 1.5rem;
+    margin-bottom: 10px;
     visibility:hidden;
 }
 .mef-secondary-none{

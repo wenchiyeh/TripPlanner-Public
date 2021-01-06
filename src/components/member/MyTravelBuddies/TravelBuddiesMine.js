@@ -3,7 +3,7 @@ import { Table, Button, Modal } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import TBMineButtonEdit from './TBMineButtonEdit'
 import TBMineButtonMembersSelect from './TBMineButtonMembersSelect'
-import TBMineButtonChatroom from './TBMineButtonChatroom'
+import TBButtonChatroom from './TBButtonChatroom'
 import TBMineButtonDelete from './TBMineButtonDelete'
 
 function TravelBuddiesMine() {
@@ -13,9 +13,9 @@ function TravelBuddiesMine() {
         <Table>
           <thead>
             <tr>
-              <th width="80px">No.</th>
-              <th width="200px">旅行揪團名稱</th>
-              <th width="150px">日期</th>
+              <th width="60px">No.</th>
+              <th width="180px">旅行揪團名稱</th>
+              <th width="120px">日期</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -25,8 +25,9 @@ function TravelBuddiesMine() {
               <td>金門馬祖六天尋幽訪古</td>
               <td>2021/01/26 - 2021/01/31</td>
               <td>
-                <TBMineButtonEdit /> <TBMineButtonMembersSelect />{' '}
-                <TBMineButtonChatroom /> <TBMineButtonDelete />{' '}
+                <TBMineButtonEdit /> <TBMineButtonEdit />{' '}
+                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                <TBMineButtonDelete />{' '}
               </td>
             </tr>
             <tr>
@@ -35,7 +36,7 @@ function TravelBuddiesMine() {
               <td>2021/02/11 - 2021/02/15</td>
               <td>
                 <TBMineButtonEdit /> <TBMineButtonMembersSelect />{' '}
-                <TBMineButtonChatroom /> <TBMineButtonDelete />{' '}
+                <TBButtonChatroom /> <TBMineButtonDelete />{' '}
               </td>
             </tr>
             <tr>
@@ -44,7 +45,7 @@ function TravelBuddiesMine() {
               <td>2021/03/01 - 2021/03/03</td>
               <td>
                 <TBMineButtonEdit /> <TBMineButtonMembersSelect />{' '}
-                <TBMineButtonChatroom /> <TBMineButtonDelete />{' '}
+                <TBButtonChatroom /> <TBMineButtonDelete />{' '}
               </td>
             </tr>
           </tbody>

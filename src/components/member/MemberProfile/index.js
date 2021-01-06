@@ -17,7 +17,11 @@ function MemberList() {
         <img src={urlapi} alt="" />
         {/* className="member-List-modal-box" */}
         <h4> {name}</h4>
-        <Button variant="primary" onClick={handleShow}>
+        <Button
+          variant="primary"
+          className="MemberList-title"
+          onClick={handleShow}
+        >
           修改資料
         </Button>
 
@@ -29,7 +33,7 @@ function MemberList() {
           keyboard={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>個人資料</Modal.Title>
+            <Modal.Title className="modal-title-h4">個人資料</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <MemberEdit />

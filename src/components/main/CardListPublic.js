@@ -3,10 +3,10 @@ import Card from '../main/Card'
 import { Col, Row, Container } from 'react-bootstrap'
 //
 let cardData = require('../Itinerary/testJsonData.json')
-let handelTestData = cardData[2].data
+let handleTestData = cardData[2].data
 //測試資料可以做成JSON檔之後用這個方式引入
 
-function CardList({ data = handelTestData, type = 'itinerary' }) {
+function CardListPublic({ data = handleTestData, type = 'itinerary' }) {
   let display = <></>
   if (type === 'itinerary') {
     display = data.map((element, index) => (
@@ -66,4 +66,5 @@ function CardList({ data = handelTestData, type = 'itinerary' }) {
     </>
   )
 }
-export default CardList
+export default CardListPublic
+// 檔案負責人: 柯政安

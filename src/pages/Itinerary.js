@@ -12,7 +12,7 @@ function Itinerary(props) {
   const [searchFilter, setSearchFilter] = useState({})
   let history = useHistory()
   function createItinerary() {
-    history.push('/itinerary/create')
+    history.push('/itinerary/new')
   }
   useEffect(() => {
     console.log(searchFilter)

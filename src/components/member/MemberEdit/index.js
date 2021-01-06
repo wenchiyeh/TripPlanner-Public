@@ -22,32 +22,35 @@ function MemberEdit(props) {
           {/* email */}
           <Form.Group as={Col} md="12" controlId="validationCustom01">
             <Form.Label>信箱</Form.Label>
+            <span className="med-add-text-red">*</span>
             <Form.Control
               required
               type="text"
-              placeholder="請輸入email"
+              placeholder="請輸入信箱"
               defaultValue=""
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            <Form.Control.Feedback>正確!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
         {/* 密碼 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom02">
             <Form.Label>密碼</Form.Label>
+            <span className="med-add-text-red">*</span>
             <Form.Control
               required
               type="password"
               placeholder="請輸入密碼"
               defaultValue=""
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            <Form.Control.Feedback>正確!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
         {/* 姓名 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustomUsername">
             <Form.Label>姓名</Form.Label>
+            <span className="med-add-text-red">*</span>
             <Form.Control
               type="text"
               placeholder="請輸入姓名"
@@ -55,7 +58,7 @@ function MemberEdit(props) {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              請輸入正確的姓名
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
@@ -63,9 +66,10 @@ function MemberEdit(props) {
           {/* 地區 */}
           <Form.Group as={Col} md="12" controlId="validationCustom03">
             <Form.Label>地區</Form.Label>
-            <Form.Control type="text" placeholder="City" required />
+            <span className="med-add-text-red">*</span>
+            <Form.Control type="text" placeholder="請輸入地區" required />
             <Form.Control.Feedback type="invalid">
-              Please provide a valid city.
+              請輸入正確的地區
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
@@ -73,9 +77,10 @@ function MemberEdit(props) {
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom04">
             <Form.Label>電話</Form.Label>
-            <Form.Control type="text" placeholder="" required />
+            <span className="med-add-text-red">*</span>
+            <Form.Control type="text" placeholder="0988888888" required />
             <Form.Control.Feedback type="invalid">
-              Please provide a valid state.
+              請輸入正確的電話號碼
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
@@ -83,22 +88,32 @@ function MemberEdit(props) {
         <Form.Row>
           <Form.Group as={Col} md="6" controlId="validationCustom05">
             <Form.Label>出生日期</Form.Label>
+            <span className="med-add-text-red">*</span>
             <Form.Control type="date" placeholder="" required />
             <Form.Control.Feedback type="invalid">
-              Please provide a valid zip.
+              請輸入出生日期
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
         {/* 性別 */}
-        <Form>
-          <div class="form-check d-flex">
+        <Form.Row>
+          <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">
+            <Form.Label>性別</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control as="select" custom>
+              <option disabled>-請選擇-</option>
+              <option>男性</option>
+              <option>女性</option>
+            </Form.Control>
+          </Form.Group>
+          {/* 舊的 */}
+          {/* <div class="form-check d-flex">
             <div className="mefed-form-check">
               <input
                 class="form-check-input"
                 type="radio"
                 name="flexRadioDefault"
                 id="flexRadioDefault1"
-                checked
               />
               <label class="form-check-label" for="flexRadioDefault1">
                 男性
@@ -115,13 +130,19 @@ function MemberEdit(props) {
                 女性
               </label>
             </div>
-          </div>
-        </Form>
+          </div> */}
+        </Form.Row>
         {/* 暱稱 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom01">
             <Form.Label>暱稱</Form.Label>
-            <Form.Control required type="text" placeholder="" defaultValue="" />
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              required
+              type="text"
+              placeholder="例：小智"
+              defaultValue=""
+            />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
@@ -129,10 +150,11 @@ function MemberEdit(props) {
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom01">
             <Form.Label>自我介紹</Form.Label>
+            <span className="med-add-text-red">*</span>
             <Form.Control
               required
               type="text"
-              placeholder="我是誰?"
+              placeholder="例：我在資策會學習網頁前端"
               defaultValue=""
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>

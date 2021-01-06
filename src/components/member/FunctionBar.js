@@ -1,9 +1,11 @@
+//會員中心頁連結
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import ShoppingHirstory from './ShoppingHirstory'
+import Shoppinghistory from './ShoppingHistory'
 import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
 import MeFavorites from '../main/MeFavorites'
 import Notice from '../../pages/Notice'
+
 import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
@@ -15,11 +17,11 @@ function FunctionBar() {
           <Link to="/myTravelBuddies">我的揪團</Link>
           <Link to="/mefavorites">我的收藏</Link>
           <Link to="/myNotice">我的通知</Link>
-          <Link to="/shoppingHirstory">購物紀錄</Link>
+          <Link to="/shoppinghistory">購物紀錄</Link>
         </div>
         <Switch>
-          <Route path="/shoppingHirstory">
-            <ShoppingHirstory />
+          <Route path="/shoppinghistory">
+            <Shoppinghistory />
           </Route>
           <Route path="/myTravelBuddies">
             <MyTravelBuddies />

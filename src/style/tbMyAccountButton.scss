@@ -1,0 +1,92 @@
+//我的揪團-編輯
+.tbmine-button-edit {
+  width: 80px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-darkblue;
+  color: #ffffff;
+  font-size: 14px;
+}
+//我的揪團-團員確認
+.tbmine-button-membersselect {
+  width: 200px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-darkblue;
+  color: #ffffff;
+  font-size: 14px;
+}
+//我的揪團-我參加的揪團-歷史紀錄-聊天室
+.tb-button-chatroom {
+  width: 95px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-darkblue;
+  color: #ffffff;
+  font-size: 14px;
+}
+//我的揪團-刪除
+.tbmine-button-delete {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-red;
+  color: #ffffff;
+  font-size: 14px;
+}
+.tbmine-delete-title {
+  color: $main-red;
+}
+.tbmine-button-delete-cancel {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-gray;
+  color: $font-black;
+  font-size: 14px;
+}
+.tbmine-button-delete-confirm {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $sub-green;
+  color: #ffffff;
+  font-size: 14px;
+}
+//我參加的揪團-退出
+.tbjoined-button-dropout {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-red;
+  color: #ffffff;
+  font-size: 14px;
+}
+.tbjoined-dropout-title {
+  color: $main-red;
+}
+.tbjoined-button-dropout-cancel {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $main-gray;
+  color: $font-black;
+  font-size: 14px;
+}
+.tbjoined-button-dropout-confirm {
+  width: 85px;
+  height: 36px;
+  border: none;
+  border-radius: 3px;
+  background: $sub-green;
+  color: #ffffff;
+  font-size: 14px;
+}

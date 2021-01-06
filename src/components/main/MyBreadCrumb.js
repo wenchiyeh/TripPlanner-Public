@@ -14,7 +14,9 @@ function MyBreadCrumb() {
           <Breadcrumb.Item active>達人講座</Breadcrumb.Item>
         </Breadcrumb>
       </>
-      <Switch></Switch>
+      <Switch>
+        <Route></Route>
+      </Switch>
     </Router>
   )
 }

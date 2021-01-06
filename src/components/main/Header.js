@@ -15,6 +15,7 @@ import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import { FaRegBell } from 'react-icons/fa'
+import Notification from '../main/Notification'
 import '../../style/header.scss'
 function Header(props) {
   const imagePath = './images/testImage.jpg'
@@ -47,12 +48,13 @@ function Header(props) {
             </Nav.Link>
             <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
+              <Notification />
               <Badge variant="light">5</Badge>
             </Nav.Link>
             <NavDropdown
               title={
                 <figure className="Navebar-figure">
-                  <img src={imagePath} />
+                  <img className="header-img-br" src={imagePath} />
                 </figure>
               }
             >

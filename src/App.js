@@ -32,7 +32,7 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/sigon">Sigon</Link>
         <Link to="/LineChart">LineChart</Link>
-        <Link to="/buy">buy</Link>
+        <Link to="/buy">Buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
         <Route exact path="/">

@@ -22,6 +22,10 @@
   transition: 0.5s;
   margin-right: 40px;
 }
+.not-icon-mover{
+  position: relative;
+  top: 35px;
+}
 .Navebar-figure {
   width: 45px;
   height: 45px;
@@ -58,4 +62,9 @@
   position: absolute;
   top: 20px;
   right: 155px;
+}
+figure{
+  .header-img-br{
+    border-radius: 50%;
+  }
 }

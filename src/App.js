@@ -13,9 +13,9 @@ import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
-import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
+import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
 import Cash from './components/member/Cash/Cash'
 import MainRoute from './components/main/MainRoute'
@@ -44,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/sigon">
             <Sigon />
+          </Route>
+          <Route path="/forgetpassword">
+            <Forgetpassword />
           </Route>
           <Route path="/">
             <MainRoute />

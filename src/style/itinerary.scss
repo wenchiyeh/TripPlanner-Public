@@ -8,12 +8,45 @@
   top: 50px;
   right: 50px;
 }
+//editor相關
+.itin-editor-wrapper {
+  width: 550px;
+  background: #fff;
+  .itin-editor-title {
+    background: $sub-gray;
+    padding: 32px;
+    p {
+      margin-bottom: 16px;
+    }
+    input {
+      width: 400px;
+      margin: 0;
+    }
+  }
+  .itin-editor-daybox {
+    height: 80px;
+    background: $main-darkblue;
+    color: #fff;
+    padding: 32px;
+    font-size: 20px;
+  }
+  .itin-editor-spotsWapper {
+    background: #fff;
+    padding: 8px 0 16px;
+  }
+  .box-close-btn:hover {
+    svg {
+      color: $main-red;
+    }
+  }
+}
 //box相關
 .spotsbox-wrapper {
   width: 480px;
   min-height: 80px;
   background: $main-gray;
   padding: 6px 8px;
+  margin: 16px auto;
   h3,
   h4 {
     margin: 0;

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Route, Link, Switch, useParams } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
-import Header from '../main/Header'
-import MyFooter from '../main/MyFooter'
+import ItinEditor from './ItinEditor'
 //測試用
 import SpotBox from './SpotsBox'
 //
@@ -16,18 +15,29 @@ function Test2() {
   return (
     <>
       <SpotBox
-        isEdit={true}
-        type={0}
-        title={'測試標題總共寫了十二個字'}
-        time1={'10：30'}
-        time2={1100}
+        data={{
+          order: 0,
+          type: 0,
+          title: '測試標題可以幾個字',
+          time: '0900',
+          lat: 24.96517,
+          lng: 121.19192,
+          image: '',
+          info: '',
+        }}
       />
       <SpotBox
         isEdit={false}
-        type={1}
-        title={'測試標題測試標題'}
-        time1={'10：30'}
-        time2={1100}
+        data={{
+          order: 0,
+          type: 0,
+          title: '測試標題可以幾個字',
+          time: '0900',
+          lat: 24.96517,
+          lng: 121.19192,
+          image: '',
+          info: '',
+        }}
       />
     </>
   )
@@ -42,6 +52,9 @@ function ItinRoute() {
         </Route>
         <Route path="/itinerary/test">
           <Test2 />
+        </Route>
+        <Route path="/itinerary/new">
+          <ItinEditor />
         </Route>
         <Route exact path="/itinerary">
           <Itinerary />

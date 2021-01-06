@@ -7,7 +7,8 @@ import {
   FaTimesCircle,
 } from 'react-icons/fa'
 
-function SpotsBox({ isEdit, type = 0, title, time1, time2 }) {
+function SpotsBox({ isEdit, data }) {
+  const { type, title, time, ...otherData } = data
   const typeIcon = <FaMapMarkerAlt size={26} />
   const displyEdit = (
     <>
@@ -30,13 +31,15 @@ function SpotsBox({ isEdit, type = 0, title, time1, time2 }) {
   )
   const displyConst = (
     <>
-      <div className="spotsbox-wrapper custom-box-shadow d-flex justify-content-around align-items-center">
+      <div className="spotsbox-wrapper custom-box-shadow d-flex justify-content-between align-items-center">
         <span className="d-flex align-items-center">
           {typeIcon}
           &emsp; &emsp;
-          <h3 className="d-inline">{time1}</h3>
+          <h3 className="d-inline">{time}</h3>
         </span>
-        <h4 className="d-inline">{title}</h4>
+        <span className="w-100 text-center">
+          <h4 className="d-inline">{title}</h4>
+        </span>
       </div>
     </>
   )

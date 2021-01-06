@@ -15,11 +15,17 @@ $main-red: #f9669c;
     border-radius: 16px;
     text-align: center;
   }
+  // 移動底部map位置
   .mef-icno-style {
-    margin-top: 1rem;
+    margin: 30px 0px 0px 0px;
+    position: relative;
+    bottom: -20px;
   }
 .me-favorites-back-style{
     background: rgb(230, 230, 230);
+    h3{
+      padding-bottom: 1rem;
+    }
     img{
         padding: 5px;
         height: 100%;
@@ -32,4 +38,9 @@ $main-red: #f9669c;
         transition: 0.3s;
       }
   }
+  // 移動地點二
+.mef-icon-map-move{
+  position: absolute;
+  left: 7rem;
+}  
   

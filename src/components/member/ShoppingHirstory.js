@@ -1,3 +1,4 @@
+//購買明細
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'

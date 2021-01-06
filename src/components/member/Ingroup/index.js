@@ -38,7 +38,7 @@ function MeFavoritesgroup({
                   <FaMapMarkerAlt />
                   {map1}
                 </p>
-                <p className="card-style-mef">
+                <p className="card-style-mef mef-icon-map-move">
                   <FaMapMarkerAlt />
                   {map2}
                 </p>

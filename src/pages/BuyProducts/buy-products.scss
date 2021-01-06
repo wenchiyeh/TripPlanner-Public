@@ -143,6 +143,10 @@ figure {
   font-family: 'Noto Sans TC';
   font-size: 16px;
   // 下半區整體樣式
+  hr {
+    float: left;
+    margin: 32px 0;
+  }
   ul {
     list-style: none;
     list-style-position: outside;
@@ -158,6 +162,7 @@ figure {
   }
   .introduction {
     margin-bottom: 36px;
+    clear: both;
     .shouldKnow {
       list-style-type: decimal;
       list-style-position: inside;
@@ -176,15 +181,29 @@ figure {
         object-fit: cover;
       }
     }
+    .thisIsMap {
+      width: 700px;
+      height: 300px;
+      overflow: hidden;
+      margin: 8px 0 16px 0;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
 }
 
 .modal-content {
+  border-radius: 6px;
+
   .modal-header {
     border-bottom: 1px solid transparent;
   }
   .close {
-    margin-left: 10px;
+    margin: 0 0;
+    padding: 0 0;
   }
   .modal-title {
     width: 150px;
@@ -197,6 +216,13 @@ figure {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+  }
+  .modal-body {
+    text-align: center;
+    ul {
+      text-align: left;
+      margin-top: 16px;
     }
   }
 }

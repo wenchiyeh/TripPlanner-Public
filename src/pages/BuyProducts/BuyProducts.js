@@ -192,13 +192,27 @@ function BuyProducts() {
               </Modal.Header>
               <Modal.Body>
                 <h1>廖育聖</h1>
+                <p>登山專欄作家</p>
+                <ul>
+                  <li>四川雙橋溝冰攀</li>
+                  <li>日本八岳地區冰雪攀</li>
+                  <li>法國霞慕尼、瑞士、加拿大洛磯山脈等地攀登</li>
+                  <li>北美最高峰迪奈利Mt.Denali</li>
+                  <li>雷尼爾山 Mt. Rainier(美國太平洋西北最高峰)</li>
+                  <li>瑞士馬特洪 Matterhorn</li>
+                  <li>法國白朗峰 Mont Blanc(西歐最高峰)</li>
+                  <li>加拿大 Mt. Athabasca</li>
+                  <li>日本赤岳</li>
+                </ul>
               </Modal.Body>
             </Modal>
           </div>
           <hr />
           <div className="introduction">
             <p className="classTitel">活動地圖</p>
-            <p className="calssInside">這裡要放地圖</p>
+            <figure className="thisIsMap">
+              <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
+            </figure>
           </div>
         </div>
       </div>

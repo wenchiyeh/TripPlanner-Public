@@ -4,10 +4,10 @@ import { Table } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import Pages from '../main/Pages'
 
-function ShoppingHirstory() {
+function Shoppinghistory() {
   return (
     <>
-      <div className="table-hirstory">
+      <div className="table-history">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -67,4 +67,4 @@ function ShoppingHirstory() {
     </>
   )
 }
-export default ShoppingHirstory
+export default Shoppinghistory

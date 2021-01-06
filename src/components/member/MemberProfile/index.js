@@ -17,7 +17,11 @@ function MemberList() {
         <img src={urlapi} alt="" />
         {/* className="member-List-modal-box" */}
         <h4> {name}</h4>
-        <Button variant="primary" onClick={handleShow}>
+        <Button
+          variant="primary"
+          className="MemberList-title"
+          onClick={handleShow}
+        >
           修改資料
         </Button>
 

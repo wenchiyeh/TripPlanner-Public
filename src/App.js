@@ -17,6 +17,7 @@ import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
+import Cash from './components/member/Cash/Cash'
 
 function App() {
   return (
@@ -30,8 +31,8 @@ function App() {
         <Link to="/products">Product</Link>
         <Link to="/login">Login</Link>
         <Link to="/sigon">Sigon</Link>
-        <Link to="/forgetpassword">forgetpassword</Link>
-        <Link to="/buy">buy</Link>
+        <Link to="/LineChart">LineChart</Link>
+        <Link to="/buy">Buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
         <Route exact path="/">
@@ -59,7 +60,9 @@ function App() {
           <Route path="/buy">
             <BuyProducts />
           </Route>
-
+          <Route path="/cash">
+            <Cash />
+          </Route>
           <Route path="/travelBuddy">
             <TravelBuddyRoute />
           </Route>

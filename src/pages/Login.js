@@ -66,7 +66,9 @@ function Login(props) {
               登入
             </Button>
             <div className="login-samp-text d-flex">
-              <span>註冊</span>
+              <span>
+                <a href="http://localhost:3000/sigon">註冊</a>
+              </span>
               <span className="login-samp-text-pas">忘記密碼</span>
             </div>
             <div className="d-flex login-line-center">

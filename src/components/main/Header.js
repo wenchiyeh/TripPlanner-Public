@@ -56,11 +56,11 @@ function Header(props) {
                 </figure>
               }
             >
-              <NavDropdown.Item as={NavLink} to="/myAccount/">
+              <NavDropdown.Item as={NavLink} to="/login">
                 會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/product/home">
+              <NavDropdown.Item as={NavLink} to="/home">
                 登出
               </NavDropdown.Item>
             </NavDropdown>

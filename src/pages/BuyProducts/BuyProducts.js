@@ -21,7 +21,10 @@ function BuyProducts() {
         <MyBreadCrumb />
         {/* 麵包屑 */}
         <figure className="heroPhoto">
-          <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
+          <img
+            src="http://localhost:3000/images/classPhoto/IMAG7028.jpg"
+            alt="圖片替代文字"
+          />
         </figure>
         <div className="title">
           <h2>雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活</h2>
@@ -176,7 +179,10 @@ function BuyProducts() {
           <div className="introduction">
             <p className="classTitel">關於講師</p>
             <Button variant="link" onClick={handleShow}>
-              <img src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg" />
+              <img
+                src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg"
+                alt="圖片替代文字"
+              />
             </Button>
             <Modal
               size="400x400"
@@ -190,7 +196,10 @@ function BuyProducts() {
                   id="example-modal-sizes-title-sm"
                   className="modalPhoto"
                 >
-                  <img src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg" />
+                  <img
+                    src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg"
+                    alt="圖片替代文字"
+                  />
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body className="nameAndTitle">
@@ -214,7 +223,10 @@ function BuyProducts() {
           <div className="introduction">
             <p className="classTitel">活動地圖</p>
             <figure className="thisIsMap">
-              <img src="http://localhost:3000/images/classPhoto/IMAG7028.jpg" />
+              <img
+                src="http://localhost:3000/images/classPhoto/IMAG7028.jpg"
+                alt="圖片替代文字"
+              />
             </figure>
           </div>
         </div>

@@ -15,9 +15,8 @@ import Login from './pages/Login'
 import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
-import AddTravelBuddies from './pages/AddTravelBuddies'
 import Home from './pages/Home'
-import CashStepOne from './components/products/Cash/CashStepOne'
+import IconRouter from './components/products/Cash/IconRouter'
 
 function App() {
   return (
@@ -31,7 +30,7 @@ function App() {
         --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingStep1">Shoppingcar</Link>
+        <Link to="/shoppingcar">Shoppingcar</Link>
         --
         <Link to="/products">Product</Link>
         --
@@ -69,8 +68,8 @@ function App() {
           <Route path="/buy">
             <BuyProducts />
           </Route>
-          <Route path="/shoppingStep1">
-            <CashStepOne />
+          <Route path="/shoppingcar">
+            <IconRouter />
           </Route>
           <Route path="/travelBuddy">
             <TravelBuddyRoute />

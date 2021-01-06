@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaShoppingCart, FaRegCheckSquare } from 'react-icons/fa'
 import { GoCreditCard } from 'react-icons/go'
 import { MdKeyboardArrowRight } from 'react-icons/md'
-import CashStepOne from './CashStepOne'
+import CashStep1 from './CashStep1'
 import CashStep2 from './CashStep2'
 import CashStep3 from './CashStep3'
+import './cash.scss'
 
 function IconRouter() {
   return (
@@ -13,7 +14,7 @@ function IconRouter() {
       <>
         <div className="icons">
           <div className=" active">
-            <Link to="shoppingStep1">
+            <Link to="shoppingcar/Step1">
               <FaShoppingCart />
             </Link>
             <p>我的購物車</p>
@@ -38,12 +39,12 @@ function IconRouter() {
           </div>
         </div>
         <Switch>
-          <Route path="shoppingStep1">
-            <CashStepOne />
-          </Route>{' '}
+          <Route path="shoppingcar/Step1">
+            <CashStep1 />
+          </Route>
           <Route path="/shoppingcar/step2">
             <CashStep2 />
-          </Route>{' '}
+          </Route>
           <Route path="/shoppingcar/step3">
             <CashStep3 />
           </Route>

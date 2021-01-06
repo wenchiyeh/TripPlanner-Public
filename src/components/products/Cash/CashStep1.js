@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import IconRouter from './IconRouter'
 import './cash.scss'
 
-function CashStepOne() {
+function CashStep1() {
   return (
     <>
       <div className="In-the-car">
@@ -78,4 +78,4 @@ function CashStepOne() {
     </>
   )
 }
-export default CashStepOne
+export default CashStep1

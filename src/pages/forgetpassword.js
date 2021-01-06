@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
-import './login.scss'
+import '../pages/sign/sign.scss'
 function Login(props) {
   const [validated, setValidated] = useState(false)
 
@@ -17,9 +17,9 @@ function Login(props) {
   }
   return (
     <>
-      <body className="body-login">
-        <div className="login-form form-group">
-          <h1>會員帳號登入</h1>
+      <body className="body-sigon">
+        <div className="sogin-form form-group">
+          <h1>忘記密碼</h1>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} md="10" controlId="validationCustomUsername">
@@ -41,7 +41,7 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Form.Row>
+            {/* <Form.Row>
               <Form.Group as={Col} md="10" controlId="validationCustomUsername">
                 <InputGroup>
                   <InputGroup.Prepend>
@@ -50,7 +50,7 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
-                    className="login-input-br"
+                    className="sogin-input-br"
                     type="text"
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
@@ -61,24 +61,21 @@ function Login(props) {
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>
-            </Form.Row>
+            </Form.Row> */}
             <Button type="submit" className="login-btn">
-              登入
+              送出
             </Button>
-            <div className="login-samp-text d-flex">
+            <div className="sogin-samp-text d-flex">
               <span>
-                <a href="http://localhost:3000/sigon">註冊</a>
-              </span>
-              <span className="login-samp-text-pas">
-                <a href="http://localhost:3000/forgetpassword">忘記密碼</a>
+                <a href="http://localhost:3000/login">登入</a>
               </span>
             </div>
-            <div className="d-flex login-line-center">
-              <span className="login-line"></span>
+            <div className="d-flex sogin-line-center">
+              <span className="sogin-line"></span>
               <h1>OR</h1>
-              <span className="login-line"></span>
+              <span className="sogin-line"></span>
             </div>
-            <div className="login-icon-fa d-flex">
+            <div className="sogin-icon-fa d-flex">
               <span>
                 <FaFacebook />
               </span>

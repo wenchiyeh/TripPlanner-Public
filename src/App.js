@@ -13,9 +13,9 @@ import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
-import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
+import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
         <Link to="/products">Product</Link>
         <Link to="/login">Login</Link>
         <Link to="/sigon">Sigon</Link>
-        <Link to="/LineChart">LineChart</Link>
+        <Link to="/forgetpassword">forgetpassword</Link>
         <Link to="/buy">buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
@@ -53,8 +53,8 @@ function App() {
           <Route path="/sigon">
             <Sigon />
           </Route>
-          <Route path="/LineChart">
-            <LineChart />
+          <Route path="/forgetpassword">
+            <Forgetpassword />
           </Route>
           <Route path="/buy">
             <BuyProducts />

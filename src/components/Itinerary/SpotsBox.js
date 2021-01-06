@@ -1,11 +1,5 @@
-import React, { useState } from 'react'
-import {
-  FaMapMarkerAlt,
-  FaCar,
-  FaTrain,
-  FaWalking,
-  FaTimesCircle,
-} from 'react-icons/fa'
+import React from 'react'
+import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
 
 function SpotsBox({ isEdit, type = 0, title, time1, time2 }) {
   const typeIcon = <FaMapMarkerAlt size={26} />

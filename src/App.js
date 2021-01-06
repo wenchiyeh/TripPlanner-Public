@@ -17,6 +17,11 @@ import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import IconRouter from './components/products/Cash/IconRouter'
+import AddTravelBuddies from './pages/AddTravelBuddies'
+import Forgetpassword from './pages/forgetpassword'
+
+//
+import MainRoute from './components/main/MainRoute'
 
 function App() {
   return (
@@ -38,42 +43,75 @@ function App() {
         --
         <Link to="/sigon">Sigon</Link>
         --
+        <Link to="/forgetpassword">forgetpassword</Link>
+        --
         <Link to="/LineChart">LineChart</Link>
         --
         <Link to="/buy">Buy</Link>
         --
         <Link to="/travelBuddy">TravelBuddy</Link>
-        <Route exact path="/">
-          <Home />
-        </Route>
         <Switch>
-          <Route path="/myAccount">
-            <Member />
+          <Route exact path="/">
+            <Home />
           </Route>
-          <Route path="/itinerary">
-            <ItinRoute />
-          </Route>
-          <Route path="/products">
-            <ProductsRoute />
-          </Route>
-          <Route path="/login">
+
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/sigon">
+
+          <Route exact path="/sigon">
             <Sigon />
           </Route>
+
           <Route path="/LineChart">
             <LineChart />
           </Route>
+
           <Route path="/buy">
             <BuyProducts />
           </Route>
+
           <Route path="/shoppingcar">
             <IconRouter />
           </Route>
-          <Route path="/travelBuddy">
-            <TravelBuddyRoute />
+
+          <Route path="/forgetpassword">
+            <Forgetpassword />
           </Route>
+
+          <Route path="/">
+            <MainRoute />
+          </Route>
+
+          {/* <Switch>
+            <Route path="/myAccount">
+              <Member />
+            </Route>
+            <Route path="/itinerary">
+              <ItinRoute />
+            </Route>
+            <Route path="/products">
+              <ProductsRoute />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/sigon">
+              <Sigon />
+            </Route>
+            <Route path="/LineChart">
+              <LineChart />
+            </Route>
+            <Route path="/buy">
+              <BuyProducts />
+            </Route>
+            <Route path="/cash">
+              <Cash />
+            </Route>
+            <Route path="/travelBuddy">
+              <TravelBuddyRoute />
+            </Route>
+          </Switch> */}
         </Switch>
       </>
     </Router>

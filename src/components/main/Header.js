@@ -1,13 +1,12 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
-
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
-import { FaRegBell } from 'react-icons/fa'
 import '../../style/header.scss'
+import MebPopover from './MebPopover'
 function Header(props) {
   const imagePath = './images/testImage.jpg'
 
@@ -37,14 +36,22 @@ function Header(props) {
             <Nav.Link href="#memes">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#mell">
-              <FaRegBell className="Navbar-icon" />
+            <Nav.Link>
+              <div className="not-icon-mover">
+                <MebPopover className="Navbar-icon" />
+                {/* <Notification className="Navbar-icon " /> */}
+              </div>
+              {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
             <NavDropdown
               title={
                 <figure className="Navebar-figure">
-                  <img src={imagePath} alt="圖片替代文字" />
+                  <img
+                    className="header-img-br"
+                    src={imagePath}
+                    alt="User Avatar"
+                  />
                 </figure>
               }
             >

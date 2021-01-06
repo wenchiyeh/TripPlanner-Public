@@ -9,7 +9,7 @@ import ProductsRoute from '../products/ProductsRoute'
 import TravelBuddyRoute from '../travelBuddy/TravelBuddyRoute'
 import LineChart from '../../pages/LineChart '
 import BuyProducts from '../../pages/BuyProducts/BuyProducts'
-import AddTravelBuddies from '../../pages/AddTravelBuddies'
+//import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import IconRouter from '../products/Cash/IconRouter'
 
 function MainRoute() {

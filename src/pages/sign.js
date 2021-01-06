@@ -66,7 +66,7 @@ function Login(props) {
               註冊
             </Button>
             <div className="sogin-samp-text d-flex">
-              <span>忘記密碼</span>
+              <span>登入</span>
             </div>
             <div className="d-flex sogin-line-center">
               <span className="sogin-line"></span>

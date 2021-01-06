@@ -3,6 +3,7 @@ import { FaShoppingCart, FaRegCheckSquare } from 'react-icons/fa'
 import { GoCreditCard } from 'react-icons/go'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
+import { Table, Button } from 'react-bootstrap'
 
 function CarCardCheck(props) {
   return (
@@ -35,11 +36,34 @@ function CarCardCheck(props) {
             <h4>早鳥票</h4>
           </div>
 
-          <div className="you-sure"></div>
+          <div className="you-sure">
+            <Table striped hover>
+              <thead>
+                <tr>
+                  <th>名稱</th>
+                  <th>數量</th>
+                  <th>價格</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <h3>早鳥票</h3>
+                  </td>
+                  <td>
+                    <Button variant="link">
+                      <AiFillMinusCircle />
+                    </Button>
+                    <Button variant="link">
+                      <AiFillPlusCircle />
+                    </Button>
+                  </td>
+                  <td>NT$ 400</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </div>
-
-        <AiFillPlusCircle />
-        <AiFillMinusCircle />
       </div>
     </>
   )

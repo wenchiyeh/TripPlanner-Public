@@ -17,7 +17,7 @@ import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
 import Home from './pages/Home'
-import Cash from './components/member/Cash/Cash'
+import Cash from './components/products/Cash/Cash'
 
 function App() {
   return (

@@ -183,13 +183,17 @@ function BuyProducts() {
               show={smShow}
               onHide={() => setSmShow(false)}
               aria-labelledby="example-modal-sizes-title-sm"
+              className="modalPage"
             >
               <Modal.Header closeButton>
-                <Modal.Title id="example-modal-sizes-title-sm">
+                <Modal.Title
+                  id="example-modal-sizes-title-sm"
+                  className="modalPhoto"
+                >
                   <img src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg" />
                 </Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body className="nameAndTitle">
                 <h1>廖育聖</h1>
                 <p>登山專欄作家</p>
                 <ul>

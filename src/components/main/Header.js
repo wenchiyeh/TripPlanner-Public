@@ -9,12 +9,11 @@ import {
   Badge,
 } from 'react-bootstrap'
 import '../../style/header.scss'
-
+import { FaRegBell } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
-import { FaRegBell } from 'react-icons/fa'
 import Notification from '../main/Notification'
 import '../../style/header.scss'
 function Header(props) {
@@ -48,7 +47,6 @@ function Header(props) {
             </Nav.Link>
             <Nav.Link href="#mell">
               <FaRegBell className="Navbar-icon" />
-              <Notification />
               <Badge variant="light">5</Badge>
             </Nav.Link>
             <NavDropdown

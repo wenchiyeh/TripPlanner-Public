@@ -1,12 +1,8 @@
+//小鈴鐺元件
 import React from 'react'
+import 'antd/dist/antd.css'
 import { Button, notification } from 'antd'
-
-import {
-  RadiusUpleftOutlined,
-  RadiusUprightOutlined,
-  RadiusBottomleftOutlined,
-  RadiusBottomrightOutlined,
-} from '@ant-design/icons'
+import { FaRegBell } from 'react-icons/fa'
 
 function Notification() {
   const close = () => {
@@ -37,14 +33,9 @@ function Notification() {
   }
   return (
     <>
-      {/* <Button type="primary" onClick={() => openNotification('topRight')}>
+      <div type="primary" onClick={openNotification}>
         <FaRegBell className="Navbar-icon" />
-        topRight
-      </Button> */}
-      <Button type="primary" onClick={() => openNotification('topRight')}>
-        <RadiusUprightOutlined />
-        topRight
-      </Button>
+      </div>
     </>
   )
 }

@@ -59,7 +59,7 @@ function Card({
   )
   return (
     <>
-      <div className="card-wrapper">
+      <div className="card-wrapper custom-box-shadow">
         <p className="card-label content-small">
           <FaMapMarkerAlt />
           <span> {location}</span>

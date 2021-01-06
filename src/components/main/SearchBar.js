@@ -2,10 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //
-//使用方式：
-//以參數方式傳入要讓人選的areaList townList day 這三個陣列
-//在父層 const [searchFilter,setSearchFilter] =useState({}) 並將set函式以參數傳入
-//按下送出按鈕後，searchFilter會收到returnObject，自行解析後即可用useEffect監聽searchFilter使用
 
 function SearchBar({
   areaList = ['全部', '北部', '中部', '南部', '東部', '離島'],
@@ -21,6 +17,7 @@ function SearchBar({
   setSearchFilter = () => {},
 }) {
   let inputRef = useRef(null) // 建立輸入框參考點
+  //建立回傳用物件
   const [returnObject, setReturnObject] = useState({
     area: areaList[0],
     town: townList[0][0],
@@ -33,7 +30,7 @@ function SearchBar({
   const [selectTown, setSelectTown] = useState(townList[0][0])
   const [selectDay, setSelectDay] = useState(day[0])
   const [nowArea, setNowArea] = useState(0)
-  //
+  //偵測地區變化
   useEffect(() => {
     let currentValue = {
       searchString: inputText,
@@ -44,7 +41,7 @@ function SearchBar({
     setReturnObject(currentValue)
     setNowArea(areaList.indexOf(selectArea))
   }, [selectArea]) // eslint-disable-line react-hooks/exhaustive-deps
-  //
+  //偵測其他選擇與輸入框變化
   useEffect(() => {
     let currentValue = {
       searchString: inputText,
@@ -54,11 +51,11 @@ function SearchBar({
     }
     setReturnObject(currentValue)
   }, [inputText, selectTown, selectDay]) // eslint-disable-line react-hooks/exhaustive-deps
-  //
+  //記錄輸入框字串
   const handleInput = () => {
     setInputText(inputRef.current.value)
   }
-  //
+  //處理選項變化
   function handleChange(e, type) {
     let valueChange = e.target.value
     switch (type) {
@@ -139,3 +136,4 @@ function SearchBar({
 }
 
 export default SearchBar
+// 檔案負責人: 柯政安

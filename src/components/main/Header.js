@@ -47,7 +47,11 @@ function Header(props) {
             <NavDropdown
               title={
                 <figure className="Navebar-figure">
-                  <img src={imagePath} alt="圖片替代文字" />
+                  <img
+                    className="header-img-br"
+                    src={imagePath}
+                    alt="User Avatar"
+                  />
                 </figure>
               }
             >

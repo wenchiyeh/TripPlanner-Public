@@ -17,6 +17,7 @@ import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from './pages/AddTravelBuddies'
 import Home from './pages/Home'
+import Cash from './components/member/Cash/Cash'
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         <Link to="/login">Login</Link>
         <Link to="/sigon">Sigon</Link>
         <Link to="/LineChart">LineChart</Link>
-        <Link to="/buy">buy</Link>
+        <Link to="/buy">Buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
 
         <Route exact path="/">
@@ -59,7 +60,9 @@ function App() {
           <Route path="/buy">
             <BuyProducts />
           </Route>
-
+          <Route path="/cash">
+            <Cash />
+          </Route>
           <Route path="/travelBuddy">
             <TravelBuddyRoute />
           </Route>

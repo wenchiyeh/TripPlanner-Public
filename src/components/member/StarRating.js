@@ -1,3 +1,4 @@
+// 這是星星評分 Ray
 import React from 'react'
 
 function StarRating({ stars = 5, filled }) {
@@ -37,6 +38,5 @@ function StarRating({ stars = 5, filled }) {
 }
 export default StarRating
 
-// 這是星星評分 Ray
 // 分數跟星星還沒連動
 // 小數點還要重寫邏輯判斷

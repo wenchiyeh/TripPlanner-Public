@@ -19,7 +19,7 @@ function MeFavoritesgroup({
           <div className="col-md-4">
             <img
               // 要放絕對路徑
-              src="http://localhost:3000/images/DSC_7437-37.jpg"
+              src="http://localhost:3000/images/member/DSC_7437-37.jpg"
               className="card-img img-fluid"
               alt="..."
             />

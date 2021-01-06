@@ -47,7 +47,6 @@ p.content-small {
   font-size: 14px;
 }
 
-//
 //tag樣式
 body {
   font-family: 'Roboto', 'Noto Sans TC', sans-serif;
@@ -120,49 +119,6 @@ body {
 // 商品總攬頁排版
 @import './productList.scss';
 
-//通知表單&我的帳戶
-.notice-style {
-  background: #ffffff;
-  border-radius: 6px;
-  max-width: 810px;
-  box-shadow: 0 3px 6px #000;
-  padding-bottom: 10px;
-}
-
-//會員收藏
-.me-favorites-style {
-  background: #ffffff;
-  text-align: left;
-  margin: 1rem;
-  border-radius: 6px;
-  .me-favorites-back-style {
-    max-width: 810px;
-    max-height: 156px;
-    background: #e9e9e9;
-  }
-}
-//會員收藏列表
-.Link-Me-Favorites {
-  max-width: 710px;
-  margin: 1rem auto;
-  a {
-    font-family: 'Noto Sans TC';
-    font-size: 16px;
-    margin: 1rem 1rem;
-  }
-}
-//收藏卡片樣式
-.card-style-mef {
-  width: 80px;
-  height: 26px;
-  background-color: $main-red;
-  color: #fff;
-  border-radius: 16px;
-  text-align: center;
-}
-.mef-icno-style {
-  margin-top: 1rem;
-}
 //我的帳戶標題
 .MyAccount-title {
   padding: 1rem;

@@ -8,13 +8,14 @@ import {
   NavDropdown,
   Badge,
 } from 'react-bootstrap'
+import '../../style/header.scss'
 
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import { FaRegBell } from 'react-icons/fa'
-
+import '../../style/header.scss'
 function Header(props) {
   const imagePath = './images/testImage.jpg'
 
@@ -55,11 +56,11 @@ function Header(props) {
                 </figure>
               }
             >
-              <NavDropdown.Item as={NavLink} to="/myAccount/">
+              <NavDropdown.Item as={NavLink} to="/login">
                 會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/product/home">
+              <NavDropdown.Item as={NavLink} to="/home">
                 登出
               </NavDropdown.Item>
             </NavDropdown>

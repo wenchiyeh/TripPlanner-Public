@@ -1,6 +1,6 @@
 //正在參加的揪團
 import React from 'react'
-import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 function MeFavoritesgroup({
@@ -20,7 +20,7 @@ function MeFavoritesgroup({
           <div className="col-md-4">
             <img
               // 要放絕對路徑
-              src="http://localhost:3000/images/DSC_7437-37.jpg"
+              src="http://localhost:3000/images/member/DSC_7437-37.jpg"
               className="card-img img-fluid"
               alt="..."
             />
@@ -38,7 +38,7 @@ function MeFavoritesgroup({
                   <FaMapMarkerAlt />
                   {map1}
                 </p>
-                <p className="card-style-mef">
+                <p className="card-style-mef mef-icon-map-move">
                   <FaMapMarkerAlt />
                   {map2}
                 </p>

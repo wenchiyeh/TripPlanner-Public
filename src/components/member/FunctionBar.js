@@ -1,3 +1,4 @@
+//會員中心頁連結
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Shoppinghistory from './ShoppingHistory'

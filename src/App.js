@@ -18,6 +18,7 @@ import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
 import Home from './pages/Home'
 import Cash from './components/member/Cash/Cash'
+import MainRoute from './components/main/MainRoute'
 
 function App() {
   return (
@@ -34,38 +35,51 @@ function App() {
         <Link to="/LineChart">LineChart</Link>
         <Link to="/buy">Buy</Link>
         <Link to="/travelBuddy">TravelBuddy</Link>
-
-        <Route exact path="/">
-          <Home />
-        </Route>
         <Switch>
-          <Route path="/myAccount">
-            <Member />
+          <Route exact path="/">
+            <Home />
           </Route>
-          <Route path="/itinerary">
-            <ItinRoute />
-          </Route>
-          <Route path="/products">
-            <ProductsRoute />
-          </Route>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/sigon">
+          <Route exact path="/sigon">
             <Sigon />
           </Route>
           <Route path="/forgetpassword">
             <Forgetpassword />
           </Route>
-          <Route path="/buy">
-            <BuyProducts />
+          <Route path="/">
+            <MainRoute />
           </Route>
-          <Route path="/cash">
-            <Cash />
-          </Route>
-          <Route path="/travelBuddy">
-            <TravelBuddyRoute />
-          </Route>
+          {/* <Switch>
+            <Route path="/myAccount">
+              <Member />
+            </Route>
+            <Route path="/itinerary">
+              <ItinRoute />
+            </Route>
+            <Route path="/products">
+              <ProductsRoute />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/sigon">
+              <Sigon />
+            </Route>
+            <Route path="/LineChart">
+              <LineChart />
+            </Route>
+            <Route path="/buy">
+              <BuyProducts />
+            </Route>
+            <Route path="/cash">
+              <Cash />
+            </Route>
+            <Route path="/travelBuddy">
+              <TravelBuddyRoute />
+            </Route>
+          </Switch> */}
         </Switch>
       </>
     </Router>

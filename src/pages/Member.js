@@ -1,6 +1,4 @@
 import React from 'react'
-import Header from '../components/main/Header'
-import MyFooter from '../components/main/MyFooter'
 import StarRating from '../components/member/StarRating'
 import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
@@ -8,7 +6,6 @@ import FunctionBar from '../components/member/FunctionBar'
 function Member() {
   return (
     <>
-      <Header />
       <article className="article">
         <div className="aside">
           <section className="aboutMember">
@@ -21,7 +18,6 @@ function Member() {
           </nav>
         </div>
       </article>
-      <MyFooter />
     </>
   )
 }

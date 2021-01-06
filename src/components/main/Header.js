@@ -55,7 +55,7 @@ function Header(props) {
             <NavDropdown
               title={
                 <figure className="Navebar-figure">
-                  <img className="header-img-br" src={imagePath} />
+                  <img className="header-img-br" src={imagePath} alt="User Avatar" />
                 </figure>
               }
             >

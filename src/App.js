@@ -16,7 +16,7 @@ import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
-import IconRouter from './components/products/Cash/IconRouter'
+import CashStep1 from './components/products/Cash/CashStep1'
 import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
 
@@ -72,7 +72,7 @@ function App() {
           </Route>
 
           <Route path="/shoppingcar">
-            <IconRouter />
+            <CashStep1 />
           </Route>
 
           <Route path="/forgetpassword">

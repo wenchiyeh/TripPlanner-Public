@@ -1,9 +1,13 @@
 import React from 'react'
+import IconRouter from './IconRouter'
 
 function CashStep2() {
   return (
     <>
-      <h1>hello 2</h1>
+      <div className="In-the-car">
+        <IconRouter />
+        <h1>hello 2</h1>
+      </div>
     </>
   )
 }

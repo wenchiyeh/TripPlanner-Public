@@ -67,7 +67,7 @@ const CardForm = ({
             type="text"
             value={name}
             onChange={(e) => onChange({ key: 'name', value: e.target.value })}
-            minLength="1"
+            minLength="5"
             maxLength="20"
             required
           />

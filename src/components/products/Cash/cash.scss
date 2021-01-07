@@ -109,6 +109,8 @@ body {
           }
         }
       }
+
+      //  以下為 step1 獨有
       .how-much {
         display: flex;
         flex-direction: column;
@@ -138,6 +140,30 @@ body {
           }
           .cancel {
             color: #000;
+          }
+        }
+      }
+      // 以上為 step1 獨有
+
+      // 以下為 step2 獨有
+
+      .about-member {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        margin-left: 40px;
+      }
+      .step2-member-from {
+        width: 1000px;
+        margin-left: 40px;
+      }
+      .pay-form {
+        margin-left: 40px;
+
+        .pay-icon {
+          margin-right: 8px;
+          svg {
+            width: 30px;
+            height: 20px;
           }
         }
       }

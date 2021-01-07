@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link, Switch, useParams } from 'react-router-dom'
+import { Route, Switch, useParams } from 'react-router-dom'
 import ProductList from '../../pages/ProductList'
 
 function Test() {

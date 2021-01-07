@@ -14,9 +14,12 @@ $sub-dark-gray: #707070;
   tr{
     .not-td-left{
       text-align: left;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
     .not-td-right{
       text-align: right;
     }
+  }
+  .new-not-flex{
+    flex-direction:column;
   }

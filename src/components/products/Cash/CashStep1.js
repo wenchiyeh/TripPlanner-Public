@@ -4,8 +4,14 @@ import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { Button } from 'react-bootstrap'
 import IconRouter from './IconRouter'
 import './cash.scss'
+import { useHistory } from 'react-router-dom'
 
 function CashStep1() {
+  let history = useHistory()
+
+  function nextstep() {
+    history.push('/shoppingcar2')
+  }
   return (
     <>
       <div className="In-the-car">
@@ -56,6 +62,8 @@ function CashStep1() {
               </div>
             </div>
             <hr />
+            {/*上半部色塊 要想辦法弄成元件*/}
+
             <div className="how-much">
               <div className="subtotal">
                 <p>小計</p>
@@ -69,7 +77,9 @@ function CashStep1() {
                 <Button variant="light" className="cancel">
                   取消
                 </Button>
-                <Button variant="info">下一步</Button>
+                <Button variant="info" onClick={nextstep}>
+                  下一步
+                </Button>
               </div>
             </div>
           </div>

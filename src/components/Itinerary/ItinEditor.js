@@ -12,10 +12,8 @@ function ItinEditor({ boxData = fakeTestingData }) {
   const [tempData, setTempData] = useState(boxData)
   function handleOnDragEnd(result) {
     if (!result.destination) return
-    console.log(result)
     const wrapSourceIndex = result.source.droppableId.substring(4)
     const wrapDestinIndex = result.destination.droppableId.substring(4)
-    console.log(wrapSourceIndex)
     const originArray = Array.from(tempData)
     const [reorderItem] = originArray[wrapSourceIndex].data.splice(
       result.source.index,
@@ -26,7 +24,6 @@ function ItinEditor({ boxData = fakeTestingData }) {
       0,
       reorderItem
     )
-    console.log(originArray)
     setTempData(originArray)
   }
   return (

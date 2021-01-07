@@ -8,32 +8,41 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 function Header(props) {
-  const imagePath = './images/testImage.jpg'
+  const imagePath = '/images/testImage.jpg'
 
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
-        <Navbar.Brand href="#home" className="Navbar-Logo">
+        <Navbar.Brand as={NavLink} to="/" className="Navbar-Logo">
           <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={NavLink} to="/" exact className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/itinerary"
+              exact
+              className="Navbar-Title h5 "
+            >
               行程規劃
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/about" className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/travelBuddy"
+              className="Navbar-Title h5 "
+            >
               揪團旅行
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/login" className="Navbar-Title h5 ">
+            <Nav.Link as={NavLink} to="/products" className="Navbar-Title h5 ">
               達人講座
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
+            <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#memes">
+            <Nav.Link as={NavLink} to="/shoppingcar-1">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

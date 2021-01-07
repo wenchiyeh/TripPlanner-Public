@@ -4,6 +4,7 @@ import React from 'react'
 // import SearchBar from '../main/SearchBar'
 // import CardListPublic from '../main/CardListPublic'
 import SpotsBox from './SpotsBox'
+import ItinEditorBar from './ItinEditorBar'
 
 //
 //
@@ -66,10 +67,11 @@ function ItinList() {
   )
   return (
     <div className="testMapWrap">
+      <ItinEditorBar />
       {/* <CardListPublic data={cardData[2].data} />
       <TestWrap />
       {searchTest} */}
-      {drapTest}
+      {/* {drapTest} */}
       {/* {cardTest} */}
     </div>
   )

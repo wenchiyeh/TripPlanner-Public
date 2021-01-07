@@ -19,18 +19,18 @@ function Itinerary(props) {
   }, [searchFilter])
   return (
     <>
-      <div className="container">
+      <div className="container itin-close-wrap">
         <MyBreadCrumb />
-        <div className="d-flex justify-content-between px-3">
+        <div className="d-flex justify-content-between">
           <h1>行程規劃</h1>
-          <Button variant="info" onClick={createItinerary}>
+          <Button variant="info" size="sm" onClick={createItinerary}>
             建立行程
           </Button>
         </div>
       </div>
       <Carousel />
       <div className="container">
-        <Col md={8}>
+        <Col md={12}>
           <SearchBar setSearchFilter={setSearchFilter} />
         </Col>
         <CardListPublic />

@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //header footer wrapper
 // import Header from './components/main/Header'
 // import MyFooter from './components/main/MyFooter'
-//
 //pages
 // import ItinRoute from './components/Itinerary/ItinRoute'
 // import Member from './pages/Member'
@@ -14,7 +13,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 // import AddTravelBuddies from './pages/AddTravelBuddies'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
-import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import Forgetpassword from './pages/forgetpassword'
@@ -45,10 +43,6 @@ function App() {
         --
         <Link to="/sigon">Sigon</Link>
         --
-        <Link to="/forgetpassword">forgetpassword</Link>
-        --
-        <Link to="/LineChart">LineChart</Link>
-        --
         <Link to="/buy">Buy</Link>
         --
         <Link to="/travelBuddy">TravelBuddy</Link>
@@ -63,10 +57,6 @@ function App() {
 
           <Route exact path="/sigon">
             <Sigon />
-          </Route>
-
-          <Route path="/LineChart">
-            <LineChart />
           </Route>
 
           <Route path="/buy">
@@ -96,9 +86,6 @@ function App() {
             </Route>
             <Route path="/sigon">
               <Sigon />
-            </Route>
-            <Route path="/LineChart">
-              <LineChart />
             </Route>
             <Route path="/buy">
               <BuyProducts />

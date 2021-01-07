@@ -1,3 +1,4 @@
+//ant 樣式
 @import 'antd/dist/antd.css';
 @import './custom.scss';
 //bootstrap樣式
@@ -22,7 +23,7 @@ $card-button-height: 50px;
 $card-content-height: 110px;
 $card-border-radius: 10px;
 //searchbar相關
-$searchbar-width: 1200px;
+$searchbar-width: 1000px;
 $searchbar-height: 65px;
 //變數區結尾
 
@@ -159,3 +160,9 @@ body {
 
 //新增揪團
 @import './addTravelBuddies.scss';
+
+//會員-揪團-我的揪團
+@import './travelBuddiesMyAccount.scss';
+
+//會員-揪團-我的揪團-按鈕
+@import './tbMyAccountButton.scss';

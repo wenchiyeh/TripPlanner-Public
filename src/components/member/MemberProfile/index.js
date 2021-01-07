@@ -17,6 +17,7 @@ function MemberList() {
         <img src={urlapi} alt="" />
         {/* className="member-List-modal-box" */}
         <h4> {name}</h4>
+        {/* 編輯會員 */}
         <Button
           variant="primary"
           className="MemberList-title"
@@ -29,7 +30,7 @@ function MemberList() {
           size="lg"
           show={show}
           onHide={handleClose}
-          // backdrop="static"
+          //backdrop="static"
           keyboard={false}
         >
           <Modal.Header closeButton>
@@ -39,6 +40,7 @@ function MemberList() {
             <MemberEdit />
           </Modal.Body>
           <Modal.Footer className="Line-none"></Modal.Footer>
+          {/* Modal原生的按鈕 */}
           {/* <Modal.Footer>
             <Button
               variant="secondary"

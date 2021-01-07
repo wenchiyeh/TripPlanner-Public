@@ -1,9 +1,11 @@
 import React from 'react'
-import { Route, Link, Switch, useParams } from 'react-router-dom'
+import { Route, Switch, useParams } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
 import ItinEditor from './ItinEditor'
 //測試用
-import SpotBox from './SpotsBox'
+// import SpotBox from './SpotsBox'
+// import ItinList from './ItinList'
+import TestDragEditor from './TestDragEditor'
 //
 
 function Test() {
@@ -11,37 +13,37 @@ function Test() {
   return <h1>{id}</h1>
 }
 
-function Test2() {
-  return (
-    <>
-      <SpotBox
-        data={{
-          order: 0,
-          type: 0,
-          title: '測試標題可以幾個字',
-          time: '0900',
-          lat: 24.96517,
-          lng: 121.19192,
-          image: '',
-          info: '',
-        }}
-      />
-      <SpotBox
-        isEdit={false}
-        data={{
-          order: 0,
-          type: 0,
-          title: '測試標題可以幾個字',
-          time: '0900',
-          lat: 24.96517,
-          lng: 121.19192,
-          image: '',
-          info: '',
-        }}
-      />
-    </>
-  )
-}
+// function Test2() {
+//   return (
+//     <>
+//       <SpotBox
+//         data={{
+//           order: 0,
+//           type: 0,
+//           title: '測試標題可以幾個字',
+//           time: '0900',
+//           lat: 24.96517,
+//           lng: 121.19192,
+//           image: '',
+//           info: '',
+//         }}
+//       />
+//       <SpotBox
+//         isEdit={false}
+//         data={{
+//           order: 0,
+//           type: 0,
+//           title: '測試標題可以幾個字',
+//           time: '0900',
+//           lat: 24.96517,
+//           lng: 121.19192,
+//           image: '',
+//           info: '',
+//         }}
+//       />
+//     </>
+//   )
+// }
 
 function ItinRoute() {
   return (
@@ -51,7 +53,7 @@ function ItinRoute() {
           <Test />
         </Route>
         <Route path="/itinerary/test">
-          <Test2 />
+          <TestDragEditor />
         </Route>
         <Route path="/itinerary/new">
           <ItinEditor />

@@ -12,7 +12,6 @@ import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
-import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import IconRouter from './components/products/Cash/IconRouter'
@@ -40,8 +39,6 @@ function App() {
         --
         <Link to="/sigon">Sigon</Link>
         --
-        <Link to="/LineChart">LineChart</Link>
-        --
         <Link to="/buy">Buy</Link>
         --
         <Link to="/travelBuddy">TravelBuddy</Link>
@@ -56,9 +53,6 @@ function App() {
 
           <Route exact path="/sigon">
             <Sigon />
-          </Route>
-          <Route path="/LineChart">
-            <LineChart />
           </Route>
 
           <Route path="/buy">
@@ -92,9 +86,6 @@ function App() {
             </Route>
             <Route path="/sigon">
               <Sigon />
-            </Route>
-            <Route path="/LineChart">
-              <LineChart />
             </Route>
             <Route path="/buy">
               <BuyProducts />

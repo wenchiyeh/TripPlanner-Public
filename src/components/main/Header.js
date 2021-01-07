@@ -13,7 +13,7 @@ function Header(props) {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
-        <Navbar.Brand href="#home" className="Navbar-Logo">
+        <Navbar.Brand as={NavLink} to="/" className="Navbar-Logo">
           <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -39,10 +39,10 @@ function Header(props) {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link to="/member">
+            <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link to="/shoppingcar-1">
+            <Nav.Link as={NavLink} to="/shoppingcar-1">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

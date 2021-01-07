@@ -19,21 +19,30 @@ function Header(props) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={NavLink} to="/" exact className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/itinerary"
+              exact
+              className="Navbar-Title h5 "
+            >
               行程規劃
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/about" className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/travelBuddy"
+              className="Navbar-Title h5 "
+            >
               揪團旅行
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/login" className="Navbar-Title h5 ">
+            <Nav.Link as={NavLink} to="/products" className="Navbar-Title h5 ">
               達人講座
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
+            <Nav.Link to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#memes">
+            <Nav.Link to="/shoppingcar-1">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

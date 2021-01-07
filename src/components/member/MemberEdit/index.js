@@ -3,7 +3,19 @@ import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import './MemberEdit.scss'
 
-function MemberEdit(props) {
+function MemberEdit({
+  email = 'ddddd@gmail.com',
+  password = 'ji3g4go6',
+  memberuser = '大木小智',
+  area = '台北',
+  phone = '0912345678',
+  birthday = '1999-01-12',
+  six = '男',
+  nickname = '小智',
+  introduction = '我在資策會學習網頁前端',
+}) {
+  //拉資料庫
+  //
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -12,7 +24,6 @@ function MemberEdit(props) {
       event.preventDefault()
       event.stopPropagation()
     }
-
     setValidated(true)
   }
   return (
@@ -27,7 +38,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="請輸入信箱"
-              defaultValue=""
+              defaultValue={email}
             />
             <Form.Control.Feedback>正確!</Form.Control.Feedback>
           </Form.Group>
@@ -41,7 +52,7 @@ function MemberEdit(props) {
               required
               type="password"
               placeholder="請輸入密碼"
-              defaultValue=""
+              defaultValue={password}
             />
             <Form.Control.Feedback>正確!</Form.Control.Feedback>
           </Form.Group>
@@ -54,6 +65,7 @@ function MemberEdit(props) {
             <Form.Control
               type="text"
               placeholder="請輸入姓名"
+              defaultValue={memberuser}
               aria-describedby=""
               required
             />
@@ -67,7 +79,12 @@ function MemberEdit(props) {
           <Form.Group as={Col} md="12" controlId="validationCustom03">
             <Form.Label>地區</Form.Label>
             <span className="med-add-text-red">*</span>
-            <Form.Control type="text" placeholder="請輸入地區" required />
+            <Form.Control
+              type="text"
+              placeholder="請輸入地區"
+              defaultValue={area}
+              required
+            />
             <Form.Control.Feedback type="invalid">
               請輸入正確的地區
             </Form.Control.Feedback>
@@ -78,7 +95,12 @@ function MemberEdit(props) {
           <Form.Group as={Col} md="12" controlId="validationCustom04">
             <Form.Label>電話</Form.Label>
             <span className="med-add-text-red">*</span>
-            <Form.Control type="text" placeholder="0988888888" required />
+            <Form.Control
+              type="text"
+              placeholder="0988888888"
+              defaultValue={phone}
+              required
+            />
             <Form.Control.Feedback type="invalid">
               請輸入正確的電話號碼
             </Form.Control.Feedback>
@@ -89,7 +111,12 @@ function MemberEdit(props) {
           <Form.Group as={Col} md="6" controlId="validationCustom05">
             <Form.Label>出生日期</Form.Label>
             <span className="med-add-text-red">*</span>
-            <Form.Control type="date" placeholder="" required />
+            <Form.Control
+              type="date"
+              placeholder=""
+              defaultValue={birthday}
+              required
+            />
             <Form.Control.Feedback type="invalid">
               請輸入出生日期
             </Form.Control.Feedback>
@@ -116,7 +143,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="例：小智"
-              defaultValue=""
+              defaultValue={nickname}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -130,7 +157,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="例：我在資策會學習網頁前端"
-              defaultValue=""
+              defaultValue={introduction}
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>

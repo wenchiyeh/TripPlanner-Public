@@ -41,6 +41,7 @@ function MemberList() {
             <MemberEdit />
           </Modal.Body>
           <Modal.Footer className="Line-none"></Modal.Footer>
+          {/* Modal原生的按鈕 */}
           {/* <Modal.Footer>
             <Button
               variant="secondary"

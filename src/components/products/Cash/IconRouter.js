@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { FaShoppingCart, FaRegCheckSquare } from 'react-icons/fa'
 import { GoCreditCard } from 'react-icons/go'
 import { MdKeyboardArrowRight } from 'react-icons/md'
-// import StepChoes from './StepChoes'
 import './cash.scss'
 
 function IconRouter() {

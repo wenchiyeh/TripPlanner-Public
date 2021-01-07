@@ -1,4 +1,12 @@
 //正式
+.itin-close-wrap {
+  .btn {
+    height: 36px;
+  }
+  h1 {
+    margin: 0;
+  }
+}
 //地圖相關
 .map-comp-wrapper {
   position: relative;
@@ -37,6 +45,35 @@
   .box-close-btn:hover {
     svg {
       color: $main-red;
+    }
+  }
+}
+.itin-editbar-wrapper {
+  max-width: 450px;
+  min-height: 130px;
+  margin-top: 32px;
+  background: transparent;
+  .itin-editbar-btnwapper {
+    width: 100%;
+    padding: 16px;
+    background: $sub-gray;
+    border-radius: 6px;
+    margin: 0 12px;
+  }
+  .btn {
+    width: 120px;
+  }
+  input {
+    margin-top: 15px;
+    width: 100%;
+  }
+  .itin-editbar-searchresult {
+    width: 100%;
+    margin: 0 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    &:hover {
+      background: $sub-silver;
     }
   }
 }

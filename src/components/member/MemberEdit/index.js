@@ -10,12 +10,11 @@ function MemberEdit({
   area = '台北',
   phone = '0912345678',
   birthday = '1999-01-12',
-  six = '男',
+  six1 = '男性',
+  six2 = '女性',
   nickname = '小智',
   introduction = '我在資策會學習網頁前端',
 }) {
-  //拉資料庫
-  //
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -129,8 +128,8 @@ function MemberEdit({
             <span className="med-add-text-red">*</span>
             <Form.Control as="select" custom>
               <option disabled>-請選擇-</option>
-              <option>男性</option>
-              <option>女性</option>
+              <option>{six1}</option>
+              <option>{six2}</option>
             </Form.Control>
           </Form.Group>
         </Form.Row>

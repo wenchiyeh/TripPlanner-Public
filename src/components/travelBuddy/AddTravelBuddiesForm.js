@@ -25,8 +25,8 @@ function AddTravelBuddiesForm() {
       <div class="add-travelbuddies-outbox">
         <div class="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
-            <h1 class="add-travelbuddies-topic">新增旅行揪團</h1>
-            <div class="add-travelbuddies-picture"></div>
+            <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
+            <div className="add-travelbuddies-picture"></div>
             <Form.Group controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：

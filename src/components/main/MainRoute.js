@@ -2,8 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Header from '../main/Header'
 import MyFooter from '../main/MyFooter'
-//
-//
+
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
 import ProductsRoute from '../products/ProductsRoute'

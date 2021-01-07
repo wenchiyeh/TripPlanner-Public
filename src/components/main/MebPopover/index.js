@@ -1,3 +1,4 @@
+//通知泡泡元件
 import React from 'react'
 import { Popover } from 'antd'
 import { FaRegBell } from 'react-icons/fa'
@@ -11,7 +12,7 @@ function MebPopover(params) {
   const content = (
     <div className="MebPopover-style">
       <NewNotice />
-      <button className="d-flex" onClick={hrefnew}>
+      <button className="d-flex" type="primary" onClick={hrefnew}>
         更多
       </button>
     </div>
@@ -28,7 +29,7 @@ function MebPopover(params) {
           }}
         >
           <Popover
-            placement="bottomRight"
+            placement="topRight"
             title={text}
             content={content}
             trigger="click"

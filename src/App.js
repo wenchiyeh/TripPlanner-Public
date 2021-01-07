@@ -6,17 +6,17 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 // import Header from './components/main/Header'
 // import MyFooter from './components/main/MyFooter'
 //pages
-import ItinRoute from './components/Itinerary/ItinRoute'
-import Member from './pages/Member'
-import ProductsRoute from './components/products/ProductsRoute'
-import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
+// import ItinRoute from './components/Itinerary/ItinRoute'
+// import Member from './pages/Member'
+// import ProductsRoute from './components/products/ProductsRoute'
+// import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
+// import AddTravelBuddies from './pages/AddTravelBuddies'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
-import IconRouter from './components/products/Cash/IconRouter'
-import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
+//
 import MainRoute from './components/main/MainRoute'
 
 function App() {
@@ -31,7 +31,11 @@ function App() {
         --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingcar">Shoppingcar</Link>
+        <Link to="/shoppingcar-1">Shoppingcar-1</Link>
+        --
+        <Link to="/shoppingcar-2">Shoppingcar-2</Link>
+        --
+        <Link to="/shoppingcar-3">Shoppingcar-3</Link>
         --
         <Link to="/products">Product</Link>
         --
@@ -57,10 +61,6 @@ function App() {
 
           <Route path="/buy">
             <BuyProducts />
-          </Route>
-
-          <Route path="/shoppingcar">
-            <IconRouter />
           </Route>
 
           <Route path="/forgetpassword">

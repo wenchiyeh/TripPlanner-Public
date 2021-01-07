@@ -1,7 +1,18 @@
 import React from 'react'
 import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa' //  FaCar,FaTrain,FaWalking,
 
-function SpotsBox({ isEdit, data }) {
+let testData = {
+  order: 0,
+  type: 0,
+  title: '測試標題可以幾個字',
+  time: '0900',
+  lat: 24.96517,
+  lng: 121.19192,
+  image: '',
+  info: '',
+}
+
+function SpotsBox({ isEdit, data = testData }) {
   const { type, title, time, ...otherData } = data
   const typeIcon = <FaMapMarkerAlt size={26} />
   const displyEdit = (

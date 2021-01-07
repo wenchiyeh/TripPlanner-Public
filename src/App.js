@@ -17,7 +17,6 @@ import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
-import IconRouter from './components/products/Cash/IconRouter'
 import Forgetpassword from './pages/forgetpassword'
 //
 import MainRoute from './components/main/MainRoute'
@@ -34,7 +33,11 @@ function App() {
         --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingcar">Shoppingcar</Link>
+        <Link to="/shoppingcar-1">Shoppingcar-1</Link>
+        --
+        <Link to="/shoppingcar-2">Shoppingcar-2</Link>
+        --
+        <Link to="/shoppingcar-3">Shoppingcar-3</Link>
         --
         <Link to="/products">Product</Link>
         --
@@ -68,10 +71,6 @@ function App() {
 
           <Route path="/buy">
             <BuyProducts />
-          </Route>
-
-          <Route path="/shoppingcar">
-            <IconRouter />
           </Route>
 
           <Route path="/forgetpassword">

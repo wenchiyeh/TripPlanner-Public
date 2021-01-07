@@ -1,8 +1,8 @@
 import React from 'react'
-import Card from '../main/Card'
-import TestWrap from '../main/TestWrap'
-import SearchBar from '../main/SearchBar'
-import CardListPublic from '../main/CardListPublic'
+// import Card from '../main/Card'
+// import TestWrap from '../main/TestWrap'
+// import SearchBar from '../main/SearchBar'
+// import CardListPublic from '../main/CardListPublic'
 import SpotsBox from './SpotsBox'
 
 //
@@ -10,23 +10,23 @@ import SpotsBox from './SpotsBox'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 function ItinList() {
-  const searchTest = <SearchBar />
-  let cardData = require('./testJsonData.json')
-  const cardTest = (
-    <Card
-      title={'新北耶誕'}
-      text={-1}
-      location={'中壢市'}
-      image={'testImage.jpg'}
-      time1={'2020/12/24'}
-      time2={'2020/12/25'}
-      duration={3}
-      price={-1}
-      person={'王大明'}
-      like={222}
-      mark={222}
-    />
-  )
+  // const searchTest = <SearchBar />
+  // let cardData = require('./testJsonData.json')
+  // const cardTest = (
+  //   <Card
+  //     title={'新北耶誕'}
+  //     text={-1}
+  //     location={'中壢市'}
+  //     image={'testImage.jpg'}
+  //     time1={'2020/12/24'}
+  //     time2={'2020/12/25'}
+  //     duration={3}
+  //     price={-1}
+  //     person={'王大明'}
+  //     like={222}
+  //     mark={222}
+  //   />
+  // )
   let testArr = [
     { id: '1', title: 'test1', content: 'con1' },
     { id: '2', title: 'test2', content: 'con2' },

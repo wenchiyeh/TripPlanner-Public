@@ -7,19 +7,18 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 // import MyFooter from './components/main/MyFooter'
 //
 //pages
-import ItinRoute from './components/Itinerary/ItinRoute'
-import Member from './pages/Member'
-import ProductsRoute from './components/products/ProductsRoute'
-import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
+// import ItinRoute from './components/Itinerary/ItinRoute'
+// import Member from './pages/Member'
+// import ProductsRoute from './components/products/ProductsRoute'
+// import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
+// import AddTravelBuddies from './pages/AddTravelBuddies'
 import Login from './pages/Login'
 import Sigon from './pages/sign'
 import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import IconRouter from './components/products/Cash/IconRouter'
-import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
-
 //
 import MainRoute from './components/main/MainRoute'
 

@@ -32,6 +32,7 @@ function Carousel() {
         <Slider {...settings} class="carousel-outbox row">
           {images.map((img, i) => (
             <div
+              key={i}
               className={
                 i === imgIndex
                   ? 'carousel-active-slide carousel-slide'

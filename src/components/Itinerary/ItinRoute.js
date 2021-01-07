@@ -4,6 +4,8 @@ import Itinerary from '../../pages/Itinerary'
 import ItinEditor from './ItinEditor'
 //測試用
 import SpotBox from './SpotsBox'
+import ItinList from './ItinList'
+import TestDragEditor from './TestDragEditor'
 //
 
 function Test() {
@@ -51,7 +53,7 @@ function ItinRoute() {
           <Test />
         </Route>
         <Route path="/itinerary/test">
-          <Test2 />
+          <TestDragEditor />
         </Route>
         <Route path="/itinerary/new">
           <ItinEditor />

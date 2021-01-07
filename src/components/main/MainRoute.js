@@ -11,7 +11,7 @@ import TravelBuddyRoute from '../travelBuddy/TravelBuddyRoute'
 import LineChart from '../../pages/LineChart '
 import BuyProducts from '../../pages/BuyProducts/BuyProducts'
 import AddTravelBuddies from '../../pages/AddTravelBuddies'
-import Cash from '../member/Cash/Cash'
+import IconRouter from '../products/Cash/IconRouter'
 
 function MainRoute() {
   return (
@@ -30,11 +30,11 @@ function MainRoute() {
         <Route path="/LineChart">
           <LineChart />
         </Route>
-        <Route path="/buy">
+        <Route path="/Buy">
           <BuyProducts />
         </Route>
-        <Route path="/cash">
-          <Cash />
+        <Route path="/shoppingcar">
+          <IconRouter />
         </Route>
         <Route path="/travelBuddy">
           <TravelBuddyRoute />

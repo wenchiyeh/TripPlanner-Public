@@ -2,38 +2,36 @@ import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 
 function TBHistoryButtonGiveRating() {
-  const [tbJoinedDropOut, settbJoinedDropOut] = useState(false)
+  const [tbHistoryGiveRating, settbHistoryGiveRating] = useState(false)
   return (
     <>
       <Button
-        className="tbjoined-button-dropout"
-        onClick={() => settbJoinedDropOut(true)}
+        className="tbhistory-button-giverating"
+        onClick={() => settbHistoryGiveRating(true)}
       >
-        取消報名
+        評價團員
       </Button>{' '}
       <Modal
         size="lg"
-        show={tbJoinedDropOut}
-        onHide={() => settbJoinedDropOut(false)}
-        aria-labelledby="tbJoinedDrop"
+        show={tbHistoryGiveRating}
+        onHide={() => settbHistoryGiveRating(false)}
+        aria-labelledby="tbHistoryGiveRating"
       >
         <Form>
           <Modal.Header closeButton>
-            <Modal.Title id="tbJoinedDrop" className="tbjoined-dropout-title">
-              您確定要退出旅行揪團並通知團員嗎？
+            <Modal.Title
+              id="tbHistoryGiveRating"
+              className="tbhistory-giverating-title"
+            >
+              評價團員
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Form.Group controlId="tbMineDeleteMessage">
-              <Form.Label htmlFor="tbMineDeleteMessage">通知訊息：</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Modal.Body>
+          <Modal.Body></Modal.Body>
           <Modal.Footer>
-            <Button variant="" className="tbjoined-button-dropout-cancel">
+            <Button variant="" className="tbhistory-button-giverating-cancel">
               取消
             </Button>
-            <Button variant="" className="tbjoined-button-dropout-confirm">
+            <Button variant="" className="tbhistory-button-giverating-confirm">
               確定
             </Button>
           </Modal.Footer>

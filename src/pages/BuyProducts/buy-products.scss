@@ -66,7 +66,6 @@
 }
 .IWantBuy {
   width: 280px;
-  height: 490px;
   margin-top: 32px;
   box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
   padding: 32px 24px;
@@ -120,7 +119,9 @@
     margin-bottom: 26px;
   }
   .btn-light {
-    padding: 0;
+    padding: 0 0;
+    width: 24px;
+    height: 24px;
     background-color: transparent;
     border: 1px solid transparent;
     svg {
@@ -195,17 +196,18 @@
   }
 }
 
-.modal-content {
+.modalPage {
   border-radius: 6px;
 
   .modal-header {
     border-bottom: 1px solid transparent;
+    .close {
+      margin: 0 0;
+      padding: 0 0;
+    }
   }
-  .close {
-    margin: 0 0;
-    padding: 0 0;
-  }
-  .modal-title {
+
+  .modalPhoto {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -218,7 +220,8 @@
       object-fit: cover;
     }
   }
-  .modal-body {
+  .nameAndTitle {
+    width: 100%;
     text-align: center;
     ul {
       text-align: left;

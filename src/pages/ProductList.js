@@ -2,7 +2,7 @@ import React from 'react'
 
 import MyBreadCrumb from '../components/main/MyBreadCrumb'
 import SearchBar from '../components/main/SearchBar'
-import CardList from '../components/products/CardList'
+import CardListPublic from '../components/main/CardListPublic'
 import Carousel from '../components/travelBuddy/Carousel'
 import Pages from '../components/main/Pages'
 
@@ -17,7 +17,7 @@ function ProductList() {
       <div className="container">
         <SearchBar />
 
-        <CardList />
+        <CardListPublic />
         <Pages />
       </div>
     </>

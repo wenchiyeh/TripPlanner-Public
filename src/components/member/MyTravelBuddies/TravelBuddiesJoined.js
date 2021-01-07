@@ -4,6 +4,7 @@ import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBJoinedButtonDropOut from './TBJoinedButtonDropOut'
+import TBJoinedButtonDropOutNotApproved from './TBJoinedButtonDropOutNotApproved'
 
 function TravelBuddiesJoined() {
   return (
@@ -35,11 +36,15 @@ function TravelBuddiesJoined() {
               <td>2021/02/26 - 2021/02/26</td>
               <td>參加中</td>
               <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBJoinedButtonDropOut />{' '}
+                <TBButtonRead /> <TBButtonChatroom />{' '}
+                <TBJoinedButtonDropOutNotApproved />{' '}
               </td>
             </tr>
           </tbody>
         </Table>
+      </div>
+      <div className="tb-pages">
+        <Pages />
       </div>
     </>
   )

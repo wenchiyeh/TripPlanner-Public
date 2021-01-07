@@ -1,42 +1,39 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
-import TBGiveStarRating from './TBGiveStarRating'
 
-function TBHistoryButtonGiveRating() {
-  const [tbHistoryGiveRating, settbHistoryGiveRating] = useState(false)
+function TBHistoryButtonRatingDone() {
+  const [tbHistoryButtonRatingDone, settbHistoryButtonRatingDone] = useState(
+    false
+  )
   return (
     <>
       <Button
         className="tbhistory-button-giverating"
-        onClick={() => settbHistoryGiveRating(true)}
+        onClick={() => settbHistoryButtonRatingDone(true)}
       >
         評價團員
       </Button>{' '}
       <Modal
         size="lg"
-        show={tbHistoryGiveRating}
-        onHide={() => settbHistoryGiveRating(false)}
-        aria-labelledby="tbHistoryGiveRating"
+        show={tbHistoryButtonRatingDone}
+        onHide={() => settbHistoryButtonRatingDone(false)}
+        aria-labelledby="tbHistoryButtonRatingDone"
       >
         <Form>
           <Modal.Header closeButton>
             <Modal.Title
-              id="tbHistoryGiveRating"
+              id="tbHistoryButtonRatingDone"
               className="tbhistory-giverating-title"
             >
               評價團員
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body className="d-flex">
-            <TBGiveStarRating />
-            <TBGiveStarRating />
+          <Modal.Body>
+            <div className="tb-star-rating-done">您已完成評價</div>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="" className="tbhistory-button-giverating-cancel">
-              取消
-            </Button>
-            <Button variant="" className="tbhistory-button-giverating-confirm">
-              確定
+              關閉
             </Button>
           </Modal.Footer>
         </Form>
@@ -45,4 +42,4 @@ function TBHistoryButtonGiveRating() {
   )
 }
 
-export default TBHistoryButtonGiveRating
+export default TBHistoryButtonRatingDone

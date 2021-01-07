@@ -17,9 +17,10 @@ import LineChart from './pages/LineChart '
 import BuyProducts from './pages/BuyProducts/BuyProducts'
 import Home from './pages/Home'
 import IconRouter from './components/products/Cash/IconRouter'
-
+import AddTravelBuddies from './pages/AddTravelBuddies'
 import Forgetpassword from './pages/forgetpassword'
 
+//
 import MainRoute from './components/main/MainRoute'
 
 function App() {

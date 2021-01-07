@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Table, Button, Modal } from 'react-bootstrap'
 import Pages from '../../main/Pages'
+import TBButtonRead from './TBButtonRead'
 import TBMineButtonEdit from './TBMineButtonEdit'
 import TBMineButtonMembersSelect from './TBMineButtonMembersSelect'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBMineButtonDelete from './TBMineButtonDelete'
+import TBMineButtonDeleteNoMembers from './TBMineButtonDeleteNoMembers'
+import TBMembersSelect from './TBMembersSelect'
 
 function TravelBuddiesMine() {
   return (
@@ -25,7 +28,7 @@ function TravelBuddiesMine() {
               <td>金門馬祖六天尋幽訪古</td>
               <td>2021/01/26 - 2021/01/31</td>
               <td>
-                <TBMineButtonEdit /> <TBMineButtonEdit />{' '}
+                <TBButtonRead /> <TBMineButtonEdit />{' '}
                 <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
                 <TBMineButtonDelete />{' '}
               </td>
@@ -35,8 +38,9 @@ function TravelBuddiesMine() {
               <td>台灣西部好好玩！南投彰化雲林嘉義秘境行五日</td>
               <td>2021/02/11 - 2021/02/15</td>
               <td>
-                <TBMineButtonEdit /> <TBMineButtonMembersSelect />{' '}
-                <TBButtonChatroom /> <TBMineButtonDelete />{' '}
+                <TBButtonRead /> <TBMineButtonEdit />{' '}
+                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                <TBMineButtonDelete />{' '}
               </td>
             </tr>
             <tr>
@@ -44,12 +48,17 @@ function TravelBuddiesMine() {
               <td>高雄、小琉球玩個三天</td>
               <td>2021/03/01 - 2021/03/03</td>
               <td>
-                <TBMineButtonEdit /> <TBMineButtonMembersSelect />{' '}
-                <TBButtonChatroom /> <TBMineButtonDelete />{' '}
+                <TBButtonRead /> <TBMineButtonEdit />{' '}
+                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                <TBMineButtonDeleteNoMembers />{' '}
               </td>
             </tr>
           </tbody>
         </Table>
+        <TBMembersSelect />
+      </div>
+      <div className="tb-pages">
+        <Pages />
       </div>
     </>
   )

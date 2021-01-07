@@ -1,35 +1,33 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
-import TBStarRating from './TBStarRating'
 
-function TBHistoryButtonRating() {
-  const [tbHistoryButtonRating, settbHistoryButtonRating] = useState(false)
+function TBHistoryButtonRatingNo() {
+  const [tbHistoryButtonRatingNo, settbHistoryButtonRatingNo] = useState(false)
   return (
     <>
       <Button
         className="tbhistory-button-rating"
-        onClick={() => settbHistoryButtonRating(true)}
+        onClick={() => settbHistoryButtonRatingNo(true)}
       >
-        查看評價
+        評價團員
       </Button>{' '}
       <Modal
         size="lg"
-        show={tbHistoryButtonRating}
-        onHide={() => settbHistoryButtonRating(false)}
-        aria-labelledby="tbHistoryButtonRating"
+        show={tbHistoryButtonRatingNo}
+        onHide={() => settbHistoryButtonRatingNo(false)}
+        aria-labelledby="tbHistoryButtonRatingNo"
       >
         <Form>
           <Modal.Header closeButton>
             <Modal.Title
-              id="tbHistoryButtonRating"
+              id="tbHistoryButtonRatingNo"
               className="tbhistory-rating-title"
             >
               查看本次旅行揪團收到的評價
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h5 className="tb-star-rating-got">2人已評價，1人尚未評價</h5>
-            <TBStarRating />
+            <div className="tb-star-rating-no">您尚未收到任何評價</div>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="" className="tbhistory-button-rating-close">
@@ -42,4 +40,4 @@ function TBHistoryButtonRating() {
   )
 }
 
-export default TBHistoryButtonRating
+export default TBHistoryButtonRatingNo

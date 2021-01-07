@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 function TBButtonRead() {
   return (
     <>
-      <Button className="tbmine-button-edit">查看</Button>
+      <Button className="tb-button-read">查看</Button>
     </>
   )
 }

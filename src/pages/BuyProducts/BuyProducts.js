@@ -179,7 +179,10 @@ function BuyProducts() {
           <div className="introduction">
             <p className="classTitel">關於講師</p>
             <Button variant="link" onClick={handleShow}>
-              <img src="" alt="圖片替代文字" />
+              <img
+                src="http://localhost:3000/images/teacher/Han__2Bi_3.jpg"
+                alt="圖片替代文字"
+              />
             </Button>
             <Modal
               size="400x400"

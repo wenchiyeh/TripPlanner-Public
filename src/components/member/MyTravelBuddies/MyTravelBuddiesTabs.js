@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab'
 import TravelBuddiesMine from './TravelBuddiesMine'
 import TravelBuddiesJoined from './TravelBuddiesJoined'
 import TravelBuddiesHistory from './TravelBuddiesHistory'
+
 function MyTravelBuddiesTabs() {
   return (
     <>

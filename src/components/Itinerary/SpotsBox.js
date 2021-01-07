@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa'
+import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa' //  FaCar,FaTrain,FaWalking,
 
 function SpotsBox({ isEdit, data }) {
   const { type, title, time, ...otherData } = data

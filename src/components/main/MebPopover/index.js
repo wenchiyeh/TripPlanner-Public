@@ -1,6 +1,5 @@
 //通知泡泡元件
 import React from 'react'
-import 'antd/dist/antd.css'
 import { Popover } from 'antd'
 import { FaRegBell } from 'react-icons/fa'
 import './MebPopover.scss'

@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit/index'
 import './MemberProfile.scss'
 function MemberList() {
+  //底下不要動!!!
   const Person = ({ img, name }) => {
     const [show, setShow] = useState(false)
 
@@ -17,6 +18,7 @@ function MemberList() {
         <img src={urlapi} alt="" />
         {/* className="member-List-modal-box" */}
         <h4> {name}</h4>
+        {/* 編輯會員 */}
         <Button
           variant="primary"
           className="MemberList-title"

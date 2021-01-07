@@ -106,31 +106,6 @@ function MemberEdit(props) {
               <option>女性</option>
             </Form.Control>
           </Form.Group>
-          {/* 舊的 */}
-          {/* <div class="form-check d-flex">
-            <div className="mefed-form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault1"
-              />
-              <label class="form-check-label" for="flexRadioDefault1">
-                男性
-              </label>
-            </div>
-            <div className="mefed-form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="flexRadioDefault"
-                id="flexRadioDefault2"
-              />
-              <label class="form-check-label" for="flexRadioDefault2">
-                女性
-              </label>
-            </div>
-          </div> */}
         </Form.Row>
         {/* 暱稱 */}
         <Form.Row>

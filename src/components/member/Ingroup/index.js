@@ -3,6 +3,11 @@ import React from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
+//引入卡片
+let cardData = require('../../Itinerary/testJsonData.json')
+let handleTestData = cardData[2].data
+//測試資料可以做成JSON檔之後用這個方式引入
+
 function MeFavoritesgroup({
   title = '揪團蔥油餅吃到飽之旅台灣蔥油餅', //標題
   image, //圖片的檔名與附檔名ex: 'testImage.jpg'

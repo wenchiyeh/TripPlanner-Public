@@ -62,6 +62,8 @@ function CashStep1() {
               </div>
             </div>
             <hr />
+            {/*上半部色塊 要想辦法弄成元件*/}
+
             <div className="how-much">
               <div className="subtotal">
                 <p>小計</p>

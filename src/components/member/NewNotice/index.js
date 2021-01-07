@@ -12,16 +12,16 @@ function NewNotice({
       <div className="">
         <table className="not-toble-ma-bt">
           <tr>
-            <th scope="col">No.</th>
+            {/* <th scope="col">No.</th> */}
             <th>旅行日期</th>
-            <th className="text-right" scope="col">
+            {/* <th className="text-right" scope="col">
               時間
-            </th>
+            </th> */}
           </tr>
           <tbody>
-            <tr>
+            <tr className="d-flex new-not-flex">
               {/* 更改下面資料 */}
-              <td className="not-td-left">{id}</td>
+              {/* <td className="not-td-left">{id}</td> */}
               <td className="not-td-left">{data}</td>
               <td className="not-td-right">{time}</td>
             </tr>

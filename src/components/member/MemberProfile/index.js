@@ -4,7 +4,6 @@ import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit/index'
 import './MemberProfile.scss'
 function MemberList() {
-  //底下不要動!!!
   const Person = ({ img, name }) => {
     const [show, setShow] = useState(false)
 
@@ -31,7 +30,7 @@ function MemberList() {
           size="lg"
           show={show}
           onHide={handleClose}
-          // backdrop="static"
+          //backdrop="static"
           keyboard={false}
         >
           <Modal.Header closeButton>

@@ -105,8 +105,8 @@ body {
 // 上面那條導覽
 @import './function-bar.scss';
 
-// 訂單紀錄 Table
-@import './history-table.scss';
+//page
+@import './pages.scss';
 
 //行程相關
 @import './itinerary.scss';
@@ -116,9 +116,6 @@ body {
 
 //footer
 @import './footer.scss';
-
-// 訂單紀錄 Table
-@import './history-table.scss';
 
 // 商品總攬頁排版
 @import './productList.scss';

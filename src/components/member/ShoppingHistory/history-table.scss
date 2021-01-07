@@ -1,3 +1,6 @@
+@import '../../../style/main.scss';
+@import '../../../style/custom.scss';
+
 .table {
   thead {
     text-align: center;
@@ -45,4 +48,4 @@
   }
 }
 
-@import './pages.scss';
+@import '../../../style/pages.scss';

@@ -24,7 +24,8 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
-                  ></img>
+                    alt=" "
+                  />
                 </div>
                 <div className="d-flex">
                   <Form.Check

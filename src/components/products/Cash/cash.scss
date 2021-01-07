@@ -158,12 +158,38 @@ body {
       }
       .pay-form {
         margin-left: 40px;
+        display: flex;
 
         .pay-icon {
           margin-right: 8px;
           svg {
             width: 30px;
             height: 20px;
+          }
+        }
+      }
+      .check-and-btn {
+        display: flex;
+        margin: 64px auto 32px auto;
+        justify-content: space-between;
+        .warning {
+          padding: 0 0;
+          margin-left: 40px;
+          margin-top: 10px;
+          input {
+            width: 15px;
+            height: 15px;
+          }
+          label {
+            font-size: 14px;
+          }
+        }
+        .btn-zone {
+          font-size: 14px;
+          Button {
+            width: 120px;
+            height: 40px;
+            margin: 0 16px;
           }
         }
       }

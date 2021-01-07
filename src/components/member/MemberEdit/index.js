@@ -2,12 +2,14 @@
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import './MemberEdit.scss'
+//引入資料庫
 let memberUsersData = require('../member.json')
 let handleTestData = memberUsersData[2].data
-
+//帶入資料庫
 function MemberEdit({ data = handleTestData, type = 'member' }) {
+  //元件狀態
   const [validated, setValidated] = useState(false)
-
+  //元件事件
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -17,6 +19,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
     setValidated(true)
   }
   {
+    //DOM表單
     let display = <></>
     if (type === 'member') {
       display = data.map((element, index) => (

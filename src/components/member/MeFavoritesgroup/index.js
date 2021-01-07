@@ -2,18 +2,21 @@
 import React from 'react'
 import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
+
+let cardData = require('../../Itinerary/testJsonData.json')
+let handleTestData = cardData[2].data
+
 function MeFavoritesgroup({
-  title = '揪團蔥油餅吃到飽之旅台灣蔥油餅', //標題
-  image, //圖片的檔名與附檔名ex: 'testImage.jpg'
-  time1 = '2020/01/01', //第一個日期
-  time2 = '2020/01/01', //第二個日期
-  map1 = '北部', //地區1
-  map2 = '桃園', //地區2
+  data = handleTestData,
+  type = 'itinerary',
+  map1 = '北部',
+  map2 = '桃園',
   duration = '3', //天數
   person = '小智', //卡片內顯示的人名
 }) {
-  return (
-    <>
+  let display = <></>
+  if (type === 'itinerary') {
+    display = data.map((element, index) => (
       <div className="card mb-3">
         <div className="row no-gutters me-favorites-back-style">
           <div className="col-md-4">
@@ -26,10 +29,10 @@ function MeFavoritesgroup({
           </div>
           <div className="col-md-8 align-items-end">
             <div className="card-body">
-              <h3 className="card-title">{title}</h3>
+              <h3 className="card-title">{element.title}</h3>
               <span className="mef-icno-style">
                 <IoMdTime />
-                {time1} - {time2}
+                {element.establish_time} - {element.publish_time}
               </span>
               <span className="mef-icno-style d-flex justify-content-between">
                 {/* 地圖位置1 */}
@@ -54,7 +57,8 @@ function MeFavoritesgroup({
           </div>
         </div>
       </div>
-    </>
-  )
+    ))
+  }
+  return <>{display}</>
 }
 export default MeFavoritesgroup

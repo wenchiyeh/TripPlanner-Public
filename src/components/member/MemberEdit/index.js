@@ -130,6 +130,16 @@ function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
               </Form.Control>
             </Form.Group>
           </Form.Row>
+          <Form.Row>
+            <Form.Group>
+              <div className="mb-3">
+                <Form.File id="formcheck-api-regular">
+                  <Form.File.Label>更換大頭照</Form.File.Label>
+                  <Form.File.Input />
+                </Form.File>
+              </div>
+            </Form.Group>
+          </Form.Row>
           {/* 暱稱 */}
           <Form.Row>
             <Form.Group as={Col} md="12" controlId="validationCustom01">

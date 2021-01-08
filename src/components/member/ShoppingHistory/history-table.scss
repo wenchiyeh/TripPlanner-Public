@@ -55,8 +55,6 @@
 // GetIn
 .background {
   width: 810px;
-  background-color: #fff;
-  box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
   padding: 32px;
 
   .product-number {
@@ -87,15 +85,6 @@
       h5 {
         flex: 2 0 0;
       }
-    }
-  }
-  a {
-    align-self: flex-end;
-    margin-bottom: 8px;
-    margin-right: 16px;
-    .btn-info {
-      width: 120px;
-      height: 40px;
     }
   }
 }

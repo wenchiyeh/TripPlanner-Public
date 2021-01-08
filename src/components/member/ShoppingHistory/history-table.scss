@@ -22,6 +22,9 @@
     td {
       font-size: 14px;
       line-height: 30px;
+      li {
+        list-style-type: decimal;
+      }
       Button {
         width: 80px;
         height: 30px;

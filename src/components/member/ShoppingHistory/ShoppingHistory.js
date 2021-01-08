@@ -1,9 +1,10 @@
 //購買明細
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import './history-table.scss'
 import { useHistory } from 'react-router-dom'
+import { data } from './data'
 
 function DetailButton() {
   const history = useHistory()
@@ -19,62 +20,40 @@ function DetailButton() {
   )
 }
 
-function shoppingTable({
-  id,
-  date,
-  ticketNumber,
-  title,
-  many,
-  ticket,
-  price,
-  payfor,
-  name,
-  gender,
-  phone,
-  mail,
-  birthday,
-}) {
-  return (
-    <>
-      <table striped bordered hover>
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>日期</th>
-            <th>編號</th>
-            <th>數量</th>
-            <th>價格</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{id}</td>
-            <td>{date}</td>
-            <td>{ticketNumber}</td>
-            <td>{many} 張</td>
-            <td>NT$ {price}</td>
-            <td>
-              <DetailButton />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </>
-  )
-}
-
 function ShoppingHistory() {
+  const [productHistory, setProductHistory] = useState([])
+  useEffect(() => {
+    // 從伺服器得到資料，然後設定到students狀態
+    setProductHistory(data)
+  }, [])
   return (
     <>
       <div className="table-history">
-        <shoppingTable
-          id="1"
-          data="2020/12/25"
-          ticketNumber="1313869028421103-1-7"
-          many="1"
-          price="400"
-        />
+        <Table className="table table-bordered table-striped">
+          <thead className="thead-light">
+            <th>訂單編號</th>
+            <th>購買日期</th>
+            <th>張數</th>
+            <th>價格</th>
+          </thead>
+          <tbody>
+            {productHistory.map((v, i) => (
+              <tr key={i}>
+                <td>
+                  <ul>
+                    <li>{v.id}</li>
+                  </ul>
+                </td>
+                <td>{v.PurchaseDate}</td>
+                <td>{v.many}張</td>
+                <td>NT$ {v.price}</td>
+                <td>
+                  <DetailButton />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
         <Pages />
       </div>
     </>

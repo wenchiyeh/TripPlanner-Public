@@ -6,7 +6,7 @@ import './MemberEdit.scss'
 let memberUsersData = require('../member.json')
 let handleTestData = memberUsersData[2].data
 //帶入資料庫
-function MemberEdit({ id = 5, data = handleTestData, type = 'member' }) {
+function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -164,12 +164,13 @@ function MemberEdit({ id = 5, data = handleTestData, type = 'member' }) {
               <Form.Label>自我介紹</Form.Label>
               <span className="med-add-text-red">*</span>
               <Form.Control
+                as="textarea"
+                rows={3}
                 required
                 type="text"
                 placeholder="例：我在資策會學習網頁前端"
                 defaultValue={data[id].member_aboutme}
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Button type="submit" className="memed-submit">

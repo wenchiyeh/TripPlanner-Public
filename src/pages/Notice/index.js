@@ -33,9 +33,7 @@ function Notice({
             <tr className="not-table-mrove">
               <th className="not-id">No.</th>
               <th className="text-left">旅行日期</th>
-              <th className="text-right" scope="col">
-                時間
-              </th>
+              <th className="text-right-time">時間</th>
             </tr>
           </thead>
           {display}

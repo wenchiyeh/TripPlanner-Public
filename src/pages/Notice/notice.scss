@@ -16,20 +16,21 @@ $sub-dark-gray: #707070;
   // 對齊用
   .not-table-mrove{
     .not-id{
-width: 135px;
+    width: 135px;
     }
-.text-left{
-  width: 540px;
-}
-.text-right{
-  width: 135px;
-}
+    .text-left{
+    width: 540px;
+    }
+    .text-right-time{
+    width: 135px;
+    }
+    
   }
   tr{
     .not-td-left{
       text-align: left;
     }
     .not-td-right{
-      text-align: right;
+      text-align: center;
     }
   }

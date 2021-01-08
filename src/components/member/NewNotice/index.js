@@ -10,7 +10,7 @@ function NewNotice({
   return (
     <>
       <div className="">
-        <table className="not-toble-ma-bt">
+        <table className="not-toble-ma-bt table-hover">
           <tr>
             {/* <th scope="col">No.</th> */}
             <th>旅行日期</th>
@@ -22,6 +22,10 @@ function NewNotice({
             <tr className="d-flex new-not-flex">
               {/* 更改下面資料 */}
               {/* <td className="not-td-left">{id}</td> */}
+              <td className="not-td-left">{data}</td>
+              <td className="not-td-right">{time}</td>
+            </tr>
+            <tr className="d-flex new-not-flex">
               <td className="not-td-left">{data}</td>
               <td className="not-td-right">{time}</td>
             </tr>

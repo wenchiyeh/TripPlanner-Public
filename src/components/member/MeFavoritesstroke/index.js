@@ -2,8 +2,13 @@
 import React from 'react'
 import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
+//引入卡片
+let cardData = require('../../Itinerary/testJsonData.json')
+let handleTestData = cardData[2].data
 
 function MeFavoritesstroke({
+  data = handleTestData,
+  type = 'itinerary',
   title = '行程蔥油餅吃到飽之旅行程蔥油餅', //標題
   image, //圖片的檔名與附檔名ex: 'testImage.jpg'
   time1 = '2020/01/01', //第一個日期
@@ -13,9 +18,10 @@ function MeFavoritesstroke({
   duration = '3', //天數
   person = '小智', //卡片內顯示的人名
 }) {
-  return (
-    <>
-      <div className="card mb-3">
+  let display = <></>
+  if (type === 'itinerary') {
+    display = data.map((element, index) => (
+      <div key={index} className="card mb-3">
         <div className="row no-gutters me-favorites-back-style">
           <div className="col-md-4">
             <img
@@ -27,7 +33,7 @@ function MeFavoritesstroke({
           </div>
           <div className="col-md-8 align-items-end">
             <div className="card-body">
-              <h3 className="card-title">{title}</h3>
+              <h3 className="card-title">{element.title}</h3>
               <span className="mef-icno-style">
                 <IoMdTime />
                 {time1} - {time2}
@@ -55,7 +61,8 @@ function MeFavoritesstroke({
           </div>
         </div>
       </div>
-    </>
-  )
+    ))
+  }
+  return <>{display}</>
 }
 export default MeFavoritesstroke

@@ -20,8 +20,6 @@ function NewNotice({
           </tr>
           <tbody>
             <tr className="d-flex new-not-flex">
-              {/* 更改下面資料 */}
-              {/* <td className="not-td-left">{id}</td> */}
               <td className="not-td-left">{data}</td>
               <td className="not-td-right">{time}</td>
             </tr>

@@ -7,13 +7,13 @@ function SearchBar({
   areaList = ['全部', '北部', '中部', '南部', '東部', '離島'],
   townList = [
     ['全部'],
-    ['全部', '台北市', '新北市', '基隆市', '桃園市'],
-    ['全部', '新竹市', '新竹縣', '台中市', '苗栗縣', '彰化縣', '南投縣'],
-    ['全部', '高雄市', '台南市', '嘉義市', '嘉義縣', '屏東縣', '雲林縣'],
-    ['全部', '宜蘭縣', '花蓮縣', '台東縣'],
-    ['全部', '澎湖', '金門'],
+    ['全部', '台北', '新北', '基隆', '桃園', '新竹'],
+    ['全部', '台中', '苗栗', '彰化', '南投', '雲林'],
+    ['全部', '高雄', '台南', '嘉義', '屏東'],
+    ['全部', '宜蘭', '花蓮', '台東'],
+    ['全部', '澎湖', '金門', '馬祖', '綠島', '蘭嶼', '小琉球'],
   ],
-  day = ['不限', '1天', '2天', '多天'],
+  day = ['不限', '1日', '2-3日', '4-5日', '6-7日', '8日以上'],
   setSearchFilter = () => {},
 }) {
   let inputRef = useRef(null) // 建立輸入框參考點
@@ -22,7 +22,7 @@ function SearchBar({
     area: areaList[0],
     town: townList[0][0],
     day: day[0],
-    searchString: '',
+    keyword: '',
   })
   //
   const [inputText, setInputText] = useState('')
@@ -33,7 +33,7 @@ function SearchBar({
   //偵測地區變化
   useEffect(() => {
     let currentValue = {
-      searchString: inputText,
+      keyword: inputText,
       area: selectArea,
       town: selectTown,
       day: selectDay,
@@ -44,7 +44,7 @@ function SearchBar({
   //偵測其他選擇與輸入框變化
   useEffect(() => {
     let currentValue = {
-      searchString: inputText,
+      keyword: inputText,
       area: selectArea,
       town: selectTown,
       day: selectDay,

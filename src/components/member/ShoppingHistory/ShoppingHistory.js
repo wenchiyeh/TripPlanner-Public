@@ -31,6 +31,8 @@ function ShoppingHistory() {
       <div className="table-history">
         <Table className="table table-bordered table-striped">
           <thead className="thead-light">
+            <th>#</th>
+
             <th>訂單編號</th>
             <th>購買日期</th>
             <th>張數</th>
@@ -39,12 +41,11 @@ function ShoppingHistory() {
           <tbody>
             {productHistory.map((v, i) => (
               <tr key={i}>
-                <td>
-                  <ul>
-                    <li>{v.id}</li>
-                  </ul>
-                </td>
+                <td>{v.id}</td>
+                <td>{v.ticketNumber}</td>
+
                 <td>{v.PurchaseDate}</td>
+
                 <td>{v.many}張</td>
                 <td>NT$ {v.price}</td>
                 <td>

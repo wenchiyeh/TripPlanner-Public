@@ -68,7 +68,7 @@ function MyFooter(props) {
           <div className="row">
             <div className="col-md-8 col-sm-6 col-xs-12">
               <p>
-                Travel Blog &copy; 2021 All Rights Reserved by
+                Travel Planner &copy; 2021 All Rights Reserved by
                 <a href="/">隱私</a>·<a href="/">相關條款</a>·
                 <a href="/">網站地圖</a>
               </p>

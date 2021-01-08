@@ -57,78 +57,76 @@ const CardForm = ({
   cardInfo: { name, number, expiryMonth, expiryYear, cvv },
   onChange,
 }) => (
-  <form>
-    <form className="jZmmzU kiFrMj">
-      <ul className="card-ul">
-        <li>
-          <TextInput
-            label="持卡人姓名"
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => onChange({ key: 'name', value: e.target.value })}
-            minLength="5"
-            maxLength="20"
-            required
-          />
-        </li>
-        <li>
-          <TextInput
-            label="卡號"
-            id="number"
-            type="text"
-            value={number}
-            onChange={(e) => onChange({ key: 'number', value: e.target.value })}
-            placeholder="**** **** **** ****"
-            minLength="12"
-            maxLength="16"
-            required
-          />
-        </li>
-        <li>
-          <TextInput
-            label="有效月"
-            id="expiryMonth"
-            type="text"
-            value={expiryMonth}
-            onChange={(e) =>
-              onChange({ key: 'expiryMonth', value: e.target.value })
-            }
-            placeholder="MM"
-            minLength="2"
-            maxLength="2"
-            required
-          />
-        </li>
-        <li>
-          <TextInput
-            label="有效年"
-            id="expiryYear"
-            type="text"
-            value={expiryYear}
-            onChange={(e) =>
-              onChange({ key: 'expiryYear', value: e.target.value })
-            }
-            placeholder="YY"
-            minLength="2"
-            maxLength="4"
-            required
-          />
-        </li>
-        <li>
-          <TextInput
-            label="CVV"
-            id="cvv"
-            type="password"
-            value={cvv}
-            onChange={(e) => onChange({ key: 'cvv', value: e.target.value })}
-            minLength="3"
-            maxLength="4"
-          />
-        </li>
-      </ul>
-    </form>
-  </form>
+  <div className="kiFrMj">
+    <ul className="card-ul">
+      <li>
+        <TextInput
+          label="持卡人姓名"
+          id="name"
+          type="text"
+          value={name}
+          onChange={(e) => onChange({ key: 'name', value: e.target.value })}
+          minLength="5"
+          maxLength="20"
+          required
+        />
+      </li>
+      <li>
+        <TextInput
+          label="卡號"
+          id="number"
+          type="text"
+          value={number}
+          onChange={(e) => onChange({ key: 'number', value: e.target.value })}
+          placeholder="**** **** **** ****"
+          minLength="12"
+          maxLength="16"
+          required
+        />
+      </li>
+      <li>
+        <TextInput
+          label="有效月"
+          id="expiryMonth"
+          type="text"
+          value={expiryMonth}
+          onChange={(e) =>
+            onChange({ key: 'expiryMonth', value: e.target.value })
+          }
+          placeholder="MM"
+          minLength="2"
+          maxLength="2"
+          required
+        />
+      </li>
+      <li>
+        <TextInput
+          label="有效年"
+          id="expiryYear"
+          type="text"
+          value={expiryYear}
+          onChange={(e) =>
+            onChange({ key: 'expiryYear', value: e.target.value })
+          }
+          placeholder="YY"
+          minLength="2"
+          maxLength="4"
+          required
+        />
+      </li>
+      <li>
+        <TextInput
+          label="CVV"
+          id="cvv"
+          type="password"
+          value={cvv}
+          onChange={(e) => onChange({ key: 'cvv', value: e.target.value })}
+          minLength="3"
+          maxLength="4"
+        />
+      </li>
+    </ul>
+  </div>
 )
 
 const ShowCreditCard = () => {

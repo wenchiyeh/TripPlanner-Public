@@ -6,10 +6,11 @@ import './notice.scss'
 
 let cardData = require('../../components/Itinerary/testJsonData.json')
 let handleTestData = cardData[2].data
+
 function Notice({
   data = handleTestData,
   type = 'itinerary',
-  id = '1',
+  //id = '1',
   title = '24週年慶站長大放送 - 抽獎 Call Out 回答通關密語',
   time = '兩小時前',
 }) {
@@ -18,7 +19,7 @@ function Notice({
     display = data.map((element, index) => (
       <tbody>
         <tr key={index}>
-          <td>{id}</td>
+          <td>{element.id}</td>
           <td className="not-td-left">{element.title}</td>
           <td className="not-td-right">{time}</td>
         </tr>

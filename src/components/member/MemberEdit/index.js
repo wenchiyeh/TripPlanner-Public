@@ -6,7 +6,7 @@ import './MemberEdit.scss'
 let memberUsersData = require('../member.json')
 let handleTestData = memberUsersData[2].data
 //帶入資料庫
-function MemberEdit({ data = handleTestData, type = 'member' }) {
+function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -22,13 +22,9 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
     //DOM表單
     let display = <></>
     if (type === 'member') {
-      display = data.map((element, index) => (
-        <Form
-          key={index}
-          noValidate
-          validated={validated}
-          onSubmit={handleSubmit}
-        >
+      //導入data[id]
+      display = (
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Row>
             {/* email */}
             <Form.Group as={Col} md="12" controlId="validationCustom01">
@@ -38,7 +34,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
                 required
                 type="text"
                 placeholder="請輸入信箱"
-                defaultValue={element.email}
+                defaultValue={data[id].email}
               />
               <Form.Control.Feedback>正確!</Form.Control.Feedback>
             </Form.Group>
@@ -52,7 +48,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
                 required
                 type="password"
                 placeholder="請輸入密碼"
-                defaultValue={element.password}
+                defaultValue={data[id].password}
               />
               <Form.Control.Feedback>正確!</Form.Control.Feedback>
             </Form.Group>
@@ -65,7 +61,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
               <Form.Control
                 type="text"
                 placeholder="請輸入姓名"
-                defaultValue={element.member_name}
+                defaultValue={data[id].member_name}
                 aria-describedby=""
                 required
               />
@@ -82,7 +78,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
               <Form.Control
                 type="text"
                 placeholder="請輸入地區"
-                // defaultValue={element.area}
+                // defaultValue={data[id].area}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -98,7 +94,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
               <Form.Control
                 type="text"
                 placeholder="0988888888"
-                defaultValue={element.member_phone}
+                defaultValue={data[id].member_phone}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -114,7 +110,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
               <Form.Control
                 type="date"
                 placeholder=""
-                defaultValue={element.birthday}
+                defaultValue={data[id].birthday}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -129,7 +125,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
               <span className="med-add-text-red">*</span>
               <Form.Control as="select" custom>
                 <option disabled>-請選擇-</option>
-                <option>{element.member_sex}</option>
+                <option>{data[id].member_sex}</option>
                 <option></option>
               </Form.Control>
             </Form.Group>
@@ -143,7 +139,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
                 required
                 type="text"
                 placeholder="例：小智"
-                defaultValue={element.member_id}
+                defaultValue={data[id].member_id}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
@@ -157,7 +153,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
                 required
                 type="text"
                 placeholder="例：我在資策會學習網頁前端"
-                defaultValue={element.member_aboutme}
+                defaultValue={data[id].member_aboutme}
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
@@ -166,7 +162,7 @@ function MemberEdit({ data = handleTestData, type = 'member' }) {
             確定
           </Button>
         </Form>
-      ))
+      )
     }
 
     return <>{display}</>

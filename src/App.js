@@ -27,17 +27,9 @@ function App() {
         --
         <Link to="/myAccount">Member</Link>
         --
-        <Link to="/itinerary">Itinerary</Link>
-        --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingcar-1">Shoppingcar-1</Link>
-        --
-        <Link to="/shoppingcar-2">Shoppingcar-2</Link>
-        --
         <Link to="/shoppingcar-3">Shoppingcar-3</Link>
-        --
-        <Link to="/products">Product</Link>
         --
         <Link to="/login">Login</Link>
         --
@@ -45,7 +37,7 @@ function App() {
         --
         <Link to="/buy">Buy</Link>
         --
-        <Link to="/travelBuddy">TravelBuddy</Link>
+        <Link to="/GetIn">GetIn</Link>
         <Switch>
           <Route exact path="/">
             <Home />

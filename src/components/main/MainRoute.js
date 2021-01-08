@@ -13,6 +13,7 @@ import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import CashStep1 from '../products/Cash/CashStep1'
 import CashStep2 from '../products/Cash/CashStep2'
 import CashStep3 from '../products/Cash/CashStep3'
+import Getin from '../member/ShoppingHistory/Getin'
 
 function MainRoute() {
   return (
@@ -42,6 +43,9 @@ function MainRoute() {
         </Route>
         <Route path="/Buy">
           <BuyProducts />
+        </Route>
+        <Route path="/Getin">
+          <Getin />
         </Route>
         <Route path="/travelBuddy">
           <AddTravelBuddies />

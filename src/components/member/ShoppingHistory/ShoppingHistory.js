@@ -1,29 +1,19 @@
-//購買明細
 import React, { useState, useEffect } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import './history-table.scss'
-import { useHistory } from 'react-router-dom'
+// import Getin from './Getin'
 import { data } from './data'
-
-function DetailButton() {
-  const history = useHistory()
-  function getIn() {
-    history.push('/getIn')
-  }
-  return (
-    <>
-      <Button variant="info" onClick={getIn}>
-        明細
-      </Button>
-    </>
-  )
-}
+import { useHistory } from 'react-router-dom'
 
 function ShoppingHistory() {
+  let history = useHistory()
+
+  function Getin() {
+    history.push('/Getin')
+  }
   const [productHistory, setProductHistory] = useState([])
   useEffect(() => {
-    // 從伺服器得到資料，然後設定到students狀態
     setProductHistory(data)
   }, [])
   return (
@@ -37,6 +27,7 @@ function ShoppingHistory() {
             <th>購買日期</th>
             <th>張數</th>
             <th>價格</th>
+            <th></th>
           </thead>
           <tbody>
             {productHistory.map((v, i) => (
@@ -49,7 +40,9 @@ function ShoppingHistory() {
                 <td>{v.many}張</td>
                 <td>NT$ {v.price}</td>
                 <td>
-                  <DetailButton />
+                  <Button variant="info" onClick={Getin}>
+                    明細
+                  </Button>
                 </td>
               </tr>
             ))}

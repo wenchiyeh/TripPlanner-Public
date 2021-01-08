@@ -9,6 +9,8 @@ let handleTestData = cardData[2].data
 function MeFavoritesgroup({
   data = handleTestData,
   type = 'itinerary',
+  time1 = '2021/01/01',
+  time2 = '2021/01/01',
   map1 = '北部',
   map2 = '桃園',
   duration = '3', //天數
@@ -32,7 +34,7 @@ function MeFavoritesgroup({
               <h3 className="card-title">{element.title}</h3>
               <span className="mef-icno-style">
                 <IoMdTime />
-                {element.establish_time} - {element.publish_time}
+                {time1} - {time2}
               </span>
               <span className="mef-icno-style d-flex justify-content-between">
                 {/* 地圖位置1 */}

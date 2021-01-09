@@ -12,6 +12,9 @@ function CashStep1() {
   function nextstep() {
     history.push('/shoppingcar-2')
   }
+  function cancel() {
+    history.push('/')
+  }
   return (
     <>
       <div className="In-the-car">
@@ -74,7 +77,7 @@ function CashStep1() {
                 <h3>400</h3>
               </div>
               <div className="btn-zone">
-                <Button variant="light" className="cancel">
+                <Button variant="light" className="cancel" onClick={cancel}>
                   取消
                 </Button>
                 <Button variant="info" onClick={nextstep}>

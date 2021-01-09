@@ -36,12 +36,9 @@ function App() {
         <Link to="/sigon">Sigon</Link>
         --
         <Link to="/buy">Buy</Link>
-<<<<<<< HEAD
-=======
         --
         <Link to="/travelBuddy">TravelBuddy</Link> */}
         <Header />
->>>>>>> fa0f003fb6e3f9804e3af44e72d77a5fba74b641
         <Switch>
           <Route exact path="/">
             <Home />

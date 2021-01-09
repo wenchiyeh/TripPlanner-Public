@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Table, Button, Modal } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import { Historydata } from './Historydata'
 
 function ModalPage(props) {
-  console.log(props.textData)
+  const [porductID, setPorductID] = useState(props.initValue)
+
+  console.log(props.initValue)
+
   return (
     <>
       <div className="inside-detail">
         <div>
           <h4>購買日期</h4>
-          {/* <h5>{v.PurchaseDate}</h5> */}
+          <h5> {porductID}</h5>
         </div>
         <hr />
         <div>

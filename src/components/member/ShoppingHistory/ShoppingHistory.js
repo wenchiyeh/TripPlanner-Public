@@ -30,7 +30,7 @@ function ShoppingHistory() {
           </thead>
           <tbody>
             {Historydata.map((v, i) => (
-              <tr>
+              <tr key={i}>
                 <td>{v.id}</td>
                 <td>{v.PurchaseDate}</td>
 
@@ -42,7 +42,7 @@ function ShoppingHistory() {
                   <Button
                     variant="info"
                     onClick={() => setLgShow(true)}
-                    textData={2}
+                    initValue={v.id}
                   >
                     明細
                   </Button>

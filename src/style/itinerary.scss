@@ -33,10 +33,19 @@
   }
   .itin-editor-daybox {
     height: 80px;
+    border-radius: 4px;
     background: $main-darkblue;
     color: #fff;
-    padding: 32px;
+    padding: 0 32px;
+    margin-bottom: 2px;
     font-size: 20px;
+    transition: 0.2s;
+    &.daybox-close {
+      height: 40px;
+      + .itin-editor-spotsWapper {
+        display: none;
+      }
+    }
   }
   .itin-editor-spotsWapper {
     background: #fff;
@@ -101,9 +110,12 @@
     margin-left: 8px;
     width: 210px;
   }
-  .box-close-btn:hover {
-    svg {
-      color: $main-red;
+  .box-close-btn {
+    cursor: pointer;
+    &:hover {
+      svg {
+        color: $main-red;
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import React from 'react'
 import MyBreadCrumb from '../components/main/MyBreadCrumb'
 import SearchBar from '../components/main/SearchBar'
 import CardListPublic from '../components/main/CardListPublic'
-import Carousel from '../components/travelBuddy/Carousel'
+import Carousel from '../components/TravelBuddies/Carousel'
 import Pages from '../components/main/Pages'
 
 function ProductList() {

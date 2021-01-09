@@ -158,6 +158,12 @@ body {
   margin: 0px auto;
 }
 
+//揪團主頁
+@import './travelBuddiesMainPage.scss';
+
+//揪團主頁-Liked
+@import './travelBuddiesLiked.scss';
+
 //新增揪團
 @import './addTravelBuddies.scss';
 
@@ -166,3 +172,6 @@ body {
 
 //會員-揪團-我的揪團-按鈕
 @import './tbMyAccountButton.scss';
+
+//揪團聊天室
+@import './travelBuddiesChatroom.scss';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import './history-table.scss'
-import { data } from './data'
+import { Historydata } from './Historydata'
 import ＭodalPages from './ＭodalPages'
 function ShoppingHistory() {
   // Modal
@@ -15,7 +15,7 @@ function ShoppingHistory() {
     // fetch('https://localhost:3000/components/member/ShoppingHistory/data')
     //   .then((res) => res.json())
     //   .then((result) => {
-    setProductHistory(data)
+    setProductHistory(Historydata)
     // })
   }, [])
 

@@ -36,8 +36,6 @@ function App() {
         <Link to="/sigon">Sigon</Link>
         --
         <Link to="/buy">Buy</Link>
-        --
-        <Link to="/GetIn">GetIn</Link>
         <Switch>
           <Route exact path="/">
             <Home />

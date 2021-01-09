@@ -1,4 +1,4 @@
-const data = [
+const Historydata = [
   {
     id: '1',
     ticketNumber: '9104274630887524-0-1',
@@ -11,6 +11,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1996/11/28',
+    gender: '男',
     many: '1',
   },
   {
@@ -25,6 +26,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/02/07',
+    gender: '男',
     many: '1',
   },
 
@@ -40,6 +42,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/07/02',
+    gender: '男',
     many: '1',
   },
   {
@@ -54,6 +57,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1998/07/21',
+    gender: '男',
     many: '1',
   },
 
@@ -69,6 +73,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1996/11/14',
+    gender: '男',
     many: '1',
   },
 
@@ -84,6 +89,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1995/02/02',
+    gender: '男',
     many: '1',
   },
   {
@@ -98,6 +104,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/07/01',
+    gender: '男',
     many: '1',
   },
   {
@@ -112,6 +119,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1996/09/18',
+    gender: '男',
     many: '1',
   },
   {
@@ -126,6 +134,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1996/11/28',
+    gender: '男',
     many: '1',
   },
   {
@@ -140,6 +149,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1998/12/08',
+    gender: '男',
     many: '1',
   },
   {
@@ -154,6 +164,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1993/05/06',
+    gender: '男',
     many: '1',
   },
   {
@@ -168,6 +179,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/02/22',
+    gender: '男',
     many: '1',
   },
   {
@@ -182,6 +194,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1998/10/16',
+    gender: '男',
     many: '1',
   },
   {
@@ -196,6 +209,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1997/10/27',
+    gender: '男',
     many: '1',
   },
   {
@@ -210,6 +224,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1995/07/23',
+    gender: '男',
     many: '1',
   },
   {
@@ -224,6 +239,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/09/29',
+    gender: '男',
     many: '1',
   },
   {
@@ -238,6 +254,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1995/06/04',
+    gender: '男',
     many: '1',
   },
   {
@@ -252,6 +269,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1994/07/15',
+    gender: '男',
     many: '1',
   },
   {
@@ -266,6 +284,7 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1997/12/29',
+    gender: '男',
     many: '1',
   },
   {
@@ -280,7 +299,8 @@ const data = [
     phone: '09000000000',
     mail: '123456@gmail.com',
     birthday: '1996/12/12',
+    gender: '男',
     many: '1',
   },
 ]
-export { data }
+export { Historydata }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
-import Pages from '../../main/Pages'
+// import Pages from '../../main/Pages'
 import './history-table.scss'
 import { Historydata } from './Historydata'
 import TableTest from './TableTest'

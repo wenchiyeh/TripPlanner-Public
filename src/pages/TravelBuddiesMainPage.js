@@ -11,9 +11,9 @@ import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 
 function TravelBuddiesMainPage() {
   const [travelBuddies, setTravelBuddies] = useState([])
-  async function gettravelBuddies(props) {
+  async function getTravelBuddies(props) {
     try {
-      const response = await fetch('http://localhost:5000/travelbuddies/get', {
+      const response = await fetch('http://localhost:5000/travelbuddies', {
         method: 'get',
       })
       if (response.ok) {
@@ -26,7 +26,7 @@ function TravelBuddiesMainPage() {
     }
   }
   useEffect(() => {
-    setTravelBuddies()
+    getTravelBuddies()
   }, [])
   return (
     <>
@@ -100,6 +100,18 @@ function TravelBuddiesMainPage() {
               ～
               花蓮是臺灣最大的縣份，面積約4,628平方公里，人口約有35萬人，東臨浩瀚太平洋，西倚雄偉的中央山脈，以巍峨的高山、蔚藍的天空、浩瀚的海洋、景色秀麗的縱谷、多樣性的人文風貌、親切善良的人民，成為全國最喜歡旅遊縣市的首選，並深受國際遊客的喜愛。
             </div>
+            {travelBuddies.length > 0 &&
+              travelBuddies.map((v, i) => {
+                return (
+                  <table className="table">
+                    <tbody>
+                      <tr key={i}>
+                        <td key={i + v}>{v.tb_themeName}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )
+              })}
             <hr />
           </div>
         </div>

@@ -4,49 +4,43 @@ import Pages from '../../components/main/Pages'
 import { Table } from 'react-bootstrap'
 import './notice.scss'
 
+let cardData = require('../../components/Itinerary/testJsonData.json')
+let handleTestData = cardData[2].data
+
 function Notice({
-  id = '1',
-  data = '24週年慶站長大放送 - 抽獎 Call Out 回答通關密語',
+  data = handleTestData,
+  type = 'itinerary',
+  //id = '1',
+  title = '24週年慶站長大放送 - 抽獎 Call Out 回答通關密語',
   time = '兩小時前',
 }) {
+  let display = <></>
+  if (type === 'itinerary') {
+    display = data.map((element, index) => (
+      <tbody>
+        <tr key={index}>
+          <td>{element.id}</td>
+          <td className="not-td-left">{element.title}</td>
+          <td className="not-td-right">{time}</td>
+        </tr>
+      </tbody>
+    ))
+  }
   return (
     <>
-      <div className="notice-style">
-        <Table className="table table-striped">
-          {/* <table className="table"> */}
+      <Table className="table table-striped">
+        <div className="notice-style">
           <thead>
-            <tr>
-              <th scope="col">No.</th>
-              <th>旅行日期</th>
-              <th className="text-right" scope="col">
-                時間
-              </th>
+            <tr className="not-table-mrove">
+              <th className="not-id">No.</th>
+              <th className="text-left">旅行日期</th>
+              <th className="text-right-time">時間</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              {/* 更改下面資料 */}
-              <td className="not-td-left">{id}</td>
-              <td className="not-td-left">{data}</td>
-              <td className="not-td-right">{time}</td>
-            </tr>
-            <tr>
-              {/* 更改下面資料 */}
-              <td className="not-td-left">{id}</td>
-              <td className="not-td-left">{data}</td>
-              <td className="not-td-right">{time}</td>
-            </tr>
-            <tr>
-              {/* 更改下面資料 */}
-              <td className="not-td-left">{id}</td>
-              <td className="not-td-left">{data}</td>
-              <td className="not-td-right">{time}</td>
-            </tr>
-          </tbody>
-          {/* </table> */}
-        </Table>
-        <Pages className="not-pages" />
-      </div>
+          {display}
+          <Pages className="not-pages" />
+        </div>
+      </Table>
     </>
   )
 }

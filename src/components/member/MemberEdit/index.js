@@ -6,7 +6,7 @@ import './MemberEdit.scss'
 let memberUsersData = require('../member.json')
 let handleTestData = memberUsersData[2].data
 //帶入資料庫
-function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
+function MemberEdit({ id = 5, data = handleTestData, type = 'member' }) {
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -123,10 +123,14 @@ function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
             <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">
               <Form.Label>性別</Form.Label>
               <span className="med-add-text-red">*</span>
-              <Form.Control as="select" custom>
+              <Form.Control
+                as="select"
+                custom
+                defaultValue={data[id].member_sex}
+              >
                 <option disabled>-請選擇-</option>
-                <option>{data[id].member_sex}</option>
-                <option></option>
+                <option value="1">男性</option>
+                <option value="2">女性</option>
               </Form.Control>
             </Form.Group>
           </Form.Row>

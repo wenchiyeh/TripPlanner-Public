@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
 import { BiCalendarCheck } from 'react-icons/bi'
@@ -10,6 +10,24 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 
 function TravelBuddiesMainPage() {
+  const [travelBuddies, setTravelBuddies] = useState([])
+  async function gettravelBuddies(props) {
+    try {
+      const response = await fetch('http://localhost:5000/travelbuddies/get', {
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setTravelBuddies(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    setTravelBuddies()
+  }, [])
   return (
     <>
       <div className="tb-mainpage-wrapper">

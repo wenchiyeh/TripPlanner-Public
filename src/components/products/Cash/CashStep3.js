@@ -2,6 +2,7 @@ import React from 'react'
 import IconRouter from './IconRouter'
 import './cash.scss'
 import { Button } from 'react-bootstrap'
+import { withRouter, Link } from 'react-router-dom'
 
 function CashStep3() {
   return (
@@ -71,7 +72,9 @@ function CashStep3() {
                 <h5>1997-09-04</h5>
               </div>
               <hr />
-              <Button variant="info">返回首頁</Button>
+              <Link to="/" className="gohome">
+                <Button variant="info">返回首頁</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -79,4 +82,4 @@ function CashStep3() {
     </>
   )
 }
-export default CashStep3
+export default withRouter(CashStep3)

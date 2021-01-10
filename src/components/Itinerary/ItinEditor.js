@@ -4,18 +4,21 @@ import { Button } from 'react-bootstrap'
 import { FaTimesCircle } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 //
-// SpotsBox({ isEdit, type = 0, title, time1, time2 })
 //測試用假資料
 import fakeTestingData from './testBoxData'
 
-function ItinEditor({ boxData = fakeTestingData }) {
+function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
   const [tempData, setTempData] = useState(boxData)
+  //處理bar開關
+  const classIsClose = [
+    'itin-editor-daybox d-flex justify-content-between align-items-center',
+    'itin-editor-daybox d-flex justify-content-between align-items-center daybox-close',
+  ]
+  //拖曳後處理數據
   function handleOnDragEnd(result) {
     if (!result.destination) return
-    console.log(result)
     const wrapSourceIndex = result.source.droppableId.substring(4)
     const wrapDestinIndex = result.destination.droppableId.substring(4)
-    console.log(wrapSourceIndex)
     const originArray = Array.from(tempData)
     const [reorderItem] = originArray[wrapSourceIndex].data.splice(
       result.source.index,
@@ -26,9 +29,10 @@ function ItinEditor({ boxData = fakeTestingData }) {
       0,
       reorderItem
     )
+    setTempData(originArray) //當下所有數據
     console.log(originArray)
-    setTempData(originArray)
   }
+
   return (
     <div className="itin-editor-wrapper">
       <div className="itin-editor-title">
@@ -41,50 +45,65 @@ function ItinEditor({ boxData = fakeTestingData }) {
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {tempData.map((data, dayIndex) => (
-          <>
-            <div key={dayIndex}>
-              <div className="itin-editor-daybox d-flex justify-content-between align-items-center">
-                <span>{data.title}</span>
-                <span className="box-close-btn">
-                  <FaTimesCircle size={26} />
-                </span>
-              </div>
-              <Droppable droppableId={'wrap' + dayIndex}>
-                {(provided) => (
-                  <div
-                    className="itin-editor-spotsWapper"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {data.data.map((element, index) => (
-                      <Draggable
-                        key={index}
-                        draggableId={'box' + dayIndex + index}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            className="testDragBox"
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                          >
-                            <SpotsBox data={element} />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                    <div className="d-flex justify-content-center">
-                      <Button variant="primary" onClick={() => {}}>
-                        +行程
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </Droppable>
+          <div key={dayIndex}>
+            <div
+              onClick={(e) => {
+                if (e.target.className === classIsClose[0]) {
+                  e.target.className = classIsClose[1]
+                } else if (e.target.className === classIsClose[1]) {
+                  e.target.className = classIsClose[0]
+                } else {
+                  return
+                }
+              }}
+              className={classIsClose[0]}
+            >
+              <span>{data.title}</span>
+              <span className="box-close-btn">
+                <FaTimesCircle size={26} />
+              </span>
             </div>
-          </>
+            <Droppable droppableId={'wrap' + dayIndex}>
+              {(provided) => (
+                <div
+                  className="itin-editor-spotsWapper"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {data.data.map((element, index) => (
+                    <Draggable
+                      key={index}
+                      draggableId={'box' + dayIndex + index}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          className="testDragBox"
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          ref={provided.innerRef}
+                        >
+                          <SpotsBox
+                            index={[dayIndex, index]}
+                            data={element}
+                            isEdit={isEdit}
+                            allData={tempData}
+                            doEdit={setTempData}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                  <div className="d-flex justify-content-center">
+                    <Button variant="primary" onClick={() => {}}>
+                      +行程
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </Droppable>
+          </div>
         ))}
       </DragDropContext>
     </div>

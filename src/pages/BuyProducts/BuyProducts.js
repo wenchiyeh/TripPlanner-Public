@@ -9,6 +9,8 @@ import {
   AiOutlineHeart,
 } from 'react-icons/ai'
 import { Button, Modal } from 'react-bootstrap'
+import Header from '../../components/main/Header'
+import MyFooter from '../../components/main/MyFooter'
 
 function BuyProducts() {
   const [smShow, setSmShow] = useState(false)
@@ -17,6 +19,7 @@ function BuyProducts() {
 
   return (
     <>
+      <Header />
       <div className="container">
         <MyBreadCrumb />
         {/* 麵包屑 */}
@@ -231,6 +234,7 @@ function BuyProducts() {
           </div>
         </div>
       </div>
+      <MyFooter />
     </>
   )
 }

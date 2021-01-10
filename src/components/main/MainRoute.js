@@ -1,7 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Header from '../main/Header'
-import MyFooter from '../main/MyFooter'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
@@ -18,7 +16,6 @@ import CashStep3 from '../products/Cash/CashStep3'
 function MainRoute() {
   return (
     <>
-      <Header />
       <Switch>
         <Route path="/shoppingcar-1">
           <CashStep1 />
@@ -48,7 +45,6 @@ function MainRoute() {
           <TravelBuddiesRoute />
         </Route>
       </Switch>
-      <MyFooter />
     </>
   )
 }

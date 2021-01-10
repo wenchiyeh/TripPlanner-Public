@@ -8,7 +8,7 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 function Header(props) {
-  const imagePath = './images/testImage.jpg'
+  const imagePath = '/images/testImage.jpg'
 
   return (
     <>

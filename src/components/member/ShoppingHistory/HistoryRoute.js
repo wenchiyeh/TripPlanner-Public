@@ -94,12 +94,12 @@ function Test() {
 function HistiryRoute() {
   return (
     <Switch>
-      <Route path="/shoppinghistory/:id">
+      <Route path="/myAccount/shoppinghistory/:id">
         <Test />
         {/* 自行更換成顯示用的元件，元件內使用import並useParams()可取得:id的值 */}
         {/* 實際做法可參考上方Test元件 */}
       </Route>
-      <Route exact path="/shoppinghistory">
+      <Route exact path="/myAccount/shoppinghistory">
         <ShoppingHistory />
       </Route>
     </Switch>

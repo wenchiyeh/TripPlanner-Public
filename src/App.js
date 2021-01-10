@@ -18,7 +18,7 @@ import Home from './pages/Home'
 import Forgetpassword from './pages/forgetpassword'
 //
 import MainRoute from './components/main/MainRoute'
-
+import ScrollToTop from './components/main/ScrollToTop'
 function App() {
   return (
     <Router>
@@ -39,32 +39,33 @@ function App() {
         --
         <Link to="/travelBuddy">TravelBuddy</Link> */}
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route exact path="/login">
-            <Login />
-          </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
 
-          <Route exact path="/sigon">
-            <Sigon />
-          </Route>
+            <Route exact path="/sigon">
+              <Sigon />
+            </Route>
 
-          <Route path="/buy">
-            <BuyProducts />
-          </Route>
+            <Route path="/buy">
+              <BuyProducts />
+            </Route>
 
-          <Route path="/forgetpassword">
-            <Forgetpassword />
-          </Route>
+            <Route path="/forgetpassword">
+              <Forgetpassword />
+            </Route>
 
-          <Route path="/">
-            <MainRoute />
-          </Route>
+            <Route path="/">
+              <MainRoute />
+            </Route>
 
-          {/* <Switch>
+            {/* <Switch>
             <Route path="/myAccount">
               <Member />
             </Route>
@@ -90,7 +91,8 @@ function App() {
               <TravelBuddyRoute />
             </Route>
           </Switch> */}
-        </Switch>
+          </Switch>
+        </ScrollToTop>
         <MyFooter />
       </>
     </Router>

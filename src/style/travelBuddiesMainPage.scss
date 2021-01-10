@@ -1,0 +1,159 @@
+.tb-mainpage-wrapper {
+  width: 1080px;
+  height: 1000px;
+  background: transparent;
+  margin: 45px auto;
+  position: relative;
+  .tb-mainpage-hero-image img {
+    width: 1080px;
+    height: 400px;
+    object-fit: cover;
+  }
+  .tb-mainpage-condition {
+    width: 500px;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 250px;
+    right: 0;
+    z-index: 5;
+    .tb-mainpage-icons-group {
+      margin: 20px;
+      justify-content: space-around;
+      .tb-mainpage-icons-subgroup {
+        text-align: center;
+        .tb-mainpage-icons {
+          color: #ffffff;
+          font-size: 36px;
+          z-index: 10;
+        }
+        .tb-mainpage-icons-word {
+          color: #ffffff;
+          font-size: 20px;
+          z-index: 10;
+          margin-top: 6px;
+        }
+      }
+    }
+    .tb-mainpage-lastapproved {
+      color: #ffffff;
+      font-size: 20px;
+      position: absolute;
+      right: 1rem;
+      top: 100px;
+      z-index: 10;
+    }
+  }
+  figure {
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    background: transparent;
+    color: #fff;
+    position: absolute;
+    left: 35px;
+    top: 335px;
+    z-index: 5;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+  .tb-mainpage-owner {
+    font-size: 20px;
+    color: $sub-dark-gray;
+    position: absolute;
+    left: 180px;
+    top: 415px;
+  }
+  .tb-mainpage-label-group {
+    position: absolute;
+    left: 0;
+    top: 480px;
+    .tb-mainpage-label {
+      width: 80px;
+      height: 26px;
+      background-color: $main-red;
+      color: #fff;
+      border-radius: 16px;
+      z-index: 2;
+      text-align: center;
+      margin-right: 1rem;
+      span {
+        line-height: 28px;
+      }
+    }
+  }
+  .tb-mainpage-title {
+    align-items: center;
+    h1 {
+      font-size: 36px;
+      position: absolute;
+      top: 520px;
+    }
+    .tb-mainpage-button-group {
+      position: absolute;
+      top: 520px;
+      right: 0px;
+      .tb-mainpage-button {
+        width: 120px;
+        height: 36px;
+        border: none;
+        border-radius: 3px;
+        background: $main-darkblue;
+        color: #ffffff;
+        font-size: 14px;
+        margin-left: 1rem;
+      }
+    }
+  }
+  .tb-mainpage-tag-group {
+    position: absolute;
+    top: 595px;
+    .tb-mainpage-tag {
+      font-size: 14px;
+      height: 40px;
+      width: 88px;
+      background: $main-gray;
+      color: $main-darkblue;
+      border: 1px solid $main-darkblue;
+      border-radius: 22px;
+      margin-right: 1rem;
+      line-height: 40px;
+      text-align: center;
+    }
+  }
+  .tb-mainpage-maincontent-wrapper {
+    position: absolute;
+    top: 670px;
+    width: 1080px;
+    height: auto;
+    border: 1px solid $font-black;
+    border-radius: 10px;
+    background: #ffffff;
+    .tb-mainpage-maincontent {
+      width: 975px;
+      height: auto;
+      margin: 2rem auto;
+      .tb-mainpage-dategroup {
+        align-items: center;
+        position: relative;
+        .tb-mainpage-date {
+          align-items: center;
+          margin-right: 1rem;
+          .tb-mainpage-maincontent-icons {
+            font-size: 20px;
+            margin-right: 1rem;
+          }
+        }
+        .tb-mainpage-liked {
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+}

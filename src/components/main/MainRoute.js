@@ -6,6 +6,7 @@ import Member from '../../pages/Member'
 import ProductsRoute from '../products/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import BuyProducts from '../../pages/BuyProducts/BuyProducts'
+import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 import AddTravelBuddies from '../../pages/AddTravelBuddies'
 
 import CashStep1 from '../products/Cash/CashStep1'
@@ -40,8 +41,8 @@ function MainRoute() {
         <Route path="/Buy">
           <BuyProducts />
         </Route>
-        <Route path="/travelBuddy">
-          <AddTravelBuddies />
+        <Route path="/travelBuddies">
+          <TravelBuddiesRoute />
         </Route>
       </Switch>
     </>

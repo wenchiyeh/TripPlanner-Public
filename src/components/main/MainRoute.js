@@ -36,6 +36,7 @@ function MainRoute() {
           <Route path="/products">
             <ProductsRoute />
           </Route>
+
           <Route path="/LineChart">
             <LineChart />
           </Route>

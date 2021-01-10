@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal } from 'react-bootstrap'
+import React from 'react'
+import { Table } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import './history-table.scss'
 import { Historydata } from './Historydata'
-import ModalPage from './ModalPage'
-
+import TableTest from './TableTest'
 function ShoppingHistory() {
-  // Modal
-  const [lgShow, setLgShow] = useState(false)
-
-  //json
-  // useEffect(() => {
-  //   setProductHistory(Historydata)
-  // }, [])
-
   return (
     <>
       <div className="table-history">
@@ -30,46 +21,18 @@ function ShoppingHistory() {
           </thead>
           <tbody>
             {Historydata.map((v, i) => (
-              <tr key={i}>
-                <td>{v.id}</td>
-                <td>{v.PurchaseDate}</td>
-
-                <td>{v.ticketNumber}</td>
-
-                <td>{v.many}張</td>
-                <td>NT$ {v.price}</td>
-                <td>
-                  <Button
-                    variant="info"
-                    onClick={() => setLgShow(true)}
-                    initValue={v.id}
-                  >
-                    明細
-                  </Button>
-                </td>
+              <tr>
+                <TableTest
+                  id={v.id}
+                  PurchaseDate={v.PurchaseDate}
+                  ticketNumber={v.ticketNumber}
+                  many={v.many}
+                  price={v.price}
+                />
               </tr>
             ))}
-            <Modal
-              size="lg"
-              show={lgShow}
-              onHide={() => setLgShow(false)}
-              aria-labelledby="example-modal-sizes-title-lg"
-              className="background"
-            >
-              <Modal.Header closeButton>
-                <Modal.Title className="modal-title-h4 product-number">
-                  <h3>商品編號</h3>
-                </Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
-                <ModalPage />
-              </Modal.Body>
-            </Modal>
           </tbody>
         </Table>
-
-        <Pages />
       </div>
     </>
   )

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa' //  FaCar,FaTrain,FaWalking,
-import { debounce } from 'lodash'
-//利用debounce來避免敏感的onchange
 let testData = {
   order: 0,
   type: 0,

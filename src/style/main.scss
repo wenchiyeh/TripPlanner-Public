@@ -25,6 +25,8 @@ $card-border-radius: 10px;
 //searchbar相關
 $searchbar-width: 1000px;
 $searchbar-height: 65px;
+//itineditor相關
+$itineditor-width: 550px;
 //變數區結尾
 
 //文字相關
@@ -152,6 +154,12 @@ body {
   margin: 0px auto;
 }
 
+//揪團主頁
+@import './travelBuddiesMainPage.scss';
+
+//揪團主頁-Liked
+@import './travelBuddiesLiked.scss';
+
 //新增揪團
 @import './addTravelBuddies.scss';
 
@@ -160,3 +168,6 @@ body {
 
 //會員-揪團-我的揪團-按鈕
 @import './tbMyAccountButton.scss';
+
+//揪團聊天室
+@import './travelBuddiesChatroom.scss';

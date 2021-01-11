@@ -18,7 +18,7 @@ function MeFavoritesgroup({
   let display = <></>
   if (type === 'itinerary') {
     display = data.map((element, index) => (
-      <div key={index} className="card mb-3">
+      <div key={index} className="card-ingroup-box mb-3">
         <div className="row no-gutters me-favorites-back-style">
           <div className="col-md-4">
             <img

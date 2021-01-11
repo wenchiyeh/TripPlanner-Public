@@ -103,9 +103,42 @@
     }
   }
 }
-.itin-pic-input {
-  width: 0;
-  opacity: 0;
+.itin-detail-wrapper {
+  border-radius: 6px;
+  background: #fff;
+  width: 564px;
+  padding: 32px 50px;
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    max-height: 250px;
+    background: $main-gray;
+    padding: 16px;
+  }
+  .itin-pic-input {
+    width: 0;
+    opacity: 0;
+    float: left;
+  }
+  .itin-detail-checkKV {
+    text-align: right;
+  }
+  .detailPic {
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+    .itin-readyToUpload {
+      display: inline-block;
+      border: 1px dashed $sub-dark-gray;
+      height: 100%;
+      width: 100%;
+      background: $main-gray;
+    }
+  }
 }
 //box相關
 .spotsbox-wrapper {

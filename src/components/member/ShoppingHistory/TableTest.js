@@ -10,7 +10,7 @@ function TableTest({
   many, //張數
   price, //價格
 }) {
-  let detailUrl = `/shoppinghistory/${id}`
+  let detailUrl = `/myAccount/shoppinghistory/${id}`
 
   return (
     <>

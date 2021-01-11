@@ -4,6 +4,7 @@ import { Table } from 'react-bootstrap'
 import './history-table.scss'
 import { Historydata } from './Historydata'
 import TableTest from './TableTest'
+
 function ShoppingHistory() {
   return (
     <>
@@ -21,7 +22,7 @@ function ShoppingHistory() {
           </thead>
           <tbody>
             {Historydata.map((v, i) => (
-              <tr>
+              <tr key={i}>
                 <TableTest
                   id={v.id}
                   PurchaseDate={v.PurchaseDate}

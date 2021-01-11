@@ -1,7 +1,11 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
-function Test(props) {
-  const {
+import { Historydata } from './Historydata'
+import { withRouter } from 'react-router-dom'
+
+function Detail() {
+  let {
     ticketNumber,
     PurchaseDate,
     className,
@@ -14,8 +18,8 @@ function Test(props) {
     birthday,
     gender,
     many,
-  } = props
-  console.log(props)
+  } = useParams()
+
   return (
     <>
       <div className="background">
@@ -88,4 +92,4 @@ function Test(props) {
     </>
   )
 }
-export default Test
+export default withRouter(Detail)

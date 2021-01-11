@@ -62,7 +62,11 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button type="submit" className="login-btn">
+            <Button
+              type="submit"
+              className="login-btn"
+              onClick={'http://localhost:3000/sigon'}
+            >
               登入
             </Button>
             <div className="login-samp-text d-flex">

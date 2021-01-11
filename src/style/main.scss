@@ -25,6 +25,8 @@ $card-border-radius: 10px;
 //searchbar相關
 $searchbar-width: 1000px;
 $searchbar-height: 65px;
+//itineditor相關
+$itineditor-width: 550px;
 //變數區結尾
 
 //文字相關
@@ -105,8 +107,8 @@ body {
 // 上面那條導覽
 @import './function-bar.scss';
 
-// 訂單紀錄 Table
-@import './history-table.scss';
+//page
+@import './pages.scss';
 
 //行程相關
 @import './itinerary.scss';
@@ -116,12 +118,6 @@ body {
 
 //footer
 @import './footer.scss';
-
-// 訂單紀錄 Table
-@import './history-table.scss';
-
-// 商品總攬頁排版
-@import './productList.scss';
 
 //我的帳戶標題
 .MyAccount-title {
@@ -158,6 +154,12 @@ body {
   margin: 0px auto;
 }
 
+//揪團主頁
+@import './travelBuddiesMainPage.scss';
+
+//揪團主頁-Liked
+@import './travelBuddiesLiked.scss';
+
 //新增揪團
 @import './addTravelBuddies.scss';
 
@@ -166,3 +168,6 @@ body {
 
 //會員-揪團-我的揪團-按鈕
 @import './tbMyAccountButton.scss';
+
+//揪團聊天室
+@import './travelBuddiesChatroom.scss';

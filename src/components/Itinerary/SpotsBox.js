@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa' //  FaCar,FaTrain,FaWalking,
-
 let testData = {
   order: 0,
   type: 0,
@@ -12,23 +11,75 @@ let testData = {
   info: '',
 }
 
-function SpotsBox({ isEdit, data = testData }) {
+function SpotsBox({
+  isEdit = false,
+  data = testData,
+  index,
+  doEdit = () => {},
+  allData,
+}) {
   const { type, title, time, ...otherData } = data
+  const tempData = allData
+  function handleTime(time) {
+    if (time.length === 4) {
+      let temp = Array.from(time)
+      temp.splice(2, 0, ':')
+      return temp.join('')
+    } else {
+      return time
+    }
+  }
+  const inputTimeClass = `box-input-time time${index[0]}${index[1]}`
+  const inputTitleClass = `box-input-title input${index[0]}${index[1]}`
+  useEffect(() => {
+    if (isEdit) {
+      if (
+        document.querySelector(`.input${index[0]}${index[1]}`).value ===
+          tempData[index[0]].data[index[1]].title &&
+        document.querySelector(`.time${index[0]}${index[1]}`).value ===
+          handleTime(tempData[index[0]].data[index[1]].time)
+      ) {
+        return
+      } else {
+        document.querySelector(`.input${index[0]}${index[1]}`).value =
+          tempData[index[0]].data[index[1]].title
+        document.querySelector(
+          `.time${index[0]}${index[1]}`
+        ).value = handleTime(tempData[index[0]].data[index[1]].time)
+      }
+    }
+  }, [tempData])
+
   const typeIcon = <FaMapMarkerAlt size={26} />
   const displyEdit = (
     <>
       <div className="spotsbox-wrapper custom-box-shadow d-flex justify-content-between align-items-center">
         <span className="spotsbox-type">{typeIcon}</span>
         <span className="spotsbox-content">
-          <input className="box-input-time" type="time" />
           <input
-            className="box-input-title"
+            className={inputTimeClass}
+            type="time"
+            onChange={(e) => {
+              tempData[index[0]].data[index[1]].time = e.target.value
+              doEdit(tempData)
+            }}
+          />
+          <input
+            className={inputTitleClass}
             type="text"
-            value={title}
             maxLength="12"
+            onChange={(e) => {
+              tempData[index[0]].data[index[1]].title = e.target.value
+              doEdit(tempData)
+            }}
           />
         </span>
-        <span className="box-close-btn">
+        <span
+          className="box-close-btn"
+          onClick={() => {
+            console.log('delete!')
+          }}
+        >
           <FaTimesCircle size={20} />
         </span>
       </div>

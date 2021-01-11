@@ -17,26 +17,52 @@
   right: 50px;
 }
 //editor相關
-.itin-editor-wrapper {
-  width: 550px;
-  background: #fff;
-  .itin-editor-title {
-    background: $sub-gray;
-    padding: 32px;
-    p {
-      margin-bottom: 16px;
-    }
-    input {
-      width: 400px;
+.itin-editor-title {
+  width: $itineditor-width;
+  background: $sub-gray;
+  padding: 32px;
+  p {
+    margin-bottom: 16px;
+  }
+  input {
+    width: 400px;
+    margin: 0;
+  }
+  &.publish-title {
+    width: 100%;
+    padding: 48px 0;
+    h1 {
       margin: 0;
     }
+    h2 {
+      margin: 0;
+      margin-bottom: 16px;
+    }
+    .btn {
+      width: 100px;
+      margin-left: 32px;
+    }
   }
+}
+.itin-editor-wrapper {
+  width: $itineditor-width;
+  background: #fff;
+
   .itin-editor-daybox {
     height: 80px;
+    border-radius: 4px;
     background: $main-darkblue;
     color: #fff;
-    padding: 32px;
+    padding: 0 32px;
+    margin-bottom: 2px;
     font-size: 20px;
+    transition: 0.2s;
+    &.daybox-close {
+      height: 40px;
+      + .itin-editor-spotsWapper {
+        display: none;
+      }
+    }
   }
   .itin-editor-spotsWapper {
     background: #fff;
@@ -77,6 +103,10 @@
     }
   }
 }
+.itin-pic-input {
+  width: 0;
+  opacity: 0;
+}
 //box相關
 .spotsbox-wrapper {
   width: 480px;
@@ -101,9 +131,12 @@
     margin-left: 8px;
     width: 210px;
   }
-  .box-close-btn:hover {
-    svg {
-      color: $main-red;
+  .box-close-btn {
+    cursor: pointer;
+    &:hover {
+      svg {
+        color: $main-red;
+      }
     }
   }
 }

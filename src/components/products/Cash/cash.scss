@@ -158,12 +158,94 @@ body {
       }
       .pay-form {
         margin-left: 40px;
+        display: flex;
 
         .pay-icon {
           margin-right: 8px;
           svg {
             width: 30px;
             height: 20px;
+          }
+        }
+      }
+      .check-and-btn {
+        display: flex;
+        margin: 64px auto 32px auto;
+        justify-content: space-between;
+        .warning {
+          padding: 0 0;
+          margin-left: 40px;
+          margin-top: 10px;
+          input {
+            width: 15px;
+            height: 15px;
+          }
+          label {
+            font-size: 14px;
+          }
+        }
+        .btn-zone {
+          font-size: 14px;
+          Button {
+            width: 120px;
+            height: 40px;
+            margin: 0 16px;
+          }
+        }
+      }
+      // 以上為 step2 獨有
+    }
+  }
+  .step3-main {
+    width: 730px;
+    margin: 32px auto;
+
+    .done {
+      margin-bottom: 8px;
+      color: $info;
+    }
+    .show-the-product {
+      width: 100%;
+      background-color: #ffffff;
+      padding: 24px;
+
+      .product-number {
+        display: flex;
+        margin-bottom: 40px;
+
+        h3 {
+          margin-right: 16px;
+        }
+      }
+      .inside-detail {
+        display: flex;
+        flex-direction: column;
+        hr {
+          width: 650px;
+          color: #707070;
+          margin-top: 0;
+          margin-bottom: 40px;
+        }
+        div {
+          display: flex;
+          justify-content: space-between;
+          h4 {
+            flex: 1 0 0;
+            text-align: right;
+            margin-right: 40px;
+            margin-bottom: 0;
+          }
+          h5 {
+            flex: 2 0 0;
+          }
+        }
+        .gohome {
+          align-self: flex-end;
+          margin-bottom: 8px;
+          margin-right: 16px;
+          .btn-info {
+            width: 150px;
+            height: 40px;
           }
         }
       }

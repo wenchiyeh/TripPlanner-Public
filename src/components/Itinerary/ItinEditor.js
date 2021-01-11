@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
+import ItinEditorHeader from './ItinEditorHeader'
 import SpotsBox from './SpotsBox'
 import { Button } from 'react-bootstrap'
 import { FaTimesCircle } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 //
-// SpotsBox({ isEdit, type = 0, title, time1, time2 })
 //測試用假資料
 import fakeTestingData from './testBoxData'
 
-function ItinEditor({ boxData = fakeTestingData }) {
+function ItinEditor({
+  isEdit = false,
+  boxData = fakeTestingData,
+  title = '行程表',
+}) {
   const [tempData, setTempData] = useState(boxData)
+  //處理bar開關
+  const classIsClose = [
+    'itin-editor-daybox d-flex justify-content-between align-items-center',
+    'itin-editor-daybox d-flex justify-content-between align-items-center daybox-close',
+  ]
+  //拖曳後處理數據
   function handleOnDragEnd(result) {
     if (!result.destination) return
     const wrapSourceIndex = result.source.droppableId.substring(4)
@@ -24,23 +34,29 @@ function ItinEditor({ boxData = fakeTestingData }) {
       0,
       reorderItem
     )
-    setTempData(originArray)
+    setTempData(originArray) //當下所有數據
+    console.log(originArray)
   }
+
   return (
-    <div className="itin-editor-wrapper">
-      <div className="itin-editor-title">
-        <p>行程表製作</p>
-        <input
-          className="form-custom"
-          type="text"
-          placeholder="請輸入行程標題"
-        />
-      </div>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        {tempData.map((data, dayIndex) => (
-          <>
+    <>
+      <ItinEditorHeader isMe={true} isEdit={true} isPublish={true} />
+      <div className="itin-editor-wrapper">
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          {tempData.map((data, dayIndex) => (
             <div key={dayIndex}>
-              <div className="itin-editor-daybox d-flex justify-content-between align-items-center">
+              <div
+                onClick={(e) => {
+                  if (e.target.className === classIsClose[0]) {
+                    e.target.className = classIsClose[1]
+                  } else if (e.target.className === classIsClose[1]) {
+                    e.target.className = classIsClose[0]
+                  } else {
+                    return
+                  }
+                }}
+                className={classIsClose[0]}
+              >
                 <span>{data.title}</span>
                 <span className="box-close-btn">
                   <FaTimesCircle size={26} />
@@ -66,7 +82,13 @@ function ItinEditor({ boxData = fakeTestingData }) {
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                           >
-                            <SpotsBox data={element} />
+                            <SpotsBox
+                              index={[dayIndex, index]}
+                              data={element}
+                              isEdit={isEdit}
+                              allData={tempData}
+                              doEdit={setTempData}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -81,10 +103,10 @@ function ItinEditor({ boxData = fakeTestingData }) {
                 )}
               </Droppable>
             </div>
-          </>
-        ))}
-      </DragDropContext>
-    </div>
+          ))}
+        </DragDropContext>
+      </div>
+    </>
   )
 }
 

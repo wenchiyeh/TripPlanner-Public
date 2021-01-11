@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MyBreadCrumb from '../../components/main/MyBreadCrumb'
+import MyBreadCrumb from '../../components/main/MyBreadCrumb/MyBreadCrumb'
 import './buy-products.scss'
 import { FiClock } from 'react-icons/fi'
 import { FaMapMarkerAlt, FaDollarSign, FaTag } from 'react-icons/fa'
@@ -9,17 +9,29 @@ import {
   AiOutlineHeart,
 } from 'react-icons/ai'
 import { Button, Modal } from 'react-bootstrap'
-import Header from '../../components/main/Header'
-import MyFooter from '../../components/main/MyFooter'
+// import Header from '../../components/main/Header'
+// import MyFooter from '../../components/main/MyFooter'
+import { useHistory } from 'react-router-dom'
 
 function BuyProducts() {
+  // 這是modal
   const [smShow, setSmShow] = useState(false)
-
   const handleShow = () => setSmShow(true)
+
+  // 計數器
+  const [early, setEarly] = useState(1)
+  const [single, setSingle] = useState(1)
+  const [group, setGroup] = useState(1)
+
+  // 換頁
+  let history = useHistory()
+
+  function InTheCar() {
+    history.push('/shoppingcar-1')
+  }
 
   return (
     <>
-      <Header />
       <div className="container">
         <MyBreadCrumb />
         {/* 麵包屑 */}
@@ -89,11 +101,11 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>早鳥票</p>
               <div className="plusAndMinus">
-                <Button variant="light">
+                <Button variant="light" onClick={() => setEarly(early - 1)}>
                   <AiFillMinusCircle />
                 </Button>
-                <p>1</p>
-                <Button variant="light">
+                <p>{early}</p>
+                <Button variant="light" onClick={() => setEarly(early + 1)}>
                   <AiFillPlusCircle />
                 </Button>
               </div>
@@ -101,11 +113,11 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>單人票</p>
               <div className="plusAndMinus">
-                <Button variant="light">
+                <Button variant="light" onClick={() => setSingle(single - 1)}>
                   <AiFillMinusCircle />
-                </Button>{' '}
-                <p>1</p>
-                <Button variant="light">
+                </Button>
+                <p>{single}</p>
+                <Button variant="light" onClick={() => setSingle(single + 1)}>
                   <AiFillPlusCircle />
                 </Button>
               </div>
@@ -113,11 +125,11 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>雙人票</p>
               <div className="plusAndMinus">
-                <Button variant="light">
+                <Button variant="light" onClick={() => setGroup(group - 1)}>
                   <AiFillMinusCircle />
                 </Button>
-                <p>1</p>
-                <Button variant="light">
+                <p>{group}</p>
+                <Button variant="light" onClick={() => setGroup(group + 1)}>
                   <AiFillPlusCircle />
                 </Button>
               </div>
@@ -125,7 +137,9 @@ function BuyProducts() {
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
 
-              <Button variant="info">加入購物車</Button>
+              <Button variant="info" onClick={InTheCar}>
+                加入購物車
+              </Button>
               <div className="followMyHeart">
                 <Button variant="light">
                   <AiOutlineHeart />
@@ -234,7 +248,6 @@ function BuyProducts() {
           </div>
         </div>
       </div>
-      <MyFooter />
     </>
   )
 }

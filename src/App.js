@@ -3,8 +3,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //
 //header footer wrapper
-// import Header from './components/main/Header'
-// import MyFooter from './components/main/MyFooter'
+import Header from './components/main/Header'
+import MyFooter from './components/main/MyFooter'
 //pages
 // import ItinRoute from './components/Itinerary/ItinRoute'
 // import Member from './pages/Member'
@@ -18,26 +18,18 @@ import Home from './pages/Home'
 import Forgetpassword from './pages/forgetpassword'
 //
 import MainRoute from './components/main/MainRoute'
-
+import ScrollToTop from './components/main/ScrollToTop'
 function App() {
   return (
     <Router>
       <>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         --
         <Link to="/myAccount">Member</Link>
         --
-        <Link to="/itinerary">Itinerary</Link>
-        --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingcar-1">Shoppingcar-1</Link>
-        --
-        <Link to="/shoppingcar-2">Shoppingcar-2</Link>
-        --
         <Link to="/shoppingcar-3">Shoppingcar-3</Link>
-        --
-        <Link to="/products">Product</Link>
         --
         <Link to="/login">Login</Link>
         --
@@ -45,33 +37,35 @@ function App() {
         --
         <Link to="/buy">Buy</Link>
         --
-        <Link to="/travelBuddy">TravelBuddy</Link>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+        <Link to="/travelBuddy">TravelBuddy</Link> */}
+        <Header />
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route exact path="/login">
-            <Login />
-          </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
 
-          <Route exact path="/sigon">
-            <Sigon />
-          </Route>
+            <Route exact path="/sigon">
+              <Sigon />
+            </Route>
 
-          <Route path="/buy">
-            <BuyProducts />
-          </Route>
+            <Route path="/buy">
+              <BuyProducts />
+            </Route>
 
-          <Route path="/forgetpassword">
-            <Forgetpassword />
-          </Route>
+            <Route path="/forgetpassword">
+              <Forgetpassword />
+            </Route>
 
-          <Route path="/">
-            <MainRoute />
-          </Route>
+            <Route path="/">
+              <MainRoute />
+            </Route>
 
-          {/* <Switch>
+            {/* <Switch>
             <Route path="/myAccount">
               <Member />
             </Route>
@@ -97,7 +91,9 @@ function App() {
               <TravelBuddyRoute />
             </Route>
           </Switch> */}
-        </Switch>
+          </Switch>
+        </ScrollToTop>
+        <MyFooter />
       </>
     </Router>
   )

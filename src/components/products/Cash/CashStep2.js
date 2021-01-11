@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
 
 import { Form, Col, Button } from 'react-bootstrap'
@@ -55,13 +54,7 @@ function CashStep2() {
               </div>
 
               <div className="how-many-ticket">
-                <Button variant="light" className="minus-and-plus">
-                  <AiFillMinusCircle />
-                </Button>
                 <p>1</p>
-                <Button variant="light" className="minus-and-plus">
-                  <AiFillPlusCircle />
-                </Button>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>

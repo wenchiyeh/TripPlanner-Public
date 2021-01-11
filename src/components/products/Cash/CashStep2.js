@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
 
 import { Form, Col, Button } from 'react-bootstrap'
@@ -55,13 +54,7 @@ function CashStep2() {
               </div>
 
               <div className="how-many-ticket">
-                <Button variant="light" className="minus-and-plus">
-                  <AiFillMinusCircle />
-                </Button>
                 <p>1</p>
-                <Button variant="light" className="minus-and-plus">
-                  <AiFillPlusCircle />
-                </Button>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
@@ -149,29 +142,45 @@ function CashStep2() {
               <hr />
               <h3 className="about-member">請選擇付款方式</h3>
               <div className="pay-form">
-                <div className="mb-3">
-                  <Form.Check type="radio">
-                    <Form.Check.Input type="radio" name="pay-radio" />
-                    <Form.Check.Label className="pay-icon">
-                      <FaCcPaypal />
-                    </Form.Check.Label>
-                    <Form.Check.Label className="pay-icon">
-                      Paypal
-                    </Form.Check.Label>
-                  </Form.Check>
-                </div>
-                <div className="mb-3">
-                  <Form.Check type="radio">
-                    <Form.Check.Input type="radio" name="pay-radio" />
-                    <Form.Check.Label className="pay-icon">
-                      <FaCcVisa />
-                    </Form.Check.Label>
-                    <Form.Check.Label className="pay-icon">
-                      Visa
-                    </Form.Check.Label>
-                  </Form.Check>
+                <div>
+                  <div className="mb-3">
+                    <Form.Check type="radio">
+                      <Form.Check.Input type="radio" name="pay-radio" />
+                      <Form.Check.Label className="pay-icon">
+                        <FaCcPaypal />
+                      </Form.Check.Label>
+                      <Form.Check.Label className="pay-icon">
+                        Paypal
+                      </Form.Check.Label>
+                    </Form.Check>
+                  </div>
+                  <div className="mb-3">
+                    <Form.Check type="radio">
+                      <Form.Check.Input type="radio" name="pay-radio" />
+                      <Form.Check.Label className="pay-icon">
+                        <FaCcVisa />
+                      </Form.Check.Label>
+                      <Form.Check.Label className="pay-icon">
+                        Visa
+                      </Form.Check.Label>
+                    </Form.Check>
+                  </div>
                 </div>
                 <ShowCreditCard />
+              </div>
+              <div className="check-and-btn">
+                <Form.Check
+                  className="warning"
+                  type="checkbox"
+                  label="若本人後續辦理退票作業，同意由旅歷代為處理銷售憑證"
+                />
+
+                <div className="btn-zone">
+                  <Button variant="light" className="cancel">
+                    取消
+                  </Button>
+                  <Button variant="info">結帳</Button>
+                </div>
               </div>
             </Form>
           </div>

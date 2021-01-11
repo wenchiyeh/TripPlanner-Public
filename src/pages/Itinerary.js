@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Col, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 //
-import MyBreadCrumb from '../components//main/MyBreadCrumb'
+import MyBreadCrumb from '../components//main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../components//main/SearchBar'
 import CardListPublic from '../components//main/CardListPublic'
 import Pages from '../components//main/Pages'
-import Carousel from '../components/travelBuddy/Carousel'
+import Carousel from '../components/TravelBuddies/Carousel'
 
 function Itinerary(props) {
   const [searchFilter, setSearchFilter] = useState({})

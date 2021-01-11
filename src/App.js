@@ -3,8 +3,8 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //
 //header footer wrapper
-// import Header from './components/main/Header'
-// import MyFooter from './components/main/MyFooter'
+import Header from './components/main/Header'
+import MyFooter from './components/main/MyFooter'
 //pages
 // import ItinRoute from './components/Itinerary/ItinRoute'
 // import Member from './pages/Member'
@@ -23,21 +23,13 @@ function App() {
   return (
     <Router>
       <>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         --
         <Link to="/myAccount">Member</Link>
         --
-        <Link to="/itinerary">Itinerary</Link>
-        --
         <Link to="/group">Group</Link>
         --
-        <Link to="/shoppingcar-1">Shoppingcar-1</Link>
-        --
-        <Link to="/shoppingcar-2">Shoppingcar-2</Link>
-        --
         <Link to="/shoppingcar-3">Shoppingcar-3</Link>
-        --
-        <Link to="/products">Product</Link>
         --
         <Link to="/login">Login</Link>
         --
@@ -45,7 +37,8 @@ function App() {
         --
         <Link to="/buy">Buy</Link>
         --
-        <Link to="/travelBuddy">TravelBuddy</Link>
+        <Link to="/travelBuddy">TravelBuddy</Link> */}
+        <Header />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -98,6 +91,7 @@ function App() {
             </Route>
           </Switch> */}
         </Switch>
+        <MyFooter />
       </>
     </Router>
   )

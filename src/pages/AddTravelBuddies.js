@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import AddTravelBuddiesForm from '../components/travelBuddy/AddTravelBuddiesForm'
+import AddTravelBuddiesForm from '../components/TravelBuddies/AddTravelBuddiesForm'
 
 function AddTravelBuddies() {
   return (

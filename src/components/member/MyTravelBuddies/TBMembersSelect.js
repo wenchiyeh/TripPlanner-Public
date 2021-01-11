@@ -24,7 +24,7 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
-                    alt=" "
+                    alt="..."
                   />
                 </div>
                 <div className="d-flex">
@@ -39,6 +39,7 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
+                    alt="..."
                   ></img>
                 </div>
                 <div className="d-flex">
@@ -53,6 +54,7 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
+                    alt="..."
                   ></img>
                 </div>
                 <div className="d-flex">
@@ -67,6 +69,7 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
+                    alt="..."
                   ></img>
                 </div>
                 <div className="d-flex">
@@ -81,6 +84,7 @@ function TBMembersSelect() {
                   <img
                     src="http://localhost:3000/images/member/DSC_7437-37.jpg"
                     className="card-img img-fluid tbMembersSelectPhoto"
+                    alt="..."
                   ></img>
                 </div>
               </div>

@@ -5,6 +5,8 @@ import ItinEditor from './ItinEditor'
 //測試用
 // import SpotBox from './SpotsBox'
 import ItinList from './ItinList'
+import ItinEditorDetail from './ItinEditorDetail'
+// import ItinEditorHeader from './ItinEditorHeader'
 // import TestDragEditor from './TestDragEditor'
 //
 
@@ -56,7 +58,7 @@ function ItinRoute() {
           <ItinList />
         </Route>
         <Route path="/itinerary/new">
-          <ItinEditor />
+          <ItinEditorDetail />
         </Route>
         <Route exact path="/itinerary">
           <Itinerary />

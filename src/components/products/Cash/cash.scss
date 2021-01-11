@@ -239,12 +239,14 @@ body {
             flex: 2 0 0;
           }
         }
-        .btn-info {
-          width: 150px;
-          height: 40px;
+        .gohome {
           align-self: flex-end;
           margin-bottom: 8px;
           margin-right: 16px;
+          .btn-info {
+            width: 150px;
+            height: 40px;
+          }
         }
       }
     }

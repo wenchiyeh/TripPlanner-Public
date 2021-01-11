@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MyBreadCrumb from '../components/main/MyBreadCrumb'
+import MyBreadCrumb from '../components/main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../components/main/SearchBar'
 import CardListPublic from '../components/main/CardListPublic'
 import Carousel from '../components/TravelBuddies/Carousel'

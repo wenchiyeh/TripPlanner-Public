@@ -123,10 +123,14 @@ function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
             <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">
               <Form.Label>性別</Form.Label>
               <span className="med-add-text-red">*</span>
-              <Form.Control as="select" custom>
+              <Form.Control
+                as="select"
+                custom
+                defaultValue={data[id].member_sex}
+              >
                 <option disabled>-請選擇-</option>
-                <option>{data[id].member_sex}</option>
-                <option></option>
+                <option value="1">男性</option>
+                <option value="2">女性</option>
               </Form.Control>
             </Form.Group>
           </Form.Row>
@@ -160,12 +164,13 @@ function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
               <Form.Label>自我介紹</Form.Label>
               <span className="med-add-text-red">*</span>
               <Form.Control
+                as="textarea"
+                rows={3}
                 required
                 type="text"
                 placeholder="例：我在資策會學習網頁前端"
                 defaultValue={data[id].member_aboutme}
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Button type="submit" className="memed-submit">

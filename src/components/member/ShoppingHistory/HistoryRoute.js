@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch, useParams } from 'react-router-dom'
 import ShoppingHistory from './ShoppingHistory'
-import { Historydata } from './Historydata'
+// import { Historydata } from './Historydata'
 
 function Test() {
   let {

@@ -30,10 +30,11 @@ body {
       color: #040404;
       margin: 0 24px;
     }
-
-    a,
-    p {
-      color: #4464be;
+    .active {
+      a,
+      p {
+        color: #4464be;
+      }
     }
   }
   .ticket-buy {

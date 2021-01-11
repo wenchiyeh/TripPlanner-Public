@@ -9,8 +9,7 @@ import {
   AiOutlineHeart,
 } from 'react-icons/ai'
 import { Button, Modal } from 'react-bootstrap'
-// import Header from '../../components/main/Header'
-// import MyFooter from '../../components/main/MyFooter'
+
 import { useHistory } from 'react-router-dom'
 
 function BuyProducts() {

@@ -9,7 +9,6 @@ const Historydata = [
     price: '500',
     payfor: 'VISA',
     userName: '陳嘉賢',
-
     phone: '0913224137',
     mail: '8M9cHnwh@gmail.com',
     birthday: '1992-04-04',

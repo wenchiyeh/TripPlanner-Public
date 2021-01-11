@@ -4,7 +4,7 @@ import MeTabs from '../member/MefTab'
 function MeFavorites() {
   return (
     <>
-      <div className="card mb-3"></div>
+      <div className=" mb-3"></div>
       <MeTabs />
     </>
   )

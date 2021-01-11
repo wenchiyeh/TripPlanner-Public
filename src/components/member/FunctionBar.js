@@ -2,6 +2,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import HistiryRoute from '../member/ShoppingHistory/HistoryRoute'
+import Detail from '../member/ShoppingHistory/Detail'
 
 import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
 import MeFavorites from '../main/MeFavorites'
@@ -21,13 +22,16 @@ function FunctionBar() {
           <Link to="/myAccount/shoppinghistory">購物紀錄</Link>
         </div>
         <Switch>
+          {' '}
+          <Route path="/myAccount/shoppinghistory/:id">
+            <Detail />
+          </Route>
           <Route path="/myAccount/shoppinghistory">
             <HistiryRoute />
           </Route>
           <Route path="/myAccount/TravelBuddies">
             <MyTravelBuddies />
           </Route>
-
           <Route path="/myAccount/favorites">
             <MeFavorites />
           </Route>

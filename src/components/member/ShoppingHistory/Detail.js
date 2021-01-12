@@ -42,11 +42,11 @@ function Detail() {
                 <h5>{orderDetail[id].purchaseDate}</h5>
               </div>
               <hr />
-              {/* <div>
-              <h4>講座名稱</h4>
-              <h5>{orderDetail[id].className}</h5>
-            </div>
-           <hr />*/}
+              <div>
+                <h4>講座名稱</h4>
+                <h5>{orderDetail[id].className}</h5>
+              </div>
+              <hr />
               <div>
                 <h4>票種</h4>
                 <h5>{orderDetail[id].ticketId}</h5>

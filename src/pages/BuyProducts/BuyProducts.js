@@ -9,7 +9,6 @@ import {
   AiOutlineHeart,
 } from 'react-icons/ai'
 import { Button, Modal } from 'react-bootstrap'
-
 import { useHistory } from 'react-router-dom'
 
 function BuyProducts() {
@@ -36,7 +35,7 @@ function BuyProducts() {
         {/* 麵包屑 */}
         <figure className="heroPhoto">
           <img
-            src="http://localhost:3000/images/classPhoto/IMAG7028.jpg"
+            src="http://localhost:3000/images/classPhoto/sup.png"
             alt="圖片替代文字"
           />
         </figure>
@@ -71,8 +70,9 @@ function BuyProducts() {
               <FaDollarSign />
               <div>
                 <p>價格</p>
-                <p>單人票: 1200</p>
-                <p>雙人票: 2000</p>
+                <p>早鳥票: NT$ 800</p>
+                <p>單人票: NT$ 1200</p>
+                <p>雙人票: NT$ 2000</p>
               </div>
             </div>
 
@@ -171,7 +171,7 @@ function BuyProducts() {
               <li>日期：12/29（二）</li>
               <li>時間：19:00-21:00</li>
               <li>地點：登山補給站</li>
-              <li>講師：張國威</li>
+              <li>講師：廖育聖</li>
             </ul>
           </div>
 
@@ -238,12 +238,17 @@ function BuyProducts() {
           <hr />
           <div className="introduction">
             <p className="classTitel">活動地圖</p>
-            <figure className="thisIsMap">
-              <img
-                src="http://localhost:3000/images/classPhoto/IMAG7028.jpg"
-                alt="圖片替代文字"
-              />
-            </figure>
+
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.972020328463!2d121.50080501500622!3d25.035023583971824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a9a5f90c8899%3A0xeeb381d4df80f8c!2zMTA45Y-w5YyX5biC6JCs6I-v5Y2A5ZKM5bmz6KW_6Lev5LiJ5q61NzAtMeiZnw!5e0!3m2!1szh-TW!2stw!4v1610427702292!5m2!1szh-TW!2stw"
+              width="700px"
+              height="300px"
+              frameborder="0"
+              aria-hidden="false"
+              tabindex="0"
+              className="thisIsMap"
+              alt="Map"
+            />
           </div>
         </div>
       </div>

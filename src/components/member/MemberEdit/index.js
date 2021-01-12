@@ -5,8 +5,9 @@ import './MemberEdit.scss'
 //引入資料庫
 let memberUsersData = require('../member.json')
 let handleTestData = memberUsersData[2].data
+let id = 4
 //帶入資料庫
-function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
+function MemberEdit({ data = handleTestData, type = 'member' }) {
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -173,7 +174,12 @@ function MemberEdit({ id = 4, data = handleTestData, type = 'member' }) {
               />
             </Form.Group>
           </Form.Row>
-          <Button type="submit" className="memed-submit">
+          <Button
+            className="memed-submit"
+            onClick={(e) => {
+              e.preventDefault()
+            }}
+          >
             確定
           </Button>
         </Form>

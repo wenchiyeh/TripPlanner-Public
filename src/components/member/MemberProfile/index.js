@@ -25,7 +25,6 @@ function MemberList() {
         >
           修改資料
         </Button>
-
         <Modal
           size="lg"
           show={show}

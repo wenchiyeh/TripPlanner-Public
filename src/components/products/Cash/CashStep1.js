@@ -10,7 +10,7 @@ function CashStep1() {
   let history = useHistory()
 
   function nextstep() {
-    history.push('/shoppingcar-2')
+    history.push('/shoppingcar/2')
   }
   function cancel() {
     history.push('/')

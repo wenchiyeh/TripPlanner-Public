@@ -4,13 +4,13 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function TableTest({
-  id = 1, //資料的id
+  id, //資料的id
   ticketNumber, //訂單編號
   PurchaseDate, //購買日期
   many, //張數
   price, //價格
 }) {
-  let detailUrl = `/shoppinghistory/${id}`
+  let detailUrl = `/myAccount/shoppinghistory/${id}`
 
   return (
     <>

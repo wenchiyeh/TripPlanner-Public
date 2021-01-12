@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Switch, useParams } from 'react-router-dom'
+// import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
 import { BiCalendarCheck } from 'react-icons/bi'
@@ -35,7 +35,7 @@ function TravelBuddiesMainPage() {
       <>
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
-            <img src="/images/member/DSC_7875.jpg" />
+            <img src="/images/member/DSC_7875.jpg" alt="這是圖片" />
           </div>
           <div className="tb-mainpage-condition">
             <div className="d-flex tb-mainpage-icons-group">

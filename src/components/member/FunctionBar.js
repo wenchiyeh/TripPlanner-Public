@@ -18,10 +18,10 @@ function FunctionBar() {
           <Link to="/myAccount/TravelBuddies">我的揪團</Link>
           <Link to="/myAccount/favorites">我的收藏</Link>
           <Link to="/myAccount/Notice">我的通知</Link>
-          <Link to="/myAccount/shoppinghistory">購物紀錄</Link>
+          <Link to="/myAccount/historyOrder">購物紀錄</Link>
         </div>
         <Switch>
-          <Route path="/myAccount/shoppinghistory">
+          <Route path="/myAccount/historyOrder">
             <HistiryRoute />
           </Route>
           <Route path="/myAccount/TravelBuddies">

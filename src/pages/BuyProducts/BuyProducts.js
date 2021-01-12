@@ -247,7 +247,7 @@ function BuyProducts() {
               aria-hidden="false"
               tabindex="0"
               className="thisIsMap"
-              alt="Map"
+              title="Map"
             />
           </div>
         </div>

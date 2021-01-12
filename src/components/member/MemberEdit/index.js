@@ -54,7 +54,7 @@ function MemberEdit(props) {
       member_aboutme,
     }
     try {
-      const response = await fetch('http://localhost:5000/member' + id, {
+      const response = await fetch('http://localhost:5000/member', {
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -268,7 +268,7 @@ function MemberEdit(props) {
         <Button
           className="memed-submit"
           onClick={() => {
-            updateMember()
+            updateMember(id)
           }}
         >
           確定

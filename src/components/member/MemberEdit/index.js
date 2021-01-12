@@ -11,7 +11,7 @@ import './MemberEdit.scss'
 function MemberEdit(props) {
   let { id } = useParams()
   let history = useHistory()
-  const [member, setMember] = useState([])
+  const [member, setMember] = useState('')
   const [member_name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -22,6 +22,41 @@ function MemberEdit(props) {
   const [member_id, setMember_id] = useState('')
   const [member_aboutme, setMember_aboutme] = useState('')
 
+  //更新
+  async function updateMember(id) {
+    const newMember = {
+      member_name,
+      email,
+      password,
+      area,
+      member_phone,
+      birthday,
+      member_sex,
+      member_id,
+      member_aboutme,
+    }
+    try {
+      const response = await fetch('http://localhost:5000/member' + id, {
+        method: 'put',
+        body: JSON.stringify(newMember),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setMember(data)
+        console.log(data)
+        if (data.id) alert('更新成功')
+
+        history.push('/member')
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
   async function getMember(id) {
     try {
       const response = await fetch('http://localhost:5000/member', {
@@ -40,39 +75,6 @@ function MemberEdit(props) {
     getMember()
   }, [])
 
-  //更新
-  async function updateMember(id) {
-    const newMember = {
-      member_name,
-      email,
-      password,
-      area,
-      member_phone,
-      birthday,
-      member_sex,
-      member_id,
-      member_aboutme,
-    }
-    try {
-      const response = await fetch('http://localhost:5000/member', {
-        body: JSON.stringify(newMember),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      if (response.ok) {
-        const data = await response.json()
-        setMember(data)
-        if (data.id) alert('更新成功')
-
-        history.push('/member')
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -87,7 +89,7 @@ function MemberEdit(props) {
   {
     //DOM表單
     let display = <></>
-    //導入member[1]
+    //導入member[0]
     display = member.length > 0 && (
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Row>
@@ -99,7 +101,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="請輸入信箱"
-              defaultValue={member[1].email}
+              defaultValue={member[0].email}
               onChange={(e) => {
                 setEmail(e.target.value)
               }}
@@ -116,7 +118,7 @@ function MemberEdit(props) {
               required
               type="password"
               placeholder="請輸入密碼"
-              defaultValue={member[1].password}
+              defaultValue={member[0].password}
               onChange={(e) => {
                 setPassword(e.target.value)
               }}
@@ -132,7 +134,7 @@ function MemberEdit(props) {
             <Form.Control
               type="text"
               placeholder="請輸入姓名"
-              defaultValue={member[1].member_name}
+              defaultValue={member[0].member_name}
               aria-describedby=""
               required
               onChange={(e) => {
@@ -152,7 +154,7 @@ function MemberEdit(props) {
             <Form.Control
               type="text"
               placeholder="請輸入地區"
-              // defaultValue={member[1].area}
+              // defaultValue={member[0].area}
               required
               onChange={(e) => {
                 setArea(e.target.value)
@@ -171,7 +173,7 @@ function MemberEdit(props) {
             <Form.Control
               type="text"
               placeholder="0988888888"
-              defaultValue={member[1].member_phone}
+              defaultValue={member[0].member_phone}
               required
               onChange={(e) => {
                 setPhone(e.target.value)
@@ -190,7 +192,7 @@ function MemberEdit(props) {
             <Form.Control
               type="date"
               placeholder=""
-              defaultValue={member[1].birthday}
+              defaultValue={member[0].birthday}
               required
               onChange={(e) => {
                 setBirthday(e.target.value)
@@ -209,7 +211,7 @@ function MemberEdit(props) {
             <Form.Control
               as="select"
               custom
-              defaultValue={member[1].member_sex}
+              defaultValue={member[0].member_sex}
               onChange={(e) => {
                 setmember_sex(e.target.value)
               }}
@@ -239,7 +241,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="例：小智"
-              defaultValue={member[1].member_id}
+              defaultValue={member[0].member_id}
               onChange={(e) => {
                 setMember_id(e.target.value)
               }}
@@ -258,7 +260,7 @@ function MemberEdit(props) {
               required
               type="text"
               placeholder="例：我在資策會學習網頁前端"
-              defaultValue={member[1].member_aboutme}
+              defaultValue={member[0].member_aboutme}
               onChange={(e) => {
                 setMember_aboutme(e.target.value)
               }}

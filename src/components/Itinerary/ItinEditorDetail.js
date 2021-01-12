@@ -4,7 +4,7 @@ import fakeTestingData from './testBoxData'
 import PicUploadRect from './PicUploadRect'
 //
 function ItinEditorDetail({
-  index = [0, 1],
+  isEdit = true,
   boxData = fakeTestingData,
   setData = () => {},
 }) {
@@ -39,11 +39,13 @@ function ItinEditorDetail({
       ))}
       <form id="detailForm">
         {boxData.map((element, indexDay) => (
-          <>
+          <div key={indexDay}>
             {element.data.map((ele, indexBox) => (
               <div
                 className={`itin-detail-pictext-wrapper boxInfo${indexDay}${indexBox}`}
+                key={indexBox}
               >
+                <p>{ele.title}</p>
                 <div className="itin-detail-checkKV">
                   <input
                     type="radio"
@@ -62,7 +64,7 @@ function ItinEditorDetail({
                 <textarea placeholder="您可以在此輸入心得或描述" />
               </div>
             ))}
-          </>
+          </div>
         ))}
       </form>
     </div>

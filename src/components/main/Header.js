@@ -29,7 +29,7 @@ function Header(props) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              to="/travelBuddy"
+              to="/travelBuddies"
               className="Navbar-Title h5 "
             >
               揪團旅行

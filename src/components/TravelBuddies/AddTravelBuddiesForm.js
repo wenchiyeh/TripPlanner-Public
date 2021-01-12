@@ -1,14 +1,71 @@
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import FormControl from 'react-bootstrap/FormControl'
 import FormCheck from 'react-bootstrap/FormCheck'
 import FormFile from 'react-bootstrap/FormFile'
+import PicUploadRect from '../Itinerary/PicUploadRect'
 import Modal from 'react-bootstrap/Modal'
 
 function AddTravelBuddiesForm() {
   const [validated, setValidated] = useState(false)
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
+  const [tbThemeName, settbThemeName] = useState('')
+  const [tbThemePhoto, settbThemePhoto] = useState('')
+  const [tbRegionCategory, settbRegionCategory] = useState([])
+  const [tbCityCategory, settbCityCategory] = useState([])
+  const [tbDateBegin, settbDateBegin] = useState('')
+  const [tbDateEnd, settbDateEnd] = useState('')
+  const [tbDaysCategory, settbDaysCategory] = useState('')
+  const [tbLastApprovedDate, settbLastApprovedDate] = useState('')
+  const [tbEstimatedCost, settbEstimatedCost] = useState('')
+  const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
+  const [tbGenderNeeded, settbGenderNeeded] = useState('')
+  const [tbThemeIntro, settbThemeIntro] = useState('')
+
+  async function addTravelBuddies() {
+    const newTravelBuddies = {
+      tbThemeName,
+      tbThemePhoto,
+      tbRegionCategory,
+      tbCityCategory,
+      tbDateBegin,
+      tbDateEnd,
+      tbDaysCategory,
+      tbLastApprovedDate,
+      tbEstimatedCost,
+      tbPersonsNeeded,
+      tbGenderNeeded,
+      tbThemeIntro,
+    }
+
+    try {
+      // 從伺服器得到資料
+      const response = await fetch('http://localhost:5000/', {
+        method: 'post',
+        body: JSON.stringify(newTravelBuddies),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+
+      // ok只能判斷201-299狀態碼的情況
+      if (response.ok) {
+        // 剖析資料為JS的數值
+        const data = await response.json()
+        console.log(data)
+
+        // 設定資料到member狀態
+        if (data.id) alert('新增成功')
+      }
+    } catch (err) {
+      // 發生錯誤的處理情況
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -26,15 +83,21 @@ function AddTravelBuddiesForm() {
         <div class="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
-            <div className="add-travelbuddies-picture"></div>
+            <canvas className="add-travelbuddies-picture">
+              <div>請選擇檔案或拖曳上傳</div>
+            </canvas>
             <Form.Group controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
               </Form.Label>
               <Form.Control
-                id="travelBuddiesThemeName"
+                id="tbThemeName"
+                name="tbThemeName"
                 type="text"
                 placeholder="請輸入30字元內的旅行揪團名稱"
+                onChange={(e) => {
+                  settbThemeName(e.target.value)
+                }}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -52,7 +115,7 @@ function AddTravelBuddiesForm() {
                     label="北部"
                     type={type}
                     id={`inline-${type}-regioncategory1`}
-                    name="regioncategory[]"
+                    name="tbRegionCategory[]"
                     value="1"
                   />
                   <Form.Check
@@ -60,7 +123,7 @@ function AddTravelBuddiesForm() {
                     label="中部"
                     type={type}
                     id={`inline-${type}-regioncategory2`}
-                    name="regioncategory[]"
+                    name="tbRegionCategory[]"
                     value="2"
                   />
                   <Form.Check
@@ -68,7 +131,7 @@ function AddTravelBuddiesForm() {
                     label="南部"
                     type={type}
                     id={`inline-${type}-regioncategory3`}
-                    name="regioncategory[]"
+                    name="tbRegionCategory[]"
                     value="3"
                   />
                   <Form.Check
@@ -76,7 +139,7 @@ function AddTravelBuddiesForm() {
                     label="東部"
                     type={type}
                     id={`inline-${type}-regioncategory4`}
-                    name="regioncategory[]"
+                    name="tbRegionCategory[]"
                     value="4"
                   />
                   <Form.Check
@@ -84,7 +147,7 @@ function AddTravelBuddiesForm() {
                     label="離島"
                     type={type}
                     id={`inline-${type}-regioncategory5`}
-                    name="regioncategory[]"
+                    name="tbRegionCategory[]"
                     value="5"
                   />
                 </div>
@@ -104,7 +167,7 @@ function AddTravelBuddiesForm() {
                     label="台北"
                     type={type}
                     id={`inline-${type}-citycategory1`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="1"
                   />
                   <Form.Check
@@ -112,7 +175,7 @@ function AddTravelBuddiesForm() {
                     label="新北"
                     type={type}
                     id={`inline-${type}-citycategory2`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="2"
                   />
                   <Form.Check
@@ -120,7 +183,7 @@ function AddTravelBuddiesForm() {
                     label="基隆"
                     type={type}
                     id={`inline-${type}-citycategory3`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="3"
                   />
                   <Form.Check
@@ -128,7 +191,7 @@ function AddTravelBuddiesForm() {
                     label="桃園"
                     type={type}
                     id={`inline-${type}-citycategory4`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="4"
                   />
                   <Form.Check
@@ -136,7 +199,7 @@ function AddTravelBuddiesForm() {
                     label="新竹"
                     type={type}
                     id={`inline-${type}-citycategory5`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="5"
                   />
                   <Form.Check
@@ -144,7 +207,7 @@ function AddTravelBuddiesForm() {
                     label="苗栗"
                     type={type}
                     id={`inline-${type}-citycategory6`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="6"
                   />
                   <Form.Check
@@ -152,7 +215,7 @@ function AddTravelBuddiesForm() {
                     label="台中"
                     type={type}
                     id={`inline-${type}-citycategory7`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="7"
                   />
                   <Form.Check
@@ -160,7 +223,7 @@ function AddTravelBuddiesForm() {
                     label="彰化"
                     type={type}
                     id={`inline-${type}-citycategory8`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="8"
                   />
                   <Form.Check
@@ -168,7 +231,7 @@ function AddTravelBuddiesForm() {
                     label="南投"
                     type={type}
                     id={`inline-${type}-citycategory9`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="9"
                   />
                   <Form.Check
@@ -176,7 +239,7 @@ function AddTravelBuddiesForm() {
                     label="雲林"
                     type={type}
                     id={`inline-${type}-citycategory10`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="10"
                   />
                   <Form.Check
@@ -184,7 +247,7 @@ function AddTravelBuddiesForm() {
                     label="嘉義"
                     type={type}
                     id={`inline-${type}-citycategory11`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="11"
                   />
                   <Form.Check
@@ -192,7 +255,7 @@ function AddTravelBuddiesForm() {
                     label="台南"
                     type={type}
                     id={`inline-${type}-citycategory12`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="12"
                   />
                   <Form.Check
@@ -200,7 +263,7 @@ function AddTravelBuddiesForm() {
                     label="高雄"
                     type={type}
                     id={`inline-${type}-citycategory13`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="13"
                   />
                   <Form.Check
@@ -208,7 +271,7 @@ function AddTravelBuddiesForm() {
                     label="屏東"
                     type={type}
                     id={`inline-${type}-citycategory14`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="14"
                   />
                   <Form.Check
@@ -216,7 +279,7 @@ function AddTravelBuddiesForm() {
                     label="宜蘭"
                     type={type}
                     id={`inline-${type}-citycategory15`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="15"
                   />
                   <Form.Check
@@ -224,7 +287,7 @@ function AddTravelBuddiesForm() {
                     label="花蓮"
                     type={type}
                     id={`inline-${type}-citycategory16`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="16"
                   />
                   <Form.Check
@@ -232,7 +295,7 @@ function AddTravelBuddiesForm() {
                     label="台東"
                     type={type}
                     id={`inline-${type}-citycategory17`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="17"
                   />
                   <Form.Check
@@ -240,7 +303,7 @@ function AddTravelBuddiesForm() {
                     label="澎湖"
                     type={type}
                     id={`inline-${type}-citycategory18`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="18"
                   />
                   <Form.Check
@@ -248,7 +311,7 @@ function AddTravelBuddiesForm() {
                     label="金門"
                     type={type}
                     id={`inline-${type}-citycategory19`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="19"
                   />
                   <Form.Check
@@ -256,7 +319,7 @@ function AddTravelBuddiesForm() {
                     label="馬祖"
                     type={type}
                     id={`inline-${type}-citycategory20`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="20"
                   />
                   <Form.Check
@@ -264,7 +327,7 @@ function AddTravelBuddiesForm() {
                     label="綠島"
                     type={type}
                     id={`inline-${type}-citycategory21`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="21"
                   />
                   <Form.Check
@@ -272,7 +335,7 @@ function AddTravelBuddiesForm() {
                     label="蘭嶼"
                     type={type}
                     id={`inline-${type}-citycategory22`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="22"
                   />
                   <Form.Check
@@ -280,7 +343,7 @@ function AddTravelBuddiesForm() {
                     label="小琉球"
                     type={type}
                     id={`inline-${type}-citycategory23`}
-                    name="citycategory[]"
+                    name="tbCityCategory[]"
                     value="23"
                   />
                 </div>
@@ -291,12 +354,13 @@ function AddTravelBuddiesForm() {
             </Form.Group>
             <Form.Row>
               <Col>
-                <Form.Group controlId="travelBuddiesStartDate">
-                  <Form.Label htmlFor="travelBuddiesStartDate">
+                <Form.Group controlId="travelBuddiesDateBegin">
+                  <Form.Label htmlFor="travelBuddiesDateBegin">
                     旅行開始日期：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesStartDate"
+                    id="tbDateBegin"
+                    name="tbDateBegin"
                     type="date"
                     placeholder=""
                     required
@@ -307,12 +371,13 @@ function AddTravelBuddiesForm() {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Group controlId="travelBuddiesEndDate">
-                  <Form.Label htmlFor="travelBuddiesEndDate">
+                <Form.Group controlId="travelBuddiesDateEnd">
+                  <Form.Label htmlFor="travelBuddiesDateEnd">
                     旅行結束日期：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesEndDate"
+                    id="tbDateEnd"
+                    name="tbDateEnd"
                     type="date"
                     placeholder=""
                     required
@@ -327,12 +392,16 @@ function AddTravelBuddiesForm() {
                   <Form.Label htmlFor="travelBuddiesDaysCategory">
                     天數分類：
                   </Form.Label>
-                  <Form.Control as="select">
-                    <option>1日遊</option>
-                    <option>2-3日遊</option>
-                    <option>4-5日遊</option>
-                    <option>6-7日遊</option>
-                    <option>8日遊或以上</option>
+                  <Form.Control
+                    as="select"
+                    id="tbDaysCategory"
+                    name="tbDaysCategory"
+                  >
+                    <option value="1">1日遊</option>
+                    <option value="2">2-3日遊</option>
+                    <option value="3">4-5日遊</option>
+                    <option value="4">6-7日遊</option>
+                    <option value="5">8日遊或以上</option>
                   </Form.Control>
                   <Form.Control.Feedback type="invalid">
                     請選擇旅行結束日期
@@ -347,7 +416,8 @@ function AddTravelBuddiesForm() {
                     最後審核日期：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesLastApprovedDate"
+                    id="tbLastApprovedDate"
+                    name="tbLastApprovedDate"
                     type="date"
                     placeholder=""
                     required
@@ -363,7 +433,8 @@ function AddTravelBuddiesForm() {
                     預估花費：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesEstimatedCost"
+                    id="tbEstimatedCost"
+                    name="tbEstimatedCost"
                     type="number"
                     placeholder=""
                     required
@@ -403,8 +474,8 @@ function AddTravelBuddiesForm() {
                         label="男性"
                         type={type}
                         id={`inline-${type}-genderNeeded1`}
-                        name="genderNeeded"
-                        value="1"
+                        name="tbGenderNeeded"
+                        value="男性"
                         className="mr-3"
                       />
                       <Form.Check
@@ -412,8 +483,8 @@ function AddTravelBuddiesForm() {
                         label="女性"
                         type={type}
                         id={`inline-${type}-genderNeeded2`}
-                        name="genderNeeded"
-                        value="2"
+                        name="tbGenderNeeded"
+                        value="女性"
                         className="mr-3"
                       />
                       <Form.Check
@@ -421,8 +492,8 @@ function AddTravelBuddiesForm() {
                         label="男女皆可"
                         type={type}
                         id={`inline-${type}-genderNeeded2`}
-                        name="genderNeeded"
-                        value="3"
+                        name="tbGenderNeeded"
+                        value="男女皆可"
                         className="mr-3"
                       />
                     </div>
@@ -437,9 +508,15 @@ function AddTravelBuddiesForm() {
               <Form.Label htmlFor="travelBuddiesThemeIntro">
                 旅行揪團介紹：
               </Form.Label>
-              <Form.Control as="textarea" rows={5} />
+              <Form.Control
+                as="textarea"
+                rows={5}
+                id="tbThemeIntro"
+                name="tbThemeIntro"
+                placeholder="請盡情介紹您的旅行揪團，吸引更多人報名參加唷！"
+              />
               <Form.Control.Feedback type="invalid">
-                旅行揪團名稱為必填欄位
+                旅行揪團介紹為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
             <Button

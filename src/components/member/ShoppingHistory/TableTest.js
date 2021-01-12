@@ -23,9 +23,7 @@ function TableTest({
       <td>NT$ {price}</td>
       <td>
         <Link to={detailUrl}>
-          <Button variant="info" data-ticketNumber={ticketNumber}>
-            明細
-          </Button>
+          <Button variant="info">明細</Button>
         </Link>
       </td>
     </>

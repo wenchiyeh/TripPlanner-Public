@@ -1,0 +1,27 @@
+[
+{"type":"header","version":"5.0.3","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"products"},
+{"type":"table","name":"orderhirstory","database":"products","data":
+[
+{"id":"1","userName":"陳嘉賢","gender":"男","ticketType":"早鳥票","price":"500","purchaseDate":"2020/08/09","ticketNumber":"910427463088752401","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"台北部落客幼幼班 撰文第二收入 對抗疫情不景氣 影響力變現"},
+{"id":"2","userName":"陳嘉賢","gender":"男","ticketType":"單人票","price":"800","purchaseDate":"2020/01/31","ticketNumber":"598099637594770557","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"網路行銷企業培訓/創業/品牌諮詢"},
+{"id":"3","userName":"陳嘉賢","gender":"男","ticketType":"早鳥票","price":"500","purchaseDate":"2020/05/05","ticketNumber":"427781407968759018","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"心理學入門課程進修"},
+{"id":"4","userName":"陳嘉賢","gender":"男","ticketType":"團體票","price":"300","purchaseDate":"2020/05/01","ticketNumber":"988858544262526557","payfor":"VISA","many":"10","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"React 專案應用直播班"},
+{"id":"5","userName":"陳嘉賢","gender":"男","ticketType":"早鳥票","price":"500","purchaseDate":"2020/06/24","ticketNumber":"637631583838154920","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"應用心理學系列－玩轉潛意識 當催眠遇上 NLP"},
+{"id":"6","userName":"陳嘉賢","gender":"男","ticketType":"單人票","price":"800","purchaseDate":"2020/09/19","ticketNumber":"808929187775712744","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"單眼OUT！教您如何拍出專業好質感"},
+{"id":"7","userName":"陳嘉賢","gender":"男","ticketType":"早鳥票","price":"500","purchaseDate":"2020/08/09","ticketNumber":"162848777951129506","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"TQUK 心理諮詢師證照在職專班｜學習專業心理學課程，同時取得國際心理師證照的絕佳機會！"},
+{"id":"8","userName":"陳嘉賢","gender":"男","ticketType":"單人票","price":"800","purchaseDate":"2020/08/09","ticketNumber":"880806049714355861","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"品牌化時代的視覺設計溝通：形象、包裝、體驗的跨域設計力"},
+{"id":"9","userName":"陳嘉賢","gender":"男","ticketType":"單人票","price":"800","purchaseDate":"2020/08/09","ticketNumber":"105342641303542492","payfor":"VISA","many":"1","phone":"0913224137","mail":"8M9cHnwh@gmail.com","birthday":"1992-04-04","className":"初級雪地訓練"}
+
+]
+}
+]
+
+
+
+
+
+
+
+
+

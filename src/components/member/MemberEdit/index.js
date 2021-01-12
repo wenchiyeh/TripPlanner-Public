@@ -10,8 +10,9 @@ import './MemberEdit.scss'
 //帶入資料庫
 function MemberEdit(props) {
   let { id } = useParams()
+  let history = useHistory()
   const [member, setMember] = useState([])
-  const [name, setName] = useState('')
+  const [member_name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [area, setArea] = useState('')
@@ -42,7 +43,7 @@ function MemberEdit(props) {
   //更新
   async function updateMember(id) {
     const newMember = {
-      name,
+      member_name,
       email,
       password,
       area,
@@ -53,7 +54,7 @@ function MemberEdit(props) {
       member_aboutme,
     }
     try {
-      const response = await fetch('http://localhost:5000/member', {
+      const response = await fetch('http://localhost:5000/member' + id, {
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -63,18 +64,15 @@ function MemberEdit(props) {
       if (response.ok) {
         const data = await response.json()
         setMember(data)
+        if (data.id) alert('更新成功')
+
+        history.push('/member')
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
-  useEffect(() => {
-    // 共用同一個元件作新增或更新
-    if (props.type === 'edit') {
-      getMember(id)
-    }
-  }, [props.type, id])
   //元件狀態
   const [validated, setValidated] = useState(false)
   //元件事件
@@ -270,7 +268,7 @@ function MemberEdit(props) {
         <Button
           className="memed-submit"
           onClick={() => {
-            updateMember(id)
+            updateMember()
           }}
         >
           確定

@@ -42,7 +42,7 @@ function Header(props) {
             <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/shoppingcar-1">
+            <Nav.Link as={NavLink} to="/shoppingcar/">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

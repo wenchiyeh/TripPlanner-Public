@@ -2,8 +2,11 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 // import Pages from '../../main/Pages'
 import './history-table.scss'
-import { Historydata } from './Historydata'
 import TableTest from './TableTest'
+
+let orderhirstory = require('./orderhirstory.json')
+let TestData = orderhirstory[2].data
+
 function ShoppingHistory() {
   return (
     <>
@@ -20,11 +23,11 @@ function ShoppingHistory() {
             </tr>
           </thead>
           <tbody>
-            {Historydata.map((v, i) => (
-              <tr>
+            {TestData.map((v, i) => (
+              <tr key={i}>
                 <TableTest
                   id={v.id}
-                  PurchaseDate={v.PurchaseDate}
+                  PurchaseDate={v.purchaseDate}
                   ticketNumber={v.ticketNumber}
                   many={v.many}
                   price={v.price}

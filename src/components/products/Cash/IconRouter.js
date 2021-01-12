@@ -11,11 +11,15 @@ import './cash.scss'
 // import CashStep3 from './CashStep3'
 
 function IconRouter() {
+  const car1 = '/shoppingcar/1'
+  const car2 = '/shoppingcar/2'
+  const car3 = '/shoppingcar/3'
+
   return (
     <>
       <div className="icons">
-        <div className="active">
-          <Link to="/shoppingcar-1">
+        <div>
+          <Link to={car1} className="acitve">
             <FaShoppingCart />
           </Link>
           <p>我的購物車</p>
@@ -24,7 +28,7 @@ function IconRouter() {
         <MdKeyboardArrowRight className="arrow" />
 
         <div>
-          <Link to="/shoppingcar-2">
+          <Link to={car2}>
             <GoCreditCard />
           </Link>
           <p>付款方式</p>
@@ -33,7 +37,7 @@ function IconRouter() {
         <MdKeyboardArrowRight className="arrow" />
 
         <div>
-          <Link to="/shoppingcar-3">
+          <Link to={car3}>
             <FaRegCheckSquare />
           </Link>
           <p>訂單完成</p>

@@ -3,7 +3,7 @@ import MyTravelBuddiesTabs from './MyTravelBuddiesTabs'
 function MyTravelBuddies() {
   return (
     <>
-      <div className="card mb-3"></div>
+      <div className=" mb-3"></div>
       <MyTravelBuddiesTabs />
     </>
   )

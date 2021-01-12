@@ -3,7 +3,15 @@ import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
+import { useHistory } from 'react-router-dom'
+
 function Login(props) {
+  let history = useHistory()
+
+  function gohome() {
+    history.push('/myAccount')
+  }
+
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -62,7 +70,11 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button type="submit" className="login-btn">
+            <Button
+              // type="submit"
+              className="login-btn"
+              onClick={gohome}
+            >
               登入
             </Button>
             <div className="login-samp-text d-flex">

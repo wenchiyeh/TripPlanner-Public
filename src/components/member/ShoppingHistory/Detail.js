@@ -44,12 +44,12 @@ function Detail() {
               <hr />
               <div>
                 <h4>講座名稱</h4>
-                <h5>{orderDetail[id].className}</h5>
+                <h5>{orderDetail[id].class_Name}</h5>
               </div>
               <hr />
               <div>
                 <h4>票種</h4>
-                <h5>{orderDetail[id].ticketId}</h5>
+                <h5>{orderDetail[id].ticket_Name}</h5>
               </div>
               <hr />
               <div>
@@ -57,42 +57,42 @@ function Detail() {
                 <h5>{orderDetail[id].many}</h5>
               </div>
               <hr />
-              {/*     <div>
-              <h4>價格</h4>
-              <h5>{orderDetail[id].price}</h5>
-            </div>
-            <hr />*/}
+              <div>
+                <h4>價格</h4>
+                <h5>{orderDetail[id].ticket_price}</h5>
+              </div>
+              <hr />
               <div>
                 <h4>付款方式</h4>
                 <h5>{orderDetail[id].payfor}</h5>
               </div>
               <hr />
 
-              {/*  <div>
-              <h4>姓名</h4>
-              <h5>{orderDetail[id].userName}</h5>
-            </div>
-            <hr />
-            <div>
-              <h4>性別</h4>
-              <h5>{orderDetail[id].gender}</h5>
-            </div>
-            <hr />
-            <div>
-              <h4>電話</h4>
-              <h5>{orderDetail[id].phone}</h5>
-            </div>
-            <hr />
-            <div>
-              <h4>電子信箱</h4>
-              <h5>{orderDetail[id].mail}</h5>
-            </div>
-            <hr />
-            <div>
-              <h4>出生日期</h4>
-              <h5>{orderDetail[id].birthday}</h5>
-            </div>
-            <hr />*/}
+              <div>
+                <h4>姓名</h4>
+                <h5>{orderDetail[id].user_Name}</h5>
+              </div>
+              <hr />
+              <div>
+                <h4>性別</h4>
+                <h5>{(orderDetail[id].gender = 1 ? '男' : '女')}</h5>
+              </div>
+              <hr />
+              <div>
+                <h4>電話</h4>
+                <h5>{orderDetail[id].user_phone}</h5>
+              </div>
+              <hr />
+              <div>
+                <h4>電子信箱</h4>
+                <h5>{orderDetail[id].user_mail}</h5>
+              </div>
+              <hr />
+              <div>
+                <h4>出生日期</h4>
+                <h5>{orderDetail[id].user_birthday}</h5>
+              </div>
+              <hr />
             </div>
           </div>
         </div>

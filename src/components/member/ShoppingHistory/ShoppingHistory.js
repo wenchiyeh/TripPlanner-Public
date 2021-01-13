@@ -34,7 +34,7 @@ function ShoppingHistory() {
               <th>訂單編號</th>
               <th>購買日期</th>
               <th>張數</th>
-              {/* <th>價格</th>*/}
+
               <th></th>
             </tr>
           </thead>
@@ -46,7 +46,6 @@ function ShoppingHistory() {
                   PurchaseDate={v.purchaseDate}
                   ticketNumber={v.ticketNumber}
                   many={v.many}
-                  // price={orderhirstory[0].price}
                 />
               </tr>
             ))}

@@ -38,6 +38,7 @@ function CardListPublic() {
                 like={'222'}
                 mark={'222'}
                 image={'/classPhoto/' + v.classPhoto}
+                location={v.classCity}
               />
             </Col>
           ))}

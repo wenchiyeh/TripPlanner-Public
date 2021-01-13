@@ -198,7 +198,7 @@ function BuyProducts() {
               <p className="calssInside">{buyClass[id].classValue}</p>
             </div>
             <div className="introduction">
-              <p className="classTitel">課程大綱</p>
+              <p className="classTitel">活動大綱</p>
               <ul>
                 {buyClass[id].classOutline.split('-').map((v, i) => (
                   <li>{v}</li>
@@ -206,7 +206,7 @@ function BuyProducts() {
               </ul>
             </div>
             <div className="introduction">
-              <p className="classTitel">講座資訊</p>
+              <p className="classTitel">活動資訊</p>
               <ul>
                 <li>日期：{buyClass[id].classDate}</li>
                 <li>
@@ -219,8 +219,8 @@ function BuyProducts() {
             </div>
 
             <div className="introduction">
-              <p className="classTitel">課程地點－{buyClass[id].location}</p>
-              <p className="calssInside">地址：{buyClass[id].address}</p>
+              <p className="classTitel">活動地點－{buyClass[id].location}</p>
+              <p className="calssInside">地點：{buyClass[id].address}</p>
             </div>
             <div className="introduction">
               <p className="classTitel">報名須知</p>

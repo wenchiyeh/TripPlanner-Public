@@ -120,9 +120,6 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
             className={classIsClose[0]}
           >
             <span>{data.title}</span>
-            <span className="box-close-btn">
-              <FaTimesCircle size={26} />
-            </span>
           </div>
           <div className="itin-editor-spotsWapper">
             {data.data.map((element, index) => (

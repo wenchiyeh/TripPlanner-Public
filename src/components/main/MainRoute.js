@@ -7,7 +7,7 @@ import ProductsRoute from '../products/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import BuyProducts from '../../pages/BuyProducts/BuyProducts'
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
-import AddTravelBuddies from '../../pages/AddTravelBuddies'
+// import AddTravelBuddies from '../../pages/AddTravelBuddies'
 
 import Null from '../products/Cash/Null'
 import CashStep1 from '../products/Cash/CashStep1'

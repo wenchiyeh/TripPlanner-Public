@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
 // import Pages from '../../main/Pages'
 import './history-table.scss'
 import TableTest from './TableTest'
 
-let orderhirstory = require('./orderhirstory.json')
-let TestData = orderhirstory[2].data
-
 function ShoppingHistory() {
+  const [historyOrder, setHistoryOrder] = useState([])
+  async function getHistoryOrder(props) {
+    try {
+      const response = await fetch('http://localhost:5000/historyOrder', {
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setHistoryOrder(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getHistoryOrder()
+  }, [])
+
   return (
     <>
       <div className="table-history">
@@ -18,19 +34,19 @@ function ShoppingHistory() {
               <th>訂單編號</th>
               <th>購買日期</th>
               <th>張數</th>
-              <th>價格</th>
+              {/* <th>價格</th>*/}
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {TestData.map((v, i) => (
+            {historyOrder.map((v, i) => (
               <tr key={i}>
                 <TableTest
                   id={v.id}
                   PurchaseDate={v.purchaseDate}
                   ticketNumber={v.ticketNumber}
                   many={v.many}
-                  price={v.price}
+                  // price={orderhirstory[0].price}
                 />
               </tr>
             ))}

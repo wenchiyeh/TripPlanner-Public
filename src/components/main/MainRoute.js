@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
-import ProductsRoute from '../products/ProductsRoute'
+import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
-import BuyProducts from '../../pages/BuyProducts/BuyProducts'
+// import BuyProducts from '../../pages/BuyProducts/BuyProducts'
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 // import AddTravelBuddies from '../../pages/AddTravelBuddies'
 
@@ -36,15 +36,13 @@ function MainRoute() {
         <Route path="/itinerary">
           <ItinRoute />
         </Route>
-        <Route path="/products">
+        <Route path="/productList">
           <ProductsRoute />
         </Route>
         <Route path="/LineChart">
           <LineChart />
         </Route>
-        <Route path="/Buy">
-          <BuyProducts />
-        </Route>
+
         <Route path="/travelBuddies">
           <TravelBuddiesRoute />
         </Route>

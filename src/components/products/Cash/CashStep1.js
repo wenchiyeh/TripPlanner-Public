@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { Button } from 'react-bootstrap'
 import IconRouter from './IconRouter'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 function CashStep1() {
   let history = useHistory()
@@ -15,6 +16,31 @@ function CashStep1() {
   function cancel() {
     history.push('/')
   }
+
+  let { id } = useParams()
+
+  const [carOne, setCarOne] = useState([])
+  async function getCarOne(props) {
+    try {
+      const response = await fetch(
+        'http://localhost:5000/productList' + { id },
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        setCarOne(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getCarOne()
+  }, [])
+
   return (
     <>
       <div className="In-the-car">

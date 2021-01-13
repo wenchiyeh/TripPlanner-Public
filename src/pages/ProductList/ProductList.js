@@ -1,10 +1,10 @@
 import React from 'react'
 
-import MyBreadCrumb from '../components/main/MyBreadCrumb/MyBreadCrumb'
-import SearchBar from '../components/main/SearchBar'
-import CardListPublic from '../components/main/CardListPublic'
-import Carousel from '../components/TravelBuddies/Carousel'
-import Pages from '../components/main/Pages'
+import MyBreadCrumb from '../../components/main/MyBreadCrumb/MyBreadCrumb'
+import SearchBar from '../../components/main/SearchBar'
+import ProductPublic from './ProductPublic'
+import Carousel from '../../components/TravelBuddies/Carousel'
+import Pages from '../../components/main/Pages'
 
 function ProductList() {
   return (
@@ -17,7 +17,7 @@ function ProductList() {
       <div className="container">
         <SearchBar />
 
-        <CardListPublic />
+        <ProductPublic />
         <Pages />
       </div>
     </>

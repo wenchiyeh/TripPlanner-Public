@@ -4,7 +4,6 @@ import TravelBuddies from '../../pages/TravelBuddies'
 import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import TravelBuddiesMainPage from '../../pages/TravelBuddiesMainPage'
 import TravelBuddiesChatroom from '../../pages/TravelBuddiesChatroom'
-import ProductList from '../../pages/ProductList'
 
 function Test() {
   let { id } = useParams()

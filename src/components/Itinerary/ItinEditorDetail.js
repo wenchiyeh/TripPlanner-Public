@@ -8,26 +8,26 @@ function ItinEditorDetail({
   boxData = fakeTestingData,
   setData = () => {},
 }) {
-  function handlePicUpload() {
-    fetch('http://localhost:5000/upload', {
-      method: 'post',
-      mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        test: 1,
-      }),
-    })
-      .then((res) => {
-        return res.json()
-      })
-      .then((jsonData) => {
-        console.log(jsonData)
-      })
-      .catch((err) => {
-        console.log(`err = ${err}`)
-      })
-  }
-  return (
+  // function handlePicUpload() {
+  //   fetch('http://localhost:5000/upload', {
+  //     method: 'post',
+  //     mode: 'cors',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       test: 1,
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       return res.json()
+  //     })
+  //     .then((jsonData) => {
+  //       console.log(jsonData)
+  //     })
+  //     .catch((err) => {
+  //       console.log(`err = ${err}`)
+  //     })
+  // }
+  const displayEdit = (
     <div className="itin-detail-wrapper">
       <div className="itin-map-header"></div>
       <div className="itin-detail-map-wrapper"></div>
@@ -69,6 +69,43 @@ function ItinEditorDetail({
       </form>
     </div>
   )
+  const displayConst = (
+    <div className="itin-detail-wrapper">
+      <div className="itin-map-header"></div>
+      <div className="itin-detail-map-wrapper"></div>
+      <hr />
+      {boxData.map((element, index) => (
+        <h4 className={`dayTitle${index}`} key={index}>
+          {element.title}
+        </h4>
+      ))}
+      <form id="detailForm">
+        {boxData.map((element, indexDay) => (
+          <div key={indexDay}>
+            {element.data.map((ele, indexBox) => (
+              <div
+                className={`itin-detail-pictext-wrapper boxInfo${indexDay}${indexBox}`}
+                key={indexBox}
+              >
+                <p>{ele.title}</p>
+                {element.images !== '' ? (
+                  <></>
+                ) : (
+                  <div className="detailPic">
+                    <img src={`/images/${ele.images}`} alt={ele.title} />
+                  </div>
+                )}
+                <div className="showInfoText">
+                  <p>{ele.info}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </form>
+    </div>
+  )
+  return isEdit ? displayEdit : displayConst
 }
 
 export default ItinEditorDetail

@@ -1,85 +1,124 @@
 .tb-mainpage-wrapper {
   width: 1080px;
-  overflow: auto;
+
   background: transparent;
   margin: 45px auto;
-  position: relative;
-  .tb-mainpage-hero-image img {
+
+  .tb-mainpage-hero-image {
     width: 1080px;
     height: 400px;
-    object-fit: cover;
-  }
-  .tb-mainpage-condition {
-    width: 500px;
-    height: 150px;
-    background: rgba(0, 0, 0, 0.3);
-    position: absolute;
-    top: 250px;
-    right: 0;
-    z-index: 5;
-    .tb-mainpage-icons-group {
-      margin: 20px;
-      justify-content: space-around;
-      .tb-mainpage-icons-subgroup {
-        text-align: center;
-        .tb-mainpage-icons {
-          color: #ffffff;
-          font-size: 36px;
-          z-index: 10;
-        }
-        .tb-mainpage-icons-word {
-          color: #ffffff;
-          font-size: 20px;
-          z-index: 10;
-          margin-top: 6px;
-        }
-      }
-    }
-    .tb-mainpage-lastapproved {
-      color: #ffffff;
-      font-size: 20px;
-      position: absolute;
-      right: 1rem;
-      top: 100px;
-      z-index: 10;
-    }
-  }
-  figure {
-    display: inline-block;
-    width: 130px;
-    height: 130px;
-    background: transparent;
-    color: #fff;
-    position: absolute;
-    left: 35px;
-    top: 335px;
-    z-index: 5;
-    border-radius: 50%;
     overflow: hidden;
     img {
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center center;
     }
   }
-  .tb-mainpage-owner {
-    font-size: 20px;
-    color: $sub-dark-gray;
-    position: absolute;
-    left: 180px;
-    top: 415px;
+  .tb-mainpage-flex {
+    display: flex;
+    justify-content: space-between;
+
+    .tb-mainpage-nameAndPhoto {
+      display: flex;
+      margin-left: 34px;
+
+      .tb-mainpage-profilephoto {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: -65px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center bottom;
+        }
+      }
+      .tb-mainpage-owner {
+        margin-top: 16px;
+        margin-left: 16px;
+        color: #707070;
+      }
+    }
+
+    .tb-mainpage-condition {
+      width: 500px;
+      height: 150px;
+      background: rgba(0, 0, 0, 0.2);
+      margin-top: -150px;
+
+      .tb-mainpage-icons-group {
+        margin: 20px;
+        justify-content: space-around;
+
+        .tb-mainpage-icons-subgroup {
+          display: flex;
+          p {
+            color: #fff;
+          }
+          .tb-mainpage-much {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            margin-left: 16px;
+            margin-bottom: 0;
+            margin-top: 20px;
+          }
+
+          .tb-mainpage-gender {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .tb-mainpage-howMany {
+            display: flex;
+            justify-content: center;
+
+            .tb-mainpage-people {
+              display: flex;
+              margin-left: 8px;
+              align-items: flex-end;
+
+              h1,
+              p {
+                color: #fff;
+                line-height: 40px;
+              }
+            }
+          }
+
+          .tb-mainpage-icons {
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            margin: 8px auto;
+          }
+          .tb-mainpage-icons-word {
+            color: #ffffff;
+          }
+        }
+      }
+      .tb-mainpage-lastapproved {
+        color: #ffffff;
+        float: right;
+        margin-right: 16px;
+      }
+    }
   }
+
   .tb-mainpage-label-group {
-    position: absolute;
-    left: 0;
-    top: 480px;
+    margin: 20px 0 8px 0;
+
     .tb-mainpage-label {
       width: 80px;
       height: 26px;
       background-color: $main-red;
       color: #fff;
       border-radius: 16px;
-      z-index: 2;
+
       text-align: center;
       margin-right: 1rem;
       span {
@@ -88,16 +127,11 @@
     }
   }
   .tb-mainpage-title {
-    align-items: center;
+    justify-content: space-between;
     h1 {
-      font-size: 36px;
-      position: absolute;
-      top: 520px;
+      margin-bottom: 20px;
     }
     .tb-mainpage-button-group {
-      position: absolute;
-      top: 520px;
-      right: 0px;
       .tb-mainpage-button {
         width: 120px;
         height: 36px;
@@ -111,8 +145,7 @@
     }
   }
   .tb-mainpage-tag-group {
-    position: absolute;
-    top: 595px;
+    margin-bottom: 32px;
     .tb-mainpage-tag {
       font-size: 14px;
       height: 40px;
@@ -127,8 +160,6 @@
     }
   }
   .tb-mainpage-maincontent-wrapper {
-    position: absolute;
-    top: 670px;
     width: 1080px;
     height: auto;
     border: 1px solid $font-black;
@@ -140,7 +171,7 @@
       margin: 2rem auto;
       .tb-mainpage-dategroup {
         align-items: center;
-        position: relative;
+
         .tb-mainpage-date {
           align-items: center;
           margin-right: 1rem;
@@ -150,7 +181,6 @@
           }
         }
         .tb-mainpage-liked {
-          position: absolute;
           right: 0;
         }
       }

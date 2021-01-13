@@ -35,45 +35,66 @@ function TravelBuddiesMainPage() {
       <>
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
-            <img src="/images/member/DSC_7875.jpg" alt="這是圖片" />
+            <img src="/images/member/DSC_7875.jpg" alt="上面的" />
           </div>
-          <div className="tb-mainpage-condition">
-            <div className="d-flex tb-mainpage-icons-group">
-              <div className="tb-mainpage-icons-subgroup">
-                <IoIosPeople className="tb-mainpage-icons" />
-                <div className="tb-mainpage-icons-word">
-                  需求{travelBuddies[0].tb_personsNeeded}人
-                </div>
-              </div>
-              <div className="tb-mainpage-icons-subgroup">
-                <ImManWoman className="tb-mainpage-icons" />
-                <div className="tb-mainpage-icons-word">
-                  {travelBuddies[0].tb_genderNeeded}
-                </div>
-              </div>
-              <div className="tb-mainpage-icons-subgroup">
-                <MdAttachMoney className="tb-mainpage-icons" />
-                <div className="tb-mainpage-icons-word">
-                  {travelBuddies[0].tb_estimatedCost}
-                </div>
-              </div>
+
+          <div className="tb-mainpage-flex">
+            <div className="tb-mainpage-nameAndPhoto">
+              <figure className="tb-mainpage-profilephoto">
+                <img src="/images/member/DSC_7875.jpg" alt="大頭貼" />
+              </figure>
+              <h4 className="tb-mainpage-owner">
+                {travelBuddies.length > 0 && travelBuddies[0].tb_owner}
+              </h4>
             </div>
-            <div className="tb-mainpage-lastapproved">
-              最後審核時間：
-              {travelBuddies.length > 0 &&
-                travelBuddies[0].tb_lastApprovedDate.slice(0, 4) +
-                  '/' +
-                  travelBuddies[0].tb_lastApprovedDate.slice(5, 7) +
-                  '/' +
-                  travelBuddies[0].tb_lastApprovedDate.slice(8, 10)}
+
+            <div className="tb-mainpage-condition">
+              <div className="d-flex tb-mainpage-icons-group">
+                <div className="tb-mainpage-icons-subgroup">
+                  <div className="tb-mainpage-howMany">
+                    <div className="tb-mainpage-friend">
+                      <IoIosPeople className="tb-mainpage-icons" />
+                      <p>旅伴</p>
+                    </div>
+                    <div className="tb-mainpage-people">
+                      <h1>{travelBuddies[0].tb_personsNeeded}</h1>
+                      <p>人</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tb-mainpage-icons-subgroup">
+                  <div className="tb-mainpage-gender">
+                    <ImManWoman className="tb-mainpage-icons" />
+                    <div className="tb-mainpage-icons-word">
+                      {travelBuddies[0].tb_genderNeeded}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tb-mainpage-icons-subgroup">
+                  <div className="tb-mainpage-price">
+                    <MdAttachMoney className="tb-mainpage-icons" />
+                    <p>價格</p>
+                  </div>
+                  <h3 className="tb-mainpage-much">
+                    {travelBuddies[0].tb_estimatedCost}
+                  </h3>
+                </div>
+              </div>
+
+              <h4 className="tb-mainpage-lastapproved">
+                最後審核時間：
+                {travelBuddies.length > 0 &&
+                  travelBuddies[0].tb_lastApprovedDate.slice(0, 4) +
+                    '/' +
+                    travelBuddies[0].tb_lastApprovedDate.slice(5, 7) +
+                    '/' +
+                    travelBuddies[0].tb_lastApprovedDate.slice(8, 10)}
+              </h4>
             </div>
           </div>
-          <figure>
-            <img src="/images/member/DSC_7875.jpg" alt="" />
-          </figure>
-          <div className="tb-mainpage-owner">
-            {travelBuddies.length > 0 && travelBuddies[0].tb_owner}
-          </div>
+
           <div className="d-flex tb-mainpage-label-group">
             {travelBuddies[0].tb_region.split(',').length > 0 &&
               travelBuddies[0].tb_region.split(',').map((v, i) => {

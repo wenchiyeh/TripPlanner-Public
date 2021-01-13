@@ -23,7 +23,7 @@ function MemberEdit(props) {
   const [member_aboutme, setMember_aboutme] = useState('')
 
   //更新
-  async function updateMember(id) {
+  async function updateMember() {
     const newMember = {
       member_name,
       email,
@@ -36,8 +36,9 @@ function MemberEdit(props) {
       member_aboutme,
     }
     try {
-      const response = await fetch('http://localhost:5000/member' + id, {
-        method: 'put',
+      const response = await fetch('http://localhost:5000/member', {
+        //mode: 'no-cors',
+        method: 'update',
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -234,7 +235,7 @@ function MemberEdit(props) {
         </Form.Row>
         {/* 暱稱 */}
         <Form.Row>
-          <Form.Group as={Col} md="12" controlId="validationCustom01">
+          <Form.Group as={Col} md="12" controlId="validationCustom06">
             <Form.Label>暱稱</Form.Label>
             <span className="med-add-text-red">*</span>
             <Form.Control
@@ -251,7 +252,7 @@ function MemberEdit(props) {
         </Form.Row>
         {/* 自我介紹 */}
         <Form.Row>
-          <Form.Group as={Col} md="12" controlId="validationCustom01">
+          <Form.Group as={Col} md="12" controlId="validationCustom07">
             <Form.Label>自我介紹</Form.Label>
             <span className="med-add-text-red">*</span>
             <Form.Control
@@ -270,7 +271,7 @@ function MemberEdit(props) {
         <Button
           className="memed-submit"
           onClick={() => {
-            updateMember(id)
+            updateMember()
           }}
         >
           確定

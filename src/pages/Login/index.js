@@ -1,16 +1,19 @@
 //登入
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
 import { useHistory } from 'react-router-dom'
+import { userActions } from './user'
 
 function Login(props) {
   let history = useHistory()
-
-  function gohome() {
-    history.push('/myAccount')
-  }
+  // function gohome() {
+  //   history.push('/myAccount')
+  // }
+  const [member, setMember] = useState([])
+  const [emailm, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const [validated, setValidated] = useState(false)
 
@@ -18,11 +21,44 @@ function Login(props) {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
+      const { email, password } = useState
+      const { dispatch } = props
+      if (email && password) {
+        dispatch(userActions.login(email, password))
+      }
       event.stopPropagation()
+      history.push('/myAccount')
     }
 
     setValidated(true)
   }
+  async function getMember() {
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'post',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setMember(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(
+    (e) => {
+      getMember()
+    },
+    [emailm]
+  )
+
+  useEffect(
+    (e) => {
+      getMember()
+    },
+    [password]
+  )
   return (
     <>
       <body className="body-login">
@@ -42,6 +78,9 @@ function Login(props) {
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onClick={(e) => {
+                      setEmail(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的信箱格式
@@ -63,6 +102,9 @@ function Login(props) {
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onClick={(e) => {
+                      setPassword(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的密碼格式
@@ -71,9 +113,11 @@ function Login(props) {
               </Form.Group>
             </Form.Row>
             <Button
-              // type="submit"
+              type="submit"
               className="login-btn"
-              onClick={gohome}
+              // onClick={() => {
+              //   history.push('/myAccount')
+              // }}
             >
               登入
             </Button>

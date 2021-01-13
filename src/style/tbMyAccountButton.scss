@@ -60,6 +60,9 @@
 }
 .tbmine-delete-title {
   color: $sub-dark-gray;
+  span {
+    color: $main-darkblue;
+  }
 }
 .tbmine-button-delete-cancel {
   width: 85px;

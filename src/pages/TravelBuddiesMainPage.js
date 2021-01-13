@@ -35,13 +35,13 @@ function TravelBuddiesMainPage() {
       <>
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
-            <img src="/images/member/DSC_7875.jpg" alt="上面的" />
+            <img src="/images/member/DSC_7875.jpg" alt="旅行揪團主圖片" />
           </div>
 
           <div className="tb-mainpage-flex">
             <div className="tb-mainpage-nameAndPhoto">
               <figure className="tb-mainpage-profilephoto">
-                <img src="/images/member/DSC_7875.jpg" alt="大頭貼" />
+                <img src="/images/member/DSC_7875.jpg" alt="揪團主頭貼" />
               </figure>
               <h4 className="tb-mainpage-owner">
                 {travelBuddies.length > 0 && travelBuddies[0].tb_owner}

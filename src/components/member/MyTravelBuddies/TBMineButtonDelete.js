@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 
-function TBMineButtonDelete() {
+function TBMineButtonDelete(props) {
   const [tbMineDelete, settbMineDelete] = useState(false)
+  console.log(props.tb_themeName_)
   return (
     <>
       <Button
@@ -20,7 +21,8 @@ function TBMineButtonDelete() {
         <Form>
           <Modal.Header closeButton>
             <Modal.Title id="tbMineDelete" className="tbmine-delete-title">
-              您確定要刪除旅行揪團並通知團員嗎？
+              您確定要刪除<span>{' ' + props.tb_themeName_ + ' '}</span>
+              並通知團員嗎？
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -33,7 +35,11 @@ function TBMineButtonDelete() {
             <Button variant="" className="tbmine-button-delete-cancel">
               取消
             </Button>
-            <Button variant="" className="tbmine-button-delete-confirm">
+            <Button
+              variant=""
+              className="tbmine-button-delete-confirm"
+              onClick="tbDelete()"
+            >
               確定
             </Button>
           </Modal.Footer>

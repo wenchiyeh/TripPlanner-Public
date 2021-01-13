@@ -11,7 +11,6 @@ import TBMembersSelect from './TBMembersSelect'
 
 function TravelBuddiesMine() {
   const [tbMine, settbMine] = useState([])
-  const [trNumber, settrNumber] = useState(0)
   async function gettbMine(props) {
     try {
       const response = await fetch('http://localhost:5000/tbmyaccount/tbmine', {
@@ -48,7 +47,7 @@ function TravelBuddiesMine() {
               tbMine.map((v, i) => {
                 return (
                   <tr key={i}>
-                    <td>1</td>
+                    <td>{i + 1}</td>
                     <td>{v.tb_themeName}</td>
                     <td>
                       {v.tb_dateBegin.slice(0, 4) +
@@ -68,7 +67,10 @@ function TravelBuddiesMine() {
                     <td>
                       <TBButtonRead /> <TBMineButtonEdit />{' '}
                       <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                      <TBMineButtonDelete id={tbMine.id} />{' '}
+                      <TBMineButtonDelete
+                        tb_id_={v.id}
+                        tb_themeName_={v.tb_themeName}
+                      />{' '}
                     </td>
                   </tr>
                 )

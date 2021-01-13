@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, useParams } from 'react-router-dom'
-import ProductList from '../../pages/ProductList'
+import ProductList from '../../pages/ProductList/ProductList'
 
 function Test() {
   let { id } = useParams()

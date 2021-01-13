@@ -38,7 +38,7 @@ function Card({
   } else if (time2 !== -1) {
     type = 'travelBuddy'
   } else if (price !== -1) {
-    type = 'products'
+    type = 'productList'
   }
   let detailUrl = `/${type}/view/${id}`
   const calenderMark = (

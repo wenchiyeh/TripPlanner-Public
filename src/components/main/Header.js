@@ -34,7 +34,11 @@ function Header(props) {
             >
               揪團旅行
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/products" className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/productList"
+              className="Navbar-Title h5 "
+            >
               達人講座
             </Nav.Link>
           </Nav>
@@ -42,7 +46,7 @@ function Header(props) {
             <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/shoppingcar/">
+            <Nav.Link as={NavLink} to="/shoppingcar">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

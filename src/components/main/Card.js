@@ -40,7 +40,7 @@ function Card({
   } else if (price !== -1) {
     type = 'productList'
   }
-  let detailUrl = `/${type}/view/${id - 1}`
+  let detailUrl = `/${type}/view/${id}`
   const calenderMark = (
     <>
       <FaRegCalendarCheck />

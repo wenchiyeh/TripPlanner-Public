@@ -88,11 +88,11 @@ function ItinEditorDetail({
                 key={indexBox}
               >
                 <p>{ele.title}</p>
-                {element.images !== '' ? (
+                {ele.image === '' || ele.image === null ? (
                   <></>
                 ) : (
                   <div className="detailPic">
-                    <img src={`/images/${ele.images}`} alt={ele.title} />
+                    <img src={`/images/${ele.image}`} alt={ele.title} />
                   </div>
                 )}
                 <div className="showInfoText">

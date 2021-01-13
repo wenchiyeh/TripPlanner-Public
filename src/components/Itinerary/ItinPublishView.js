@@ -14,67 +14,76 @@ let fakeUserId = 0 //預設使用者為0號
 //
 function ItinPublishView({ isEdit = false, isPublish = true }) {
   const [dataFromDB, segDataFromDB] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isEmpty, setIsEmpty] = useState(false)
+  const [isLoading, setIsLoading] = useState(1)
   let isMe = false
   let { itin_id } = useParams()
-  let displayView = <></>
-  useEffect(() => {
-    if (isEmpty) {
-      displayView = <h1>查無此行程</h1>
-    } else {
-      displayView = (
-        <div className="itin-editor-frame">
-          <ItinEditorHeader
+  async function getDataFromDB() {
+    console.log('doFetch')
+    try {
+      const response = await fetch(
+        `http://localhost:5000/itinerary/${itin_id}`,
+        {
+          method: 'get',
+          mode: 'cors',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        segDataFromDB(data)
+        setTimeout(() => {
+          if (data.length === 0) {
+            setIsLoading(3)
+          } else {
+            setIsLoading(0)
+          }
+        }, 0)
+        console.log(data)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
+  }
+  const displayView = dataFromDB.length > 0 && (
+    <div className="itin-editor-frame">
+      <ItinEditorHeader
+        isEdit={isEdit}
+        isPublish={isPublish}
+        isMe={isMe}
+        title={dataFromDB[0].title}
+      />
+      <main className="d-flex justify-content-between">
+        <div>
+          <ItinEditorBasicData
             isEdit={isEdit}
             isPublish={isPublish}
-            isMe={isMe}
-            title={fakeCardData.title}
+            memberName={dataFromDB[0].member_name}
+            avatar={'testImage.jpg'}
+            area={'北部'}
+            town={'台北'}
           />
-          <main className="d-flex justify-content-between">
-            <div>
-              <ItinEditorBasicData
-                isEdit={isEdit}
-                isPublish={isPublish}
-                memberName={fakeMemberData.member_id}
-                avatar={'testImage.jpg'}
-                area={'北部'}
-                town={'台北'}
-              />
-              <ItinEditor
-                isEdit={false} //任何情況下的publish頁都不需要修改功能
-                boxData={fakeTestingData}
-              />
-            </div>
-            <div>
-              <ItinEditorDetail isEdit={isEdit} boxData={fakeTestingData} />
-            </div>
-          </main>
+          <ItinEditor
+            isEdit={false} //任何情況下的publish頁都不需要修改功能
+            boxData={dataFromDB[1]}
+          />
         </div>
-      )
-    }
-  }, [isEmpty])
-  if (dataFromDB === []) {
-    fetch(`http://localhost:5000/itinerary/${itin_id}`, {
-      method: 'get',
-      mode: 'cors',
-    })
-      .then((res) => {
-        return res.json()
-      })
-      .then((jsonData) => {
-        console.log(jsonData)
-        if (jsonData[0].member_id === fakeUserId) isMe = true
-        if (jsonData.length === 0) setIsEmpty(true)
-        segDataFromDB(jsonData)
-      })
-      .catch((err) => {
-        console.log(`err = ${err}`)
-        segDataFromDB([fakeCardData, fakeTestingData])
-      })
-  }
+        <div>
+          <ItinEditorDetail isEdit={isEdit} boxData={dataFromDB[1]} />
+        </div>
+      </main>
+    </div>
+  )
 
-  return isLoading ? <h1>讀取中</h1> : displayView
+  useEffect(() => {
+    getDataFromDB()
+  }, [])
+
+  if (isLoading === 0) {
+    return displayView
+  } else if (isLoading === 1) {
+    return <h1>讀取中</h1>
+  } else {
+    return <h1>查無此行程</h1>
+  }
 }
 
 export default ItinPublishView

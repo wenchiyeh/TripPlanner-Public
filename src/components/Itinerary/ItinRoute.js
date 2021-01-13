@@ -10,16 +10,19 @@ import ItinPublishView from './ItinPublishView'
 //
 
 function Test() {
-  let { id } = useParams()
-  return <h1>{id}</h1>
+  let { itin_id } = useParams()
+  return <h1>{itin_id}</h1>
 }
 
 function ItinRoute() {
   return (
     <>
       <Switch>
-        <Route path="/itinerary/view/:id">
-          <Test />
+        <Route path="/itinerary/view/:itin_id">
+          <ItinPublishView isEdit={false} isPublish={true} />
+        </Route>
+        <Route path="/itinerary/publish/:itin_id">
+          <ItinPublishView isEdit={true} isPublish={true} />
         </Route>
         <Route path="/itinerary/test">
           <ItinList />

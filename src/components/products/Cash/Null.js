@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom'
 function Null() {
   let history = useHistory()
   function goToBuy() {
-    history.push('/products')
+    history.push('/productList')
   }
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Table, Button, Modal } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
@@ -10,8 +10,52 @@ import TBMineButtonDeleteNoMembers from './TBMineButtonDeleteNoMembers'
 import TBMembersSelect from './TBMembersSelect'
 
 function TravelBuddiesMine() {
+  const [tbMine, settbMine] = useState([])
+  const [trNumber, settrNumber] = useState(0)
+  async function gettbMine(props) {
+    try {
+      const response = await fetch('http://localhost:5000/myaccounttb/tbmine', {
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        settbMine(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    gettbMine()
+  }, [])
+
+  const tbMineTable = (
+    <tbody>
+      {tbMine.length > 0 &&
+        tbMine.map((v, i) => {
+          return (
+            <tr key={i}>
+              <td>{(trNumber = settrNumber(trNumber + 1))}</td>
+              <td>{v.tb_themeName}</td>
+              <td>
+                {v.tb_dateBegin.toLocaleDateString() +
+                  '-' +
+                  v.tb_dateEnd.toLocaleDateString()}
+              </td>
+              <td>
+                <TBButtonRead /> <TBMineButtonEdit />{' '}
+                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                <TBMineButtonDelete />{' '}
+              </td>
+            </tr>
+          )
+        })}
+    </tbody>
+  )
   return (
-    <>
+    <tbody>
       <div className="travelbuddiesmine-outbox">
         <Table>
           <thead>
@@ -23,6 +67,7 @@ function TravelBuddiesMine() {
             </tr>
           </thead>
           <tbody>
+            {tbMineTable}
             <tr>
               <td>1</td>
               <td>金門馬祖六天尋幽訪古</td>
@@ -60,7 +105,7 @@ function TravelBuddiesMine() {
       <div className="tb-pages">
         <Pages />
       </div>
-    </>
+    </tbody>
   )
 }
 

@@ -30,9 +30,7 @@ function TravelBuddiesMine() {
   useEffect(() => {
     gettbMine()
   }, [])
-  {
-    console.log(tbMine)
-  }
+
   return (
     <tbody>
       <div className="travelbuddiesmine-outbox">
@@ -50,25 +48,27 @@ function TravelBuddiesMine() {
               tbMine.map((v, i) => {
                 return (
                   <tr key={i}>
-                    <td className="testtest1">1</td>
-                    <td className="testtest2">{v.tb_themeName}</td>
-                    <td className="testtest3">
+                    <td>1</td>
+                    <td>{v.tb_themeName}</td>
+                    <td>
                       {v.tb_dateBegin.slice(0, 4) +
                         '/' +
                         v.tb_dateBegin.slice(5, 7) +
                         '/' +
                         v.tb_dateBegin.slice(8, 10) +
+                        ' ' +
                         '-' +
+                        ' ' +
                         v.tb_dateEnd.slice(0, 4) +
                         '/' +
                         v.tb_dateEnd.slice(5, 7) +
                         '/' +
                         v.tb_dateEnd.slice(8, 10)}
                     </td>
-                    <td className="testtest4">
+                    <td>
                       <TBButtonRead /> <TBMineButtonEdit />{' '}
                       <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                      <TBMineButtonDelete />{' '}
+                      <TBMineButtonDelete id={tbMine.id} />{' '}
                     </td>
                   </tr>
                 )

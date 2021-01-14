@@ -7,6 +7,7 @@ import ItinEditor from './ItinEditor'
 // import SpotBox from './SpotsBox'
 import ItinList from './ItinList'
 import ItinPublishView from './ItinPublishView'
+import BigMap from './BigMap'
 // import TestDragEditor from './TestDragEditor'
 //
 
@@ -30,6 +31,9 @@ function ItinRoute() {
         </Route>
         <Route path="/itinerary/new">
           <ItinEditView />
+        </Route>
+        <Route path="/itinerary/map">
+          <BigMap />
         </Route>
         <Route exact path="/itinerary">
           <Itinerary />

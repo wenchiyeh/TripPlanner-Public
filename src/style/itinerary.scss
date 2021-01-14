@@ -31,9 +31,46 @@
   background: rgb(223, 142, 142);
 }
 .map-search-wrapper {
+  width: 400px;
   position: absolute;
-  top: 50px;
-  right: 50px;
+  z-index: 2;
+  top: 100px;
+  right: 100px;
+  background: $sub-gray;
+  input {
+    width: 100%;
+    margin: 0;
+  }
+  .map-search-result {
+    width: 100%;
+    padding: 32px 0;
+    &:hover {
+      background: $sub-silver;
+    }
+  }
+  .map-search-plus {
+    padding: 32px 15px;
+    width: 50px;
+  }
+}
+.map-markerWrap {
+  width: 250px;
+  position: relative;
+  img {
+    margin-bottom: 10px;
+  }
+  .map-marker-info {
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 15px;
+    position: absolute;
+    transform: translateY(-120px);
+    width: 250px;
+    padding: 10px;
+    p {
+      margin: 10px 0;
+    }
+  }
 }
 //editor相關
 .itin-editor-frame {

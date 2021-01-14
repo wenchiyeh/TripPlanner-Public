@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { FaPlus } from 'react-icons/fa'
 import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
@@ -7,12 +8,30 @@ import { Key } from '../../Key'
 //
 //
 const AnyReactComponent = ({ text }) => <div>{text}</div>
+const PlaceMarker = ({ title, vicinity }) => (
+  <div className="map-markerWrap d-flex flex-column align-items-center">
+    <div className="map-marker-info d-flex  flex-column align-items-center">
+      <h4>{title}</h4>
+      <p>{vicinity}</p>
+      <h5>
+        加進行程 <FaPlus />
+      </h5>
+    </div>
+    <img
+      className="map-markerIcon"
+      src={'/images/paperPlane.png'}
+      alt={title}
+    />
+    <h4>{title}</h4>
+  </div>
+)
+// if business_status 確認是否是景點     .name 地名
 //
 function BigMap(props) {
   //預設傳入值
   const {
     center = { lat: 24.969328305278708, lng: 121.1954124510366 }, //中央大學
-    zoom = 15,
+    zoom = 18, //越大放越大
   } = props
   //
   // 預設位置
@@ -32,6 +51,7 @@ function BigMap(props) {
   const [inputText, setInputText] = useState('')
   const [autocompleteResults, setAutocompleteResults] = useState([])
   const [currentCenter, setCurrentCenter] = useState(center)
+  const [places, setPlaces] = useState([]) //儲存搜尋到的地點
   //
   // 當地圖載入完成，將地圖實體與地圖 API 傳入 state 供之後使用
   const apiHasLoaded = (map, maps) => {
@@ -39,7 +59,36 @@ function BigMap(props) {
     setMapApi(maps) //maps = 各種map API
     setMapApiLoaded(true)
   }
-
+  const handleCenterChange = () => {
+    if (mapApiLoaded) {
+      const newPosition = {
+        lat: mapInstance.center.lat(),
+        lng: mapInstance.center.lng(),
+      }
+      setCurrentCenter(newPosition) // 改變地圖視角位置
+      setMyPosition(newPosition) // 改變 MyPosition
+      doSearchPlace() //改變中心後重新搜尋地標
+    }
+  }
+  const doSearchPlace = () => {
+    var loc = new mapApi.LatLng(
+      mapInstance.center.lat(),
+      mapInstance.center.lng()
+    )
+    if (mapApiLoaded) {
+      const service = new mapApi.places.PlacesService(mapInstance)
+      const request = {
+        location: loc,
+        radius: '300',
+      }
+      service.nearbySearch(request, (results, status) => {
+        if (status === mapApi.places.PlacesServiceStatus.OK) {
+          console.log(results)
+          setPlaces(results)
+        }
+      })
+    }
+  }
   // 自動完成
   const handleAutocomplete = () => {
     if (mapApiLoaded) {
@@ -87,41 +136,61 @@ function BigMap(props) {
   }
   return (
     <div className="map-comp-wrapper">
-      {/* <GoogleMapReact
+      <div className="map-search-wrapper">
+        <input
+          className="form-custom"
+          ref={inputRef}
+          type="text"
+          placeholder="搜尋景點"
+          onChange={debounce(handleInput, 500)}
+        />
+        <div onClick={handleClickToChangeMyPosition}>
+          {autocompleteResults && inputText
+            ? autocompleteResults.map((item, index) => (
+                <div className="d-flex">
+                  <div
+                    className="map-search-result"
+                    key={index}
+                    dataid={item.place_id}
+                  >
+                    　{item.structured_formatting.main_text}
+                  </div>
+                  <div className="map-search-plus">
+                    <FaPlus />
+                  </div>
+                </div>
+              ))
+            : null}
+        </div>
+      </div>
+      <GoogleMapReact
         bootstrapURLKeys={{
           key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         center={currentCenter}
-        // onBoundsChange={handleCenterChange} //移動地圖邊界時觸發 handleCenterChange
+        onBoundsChange={handleCenterChange} //移動地圖邊界時觸發 handleCenterChange
         defaultCenter={center}
         defaultZoom={zoom}
-        options={mapOptions}
+        // options={mapOptions}
         yesIWantToUseGoogleMapApiInternals // 設定為 true
         onGoogleApiLoaded={({ map, maps }) => apiHasLoaded(map, maps)} // 載入完成後執行
+        // onClick={({ lng, lat }) => {
+        //   console.log(lng, lat)
+        //   doSearchPlace()
+        // }}
       >
-        <div className="map-search-wrapper">
-          <input
-            ref={inputRef}
-            type="text"
-            onChange={debounce(handleInput, 500)}
+        {places.map((item) => (
+          <PlaceMarker
+            key={item.id}
+            lat={item.geometry.location.lat()}
+            lng={item.geometry.location.lng()}
+            title={item.name}
+            placeId={item.place_id}
+            vicinity={item.vicinity}
           />
-          <div onClick={handleClickToChangeMyPosition}>
-            {autocompleteResults && inputText
-              ? autocompleteResults.map((item, index) => (
-                  <div key={index} dataid={item.place_id}>
-                    　{item.description}
-                  </div>
-                ))
-              : null}
-          </div>
-        </div>
-        <AnyReactComponent
-          lat={myPosition.lat}
-          lng={myPosition.lng}
-          text="My Position"
-        />
-      </GoogleMapReact> */}
+        ))}
+      </GoogleMapReact>
     </div>
   )
 }

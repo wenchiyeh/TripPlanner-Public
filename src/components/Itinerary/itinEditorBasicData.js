@@ -56,10 +56,11 @@ function ItinEditorBasicData({
               </p>
             </div>
           </div>
-          {isPublish && headData}
+          {!isEdit && headData}
         </div>
       </div>
       <hr />
+      {isEdit && <textarea placeholder="行程簡介" />}
     </div>
   )
 }

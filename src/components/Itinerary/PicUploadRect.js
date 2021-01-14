@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 
 function PicUploadRect({
-  giveClassName = { input: 'inputClass', img: 'imgClass', wrap: 'wrapClass' },
+  originPic = '',
+  giveClassName = {
+    input: 'inputClass',
+    img: 'imgClass',
+    wrap: 'wrapClass',
+  },
 }) {
   function handlePicChange(e, index) {
     let reader = new FileReader()
@@ -14,7 +19,7 @@ function PicUploadRect({
       }
     }
   }
-  const [isDisplay, setIsDisplay] = useState(false)
+  const [isDisplay, setIsDisplay] = useState(originPic && true)
   const displayNone = (
     <div className="itin-readyToUpload d-flex justify-content-center align-items-center">
       <Button
@@ -22,7 +27,6 @@ function PicUploadRect({
         onClick={(e) => {
           e.preventDefault()
           document.querySelector(`.${giveClassName.input}`).click()
-          console.log(giveClassName.input)
         }}
       >
         選擇照片
@@ -34,9 +38,9 @@ function PicUploadRect({
       onClick={(e) => {
         e.preventDefault()
         document.querySelector(`.${giveClassName.input}`).click()
-        console.log(giveClassName.input)
       }}
       className={giveClassName.img}
+      src={`/images/${originPic}`}
       alt={`PicInfo`}
     />
   )

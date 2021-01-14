@@ -18,7 +18,6 @@ function ItinPublishView({ isEdit = false, isPublish = true }) {
   let isMe = false
   let { itin_id } = useParams()
   async function getDataFromDB() {
-    console.log('doFetch')
     try {
       const response = await fetch(
         `http://localhost:5000/itinerary/${itin_id}`,
@@ -37,7 +36,6 @@ function ItinPublishView({ isEdit = false, isPublish = true }) {
             setIsLoading(0)
           }
         }, 0)
-        console.log(data)
       }
     } catch (err) {
       console.log('fetch err')

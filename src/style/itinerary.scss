@@ -56,6 +56,13 @@
   svg {
     margin-bottom: 3px;
   }
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    background: $main-gray;
+    padding: 16px;
+  }
   .itin-BasicData-head {
     height: 72px;
     .itin-BasicData-avatar {

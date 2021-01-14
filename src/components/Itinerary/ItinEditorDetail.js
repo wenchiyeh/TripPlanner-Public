@@ -55,13 +55,17 @@ function ItinEditorDetail({
                   設為主視覺
                 </div>
                 <PicUploadRect
+                  originPic={ele.image}
                   giveClassName={{
                     input: `itin-input-${indexDay}${indexBox}`,
                     img: `PicInfo${indexDay}${indexBox}`,
                     wrap: 'detailPic',
                   }}
                 />
-                <textarea placeholder="您可以在此輸入心得或描述" />
+                <textarea
+                  className={`textarea-${indexDay}${indexBox}`}
+                  placeholder="您可以在此輸入心得或描述"
+                />
               </div>
             ))}
           </div>

@@ -21,14 +21,14 @@ function SearchBar({
   const [returnObject, setReturnObject] = useState({
     area: areaList[0],
     town: townList[0][0],
-    day: day[0],
+    day: 0,
     keyword: '',
   })
   //
   const [inputText, setInputText] = useState('')
-  const [selectArea, setSelectArea] = useState(areaList[0])
-  const [selectTown, setSelectTown] = useState(townList[0][0])
-  const [selectDay, setSelectDay] = useState(day[0])
+  const [selectArea, setSelectArea] = useState('全部')
+  const [selectTown, setSelectTown] = useState('全部')
+  const [selectDay, setSelectDay] = useState(0)
   const [nowArea, setNowArea] = useState(0)
   //偵測地區變化
   useEffect(() => {
@@ -117,7 +117,7 @@ function SearchBar({
             name="searchbar-day"
           >
             {day.map((element, index) => (
-              <option key={index} value={element}>
+              <option key={index} value={index}>
                 {element}
               </option>
             ))}

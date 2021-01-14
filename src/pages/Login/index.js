@@ -4,13 +4,9 @@ import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
-//import { userActions } from './user'
 
 function Login(props) {
   let history = useHistory()
-  // function gohome() {
-  //   history.push('/myAccount')
-  // }
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,11 +16,11 @@ function Login(props) {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
-      event.stopPropagation()
+      //event.stopPropagation()
     } else {
-      // history.push('/myAccount')
+      event.preventDefault()
+      event.stopPropagation()
       getMember()
-      if (member === true) alert('登入成功')
     }
     setValidated(true)
   }
@@ -40,6 +36,7 @@ function Login(props) {
         const data = await response.json()
         if (data.result) {
           setMember(data.member)
+          history.push('/myAccount')
         } else {
           history.push('/login')
         }
@@ -49,9 +46,16 @@ function Login(props) {
       console.log(err)
     }
   }
+  //要寫useEffect
   useEffect(() => {
-    history.push('/myAccount')
-  })
+    if (member !== '') {
+      console.log(`登入成功 會員: ${member}`)
+      history.push('/login')
+    } else {
+      console.log('請重新輸入')
+      history.push('/myAccount')
+    }
+  }, [member])
   return (
     <>
       <body className="body-login">
@@ -71,7 +75,7 @@ function Login(props) {
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
-                    onClick={(e) => {
+                    onChange={(e) => {
                       setEmail(e.target.value)
                     }}
                   />
@@ -95,7 +99,7 @@ function Login(props) {
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required
-                    onClick={(e) => {
+                    onChange={(e) => {
                       setPassword(e.target.value)
                     }}
                   />
@@ -117,7 +121,6 @@ function Login(props) {
                 >
                   註冊
                 </Link>
-                {/* <a href="http://localhost:3000/sigon">註冊</a> */}
               </span>
               <span className="login-samp-text-pas">
                 <Link
@@ -127,7 +130,6 @@ function Login(props) {
                 >
                   忘記密碼
                 </Link>
-                {/* <a href="http://localhost:3000/forgetpassword">忘記密碼</a> */}
               </span>
             </div>
             <div className="d-flex login-line-center">

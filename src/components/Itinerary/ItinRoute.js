@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch, useParams } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
+import ItinEditView from './ItinEditView'
 import ItinEditor from './ItinEditor'
 //測試用
 // import SpotBox from './SpotsBox'
@@ -27,9 +28,9 @@ function ItinRoute() {
         <Route path="/itinerary/test">
           <ItinList />
         </Route>
-        {/* <Route path="/itinerary/new">
-          <ItinPublishView />
-        </Route> */}
+        <Route path="/itinerary/new">
+          <ItinEditView />
+        </Route>
         <Route exact path="/itinerary">
           <Itinerary />
         </Route>

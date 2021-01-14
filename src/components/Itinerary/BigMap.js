@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
-// import { Key } from '../../Key' // 引入 API key
 import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
+//引入 API key
+import { Key } from '../../Key'
+//
+//
 const AnyReactComponent = ({ text }) => <div>{text}</div>
-
+//
 function BigMap(props) {
   //預設傳入值
   const {
@@ -83,11 +86,10 @@ function BigMap(props) {
     })
   }
   return (
-    <>
-      <GoogleMapReact
-        className="map-comp-wrapper"
+    <div className="map-comp-wrapper">
+      {/* <GoogleMapReact
         bootstrapURLKeys={{
-          // key: Key,
+          key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         center={currentCenter}
@@ -98,7 +100,6 @@ function BigMap(props) {
         yesIWantToUseGoogleMapApiInternals // 設定為 true
         onGoogleApiLoaded={({ map, maps }) => apiHasLoaded(map, maps)} // 載入完成後執行
       >
-        <div className="bigmap-content-wrapper">{props.children}</div>
         <div className="map-search-wrapper">
           <input
             ref={inputRef}
@@ -120,8 +121,8 @@ function BigMap(props) {
           lng={myPosition.lng}
           text="My Position"
         />
-      </GoogleMapReact>
-    </>
+      </GoogleMapReact> */}
+    </div>
   )
 }
 

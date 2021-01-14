@@ -8,8 +8,27 @@
   }
 }
 //地圖相關
-.map-comp-wrapper {
+.itin-editview-wrapper {
+  min-height: calc(100vh - 80px);
   position: relative;
+  overflow: hidden;
+  .itin-editor-title {
+    position: relative;
+    z-index: 2;
+  }
+  .itin-editor-wrapper {
+    max-height: calc(100vh - 230px);
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+  }
+}
+.map-comp-wrapper {
+  position: absolute;
+  z-index: 1;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  background: rgb(223, 142, 142);
 }
 .map-search-wrapper {
   position: absolute;

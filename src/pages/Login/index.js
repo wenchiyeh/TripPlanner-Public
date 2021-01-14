@@ -4,7 +4,7 @@ import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
 import { useHistory } from 'react-router-dom'
-import { userActions } from './user'
+//import { userActions } from './user'
 
 function Login(props) {
   let history = useHistory()
@@ -12,7 +12,7 @@ function Login(props) {
   //   history.push('/myAccount')
   // }
   const [member, setMember] = useState([])
-  const [emailm, setEmail] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const [validated, setValidated] = useState(false)
@@ -21,21 +21,18 @@ function Login(props) {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
-      const { email, password } = useState
-      const { dispatch } = props
-      if (email && password) {
-        dispatch(userActions.login(email, password))
-      }
       event.stopPropagation()
+    } else {
       history.push('/myAccount')
     }
-
     setValidated(true)
   }
   async function getMember() {
     try {
       const response = await fetch('http://localhost:5000/login', {
         method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       })
       if (response.ok) {
         const data = await response.json()
@@ -46,19 +43,13 @@ function Login(props) {
       console.log(err)
     }
   }
-  useEffect(
-    (e) => {
-      getMember()
-    },
-    [emailm]
-  )
+  useEffect(() => {
+    getMember()
+  })
 
-  useEffect(
-    (e) => {
-      getMember()
-    },
-    [password]
-  )
+  useEffect(() => {
+    getMember()
+  })
   return (
     <>
       <body className="body-login">

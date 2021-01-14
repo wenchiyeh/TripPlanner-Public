@@ -1,19 +1,47 @@
-//登入
+//免費註冊
 import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import './sign.scss'
 function Login(props) {
+  let history = useHistory()
+  const [member, setMember] = useState([])
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  //驗證表單
   const [validated, setValidated] = useState(false)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
+      //event.stopPropagation()
+    } else {
+      event.preventDefault()
       event.stopPropagation()
+      getMember()
     }
-
     setValidated(true)
+  }
+  //連結伺服器端
+  async function getMember() {
+    try {
+      const response = await fetch('http://localhost:5000/sign', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setMember(data.member)
+        history.push('/login')
+      } else {
+        history.push('/sigon')
+      }
+    } catch (err) {
+      alert('請輸入正確的帳號密碼!')
+      console.log(err)
+    }
   }
   return (
     <>
@@ -34,6 +62,9 @@ function Login(props) {
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的信箱格式
@@ -55,6 +86,9 @@ function Login(props) {
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的密碼格式

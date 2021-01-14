@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
@@ -7,12 +7,10 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
-function Header() {
+
+function Header({ handleLogin }) {
   const imagePath = '/images/testImage.jpg'
 
-  // async function handleLogout(e) {}
-  // e.preventDefault()
-  // setIsLoggedIn(false)
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">

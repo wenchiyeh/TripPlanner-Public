@@ -14,6 +14,7 @@ import {
   AiFillPlusCircle,
   AiFillMinusCircle,
   AiOutlineHeart,
+  AiTwotoneHeart,
 } from 'react-icons/ai'
 
 function BuyProducts() {
@@ -22,9 +23,22 @@ function BuyProducts() {
   const handleShow = () => setSmShow(true)
 
   // 計數器
-  const [early, setEarly] = useState(1)
-  const [single, setSingle] = useState(1)
-  const [group, setGroup] = useState(1)
+  const [early, setEarly] = useState(0)
+  const [single, setSingle] = useState(0)
+  const [group, setGroup] = useState(0)
+
+  // 愛心
+  const [liked, setLiked] = useState(0)
+  const [count, setCount] = useState(48)
+  const tbLiked = (value) => {
+    if (value === 0) {
+      setLiked(1)
+      setCount(count + 1)
+    } else {
+      setLiked(0)
+      setCount(count - 1)
+    }
+  }
 
   // 換頁
   let history = useHistory()
@@ -127,11 +141,6 @@ function BuyProducts() {
               <RiSurgicalMaskFill />
               <div className="tag">
                 <p>{buyClass[0].warning}</p>
-
-                {/*  <p>標籤:</p>
-                  <Button variant="light">這是七個字字字</Button>
-                  <Button variant="light">這是四字</Button>
-                  <Button variant="light">是二</Button>*/}
               </div>
             </div>
             <hr />
@@ -192,10 +201,10 @@ function BuyProducts() {
                 加入購物車
               </Button>
               <div className="followMyHeart">
-                <Button variant="light">
-                  <AiOutlineHeart />
+                <Button variant="light" onClick={() => tbLiked(liked)}>
+                  {liked === 1 ? <AiTwotoneHeart /> : <AiOutlineHeart />}
                 </Button>
-                <p>12345</p>
+                <p>{count}</p>
               </div>
             </div>
           </div>

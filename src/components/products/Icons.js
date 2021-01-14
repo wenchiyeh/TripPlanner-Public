@@ -6,7 +6,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 
-function IconRouter() {
+function IconRouter(props) {
   let history = useHistory()
 
   function car1() {
@@ -18,6 +18,7 @@ function IconRouter() {
   function car3() {
     history.push('/shoppingcar/3')
   }
+
   return (
     <>
       <div className="icons">

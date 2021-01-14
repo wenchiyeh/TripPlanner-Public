@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
@@ -7,9 +7,12 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
-function Header(props) {
+function Header() {
   const imagePath = '/images/testImage.jpg'
 
+  // async function handleLogout(e) {}
+  // e.preventDefault()
+  // setIsLoggedIn(false)
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
@@ -72,7 +75,7 @@ function Header(props) {
                 會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/home">
+              <NavDropdown.Item as={NavLink} to="/">
                 登出
               </NavDropdown.Item>
             </NavDropdown>

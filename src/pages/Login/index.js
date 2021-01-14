@@ -48,11 +48,11 @@ function Login(props) {
   }
   //要寫useEffect
   useEffect(() => {
-    if (member !== '') {
+    if (member === true) {
       console.log(`登入成功 會員: ${member}`)
       history.push('/login')
     } else {
-      console.log('請重新輸入')
+      //console.log('請重新輸入')
       history.push('/myAccount')
     }
   }, [member])

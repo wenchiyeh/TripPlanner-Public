@@ -1,25 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Col, Row, Container } from 'react-bootstrap'
 
 import MyBreadCrumb from '../../components/main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../../components/main/SearchBar'
-import ProductPublic from './ProductPublic'
+import Card from '../../components/main/Card'
 import Carousel from '../../components/TravelBuddies/Carousel'
-import Pages from '../../components/main/Pages'
 
 function ProductList() {
+  const [searchFilter, setSearchFilter] = useState({})
+  useEffect(() => {
+    getProductCard()
+  }, [searchFilter])
+
+  const [productCard, setProductCard] = useState([])
+
+  async function getProductCard(props) {
+    try {
+      const response = await fetch('http://localhost:5000/productList', {
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setProductCard(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getProductCard()
+  }, [])
+
   return (
     <>
-      <div className="container">
+      <Container>
         <MyBreadCrumb />
         <h1>達人講座</h1>
-      </div>
+      </Container>
       <Carousel />
-      <div className="container">
-        <SearchBar />
-
-        <ProductPublic />
-        <Pages />
-      </div>
+      <Container>
+        <SearchBar setSearchFilter={setSearchFilter} />
+        <Row>
+          {productCard.map((v, i) => (
+            <Col xs={6} md={4}>
+              <Card
+                id={v.id}
+                time1={v.classDate}
+                title={v.className}
+                text={v.warning}
+                person={v.teacher_name}
+                price={'1000'}
+                like={'222'}
+                mark={'222'}
+                image={'/classPhoto/' + v.classPhoto}
+                location={v.classCity}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </>
   )
 }

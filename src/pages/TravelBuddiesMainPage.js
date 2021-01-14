@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 // import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
@@ -10,11 +11,12 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 
-function TravelBuddiesMainPage() {
+function TravelBuddiesMainPage(props) {
+  let id = props.id
   const [travelBuddies, setTravelBuddies] = useState([])
   async function getTravelBuddies(props) {
     try {
-      const response = await fetch('http://localhost:5000/travelbuddies', {
+      const response = await fetch('http://localhost:5000/travelbuddies/', {
         method: 'get',
       })
       if (response.ok) {
@@ -75,7 +77,7 @@ function TravelBuddiesMainPage() {
                 <div className="tb-mainpage-icons-subgroup">
                   <div className="tb-mainpage-price">
                     <MdAttachMoney className="tb-mainpage-icons" />
-                    <p>價格</p>
+                    <p>預估</p>
                   </div>
                   <h3 className="tb-mainpage-much">
                     {travelBuddies[0].tb_estimatedCost}

@@ -4,6 +4,31 @@ import { Button, Modal, Form } from 'react-bootstrap'
 function TBMineButtonDelete(props) {
   const [tbMineDelete, settbMineDelete] = useState(false)
   console.log(props.tb_themeName_)
+  console.log(props.id)
+  // let id = prop.id
+  // async function tbDelete(id) {
+  //   // 要使用try-catch來作錯誤處理
+  //   try {
+  //     // 從伺服器得到資料
+  //     const response = await fetch('http://localhost:5000/' + id, {
+  //       method: 'delete',
+  //     })
+
+  //     // ok只能判斷201-299狀態碼的情況
+  //     if (response.ok) {
+  //       // 剖析資料為JS的數值
+  //       const data = await response.json()
+
+  //       // 刷新一次資料列表
+  //       getMembers()
+  //     }
+  //   } catch (error) {
+  //     // 發生錯誤的處理情況
+  //     alert('無法得到伺服器資料，請稍後再重試')
+  //     console.log(error)
+  //   }
+  // }
+
   return (
     <>
       <Button
@@ -38,7 +63,7 @@ function TBMineButtonDelete(props) {
             <Button
               variant=""
               className="tbmine-button-delete-confirm"
-              onClick="tbDelete()"
+              // onClick={tbDelete}
             >
               確定
             </Button>

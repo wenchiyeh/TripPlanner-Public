@@ -68,34 +68,13 @@ function TravelBuddiesMine() {
                       <TBButtonRead /> <TBMineButtonEdit />{' '}
                       <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
                       <TBMineButtonDelete
-                        tb_id_={v.id}
+                        id={v.id}
                         tb_themeName_={v.tb_themeName}
                       />{' '}
                     </td>
                   </tr>
                 )
               })}
-
-            <tr>
-              <td>2</td>
-              <td>台灣西部好好玩！南投彰化雲林嘉義秘境行五日</td>
-              <td>2021/02/11 - 2021/02/15</td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDelete />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>高雄、小琉球玩個三天</td>
-              <td>2021/03/01 - 2021/03/03</td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDeleteNoMembers />{' '}
-              </td>
-            </tr>
           </tbody>
         </Table>
         <TBMembersSelect />

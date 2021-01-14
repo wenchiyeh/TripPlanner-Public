@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 //import { userActions } from './user'
 
 function Login(props) {
@@ -14,19 +14,21 @@ function Login(props) {
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  //驗證表單
   const [validated, setValidated] = useState(false)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
       event.stopPropagation()
     } else {
-      history.push('/myAccount')
+      // history.push('/myAccount')
+      getMember()
+      if (member === true) alert('登入成功')
     }
     setValidated(true)
   }
+  //連結伺服器端
   async function getMember() {
     try {
       const response = await fetch('http://localhost:5000/login', {
@@ -36,19 +38,19 @@ function Login(props) {
       })
       if (response.ok) {
         const data = await response.json()
-        setMember(data)
+        if (data.result) {
+          setMember(data.member)
+        } else {
+          history.push('/login')
+        }
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      alert('請輸入正確的帳號密碼!')
       console.log(err)
     }
   }
   useEffect(() => {
-    getMember()
-  })
-
-  useEffect(() => {
-    getMember()
+    history.push('/myAccount')
   })
   return (
     <>
@@ -103,21 +105,29 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button
-              type="submit"
-              className="login-btn"
-              // onClick={() => {
-              //   history.push('/myAccount')
-              // }}
-            >
+            <Button type="submit" className="login-btn">
               登入
             </Button>
             <div className="login-samp-text d-flex">
               <span>
-                <a href="http://localhost:3000/sigon">註冊</a>
+                <Link
+                  onClick={() => {
+                    history.push('/sigon')
+                  }}
+                >
+                  註冊
+                </Link>
+                {/* <a href="http://localhost:3000/sigon">註冊</a> */}
               </span>
               <span className="login-samp-text-pas">
-                <a href="http://localhost:3000/forgetpassword">忘記密碼</a>
+                <Link
+                  onClick={() => {
+                    history.push('/forgetpassword')
+                  }}
+                >
+                  忘記密碼
+                </Link>
+                {/* <a href="http://localhost:3000/forgetpassword">忘記密碼</a> */}
               </span>
             </div>
             <div className="d-flex login-line-center">

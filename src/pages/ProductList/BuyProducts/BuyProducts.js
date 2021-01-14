@@ -258,7 +258,7 @@ function BuyProducts() {
                   className="modalPhoto"
                 >
                   <img
-                    src={teacherUrl + buyClass.teacher_photo}
+                    src={teacherUrl + buyClass[0].teacher_photo}
                     alt="圖片替代文字"
                   />
                 </Modal.Title>

@@ -34,6 +34,18 @@ function MapProduct() {
     getProductData()
   }, [])
 
+  const [ticketData, setTicketData] = useState({
+    earlyPrice: 0,
+    singlePrice: 0,
+    groupPrice: 0,
+  })
+  function ChangeData(earlyPrice, singlePrice, groupPrice) {
+    setTicketData({
+      earlyTicket: earlyPrice,
+      singleTicket: singlePrice,
+      groupTicket: groupPrice,
+    })
+  }
   return (
     <>
       {productData.map((v, i) => (
@@ -42,6 +54,7 @@ function MapProduct() {
           earlyTicket={'早鳥票'}
           singleTicket={'單人票'}
           groupTicket={'雙人票'}
+          ChangeData={ChangeData}
           earlyPrice={0}
           singlePrice={0}
           groupPrice={0}

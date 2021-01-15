@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
@@ -42,6 +42,7 @@ function BuyProducts({
   teacher_photo,
   teacher_history,
   mapSrc,
+  ChangeData,
 }) {
   // 這是modal
   const [smShow, setSmShow] = useState(false)
@@ -51,6 +52,9 @@ function BuyProducts({
   const [early, setEarly] = useState(earlyPrice)
   const [single, setSingle] = useState(singlePrice)
   const [group, setGroup] = useState(groupPrice)
+  useEffect(() => {
+    ChangeData(early, single, group)
+  }, [early, single, group])
 
   // 愛心
   const [liked, setLiked] = useState(0)

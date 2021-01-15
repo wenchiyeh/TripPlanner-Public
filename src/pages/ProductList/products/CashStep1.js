@@ -95,7 +95,7 @@ function CashStep1(
                 <Button variant="light" className="minus-and-plus">
                   <AiFillMinusCircle />
                 </Button>
-                <p>{totalTicket}}</p>
+                <p>{totalTicket}</p>
                 <Button variant="light" className="minus-and-plus">
                   <AiFillPlusCircle />
                 </Button>

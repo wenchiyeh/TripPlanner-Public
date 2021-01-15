@@ -1,5 +1,5 @@
 import React from 'react'
-import IconRouter from './IconRouter'
+import Icons from './Icons'
 import './cash.scss'
 import { Button } from 'react-bootstrap'
 import { withRouter, Link } from 'react-router-dom'
@@ -8,7 +8,9 @@ function CashStep3() {
   return (
     <>
       <div className="In-the-car">
-        <IconRouter />
+        <div class="car-three">
+          <Icons />
+        </div>
         <div className="step3-main">
           <h4 className="done">訂單完成</h4>
           <div className="show-the-product">

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
 
 import { Form, Col, Button } from 'react-bootstrap'
-import IconRouter from './IconRouter'
+import Icons from './Icons'
 import './cash.scss'
 import ShowCreditCard from './ShowCreditCard'
 
@@ -21,8 +21,9 @@ function CashStep2() {
   return (
     <>
       <div className="In-the-car">
-        <IconRouter />
-
+        <div class="car-two">
+          <Icons />
+        </div>
         <div className="ticket-buy">
           <div className="ticket-title">
             <h4>雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活</h4>

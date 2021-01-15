@@ -7,7 +7,8 @@ import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
-function Header(props) {
+
+function Header({ handleLogin }) {
   const imagePath = '/images/testImage.jpg'
 
   return (
@@ -72,7 +73,7 @@ function Header(props) {
                 會員中心
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/home">
+              <NavDropdown.Item as={NavLink} to="/">
                 登出
               </NavDropdown.Item>
             </NavDropdown>

@@ -8,7 +8,19 @@ import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 
-function CashStep1() {
+function CashStep1(
+  className,
+  classDate,
+  ticket_price,
+  user_name,
+  user_mail,
+  user_phone,
+  user_birthday,
+  totalTicket,
+  totalPrice,
+  finalPrice,
+  finalTicket
+) {
   let { product_id } = useParams()
   const [isLoading, setIsLoading] = useState(1)
   const [tichectButton, setTichectButton] = useState(true)
@@ -28,7 +40,6 @@ function CashStep1() {
       )
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         setInCar(data)
         setTimeout(() => {
           if (data.length === 0) {
@@ -43,7 +54,6 @@ function CashStep1() {
       console.log(err)
     }
   }
-
   const step1 = InCar.length > 0 && (
     <>
       <div className="In-the-car">
@@ -53,7 +63,7 @@ function CashStep1() {
 
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>{InCar[0].className}</h4>
+            <h4>{className}</h4>
             <h4>早鳥票</h4>
           </div>
 
@@ -75,7 +85,7 @@ function CashStep1() {
             <hr />
             <div className="chose-your-ticket">
               <div>
-                <h3>{InCar[0].classDate}</h3>
+                <h3>{classDate}</h3>
               </div>
               <div>
                 <h3>早鳥票</h3>
@@ -85,26 +95,22 @@ function CashStep1() {
                 <Button variant="light" className="minus-and-plus">
                   <AiFillMinusCircle />
                 </Button>
-                <p>1</p>
+                <p>{totalTicket}}</p>
                 <Button variant="light" className="minus-and-plus">
                   <AiFillPlusCircle />
                 </Button>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
-                <h3>400</h3>
+                <h3>{ticket_price}</h3>
               </div>
             </div>
             <hr />
 
             <div className="how-much">
-              <div className="subtotal">
-                <p>小計</p>
-                <p>400</p>
-              </div>
               <div className="total">
                 <h3>總金額</h3>
-                <h3>400</h3>
+                <h3>{totalPrice}</h3>
               </div>
               <div className="btn-zone">
                 <Button variant="light" className="cancel" onClick={cancel}>
@@ -113,7 +119,6 @@ function CashStep1() {
                 <Button
                   variant="info"
                   onClick={(e) => {
-                    console.log(e)
                     setTichectButton(false)
                   }}
                 >
@@ -135,7 +140,7 @@ function CashStep1() {
         </div>
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>ssssss</h4>
+            <h4>{className}</h4>
             <h4>早鳥票</h4>
           </div>
 
@@ -157,18 +162,18 @@ function CashStep1() {
             <hr />
             <div className="chose-your-ticket">
               <div>
-                <h3>12/29</h3>
+                <h3>{classDate}</h3>
               </div>
               <div>
                 <h3>早鳥票</h3>
               </div>
 
               <div className="how-many-ticket">
-                <p>1</p>
+                <p>{finalTicket}</p>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
-                <h3>400</h3>
+                <h3>{finalPrice}</h3>
               </div>
             </div>
             <hr />
@@ -187,6 +192,7 @@ function CashStep1() {
                     type="text"
                     placeholder="請輸入姓名"
                     aria-describedby=""
+                    defaultValue={user_name}
                     required
                   />
                   <Form.Control.Feedback type="invalid">
@@ -203,7 +209,7 @@ function CashStep1() {
                     required
                     type="text"
                     placeholder="請輸入信箱"
-                    defaultValue=""
+                    defaultValue={user_mail}
                   />
                   <Form.Control.Feedback>正確!</Form.Control.Feedback>
                 </Form.Group>
@@ -212,7 +218,13 @@ function CashStep1() {
                 <Form.Group as={Col} md="11" controlId="validationCustom04">
                   <Form.Label>電話</Form.Label>
                   <span className="med-add-text-red">*</span>
-                  <Form.Control type="text" placeholder="0988888888" required />
+
+                  <Form.Control
+                    type="text"
+                    placeholder="0988888888"
+                    required
+                    defaultValue={user_phone}
+                  />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的電話號碼
                   </Form.Control.Feedback>
@@ -222,7 +234,12 @@ function CashStep1() {
                 <Form.Group as={Col} md="6" controlId="validationCustom05">
                   <Form.Label>出生日期</Form.Label>
                   <span className="med-add-text-red">*</span>
-                  <Form.Control type="date" placeholder="" required />
+                  <Form.Control
+                    type="date"
+                    placeholder=""
+                    required
+                    defaultValue={user_birthday}
+                  />
                   <Form.Control.Feedback type="invalid">
                     請輸入出生日期
                   </Form.Control.Feedback>

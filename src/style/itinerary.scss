@@ -64,9 +64,13 @@
     border: 1px solid #000;
     border-radius: 15px;
     position: absolute;
+    z-index: 3;
     transform: translateY(-120px);
     width: 250px;
     padding: 10px;
+    &.map-info-close {
+      display: none;
+    }
     p {
       margin: 10px 0;
     }

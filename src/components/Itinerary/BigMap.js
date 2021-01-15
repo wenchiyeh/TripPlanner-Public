@@ -9,20 +9,41 @@ import { Key } from '../../Key'
 //
 const AnyReactComponent = ({ text }) => <div>{text}</div>
 const PlaceMarker = ({ title, vicinity }) => (
-  <div className="map-markerWrap d-flex flex-column align-items-center">
-    <div className="map-marker-info d-flex  flex-column align-items-center">
+  <div
+    onClick={(e) => {
+      e.stopPropagation()
+      if (e.target.classList.contains('map-markerWrap')) {
+        if (e.target.querySelector('.map-info-close')) {
+          e.target
+            .querySelector('.map-marker-info')
+            .classList.remove('map-info-close')
+        } else {
+          e.target
+            .querySelector('.map-marker-info')
+            .classList.add('map-info-close')
+        }
+      }
+
+      console.log(e.target.classList)
+    }}
+    className="map-markerWrap d-flex flex-column align-items-center"
+  >
+    <div className="map-marker-info map-info-close">
       <h4>{title}</h4>
       <p>{vicinity}</p>
       <h5>
         加進行程 <FaPlus />
       </h5>
     </div>
-    <img
-      className="map-markerIcon"
-      src={'/images/paperPlane.png'}
-      alt={title}
-    />
-    <h4>{title}</h4>
+    <div>
+      <img
+        className="map-markerIcon"
+        // src={'/images/paperPlane.png'}
+        src={'http://maps.google.com/mapfiles/ms/micons/red-dot.png'}
+        alt={title}
+      />
+      <h4>{title}</h4>
+    </div>
   </div>
 )
 // if business_status 確認是否是景點     .name 地名

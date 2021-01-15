@@ -6,8 +6,8 @@ import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
 
 function Login({ onLogin }) {
-  const [loading, setLoading] = useState(false)
-  const [timer, setTimer] = useState(null)
+  //const [loading, setLoading] = useState(false)
+  //const [timer, setTimer] = useState(null)
   //
   let history = useHistory()
   const [member, setMember] = useState([])
@@ -49,21 +49,21 @@ function Login({ onLogin }) {
       console.log(err)
     }
   }
-  useEffect(() => {
-    if (email.trim() && password.trim()) {
-      //trigger();
-      setMember({
-        type: 'setIsButtonDisabled',
-        payload: false,
-      })
-    } else {
-      //clearErrors()
-      setMember({
-        type: 'setIsButtonDisabled',
-        payload: true,
-      })
-    }
-  }, [email, password])
+  // useEffect(() => {
+  //   if (email.trim() && password.trim()) {
+  //     //trigger();
+  //     setMember({
+  //       type: 'setIsButtonDisabled',
+  //       payload: false,
+  //     })
+  //   } else {
+  //     //clearErrors()
+  //     setMember({
+  //       type: 'setIsButtonDisabled',
+  //       payload: true,
+  //     })
+  //   }
+  // }, [email, password])
   //要寫useEffect
   useEffect(() => {
     if (member === true) {
@@ -130,16 +130,16 @@ function Login({ onLogin }) {
             <Button
               type="submit"
               className="login-btn"
-              state={loading ? 'loading' : undefined}
-              onClick={() => {
-                setLoading(true)
-                setTimer(
-                  setTimeout(
-                    () => (onLogin ? onLogin() : setLoading(false)),
-                    2000
-                  )
-                )
-              }}
+              // state={loading ? 'loading' : undefined}
+              // onClick={() => {
+              //   setLoading(true)
+              //   setTimer(
+              //     setTimeout(
+              //       () => (onLogin ? onLogin() : setLoading(false)),
+              //       2000
+              //     )
+              //   )
+              // }}
             >
               登入
             </Button>

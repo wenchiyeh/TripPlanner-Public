@@ -15,6 +15,7 @@ function CardListPublic({ data = handleTestData, type = 'itinerary' }) {
           id={element.itin_id}
           title={element.title}
           text={element.info}
+          duration={element.duration}
           location={element.location}
           image={element.image}
           person={element.nickname}

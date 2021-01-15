@@ -27,9 +27,9 @@ function ItinRoute() {
         <Route path="/itinerary/test">
           <ItinList />
         </Route>
-        <Route path="/itinerary/new">
+        {/* <Route path="/itinerary/new">
           <ItinPublishView />
-        </Route>
+        </Route> */}
         <Route exact path="/itinerary">
           <Itinerary />
         </Route>

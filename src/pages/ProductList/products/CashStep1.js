@@ -135,7 +135,7 @@ function CashStep1() {
         </div>
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活</h4>
+            <h4>{InCar[0].className}</h4>
             <h4>早鳥票</h4>
           </div>
 

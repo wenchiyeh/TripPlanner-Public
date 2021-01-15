@@ -135,7 +135,7 @@ function CashStep1() {
         </div>
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>{InCar[0].className}</h4>
+            <h4>ssssss</h4>
             <h4>早鳥票</h4>
           </div>
 

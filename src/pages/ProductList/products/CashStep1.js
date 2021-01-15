@@ -1,27 +1,136 @@
-import React, { useState } from 'react'
-
+import React, { useState, useEffect } from 'react'
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
+import { useParams } from 'react-router-dom'
 
 import { Form, Col, Button } from 'react-bootstrap'
+import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import Icons from './Icons'
 import './cash.scss'
-import ShowCreditCard from './ShowCreditCard'
+import { useHistory } from 'react-router-dom'
 
-function CashStep2() {
-  const [validated, setValidated] = useState(false)
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+function CashStep1() {
+  let { product_id } = useParams()
+  const [isLoading, setIsLoading] = useState(1)
+  const [tichectButton, setTichectButton] = useState(true)
+  let history = useHistory()
 
-    setValidated(true)
+  function cancel() {
+    history.push('/')
   }
-  return (
+  const [InCar, setInCar] = useState([])
+  async function getInCar(props) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/productList/car1/${product_id}`,
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+        setInCar(data)
+        setTimeout(() => {
+          if (data.length === 0) {
+            setIsLoading(3)
+          } else {
+            setIsLoading(0)
+          }
+        }, 0)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  const step1 = InCar.length > 0 && (
     <>
       <div className="In-the-car">
-        <div class="car-two">
+        <div className="car-one">
+          <Icons />
+        </div>
+
+        <div className="ticket-buy">
+          <div className="ticket-title">
+            <h4>{InCar[0].className}</h4>
+            <h4>早鳥票</h4>
+          </div>
+
+          <div className="you-sure">
+            <div className="table-head">
+              <div>
+                <p>日期</p>
+              </div>
+              <div>
+                <p>名稱</p>
+              </div>
+              <div>
+                <p>數量</p>
+              </div>
+              <div>
+                <p>價格</p>
+              </div>
+            </div>
+            <hr />
+            <div className="chose-your-ticket">
+              <div>
+                <h3>{InCar[0].classDate}</h3>
+              </div>
+              <div>
+                <h3>早鳥票</h3>
+              </div>
+
+              <div className="how-many-ticket">
+                <Button variant="light" className="minus-and-plus">
+                  <AiFillMinusCircle />
+                </Button>
+                <p>1</p>
+                <Button variant="light" className="minus-and-plus">
+                  <AiFillPlusCircle />
+                </Button>
+              </div>
+              <div className="pay-for-it">
+                <h3>NT$ </h3>
+                <h3>400</h3>
+              </div>
+            </div>
+            <hr />
+
+            <div className="how-much">
+              <div className="subtotal">
+                <p>小計</p>
+                <p>400</p>
+              </div>
+              <div className="total">
+                <h3>總金額</h3>
+                <h3>400</h3>
+              </div>
+              <div className="btn-zone">
+                <Button variant="light" className="cancel" onClick={cancel}>
+                  取消
+                </Button>
+                <Button
+                  variant="info"
+                  onClick={(e) => {
+                    console.log(e)
+                    setTichectButton(false)
+                  }}
+                >
+                  下一步
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+
+  const step2 = (
+    <>
+      <div className="In-the-car">
+        <div className="car-two">
           <Icons />
         </div>
         <div className="ticket-buy">
@@ -65,12 +174,7 @@ function CashStep2() {
             <hr />
             {/*上半部色塊 要想辦法弄成元件*/}
             <h3 className="about-member">填寫參加人資訊</h3>
-            <Form
-              noValidate
-              validated={validated}
-              onSubmit={handleSubmit}
-              className="step2-member-from"
-            >
+            <Form noValidate className="step2-member-from">
               <Form.Row>
                 <Form.Group
                   as={Col}
@@ -167,7 +271,6 @@ function CashStep2() {
                     </Form.Check>
                   </div>
                 </div>
-                <ShowCreditCard />
               </div>
               <div className="check-and-btn">
                 <Form.Check
@@ -189,5 +292,14 @@ function CashStep2() {
       </div>
     </>
   )
+  useEffect(() => {
+    getInCar()
+  }, [])
+
+  if (isLoading === 0) {
+    return tichectButton ? step1 : step2
+  } else {
+    return <h1>Loading</h1>
+  }
 }
-export default CashStep2
+export default CashStep1

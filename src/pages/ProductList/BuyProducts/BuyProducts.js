@@ -39,44 +39,45 @@ function BuyProducts() {
       setCount(count - 1)
     }
   }
+  let { product_id } = useParams()
 
   // 換頁
   let history = useHistory()
   function InTheCar() {
-    history.push('/shoppingcar/1')
+    history.push(`/productList/car1/${product_id}`)
   }
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
-  let { id } = useParams()
-  // const [isLoading, setIsLoading] = useState(1)
+  const [isLoading, setIsLoading] = useState(1)
 
   //資料庫
   const [buyClass, setBuyClass] = useState([])
   async function getBuyClass(props) {
     try {
-      const response = await fetch(`http://localhost:5000/productList/${id}`, {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/productList/${product_id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
 
         setBuyClass(data)
-        // setTimeout(() => {
-        //   if (data.length === 0) {
-        //     setIsLoading(3)
-        //   } else {
-        //     setIsLoading(0)
-        //   }
-        // }, 0)
+        setTimeout(() => {
+          if (data.length === 0) {
+            setIsLoading(3)
+          } else {
+            setIsLoading(0)
+          }
+        }, 0)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
-
   const dispalyBuy = buyClass.length > 0 && (
     <>
       <div className="container">
@@ -125,13 +126,13 @@ function BuyProducts() {
                     {buyClass[0].ticket_type.split(',').length > 0 &&
                       buyClass[0].ticket_type
                         .split('-')
-                        .map((v, i) => <li>{v}</li>)}
+                        .map((v, i) => <li key={i}>{v}</li>)}
                   </ul>
                   <ul>
                     {buyClass[0].ticket_price.split(',').length > 0 &&
                       buyClass[0].ticket_price
                         .split('-')
-                        .map((v, i) => <li>{v}</li>)}
+                        .map((v, i) => <li key={i}>{v}</li>)}
                   </ul>
                 </div>
               </div>
@@ -161,10 +162,21 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>早鳥票</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setEarly(early - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{early}</p>
+                {early <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setEarly(early - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setEarly(early - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+
+                <p>{early <= 0 ? 0 : early}</p>
                 <Button variant="light" onClick={() => setEarly(early + 1)}>
                   <AiFillPlusCircle />
                 </Button>
@@ -173,10 +185,20 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>單人票</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setSingle(single - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{single}</p>
+                {single <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setSingle(single - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setSingle(single - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+                <p>{single <= 0 ? 0 : single}</p>
                 <Button variant="light" onClick={() => setSingle(single + 1)}>
                   <AiFillPlusCircle />
                 </Button>
@@ -185,10 +207,21 @@ function BuyProducts() {
             <div className="ticketBuy">
               <p>雙人票</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setGroup(group - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{group}</p>
+                {group <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setGroup(group - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setGroup(group - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+                <p>{group <= 0 ? 0 : group}</p>
+
                 <Button variant="light" onClick={() => setGroup(group + 1)}>
                   <AiFillPlusCircle />
                 </Button>
@@ -219,7 +252,9 @@ function BuyProducts() {
             <p className="classTitel">活動大綱</p>
             <ul>
               {buyClass[0].classOutline.split(',').length > 0 &&
-                buyClass[0].classOutline.split('-').map((v, i) => <li>{v}</li>)}
+                buyClass[0].classOutline
+                  .split('-')
+                  .map((v, i) => <li key={i}>{v}</li>)}
             </ul>
           </div>
           <div className="introduction">
@@ -243,7 +278,9 @@ function BuyProducts() {
 
             <ul className="shouldKnow">
               {buyClass[0].needToKnow.split(',').length > 0 &&
-                buyClass[0].needToKnow.split('-').map((v, i) => <li>{v}</li>)}
+                buyClass[0].needToKnow
+                  .split('-')
+                  .map((v, i) => <li key={i}>{v}</li>)}
             </ul>
           </div>
           <div className="introduction">
@@ -287,9 +324,9 @@ function BuyProducts() {
               src={buyClass[0].mapSrc}
               width="700px"
               height="300px"
-              frameborder="0"
+              frameBorder="0"
               aria-hidden="false"
-              tabindex="0"
+              tabIndex="0"
               className="thisIsMap"
               title="Map"
             />
@@ -302,12 +339,12 @@ function BuyProducts() {
     getBuyClass()
   }, [])
 
-  // if (isLoading === 0) {
-  return dispalyBuy
-  // } else if (isLoading === 1) {
-  // return <h1>404</h1>
-  // } else {
-  // return <h1>查無此商品</h1>
-  // }
+  if (isLoading === 0) {
+    return dispalyBuy
+  } else if (isLoading === 1) {
+    return <h1>Loading</h1>
+  } else {
+    return <h1>查無此商品</h1>
+  }
 }
 export default BuyProducts

@@ -43,7 +43,7 @@ function ProductList() {
         <SearchBar setSearchFilter={setSearchFilter} />
         <Row>
           {productCard.map((v, i) => (
-            <Col xs={6} md={4}>
+            <Col xs={6} md={4} key={i}>
               <Card
                 id={v.id}
                 time1={v.classDate}

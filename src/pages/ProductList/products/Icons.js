@@ -10,13 +10,13 @@ function IconRouter(props) {
   let history = useHistory()
 
   function car1() {
-    history.push('/shoppingcar/1')
+    history.push('/productList/car1/:id')
   }
   function car2() {
-    history.push('/shoppingcar/2')
+    history.push('/productList/car2/')
   }
   function car3() {
-    history.push('/shoppingcar/3')
+    history.push('/productList/car3')
   }
 
   return (

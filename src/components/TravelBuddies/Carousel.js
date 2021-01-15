@@ -29,7 +29,7 @@ function Carousel() {
   return (
     <>
       <div className="carousel-main">
-        <Slider {...settings} class="carousel-outbox row">
+        <Slider {...settings} className="carousel-outbox row">
           {images.map((img, i) => (
             <div
               key={i}

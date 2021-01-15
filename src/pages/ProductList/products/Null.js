@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlineInbox } from 'react-icons/ai'
 import { Container, Button } from 'react-bootstrap'
 import './cash.scss'
-import MyBreadCrumb from '../main/MyBreadCrumb/MyBreadCrumb'
+import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
 import { useHistory } from 'react-router-dom'
 
 function Null() {

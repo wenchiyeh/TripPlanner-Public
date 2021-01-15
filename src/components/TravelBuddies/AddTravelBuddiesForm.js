@@ -79,8 +79,8 @@ function AddTravelBuddiesForm() {
 
   return (
     <>
-      <div class="add-travelbuddies-outbox">
-        <div class="add-travelbuddies-middle">
+      <div className="add-travelbuddies-outbox">
+        <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
             <canvas className="add-travelbuddies-picture">
@@ -548,32 +548,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
@@ -597,32 +597,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>

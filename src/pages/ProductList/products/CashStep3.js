@@ -8,7 +8,7 @@ function CashStep3() {
   return (
     <>
       <div className="In-the-car">
-        <div class="car-three">
+        <div className="car-three">
           <Icons />
         </div>
         <div className="step3-main">

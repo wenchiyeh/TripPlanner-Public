@@ -8,6 +8,7 @@ import MyFooter from './components/main/MyFooter'
 //
 //pages
 import ItinRoute from './components/Itinerary/ItinRoute'
+import Home from './pages/Home'
 import Member from './pages/Member'
 import ProductsRoute from './components/products/ProductsRoute'
 import TravelBuddyRoute from './components/travelBuddy/TravelBuddyRoute'
@@ -19,7 +20,7 @@ function App() {
   return (
     <Router>
       <>
-        <Link to="/">Home</Link>
+        <Link to="/Home">Home</Link>
         <Link to="/myAccount">Member</Link>
         <Link to="/itinerary">Itinerary</Link>
         <Link to="/group">Group</Link>
@@ -33,6 +34,9 @@ function App() {
           <h1>Hello World</h1>
         </Route>
         <Switch>
+          <Route path="/Home">
+            <Home />
+          </Route>
           <Route path="/myAccount">
             <Member />
           </Route>

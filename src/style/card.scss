@@ -5,7 +5,7 @@
   position: relative;
   background: #fff;
   color: $font-black;
-  margin: 28px auto;
+  margin: 28px 0;
   margin-right: 16px;
 
   svg {
@@ -38,6 +38,7 @@
   .card-image {
     width: 100%;
     transition: 0.3s;
+    height: 100%;
   }
 }
 .card-content {

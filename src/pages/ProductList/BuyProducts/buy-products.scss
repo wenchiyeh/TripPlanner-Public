@@ -1,5 +1,5 @@
-@import '../../style/custom.scss';
-@import '../../style/main.scss';
+@import '../../../style/custom.scss';
+@import '../../../style/main.scss';
 
 .container {
   margin: 0 auto;
@@ -146,6 +146,9 @@
   .followMyHeart {
     display: flex;
     justify-content: center;
+    svg {
+      color: $info;
+    }
     p {
       font-family: 'Roboto';
       font-size: 20px;

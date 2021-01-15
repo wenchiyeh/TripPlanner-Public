@@ -1,28 +1,79 @@
 //登入
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import './login.scss'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
-function Login(props) {
+function Login({ onLogin }) {
+  const [loading, setLoading] = useState(false)
+  const [timer, setTimer] = useState(null)
+  //
   let history = useHistory()
-
-  function gohome() {
-    history.push('/myAccount')
-  }
-
+  const [member, setMember] = useState([])
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  //驗證表單
   const [validated, setValidated] = useState(false)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
+      //event.stopPropagation()
+    } else {
+      event.preventDefault()
       event.stopPropagation()
+      getMember()
     }
-
     setValidated(true)
   }
+  //連結伺服器端
+  async function getMember() {
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      if (response.ok) {
+        const data = await response.json()
+        if (data.result) {
+          setMember(data.member)
+          history.push('/myAccount')
+        } else {
+          history.push('/login')
+        }
+      }
+    } catch (err) {
+      alert('請輸入正確的帳號密碼!')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    if (email.trim() && password.trim()) {
+      //trigger();
+      setMember({
+        type: 'setIsButtonDisabled',
+        payload: false,
+      })
+    } else {
+      //clearErrors()
+      setMember({
+        type: 'setIsButtonDisabled',
+        payload: true,
+      })
+    }
+  }, [email, password])
+  //要寫useEffect
+  useEffect(() => {
+    if (member === true) {
+      console.log(`登入成功 會員: ${member}`)
+      history.push('/login')
+    } else {
+      //console.log('請重新輸入')
+      history.push('/myAccount')
+    }
+  }, [member])
   return (
     <>
       <body className="body-login">
@@ -42,6 +93,9 @@ function Login(props) {
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的信箱格式
@@ -63,6 +117,9 @@ function Login(props) {
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的密碼格式
@@ -71,18 +128,39 @@ function Login(props) {
               </Form.Group>
             </Form.Row>
             <Button
-              // type="submit"
+              type="submit"
               className="login-btn"
-              onClick={gohome}
+              state={loading ? 'loading' : undefined}
+              onClick={() => {
+                setLoading(true)
+                setTimer(
+                  setTimeout(
+                    () => (onLogin ? onLogin() : setLoading(false)),
+                    2000
+                  )
+                )
+              }}
             >
               登入
             </Button>
             <div className="login-samp-text d-flex">
               <span>
-                <a href="http://localhost:3000/sigon">註冊</a>
+                <Link
+                  onClick={() => {
+                    history.push('/sigon')
+                  }}
+                >
+                  註冊
+                </Link>
               </span>
               <span className="login-samp-text-pas">
-                <a href="http://localhost:3000/forgetpassword">忘記密碼</a>
+                <Link
+                  onClick={() => {
+                    history.push('/forgetpassword')
+                  }}
+                >
+                  忘記密碼
+                </Link>
               </span>
             </div>
             <div className="d-flex login-line-center">

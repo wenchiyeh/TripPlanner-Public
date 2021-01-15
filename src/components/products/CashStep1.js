@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { Button } from 'react-bootstrap'
-import IconRouter from './IconRouter'
+import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
 
 function CashStep1() {
   let history = useHistory()
@@ -17,34 +16,12 @@ function CashStep1() {
     history.push('/')
   }
 
-  let { id } = useParams()
-
-  const [carOne, setCarOne] = useState([])
-  async function getCarOne(props) {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/productList' + { id },
-        {
-          method: 'get',
-        }
-      )
-      if (response.ok) {
-        const data = await response.json()
-        setCarOne(data)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
-  useEffect(() => {
-    getCarOne()
-  }, [])
-
   return (
     <>
       <div className="In-the-car">
-        <IconRouter />
+        <div class="car-one">
+          <Icons />
+        </div>
 
         <div className="ticket-buy">
           <div className="ticket-title">
@@ -91,7 +68,6 @@ function CashStep1() {
               </div>
             </div>
             <hr />
-            {/*上半部色塊 要想辦法弄成元件*/}
 
             <div className="how-much">
               <div className="subtotal">

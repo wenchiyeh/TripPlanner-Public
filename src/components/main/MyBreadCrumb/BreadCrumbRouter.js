@@ -4,7 +4,7 @@ export const devUrl = 'http://localhost:3000'
 export const pathnameList = [
   '/travelBuddies',
   '/itinerary',
-  '/productList/:id',
+  '/productList/view/:id',
   '/productList',
   '/shoppingcar',
 ]

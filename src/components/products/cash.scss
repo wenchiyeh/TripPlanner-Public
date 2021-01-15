@@ -1,17 +1,43 @@
-@import '../../../style/custom.scss';
-@import '../../../style/main.scss';
+@import '../../style/custom.scss';
+@import '../../style/main.scss';
 body {
   background-color: #f5f3f4;
 }
 .In-the-car {
   width: 1440px;
   margin: 0 auto;
+  .car-one {
+    .mycar {
+      svg,
+      p {
+        color: #4464be;
+      }
+    }
+  }
+  .car-two {
+    .howpay {
+      svg,
+      p {
+        color: #4464be;
+      }
+    }
+  }
+  .car-three {
+    .okok {
+      svg,
+      p {
+        color: #4464be;
+      }
+    }
+  }
+
   .icons {
     width: 730px;
     height: 45px;
     margin: 48px auto 32px auto;
     display: flex;
     justify-content: center;
+
     a {
       color: #707070;
     }
@@ -21,6 +47,7 @@ body {
     }
     div {
       display: flex;
+      font-size: 16px;
     }
     p {
       line-height: 40px;
@@ -29,12 +56,6 @@ body {
     .arrow {
       color: #040404;
       margin: 0 24px;
-    }
-    .active {
-      a,
-      p {
-        color: #4464be;
-      }
     }
   }
   .ticket-buy {
@@ -110,6 +131,7 @@ body {
       }
 
       //  以下為 step1 獨有
+
       .how-much {
         display: flex;
         flex-direction: column;

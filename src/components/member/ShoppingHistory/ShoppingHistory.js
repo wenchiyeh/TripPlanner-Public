@@ -8,7 +8,7 @@ function ShoppingHistory() {
   const [historyOrder, setHistoryOrder] = useState([])
   async function getHistoryOrder(props) {
     try {
-      const response = await fetch('http://localhost:5000/historyOrder', {
+      const response = await fetch(`http://localhost:5000/historyOrder`, {
         method: 'get',
       })
       if (response.ok) {

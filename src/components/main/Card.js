@@ -31,14 +31,14 @@ function Card({
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
-  let handelText = StrCutter(text, 62)
+  let handelText = text && StrCutter(text, 62)
   let type = 'itinerary'
   if (time1 === -1) {
     type = 'itinerary'
   } else if (time2 !== -1) {
     type = 'travelBuddy'
   } else if (price !== -1) {
-    type = 'products'
+    type = 'productList'
   }
   let detailUrl = `/${type}/view/${id}`
   const calenderMark = (
@@ -59,7 +59,7 @@ function Card({
   )
   return (
     <>
-      <div className="card-wrapper">
+      <div className="card-wrapper custom-box-shadow">
         <p className="card-label content-small">
           <FaMapMarkerAlt />
           <span> {location}</span>

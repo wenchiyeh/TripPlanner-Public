@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { FaFacebookF } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { FaTwitter } from 'react-icons/fa'
@@ -68,31 +68,31 @@ function MyFooter(props) {
           <div className="row">
             <div className="col-md-8 col-sm-6 col-xs-12">
               <p>
-                Travel Blog &copy; 2021 All Rights Reserved by
-                <a href="#">隱私</a>·<a href="#">相關條款</a>·
-                <a href="#">網站地圖</a>
+                Travel Planner &copy; 2021 All Rights Reserved by
+                <a href="/">隱私</a>·<a href="/">相關條款</a>·
+                <a href="/">網站地圖</a>
               </p>
             </div>
 
             <div className="col-md-4 col-sm-6 col-xs-12">
               <ul className="social-icons">
                 <li>
-                  <a className="facebook" href="#">
+                  <a className="facebook" href="/">
                     <FaFacebookF />
                   </a>
                 </li>
                 <li>
-                  <a className="twitter" href="#">
+                  <a className="twitter" href="/">
                     <FaTwitter />
                   </a>
                 </li>
                 <li>
-                  <a className="dribbble" href="#">
+                  <a className="dribbble" href="/">
                     <FaYoutube />
                   </a>
                 </li>
                 <li>
-                  <a className="linkedin" href="#">
+                  <a className="linkedin" href="/">
                     <FaInstagram />
                   </a>
                 </li>

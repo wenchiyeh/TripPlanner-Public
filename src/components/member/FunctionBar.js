@@ -1,12 +1,12 @@
 //會員中心頁連結
 import React from 'react'
-//import { BrowserRouter as Link } from 'react-router-dom'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import HistiryRoute from '../member/ShoppingHistory/HistoryRoute'
-import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
-import MeFavorites from '../main/MeFavorites'
-import Notice from '../../pages/Notice'
-import MyAccount from '../member/MyAccount'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+//import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+// import HistiryRoute from '../member/ShoppingHistory/HistoryRoute'
+// import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
+// import MeFavorites from '../main/MeFavorites'
+// import Notice from '../../pages/Notice'
+// import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
     <Router>
@@ -19,7 +19,7 @@ function FunctionBar() {
           <Link to="/myAccount/Notice">我的通知</Link>
           <Link to="/myAccount/historyOrder">購物紀錄</Link>
         </div>
-        <Switch>
+        {/* <Switch>
           <Route path="/myAccount/historyOrder">
             <HistiryRoute />
           </Route>
@@ -35,7 +35,7 @@ function FunctionBar() {
           <Route path="/myAccount/myAccount">
             <MyAccount />
           </Route>
-        </Switch>
+        </Switch> */}
       </>
     </Router>
   )

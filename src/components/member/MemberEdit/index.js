@@ -54,7 +54,7 @@ function MemberEdit({ member }) {
   }
   async function getMember(id) {
     try {
-      const response = await fetch('http://localhost:5000/member/', {
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
         method: 'post',
       })
       if (response.ok) {
@@ -80,7 +80,7 @@ function MemberEdit({ member }) {
       //updateMember(id)
       MemberEdit()
     }
-  }, [member, id])
+  }, [member])
 
   //元件狀態
   const [validated, setValidated] = useState(false)
@@ -96,64 +96,63 @@ function MemberEdit({ member }) {
 
   //導入member[0]
   return (
-    member.length > 0 && (
-      <>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Form.Row>
-            {/* email */}
-            <Form.Group as={Col} md="12" controlId="validationCustom01">
-              <Form.Label>信箱</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                required
-                type="text"
-                placeholder="請輸入信箱"
-                defaultValue={member[0].email}
-                onChange={(e) => {
-                  setEmail(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback>正確!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 密碼 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustom02">
-              <Form.Label>密碼</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                required
-                type="password"
-                placeholder="請輸入密碼"
-                defaultValue={member[0].password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback>正確!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 姓名 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustomUsername">
-              <Form.Label>姓名</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                type="text"
-                placeholder="請輸入姓名"
-                defaultValue={member[0].member_name}
-                aria-describedby=""
-                required
-                onChange={(e) => {
-                  setMember_name(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                請輸入正確的姓名
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* <Form.Row>
+    <>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        <Form.Row>
+          {/* email */}
+          <Form.Group as={Col} md="12" controlId="validationCustom01">
+            <Form.Label>信箱</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              required
+              type="text"
+              placeholder="請輸入信箱"
+              defaultValue={member[0].email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback>正確!</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* 密碼 */}
+        <Form.Row>
+          <Form.Group as={Col} md="12" controlId="validationCustom02">
+            <Form.Label>密碼</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              required
+              type="password"
+              placeholder="請輸入密碼"
+              defaultValue={member[0].password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback>正確!</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* 姓名 */}
+        <Form.Row>
+          <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+            <Form.Label>姓名</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              type="text"
+              placeholder="請輸入姓名"
+              defaultValue={member[0].member_name}
+              aria-describedby=""
+              required
+              onChange={(e) => {
+                setMember_name(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              請輸入正確的姓名
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* <Form.Row>
             <Form.Group as={Col} md="12" controlId="validationCustom03">
               <Form.Label>地區</Form.Label>
               <span className="med-add-text-red">*</span>
@@ -171,120 +170,119 @@ function MemberEdit({ member }) {
               </Form.Control.Feedback>
             </Form.Group>
           </Form.Row> */}
-          {/* 電話 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustom04">
-              <Form.Label>電話</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                type="text"
-                placeholder="0988888888"
-                defaultValue={member[0].member_phone}
-                required
-                onChange={(e) => {
-                  setPhone(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                請輸入正確的電話號碼
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 出生日期 */}
-          <Form.Row>
-            <Form.Group as={Col} md="6" controlId="validationCustom05">
-              <Form.Label>出生日期</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                type="date"
-                placeholder=""
-                defaultValue={member[0].birthday}
-                required
-                onChange={(e) => {
-                  setBirthday(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                請輸入出生日期
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 性別 */}
-          <Form.Row>
-            <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">
-              <Form.Label>性別</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                as="select"
-                custom
-                defaultValue={member[0].member_sex}
-                onChange={(e) => {
-                  setmember_sex(e.target.value)
-                }}
-              >
-                <option disabled>-請選擇-</option>
-                <option value="1">男性</option>
-                <option value="2">女性</option>
-              </Form.Control>
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group>
-              <div className="mb-3">
-                <Form.File id="formcheck-api-regular">
-                  <Form.File.Label>更換大頭照</Form.File.Label>
-                  <Form.File.Input />
-                </Form.File>
-              </div>
-            </Form.Group>
-          </Form.Row>
-          {/* 暱稱 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustom06">
-              <Form.Label>暱稱</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                required
-                type="text"
-                placeholder="例：小智"
-                defaultValue={member[0].member_id}
-                onChange={(e) => {
-                  setMember_id(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 自我介紹 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustom07">
-              <Form.Label>自我介紹</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                required
-                type="text"
-                placeholder="例：我在資策會學習網頁前端"
-                defaultValue={member[0].member_aboutme}
-                onChange={(e) => {
-                  setMember_aboutme(e.target.value)
-                }}
-              />
-            </Form.Group>
-          </Form.Row>
-          <Button
-            type="sumit"
-            className="memed-submit"
-            onClick={() => {
-              updateMember(id)
-            }}
-          >
-            確定
-          </Button>
-        </Form>
-      </>
-    )
+        {/* 電話 */}
+        <Form.Row>
+          <Form.Group as={Col} md="12" controlId="validationCustom04">
+            <Form.Label>電話</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              type="text"
+              placeholder="0988888888"
+              defaultValue={member[0].member_phone}
+              required
+              onChange={(e) => {
+                setPhone(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              請輸入正確的電話號碼
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* 出生日期 */}
+        <Form.Row>
+          <Form.Group as={Col} md="6" controlId="validationCustom05">
+            <Form.Label>出生日期</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              type="date"
+              placeholder=""
+              defaultValue={member[0].birthday}
+              required
+              onChange={(e) => {
+                setBirthday(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              請輸入出生日期
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* 性別 */}
+        <Form.Row>
+          <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">
+            <Form.Label>性別</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              as="select"
+              custom
+              defaultValue={member[0].member_sex}
+              onChange={(e) => {
+                setmember_sex(e.target.value)
+              }}
+            >
+              <option disabled>-請選擇-</option>
+              <option value="1">男性</option>
+              <option value="2">女性</option>
+            </Form.Control>
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+          <Form.Group>
+            <div className="mb-3">
+              <Form.File id="formcheck-api-regular">
+                <Form.File.Label>更換大頭照</Form.File.Label>
+                <Form.File.Input />
+              </Form.File>
+            </div>
+          </Form.Group>
+        </Form.Row>
+        {/* 暱稱 */}
+        <Form.Row>
+          <Form.Group as={Col} md="12" controlId="validationCustom06">
+            <Form.Label>暱稱</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              required
+              type="text"
+              placeholder="例：小智"
+              defaultValue={member[0].member_id}
+              onChange={(e) => {
+                setMember_id(e.target.value)
+              }}
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+        </Form.Row>
+        {/* 自我介紹 */}
+        <Form.Row>
+          <Form.Group as={Col} md="12" controlId="validationCustom07">
+            <Form.Label>自我介紹</Form.Label>
+            <span className="med-add-text-red">*</span>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              required
+              type="text"
+              placeholder="例：我在資策會學習網頁前端"
+              defaultValue={member[0].member_aboutme}
+              onChange={(e) => {
+                setMember_aboutme(e.target.value)
+              }}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Button
+          type="sumit"
+          className="memed-submit"
+          onClick={() => {
+            updateMember(id)
+          }}
+        >
+          確定
+        </Button>
+      </Form>
+    </>
   )
 }
 

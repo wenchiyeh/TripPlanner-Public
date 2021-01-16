@@ -3,15 +3,19 @@ import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
 import './MemberProfile.scss'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 function MemberProfile({ member }) {
-  let history = useHistory()
+  //let history = useHistory()
+  console.log('???', member)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
   let memberimg = 'http://localhost:3000/images/member/member_1.jpg'
   //導入member[0]
+
+  const Loading = <h1>Loading</h1>
+
   const display = member.length > 0 && (
     <>
       <div className="person">
@@ -43,7 +47,8 @@ function MemberProfile({ member }) {
       </Modal>
     </>
   )
-  return <>{display}</>
+  return display
+  //return member.lenght > -1 ? display : Loading
 }
 
 export default MemberProfile

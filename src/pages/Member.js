@@ -13,10 +13,11 @@ import Notice from './Notice'
 
 function Member() {
   const [member, setMember] = useState([])
-  let { id } = useParams()
+  let { newsid } = useParams()
   async function getMember() {
     try {
-      const response = await fetch(`http://localhost:5000/member/${id}`, {
+      const response = await fetch(`http://localhost:5000/member/${newsid}`, {
+        //mode: 'no-cors',
         method: 'post',
       })
       console.log(response)

@@ -4,7 +4,7 @@ import { Form, Col, Button } from 'react-bootstrap'
 import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
 
-function MemberEdit({ member, props }) {
+function MemberEdit({ member }) {
   let { id } = useParams()
   let history = useHistory()
   const [members, setMembers] = useState('')
@@ -31,9 +31,9 @@ function MemberEdit({ member, props }) {
       member_aboutme,
     }
     try {
-      const response = await fetch(`http://localhost:5000/udmember/`, {
-        //mode: 'no-cors',
-        method: 'update',
+      const response = await fetch(`http://localhost:5000/member/`, {
+        //mode: 'cors',
+        method: 'put',
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -54,7 +54,7 @@ function MemberEdit({ member, props }) {
   }
   async function getMember(id) {
     try {
-      const response = await fetch(`http://localhost:5000/udmember/${id}`, {
+      const response = await fetch('http://localhost:5000/member/', {
         method: 'post',
       })
       if (response.ok) {
@@ -74,8 +74,11 @@ function MemberEdit({ member, props }) {
     }
   }
   useEffect(() => {
-    getMember(id)
-  }, [id])
+    if (member >= 0) {
+      console.log(member)
+      updateMember(id)
+    }
+  }, [member, id])
 
   //元件狀態
   const [validated, setValidated] = useState(false)
@@ -88,11 +91,10 @@ function MemberEdit({ member, props }) {
     }
     setValidated(true)
   }
-  {
-    //DOM表單
-    //let display = <></>
-    //導入member[0]
-    const display = member.length > 0 && (
+
+  //導入member[0]
+  return (
+    member.length > 0 && (
       <>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Row>
@@ -281,7 +283,7 @@ function MemberEdit({ member, props }) {
         </Form>
       </>
     )
-    return <>{display}</>
-  }
+  )
 }
+
 export default MemberEdit

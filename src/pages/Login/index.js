@@ -40,8 +40,6 @@ function Login() {
         const data = await response.json()
         if (data.result) {
           setMember(data.member)
-          //const { id } = data.member
-          //history.push(`/myAccount/:id`)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -52,8 +50,8 @@ function Login() {
     }
   }
   useEffect(() => {
-    if (member > -1) {
-      console.log(`登入成功 會員: ${member}`)
+    if (member > -1 && member !== '') {
+      //console.log(`登入成功 會員: ${member}`)
       setMember()
       history.push(`/myAccount/${member}`)
     } else {

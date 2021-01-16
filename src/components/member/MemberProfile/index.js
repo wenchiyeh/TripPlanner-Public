@@ -1,10 +1,9 @@
 //修改會員資料卡片
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
-import MemberEdit from '../MemberEdit/index'
+import MemberEdit from '../MemberEdit'
 import './MemberProfile.scss'
 import { useHistory } from 'react-router-dom'
-import ModalExample from './Modal'
 function MemberProfile({ member }) {
   let history = useHistory()
   const [show, setShow] = useState(false)
@@ -20,7 +19,6 @@ function MemberProfile({ member }) {
         <img src={memberimg} alt="" />
         <h4>{member[0].member_name}</h4>
         <Button
-          transition={false}
           variant="primary"
           className="MemberList-title"
           onClick={handleShow}

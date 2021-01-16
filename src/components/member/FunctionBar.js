@@ -1,12 +1,11 @@
 //會員中心頁連結
 import React from 'react'
+//import { BrowserRouter as Link } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import HistiryRoute from '../member/ShoppingHistory/HistoryRoute'
-
 import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
 import MeFavorites from '../main/MeFavorites'
 import Notice from '../../pages/Notice'
-
 import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
@@ -27,7 +26,6 @@ function FunctionBar() {
           <Route path="/myAccount/TravelBuddies">
             <MyTravelBuddies />
           </Route>
-
           <Route path="/myAccount/favorites">
             <MeFavorites />
           </Route>

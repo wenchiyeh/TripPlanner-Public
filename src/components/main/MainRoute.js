@@ -12,6 +12,7 @@ import CarRoute from '../products/CarRoute'
 function MainRoute() {
   return (
     <>
+      {/* {'function bar 的連結' } */}
       <Switch>
         <Route path="/shoppingcar">
           <CarRoute />

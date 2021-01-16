@@ -74,9 +74,11 @@ function MemberEdit({ member }) {
     }
   }
   useEffect(() => {
-    if (member >= 0) {
+    if (member > -1) {
       console.log(member)
-      updateMember(id)
+      //console.log('h1 model')
+      //updateMember(id)
+      MemberEdit()
     }
   }, [member, id])
 

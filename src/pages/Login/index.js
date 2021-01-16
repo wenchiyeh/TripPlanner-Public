@@ -66,12 +66,12 @@ function Login({ onLogin }) {
   // }, [email, password])
   //要寫useEffect
   useEffect(() => {
-    if (member === true) {
+    if (member > -1) {
       console.log(`登入成功 會員: ${member}`)
-      history.push('/login')
+      history.push('/myAccount')
     } else {
       //console.log('請重新輸入')
-      history.push('/myAccount')
+      history.push('/login')
     }
   }, [member])
   return (

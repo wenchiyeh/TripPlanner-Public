@@ -42,7 +42,7 @@ function BuyProducts({
   teacher_photo,
   teacher_history,
   mapSrc,
-  ChangeData,
+  changeData,
 }) {
   // 這是modal
   const [smShow, setSmShow] = useState(false)
@@ -52,10 +52,10 @@ function BuyProducts({
   const [early, setEarly] = useState(earlyPrice)
   const [single, setSingle] = useState(singlePrice)
   const [group, setGroup] = useState(groupPrice)
-  useEffect(() => {
-    ChangeData(early, single, group)
-  }, [early, single, group])
 
+  useEffect(() => {
+    changeData(early, single, group)
+  }, [early, single, group])
   // 愛心
   const [liked, setLiked] = useState(0)
   const [count, setCount] = useState(48)
@@ -122,7 +122,7 @@ function BuyProducts({
                 <p>價格</p>
                 <div className="ticketAndPrice">
                   <ul>
-                    {ticket_type.split('-').map((v, i) => (
+                    {ticket_type.split(',').map((v, i) => (
                       <li key={i}>{v}</li>
                     ))}
                   </ul>
@@ -225,10 +225,15 @@ function BuyProducts({
             </div>
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
-
-              <Button variant="info" onClick={InTheCar}>
-                加入購物車
-              </Button>
+              {early == 0 && group == 0 && single == 0 ? (
+                <Button variant="info" onClick={InTheCar} disabled>
+                  加入購物車{' '}
+                </Button>
+              ) : (
+                <Button variant="info" onClick={InTheCar}>
+                  加入購物車{' '}
+                </Button>
+              )}
               <div className="followMyHeart">
                 <Button variant="light" onClick={() => tbLiked(liked)}>
                   {liked === 1 ? <AiTwotoneHeart /> : <AiOutlineHeart />}

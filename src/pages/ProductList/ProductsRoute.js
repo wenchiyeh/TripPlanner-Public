@@ -8,11 +8,10 @@ import Null from './products/Null'
 import CashStep1 from './products/CashStep1'
 import CashStep3 from './products/CashStep3'
 
-function MapProduct() {
-  const [productData, setProductData] = useState([])
-
+function MapProduct(props) {
   let { product_id } = useParams()
 
+  const [productData, setProductData] = useState([])
   async function getProductData(props) {
     try {
       const response = await fetch(
@@ -34,18 +33,6 @@ function MapProduct() {
     getProductData()
   }, [])
 
-  const [ticketData, setTicketData] = useState({
-    earlyPrice: 0,
-    singlePrice: 0,
-    groupPrice: 0,
-  })
-  function ChangeData(earlyPrice, singlePrice, groupPrice) {
-    setTicketData({
-      earlyTicket: earlyPrice,
-      singleTicket: singlePrice,
-      groupTicket: groupPrice,
-    })
-  }
   return (
     <>
       {productData.map((v, i) => (
@@ -54,7 +41,6 @@ function MapProduct() {
           earlyTicket={'早鳥票'}
           singleTicket={'單人票'}
           groupTicket={'雙人票'}
-          ChangeData={ChangeData}
           earlyPrice={0}
           singlePrice={0}
           groupPrice={0}
@@ -76,22 +62,74 @@ function MapProduct() {
           teacher_history={v.teacher_history}
           mapSrc={v.mapSrc}
           teacher_title={v.teacher_title}
+          changeData={props.changeData}
         />
       ))}
     </>
   )
 }
-function ItinRoute() {
+
+function CarOneAndTwo(props) {
+  const [inCarOne, setInCarOne] = useState([])
+  let { product_id } = useParams()
+
+  async function getInCarOne(props) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/productList/car1/${product_id}`,
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        setInCarOne(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getInCarOne()
+  }, [])
+  return (
+    <>
+      {inCarOne.length > 0 && (
+        <CashStep1
+          className={inCarOne[0].className}
+          classDate={inCarOne[0].classDate}
+          ticket_price={inCarOne[0].ticket_price}
+          showTicketType={props.ticketData}
+        />
+      )}
+    </>
+  )
+}
+
+function GoRoute() {
+  const [ticketData, setTicketData] = useState({
+    earlyPrice: 0,
+    singlePrice: 0,
+    groupPrice: 0,
+  })
+  function changeData(earlyPrice, singlePrice, groupPrice) {
+    setTicketData({
+      earlyTicket: earlyPrice,
+      singleTicket: singlePrice,
+      groupTicket: groupPrice,
+    })
+  }
   return (
     <Switch>
       <Route path="/productList/view/:product_id">
-        <MapProduct />
+        <MapProduct changeData={changeData} />
       </Route>
       <Route path="/productList/car1/:product_id">
-        <CashStep1 tichectButton={true} />
+        <CarOneAndTwo tichectButton={true} />
       </Route>
       <Route path="/productList/car1/:product_id">
-        <CashStep1 tichectButton={false} />
+        <CarOneAndTwo tichectButton={false} />
       </Route>
       <Route path="/productList/car3/:product_id">
         <CashStep3 />
@@ -106,4 +144,4 @@ function ItinRoute() {
   )
 }
 
-export default ItinRoute
+export default GoRoute

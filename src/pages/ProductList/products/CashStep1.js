@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
-
+import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 
-function CashStep1(
+function CashStep1({
   className,
   classDate,
   ticket_price,
@@ -16,45 +14,57 @@ function CashStep1(
   user_mail,
   user_phone,
   user_birthday,
-  totalTicket,
-  totalPrice,
   finalPrice,
-  finalTicket
-) {
-  let { product_id } = useParams()
-  const [isLoading, setIsLoading] = useState(1)
+  finalTicket,
+  ticketData,
+  totalPrice,
+  showTicketType,
+}) {
   const [tichectButton, setTichectButton] = useState(true)
-  let history = useHistory()
-
-  function cancel() {
-    history.push('/')
-  }
-  const [InCar, setInCar] = useState([])
-  async function getInCar(props) {
-    try {
-      const response = await fetch(
-        `http://localhost:5000/productList/car1/${product_id}`,
-        {
-          method: 'get',
-        }
-      )
-      if (response.ok) {
-        const data = await response.json()
-        setInCar(data)
-        setTimeout(() => {
-          if (data.length === 0) {
-            setIsLoading(3)
-          } else {
-            setIsLoading(0)
-          }
-        }, 0)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
+  const earlyTicket = ticketData.earlyTicket
+  const singleTicket = ticketData.singleTicket
+  const groupTicket = ticketData.groupTicket
+  function ShowTicketType() {
+    if (earlyTicket > 0) {
+      return '早鳥票'
+    } else if (singleTicket > 0) {
+      return '單人票'
+    } else if (groupTicket > 0) {
+      return '雙人票'
+    } else {
+      return '你沒買票'
     }
   }
-  const step1 = InCar.length > 0 && (
+  function HowMany() {
+    if (earlyTicket > 0) {
+      return earlyTicket
+    } else if (singleTicket > 0) {
+      return singleTicket
+    } else if (groupTicket > 0) {
+      return groupTicket
+    } else {
+      return '你沒買票'
+    }
+  }
+  const [totalTicket, setTotalTicket] = useState(HowMany())
+
+  const reallyPrice = ticket_price.split('-')
+  function showTicketPrice() {
+    if (earlyTicket > 0) {
+      return totalTicket * reallyPrice[0]
+    } else if (singleTicket > 0) {
+      return totalTicket * reallyPrice[1]
+    } else if (groupTicket > 0) {
+      return totalTicket * reallyPrice[2]
+    }
+  }
+  let history = useHistory()
+
+  function goBack() {
+    history.goBack()
+  }
+
+  const step1 = (
     <>
       <div className="In-the-car">
         <div className="car-one">
@@ -64,7 +74,6 @@ function CashStep1(
         <div className="ticket-buy">
           <div className="ticket-title">
             <h4>{className}</h4>
-            <h4>早鳥票</h4>
           </div>
 
           <div className="you-sure">
@@ -87,22 +96,41 @@ function CashStep1(
               <div>
                 <h3>{classDate}</h3>
               </div>
-              <div>
-                <h3>早鳥票</h3>
-              </div>
+              <div>{ShowTicketType()}</div>
 
               <div className="how-many-ticket">
-                <Button variant="light" className="minus-and-plus">
-                  <AiFillMinusCircle />
-                </Button>
+                {totalTicket <= 0 ? (
+                  <Button
+                    variant="light"
+                    className="minus-and-plus"
+                    onClick={() => setTotalTicket(totalTicket - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="light"
+                    className="minus-and-plus"
+                    onClick={() => setTotalTicket(totalTicket - 1)}
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
                 <p>{totalTicket}</p>
-                <Button variant="light" className="minus-and-plus">
+
+                <Button
+                  variant="light"
+                  className="minus-and-plus"
+                  onClick={() => setTotalTicket(totalTicket + 1)}
+                >
                   <AiFillPlusCircle />
                 </Button>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
-                <h3>{ticket_price}</h3>
+
+                <h3>{showTicketPrice()}</h3>
               </div>
             </div>
             <hr />
@@ -110,10 +138,10 @@ function CashStep1(
             <div className="how-much">
               <div className="total">
                 <h3>總金額</h3>
-                <h3>{totalPrice}</h3>
+                <h3>{showTicketPrice()}</h3>
               </div>
               <div className="btn-zone">
-                <Button variant="light" className="cancel" onClick={cancel}>
+                <Button variant="light" className="cancel" onClick={goBack}>
                   取消
                 </Button>
                 <Button
@@ -141,7 +169,7 @@ function CashStep1(
         <div className="ticket-buy">
           <div className="ticket-title">
             <h4>{className}</h4>
-            <h4>早鳥票</h4>
+            <h4>{ShowTicketType()}</h4>
           </div>
 
           <div className="you-sure">
@@ -165,7 +193,7 @@ function CashStep1(
                 <h3>{classDate}</h3>
               </div>
               <div>
-                <h3>早鳥票</h3>
+                <h3>{ShowTicketType()}</h3>
               </div>
 
               <div className="how-many-ticket">
@@ -173,7 +201,7 @@ function CashStep1(
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
-                <h3>{finalPrice}</h3>
+                <h3>{showTicketPrice()}</h3>
               </div>
             </div>
             <hr />
@@ -297,7 +325,7 @@ function CashStep1(
                 />
 
                 <div className="btn-zone">
-                  <Button variant="light" className="cancel">
+                  <Button variant="light" className="cancel" onClick={goBack}>
                     取消
                   </Button>
                   <Button variant="info">結帳</Button>
@@ -309,14 +337,7 @@ function CashStep1(
       </div>
     </>
   )
-  useEffect(() => {
-    getInCar()
-  }, [])
 
-  if (isLoading === 0) {
-    return tichectButton ? step1 : step2
-  } else {
-    return <h1>Loading</h1>
-  }
+  return tichectButton ? step1 : step2
 }
 export default CashStep1

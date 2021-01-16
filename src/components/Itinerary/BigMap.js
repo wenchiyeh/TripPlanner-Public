@@ -6,47 +6,104 @@ import { debounce } from 'lodash'
 //引入 API key
 import { Key } from '../../Key'
 //
-//
+let itinData = require('./itinlist.json')
+let handleItinData = itinData[2].data
+//套件範例元件
 const AnyReactComponent = ({ text }) => <div>{text}</div>
-const PlaceMarker = ({ title, vicinity }) => (
+//marker元件
+const PlaceMarker = ({ id, title, address }) => (
   <div
-    onClick={(e) => {
-      e.stopPropagation()
-      if (e.target.classList.contains('map-markerWrap')) {
-        if (e.target.querySelector('.map-info-close')) {
-          e.target
-            .querySelector('.map-marker-info')
-            .classList.remove('map-info-close')
-        } else {
-          e.target
-            .querySelector('.map-marker-info')
-            .classList.add('map-info-close')
-        }
-      }
-
-      console.log(e.target.classList)
-    }}
+    // onClick={(e) => {
+    //   if (e.target.classList.contains('map-markerWrap')) {
+    //     if (e.target.querySelector('.map-info-close')) {
+    //       e.target
+    //         .querySelector('.map-marker-info')
+    //         .classList.remove('map-info-close')
+    //     } else {
+    //       e.target
+    //         .querySelector('.map-marker-info')
+    //         .classList.add('map-info-close')
+    //     }
+    //   }
+    //   console.log(e.target.classList)
+    // }}
     className="map-markerWrap d-flex flex-column align-items-center"
   >
-    <div className="map-marker-info map-info-close">
-      <h4>{title}</h4>
-      <p>{vicinity}</p>
+    <div className={`map-marker-info markerInfo${id}`}>
+      {/* map-info-open */}
+      <h5>{title}</h5>
+      {/* <p>{address}</p> */}
       <h5>
         加進行程 <FaPlus />
       </h5>
     </div>
-    <div>
+    <div className="d-flex flex-column align-items-center">
       <img
         className="map-markerIcon"
         // src={'/images/paperPlane.png'}
         src={'http://maps.google.com/mapfiles/ms/micons/red-dot.png'}
         alt={title}
+        onClick={(e) => {
+          e.preventDefault()
+          if (document.querySelector('.map-info-open')) {
+            if (
+              document.querySelector('.map-info-open') ===
+              document.querySelector(`.markerInfo${id}`)
+            ) {
+              document
+                .querySelector('.map-info-open')
+                .classList.remove('map-info-open')
+              return
+            } else {
+              document
+                .querySelector('.map-info-open')
+                .classList.remove('map-info-open')
+            }
+          }
+          document
+            .querySelector(`.markerInfo${id}`)
+            .classList.add('map-info-open')
+        }}
       />
-      <h4>{title}</h4>
+      <h5>{title}</h5>
     </div>
   </div>
 )
-// if business_status 確認是否是景點     .name 地名
+//記錄googlemap回傳的資料
+function doRecord(data) {
+  let handleDat = []
+  data.forEach((ele, index) => {
+    if (ele.hasOwnProperty('business_status')) {
+      handleDat.push({
+        id: ele.place_id,
+        title: ele.name,
+        lat: ele.geometry.location.lat(),
+        lng: ele.geometry.location.lng(),
+        vicinity: ele.vicinity,
+        town: ele.plus_code.compound_code,
+      })
+    }
+  })
+  console.log(handleDat)
+  if (handleDat) sendDatatoServer(handleDat)
+}
+//將資料傳送至後端儲存
+async function sendDatatoServer(data) {
+  try {
+    const response = await fetch(`http://localhost:5000/itinerary/addItin`, {
+      method: 'post',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
 //
 function BigMap(props) {
   //預設傳入值
@@ -62,7 +119,7 @@ function BigMap(props) {
   })
   //
   //地圖樣式
-  const mapOptions = { styles: null }
+  const mapOptions = { styles: null } //包含原生POI
   //
   //建立鉤子
   const [mapApiLoaded, setMapApiLoaded] = useState(false)
@@ -80,6 +137,7 @@ function BigMap(props) {
     setMapApi(maps) //maps = 各種map API
     setMapApiLoaded(true)
   }
+  //處理改變中心點
   const handleCenterChange = () => {
     if (mapApiLoaded) {
       const newPosition = {
@@ -88,9 +146,10 @@ function BigMap(props) {
       }
       setCurrentCenter(newPosition) // 改變地圖視角位置
       setMyPosition(newPosition) // 改變 MyPosition
-      doSearchPlace() //改變中心後重新搜尋地標
+      // doSearchPlace() //改變中心後重新搜尋地標
     }
   }
+  //搜尋附近景點
   const doSearchPlace = () => {
     var loc = new mapApi.LatLng(
       mapInstance.center.lat(),
@@ -110,7 +169,7 @@ function BigMap(props) {
       })
     }
   }
-  // 自動完成
+  // 送出自動填入請求
   const handleAutocomplete = () => {
     if (mapApiLoaded) {
       const service = new mapApi.places.AutocompleteService()
@@ -124,15 +183,6 @@ function BigMap(props) {
       })
     }
   }
-  //
-  //取得輸入框值
-  const handleInput = () => {
-    setInputText(inputRef.current.value)
-  }
-  useEffect(() => {
-    handleAutocomplete()
-  }, [inputText]) // eslint-disable-line react-hooks/exhaustive-deps
-  //
   // 點擊自動完成地址時，更改 MyPosition
   const handleClickToChangeMyPosition = (e) => {
     const placeId = e.target.getAttribute('dataid')
@@ -141,7 +191,6 @@ function BigMap(props) {
       placeId,
       fields: ['geometry'],
     }
-
     service.getDetails(request, (results, status) => {
       if (status === mapApi.places.PlacesServiceStatus.OK) {
         const newPosition = {
@@ -155,6 +204,19 @@ function BigMap(props) {
       }
     })
   }
+  //
+  //取得輸入框值並寫入狀態
+  const handleInput = () => {
+    setInputText(inputRef.current.value)
+  }
+  useEffect(() => {
+    handleAutocomplete()
+  }, [inputText]) // eslint-disable-line react-hooks/exhaustive-deps
+  //
+  useEffect(() => {
+    doRecord(places)
+  }, [places])
+
   return (
     <div className="map-comp-wrapper">
       <div className="map-search-wrapper">
@@ -201,14 +263,16 @@ function BigMap(props) {
         //   doSearchPlace()
         // }}
       >
-        {places.map((item) => (
+        {handleItinData.map((item) => (
           <PlaceMarker
             key={item.id}
-            lat={item.geometry.location.lat()}
-            lng={item.geometry.location.lng()}
-            title={item.name}
-            placeId={item.place_id}
-            vicinity={item.vicinity}
+            id={item.id}
+            // lat={item.geometry.location.lat()} //google取得版本
+            // lng={item.geometry.location.lng()}
+            lat={item.lat} //JSON引入版本
+            lng={item.lng}
+            title={item.title}
+            address={item.address}
           />
         ))}
       </GoogleMapReact>

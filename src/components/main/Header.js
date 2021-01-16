@@ -8,11 +8,11 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
-function Header({ member }) {
+function Header() {
   const imagePath = '/images/testImage.jpg'
   //const [member, setMember] = useState()
   //登入登出
-  const login = <span>登入/註冊</span>
+  //const login = <span>登入/註冊</span>
   const inlogin = (
     <>
       <NavDropdown
@@ -80,7 +80,8 @@ function Header({ member }) {
               {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
-            {member > 1 ? inlogin : login}
+            {/* {member > 1 ? inlogin : login} */}
+            {inlogin}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -134,7 +134,7 @@ function Login() {
             //   )
             // }}
             onClick={() => {
-              if (member > -1) {
+              if (password.length >= 3) {
                 toggleShowA()
               }
             }}

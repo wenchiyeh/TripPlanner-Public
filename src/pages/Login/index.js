@@ -1,19 +1,18 @@
 //登入
 import React, { useEffect, useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
-import { Form, Button, Col, InputGroup } from 'react-bootstrap'
+import { Form, Button, Col, InputGroup, Toast, Row } from 'react-bootstrap'
 import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
 
-function Login(props) {
-  const { isAuth, setIsAuth } = props
-  //const [loading, setLoading] = useState(false)
-  //const [timer, setTimer] = useState(null)
-  //
+function Login() {
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  //alter
+  const [showA, setShowA] = useState(false)
+  const toggleShowA = () => setShowA(!showA)
   //驗證表單
   const [validated, setValidated] = useState(false)
   const handleSubmit = (event) => {
@@ -44,43 +43,19 @@ function Login(props) {
           history.push('/myAccount')
         } else {
           console.log('請輸入正確的帳號密碼')
-          //history.push('/login')
         }
       }
     } catch (err) {
-      alert('請輸入正確的帳號密碼!')
+      //alert('請輸入正確的帳號密碼!')
       console.log(err)
     }
   }
-  // useEffect(() => {
-  //   if (email.trim() && password.trim()) {
-  //     //trigger();
-  //     setMember({
-  //       type: 'setIsButtonDisabled',
-  //       payload: false,
-  //     })
-  //   } else {
-  //     //clearErrors()
-  //     setMember({
-  //       type: 'setIsButtonDisabled',
-  //       payload: true,
-  //     })
-  //   }
-  // }, [email, password])
-  //要寫useEffect
   useEffect(() => {
     if (member > 0) {
       console.log(`登入成功 會員: ${member}`)
       setMember()
     } else {
       console.log('請重新輸入')
-      return (
-        <>
-          <Form.Control.Feedback type="invalid">
-            請輸入正確的密碼格式
-          </Form.Control.Feedback>
-        </>
-      )
       //history.push('/login')
     }
   }, [member])
@@ -107,9 +82,9 @@ function Login(props) {
                     setEmail(e.target.value)
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
+                {/* <Form.Control.Feedback type="invalid">
                   請輸入正確的信箱格式
-                </Form.Control.Feedback>
+                </Form.Control.Feedback> */}
               </InputGroup>
             </Form.Group>
           </Form.Row>
@@ -131,12 +106,20 @@ function Login(props) {
                     setPassword(e.target.value)
                   }}
                 />
-                <Form.Control.Feedback type="invalid">
+                {/* <Form.Control.Feedback type="invalid">
                   請輸入正確的密碼格式
-                </Form.Control.Feedback>
+                </Form.Control.Feedback> */}
               </InputGroup>
             </Form.Group>
           </Form.Row>
+          {/* //跳訊息 */}
+          <Toast
+            show={showA}
+            onClose={toggleShowA}
+            className="d-flex message-login-err"
+          >
+            <Toast.Body>請輸入正確帳號密碼</Toast.Body>
+          </Toast>
           <Button
             type="submit"
             className="login-btn"
@@ -150,6 +133,11 @@ function Login(props) {
             //     )
             //   )
             // }}
+            onClick={() => {
+              if (member > -1) {
+                toggleShowA()
+              }
+            }}
           >
             登入
           </Button>

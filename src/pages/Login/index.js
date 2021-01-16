@@ -1,13 +1,13 @@
 //登入
 import React, { useEffect, useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
-import { Form, Button, Col, InputGroup, Toast, Row } from 'react-bootstrap'
+import { Form, Button, Col, InputGroup, Toast } from 'react-bootstrap'
 import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
 
 function Login() {
   let history = useHistory()
-  const [member, setMember] = useState([])
+  const [member, setMember] = useState(-1)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   //alter
@@ -40,7 +40,8 @@ function Login() {
         const data = await response.json()
         if (data.result) {
           setMember(data.member)
-          history.push('/myAccount')
+          //const { id } = data.member
+          //history.push(`/myAccount/:id`)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -51,9 +52,10 @@ function Login() {
     }
   }
   useEffect(() => {
-    if (member > 0) {
+    if (member > -1) {
       console.log(`登入成功 會員: ${member}`)
       setMember()
+      history.push(`/myAccount/${member}`)
     } else {
       console.log('請重新輸入')
       //history.push('/login')
@@ -118,7 +120,9 @@ function Login() {
             onClose={toggleShowA}
             className="d-flex message-login-err"
           >
-            <Toast.Body>請輸入正確帳號密碼</Toast.Body>
+            <Toast.Body>
+              {password.length > 6 ? '' : '請輸入正確帳號密碼'}
+            </Toast.Body>
           </Toast>
           <Button
             type="submit"

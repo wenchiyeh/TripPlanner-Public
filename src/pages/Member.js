@@ -20,7 +20,7 @@ function Member() {
     console.log('我在這測試')
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
-        mode: 'no-cors',
+        //mode: 'no-cors',
         method: 'post',
       })
       console.log(response)
@@ -74,7 +74,7 @@ function Member() {
       </div>
     </article>
   )
-  return member.length > -1 ? display : Loading
+  return member.length > -1 ? Loading : display
 }
 
 export default Member

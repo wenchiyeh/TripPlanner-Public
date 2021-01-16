@@ -12,12 +12,11 @@ import CarRoute from '../products/CarRoute'
 function MainRoute() {
   return (
     <>
-      {/* {'function bar 的連結' } */}
       <Switch>
         <Route path="/shoppingcar">
           <CarRoute />
         </Route>
-        <Route path="/myAccount">
+        <Route path="/myAccount/:id">
           <Member />
         </Route>
         <Route path="/itinerary">
@@ -29,7 +28,6 @@ function MainRoute() {
         <Route path="/LineChart">
           <LineChart />
         </Route>
-
         <Route path="/travelBuddies">
           <TravelBuddiesRoute />
         </Route>

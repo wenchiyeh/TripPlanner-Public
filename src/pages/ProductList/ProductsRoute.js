@@ -122,6 +122,51 @@ function GoRoute() {
     })
   }
 
+  function CarThree(props) {
+    const [inCarThree, setInCarThree] = useState([])
+    let { product_id } = useParams()
+
+    async function getInCarThree(props) {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/productList/car3/${product_id}`,
+          {
+            method: 'post',
+          }
+        )
+        if (response.ok) {
+          const data = await response.json()
+          setInCarThree(data)
+        }
+      } catch (err) {
+        alert('無法得到伺服器資料，請稍後再重試')
+        console.log(err)
+      }
+    }
+    useEffect(() => {
+      getInCarThree()
+    }, [])
+    return (
+      <>
+        {inCarThree.length > 0 && (
+          <CashStep3
+            ticketNumber={inCarThree[0].ticketNumber}
+            className={inCarThree[0].className}
+            ticket_type={inCarThree[0].ticket_type}
+            price={inCarThree[0].price}
+            payfor={inCarThree[0].payfor}
+            purchaseDate={inCarThree[0].purchaseDate}
+            user_name={inCarThree[0].user_name}
+            gender={inCarThree[0].gender}
+            phone={inCarThree[0].phone}
+            mail={inCarThree[0].mail}
+            birthday={inCarThree[0].birthday}
+          />
+        )}
+      </>
+    )
+  }
+
   return (
     <Switch>
       <Route path="/productList/view/:product_id">
@@ -134,7 +179,7 @@ function GoRoute() {
         <CarOneAndTwo tichectButton={false} ticketData={ticketData} />
       </Route>
       <Route path="/productList/car3/:product_id">
-        <CashStep3 />
+        <CarThree />
       </Route>
       <Route path="/productList/car">
         <Null />

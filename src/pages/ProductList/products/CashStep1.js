@@ -18,6 +18,7 @@ function CashStep1({
   showTicketType,
 }) {
   const [tichectButton, setTichectButton] = useState(true)
+  let { product_id } = useParams()
 
   const earlyTicket = ticketData.earlyTicket
   const singleTicket = ticketData.singleTicket
@@ -56,7 +57,6 @@ function CashStep1({
       return totalTicket * reallyPrice[2]
     }
   }
-  let { product_id } = useParams()
   let history = useHistory()
 
   function goBack() {
@@ -180,21 +180,6 @@ function CashStep1({
   const buy_ticket_day = year + '-' + month + '-' + day
   const [credit, setCredit] = useState()
   const [validated, setValidated] = useState(false)
-
-  console.log([
-    ticket_number,
-    className,
-    buy_ticket_type,
-    totalTicket,
-    buy_ticket_price,
-    buy_ticket_day,
-    user_name,
-    user_gender,
-    user_phone,
-    user_mail,
-    user_birthday,
-    credit,
-  ])
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -361,6 +346,7 @@ function CashStep1({
                     type="date"
                     placeholder=""
                     required
+                    value="1993-01-01"
                     onChange={(e) => {
                       setUser_birthday(e.target.value)
                     }}
@@ -487,7 +473,8 @@ function CashStep1({
                   <Button
                     variant="info"
                     onClick={() => {
-                      getUser(getUser)
+                      getUser()
+                      goCar3()
                     }}
                   >
                     結帳

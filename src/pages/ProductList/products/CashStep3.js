@@ -2,9 +2,22 @@ import React from 'react'
 import Icons from './Icons'
 import './cash.scss'
 import { Button } from 'react-bootstrap'
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-function CashStep3() {
+function CashStep3({
+  ticketNumber,
+  classDate,
+  className,
+  ticket_type,
+  price,
+  payfor,
+  purchaseDate,
+  user_name,
+  gender,
+  phone,
+  mail,
+  birthday,
+}) {
   return (
     <>
       <div className="In-the-car">
@@ -17,7 +30,7 @@ function CashStep3() {
             <div className="product-number">
               <div>
                 <h3>商品編號</h3>
-                <h3>1313869028421103-1-7</h3>
+                <h3>{ticketNumber}</h3>
               </div>
 
               <img src="/images/classPhoto/qrcode.jpg" alt="qrcode" />
@@ -25,57 +38,57 @@ function CashStep3() {
             <div className="inside-detail">
               <div>
                 <h4>活動日期</h4>
-                <h5>2021-1-20</h5>
+                <h5>{classDate}</h5>
               </div>
               <hr />
               <div>
                 <h4>講座名稱</h4>
-                <h5>雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活</h5>
+                <h5>{className}</h5>
               </div>
               <hr />
               <div>
                 <h4>票種</h4>
-                <h5>早鳥票</h5>
+                <h5>{ticket_type}</h5>
               </div>
               <hr />
               <div>
                 <h4>價格</h4>
-                <h5>200</h5>
+                <h5>{price}</h5>
               </div>
               <hr />
               <div>
                 <h4>付款方式</h4>
-                <h5>visa</h5>
+                <h5>{payfor}</h5>
               </div>
               <hr />
               <div>
                 <h4>購買日期</h4>
-                <h5>2020-12-29</h5>
+                <h5>{purchaseDate}</h5>
               </div>
               <hr />
               <div>
                 <h4>姓名</h4>
-                <h5>史惠全</h5>
+                <h5>{user_name}</h5>
               </div>
               <hr />
               <div>
                 <h4>性別</h4>
-                <h5>男</h5>
+                <h5>{gender}</h5>
               </div>
               <hr />
               <div>
                 <h4>電話</h4>
-                <h5>0912345678</h5>
+                <h5>{phone}</h5>
               </div>
               <hr />
               <div>
                 <h4>電子信箱</h4>
-                <h5>123456@gmail.com</h5>
+                <h5>{mail}</h5>
               </div>
               <hr />
               <div>
                 <h4>出生日期</h4>
-                <h5>1997-09-04</h5>
+                <h5>{birthday}</h5>
               </div>
               <hr />
               <Link to="/" className="gohome">
@@ -88,4 +101,4 @@ function CashStep3() {
     </>
   )
 }
-export default withRouter(CashStep3)
+export default CashStep3

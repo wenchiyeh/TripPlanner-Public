@@ -111,12 +111,14 @@
   width: $itineditor-width;
   background: $sub-gray;
   padding: 32px;
-  p {
-    margin-bottom: 16px;
-  }
   input {
     width: 400px;
     margin: 0;
+  }
+  span {
+    .btn {
+      margin-left: 16px;
+    }
   }
   &.publish-title {
     width: 100%;
@@ -217,6 +219,7 @@
     }
   }
   .itin-editor-spotsWapper {
+    min-height: 70px;
     background: #fff;
     padding: 8px 0 16px;
   }

@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 function ConfirmBox(props) {
   const {
     cb = () => alert('ok'),
+    cbProps,
     header = '請再次確認',
     subHeader = '',
     text = '是否進行此操作',
@@ -27,7 +28,7 @@ function ConfirmBox(props) {
           onClick={() => {
             props.resetDom(<></>)
             props.onHide(false)
-            cb({ ...props })
+            cb(...cbProps)
           }}
         >
           送出

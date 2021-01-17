@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import SpotsBox from './SpotsBox'
 import ConfirmBox from '../main/ConfirmBox'
-import { Button, Modal } from 'react-bootstrap'
 import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 //
 //測試用假資料
 import fakeTestingData from './testBoxData'
 
-function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
-  const [tempData, setTempData] = useState(boxData)
+function ItinEditor({
+  isEdit = false,
+  tempData = fakeTestingData,
+  setTempData,
+}) {
+  // const [tempData, setTempData] = useState(boxData)
   //
   //處理confirm
   const [modalShow, setModalShow] = useState(false)
@@ -71,6 +74,11 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
       setTempData(originArray)
     }
   }
+  function boxDelete(day, box) {
+    const originArray = Array.from(tempData)
+    originArray[day].data.splice(box, 1)
+    setTempData(originArray)
+  }
   const displayEdit = (
     <div className="itin-editor-wrapper">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -92,10 +100,12 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
               <span
                 className="box-close-btn"
                 onClick={() => {
-                  if (Array.from(tempData).length > 1) {
+                  if (tempData.length > 1) {
                     createModal({
-                      header: 'test',
+                      header: '請再次確認',
+                      text: `是否刪除第 ${dayIndex + 1} 日？`,
                       cb: dayDelete,
+                      cbProps: [dayIndex],
                     })
                   }
                 }}
@@ -127,8 +137,16 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                               index={[dayIndex, index]}
                               data={element}
                               isEdit={isEdit}
-                              allData={tempData}
-                              doEdit={setTempData}
+                              dataFromUser={tempData}
+                              setDataFromUser={setTempData}
+                              doDelete={() => {
+                                createModal({
+                                  header: '請再次確認',
+                                  text: `是否刪除此行程？`,
+                                  cb: boxDelete,
+                                  cbProps: [dayIndex, index],
+                                })
+                              }}
                             />
                           </div>
                         )}
@@ -136,11 +154,11 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                     </div>
                   ))}
                   {provided.placeholder}
-                  <div className="d-flex justify-content-center">
+                  {/* <div className="d-flex justify-content-center">
                     <Button variant="primary" onClick={() => {}}>
                       +行程
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </Droppable>
@@ -201,8 +219,8 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                   index={[dayIndex, index]}
                   data={element}
                   isEdit={isEdit}
-                  allData={tempData}
-                  doEdit={setTempData}
+                  dataFromUser={tempData}
+                  setDataFromUser={setTempData}
                 />
               </div>
             ))}

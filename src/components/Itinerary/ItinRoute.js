@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch, useParams } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
 import ItinEditView from './ItinEditView'
-import ItinEditor from './ItinEditor'
 //測試用
 // import SpotBox from './SpotsBox'
 import ItinList from './ItinList'
@@ -11,10 +10,10 @@ import BigMap from './BigMap'
 // import TestDragEditor from './TestDragEditor'
 //
 
-function Test() {
-  let { itin_id } = useParams()
-  return <h1>{itin_id}</h1>
-}
+// function Test() {
+//   let { itin_id } = useParams()
+//   return <h1>{itin_id}</h1>
+// }
 
 function ItinRoute() {
   return (
@@ -31,6 +30,9 @@ function ItinRoute() {
         </Route>
         <Route path="/itinerary/new">
           <ItinEditView />
+        </Route>
+        <Route path="/itinerary/edit/:itin_id">
+          <ItinEditView isNew={false} />
         </Route>
         <Route path="/itinerary/map">
           <BigMap />

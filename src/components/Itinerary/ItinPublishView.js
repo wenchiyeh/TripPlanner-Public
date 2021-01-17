@@ -61,7 +61,7 @@ function ItinPublishView({ isEdit = false, isPublish = true }) {
           />
           <ItinEditor
             isEdit={false} //任何情況下的publish頁都不需要修改功能
-            boxData={dataFromDB[1]}
+            tempData={dataFromDB[1]}
           />
         </div>
         <div>

@@ -13,11 +13,49 @@ let handleItinData = itinData[2].data
 //套件範例元件
 // const AnyReactComponent = ({ text }) => <div>{text}</div>
 //marker元件
-const PlaceMarker = ({ id, title, address }) => (
+const PlaceMarker = ({
+  id,
+  title,
+  lat,
+  lng,
+  city,
+  // address,
+  dataFromUser,
+  setDataFromUser,
+}) => (
   <div className="map-markerWrap d-flex flex-column align-items-center">
     <div className={`map-marker-info custom-box-shadow markerInfo${id}`}>
       <h5>{title}</h5>
-      <Button variant="info" onClick={() => {}}>
+      <Button
+        variant="info"
+        onClick={() => {
+          const originArray = Array.from(dataFromUser)
+          const dayIndex = originArray.length
+          const boxInedx =
+            dayIndex > 0 ? originArray[dayIndex - 1].data.length : 0
+          let time = ''
+          if (boxInedx > 0) {
+            time = originArray[dayIndex - 1].data[boxInedx - 1].begin
+          } else {
+            time = '0800'
+          }
+          const insertData = {
+            place_id: id,
+            day: null,
+            order: null,
+            title,
+            begin: time,
+            location: city,
+            lat,
+            lng,
+            image: '',
+            info: '',
+          }
+          originArray[dayIndex - 1].data.push(insertData)
+          setDataFromUser(originArray)
+          console.log(originArray)
+        }}
+      >
         加進行程
         <FaPlus />
       </Button>
@@ -259,7 +297,10 @@ function BigMap({
             lat={item.lat} //JSON引入版本
             lng={item.lng}
             title={item.title}
+            city={item.city}
             address={item.address}
+            dataFromUser={dataFromUser}
+            setDataFromUser={setDataFromUser}
           />
         ))}
       </GoogleMapReact>

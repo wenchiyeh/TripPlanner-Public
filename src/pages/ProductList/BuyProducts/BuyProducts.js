@@ -225,7 +225,7 @@ function BuyProducts({
             </div>
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
-              {early == 0 && group == 0 && single == 0 ? (
+              {early === 0 && group === 0 && single === 0 ? (
                 <Button variant="info" onClick={InTheCar} disabled>
                   加入購物車{' '}
                 </Button>

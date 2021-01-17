@@ -101,6 +101,7 @@ function CarOneAndTwo(props) {
           classDate={inCarOne[0].classDate}
           ticket_price={inCarOne[0].ticket_price}
           showTicketType={props.ticketData}
+          ticketData={props.ticketData}
         />
       )}
     </>
@@ -120,16 +121,17 @@ function GoRoute() {
       groupTicket: groupPrice,
     })
   }
+
   return (
     <Switch>
       <Route path="/productList/view/:product_id">
         <MapProduct changeData={changeData} />
       </Route>
       <Route path="/productList/car1/:product_id">
-        <CarOneAndTwo tichectButton={true} />
+        <CarOneAndTwo tichectButton={true} ticketData={ticketData} />
       </Route>
       <Route path="/productList/car1/:product_id">
-        <CarOneAndTwo tichectButton={false} />
+        <CarOneAndTwo tichectButton={false} ticketData={ticketData} />
       </Route>
       <Route path="/productList/car3/:product_id">
         <CashStep3 />

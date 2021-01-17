@@ -1,26 +1,20 @@
 import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
-
+import ShowCreditCard from './ShowCreditCard'
 function CashStep1({
   className,
   classDate,
   ticket_price,
-  user_name,
-  user_mail,
-  user_phone,
-  user_birthday,
-  finalPrice,
-  finalTicket,
   ticketData,
-  totalPrice,
   showTicketType,
 }) {
   const [tichectButton, setTichectButton] = useState(true)
+
   const earlyTicket = ticketData.earlyTicket
   const singleTicket = ticketData.singleTicket
   const groupTicket = ticketData.groupTicket
@@ -160,6 +154,56 @@ function CashStep1({
     </>
   )
 
+  const [user, setUser] = useState([])
+  const [user_name, setUser_name] = useState('')
+  const [user_mail, setUser_mail] = useState('')
+  const [user_phone, setUser_phone] = useState('')
+  const [user_birthday, setUser_birthday] = useState('')
+  const [user_gender, setUser_gender] = useState('')
+  const buy_ticket_price = showTicketPrice()
+  const buy_ticket_type = ShowTicketType()
+
+  const [validated, setValidated] = useState(false)
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      //event.stopPropagation()
+    } else {
+      event.preventDefault()
+      event.stopPropagation()
+      getUser()
+    }
+    setValidated(true)
+  }
+  async function getUser() {
+    try {
+      const response = await fetch('http://localhost:5000/gohistory', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_name,
+          user_mail,
+          user_phone,
+          user_birthday,
+          user_gender,
+          buy_ticket_price,
+          buy_ticket_type,
+        }),
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setUser(data.member)
+        history.push('/login')
+      } else {
+        history.push('/sigon')
+      }
+    } catch (err) {
+      alert('請輸入正確的帳號密碼!')
+      console.log(err)
+    }
+  }
+
   const step2 = (
     <>
       <div className="In-the-car">
@@ -197,7 +241,7 @@ function CashStep1({
               </div>
 
               <div className="how-many-ticket">
-                <p>{finalTicket}</p>
+                <p>{totalTicket}</p>
               </div>
               <div className="pay-for-it">
                 <h3>NT$ </h3>
@@ -205,9 +249,20 @@ function CashStep1({
               </div>
             </div>
             <hr />
-            {/*上半部色塊 要想辦法弄成元件*/}
+
             <h3 className="about-member">填寫參加人資訊</h3>
-            <Form noValidate className="step2-member-from">
+            <Form
+              noValidate
+              className="step2-member-from"
+              validated={validated}
+              onSubmit={handleSubmit}
+            >
+              <Form.Control type="hidden" value={className} />
+              <Form.Control type="hidden" value={classDate} />
+              <Form.Control type="hidden" value={totalTicket} />
+              <Form.Control type="hidden" value={showTicketPrice()} />
+              <Form.Control type="hidden" value={ShowTicketType()} />
+
               <Form.Row>
                 <Form.Group
                   as={Col}
@@ -219,8 +274,9 @@ function CashStep1({
                   <Form.Control
                     type="text"
                     placeholder="請輸入姓名"
-                    aria-describedby=""
-                    defaultValue={user_name}
+                    onChange={(e) => {
+                      setUser_name(e.target.value)
+                    }}
                     required
                   />
                   <Form.Control.Feedback type="invalid">
@@ -237,7 +293,9 @@ function CashStep1({
                     required
                     type="text"
                     placeholder="請輸入信箱"
-                    defaultValue={user_mail}
+                    onChange={(e) => {
+                      setUser_mail(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback>正確!</Form.Control.Feedback>
                 </Form.Group>
@@ -251,7 +309,9 @@ function CashStep1({
                     type="text"
                     placeholder="0988888888"
                     required
-                    defaultValue={user_phone}
+                    onChange={(e) => {
+                      setUser_phone(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的電話號碼
@@ -266,7 +326,9 @@ function CashStep1({
                     type="date"
                     placeholder=""
                     required
-                    defaultValue={user_birthday}
+                    onChange={(e) => {
+                      setUser_birthday(e.target.value)
+                    }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入出生日期
@@ -281,10 +343,16 @@ function CashStep1({
                 >
                   <Form.Label>性別</Form.Label>
                   <span className="med-add-text-red">*</span>
-                  <Form.Control as="select" custom>
+                  <Form.Control
+                    as="select"
+                    custom
+                    onChange={(e) => {
+                      setUser_gender(e.target.value)
+                    }}
+                  >
                     <option disabled>-請選擇-</option>
-                    <option>男性</option>
-                    <option>女性</option>
+                    <option value="1">男性</option>
+                    <option value="2">女性</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
@@ -315,6 +383,7 @@ function CashStep1({
                       </Form.Check.Label>
                     </Form.Check>
                   </div>
+                  <ShowCreditCard />
                 </div>
               </div>
               <div className="check-and-btn">

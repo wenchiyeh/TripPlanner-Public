@@ -3,19 +3,15 @@ import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
-//引入資料庫
-//let memberUsersData = require('../member.json')
-//let handleTestData = memberUsersData[2].data
-//let id = 4
-//帶入資料庫
-function MemberEdit(props) {
+
+function MemberEdit({ member }) {
   let { id } = useParams()
   let history = useHistory()
-  const [member, setMember] = useState('')
-  const [member_name, setName] = useState('')
+  const [members, setMembers] = useState('')
+  const [member_name, setMember_name] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [area, setArea] = useState('')
+  //const [area, setArea] = useState('')
   const [member_phone, setPhone] = useState('')
   const [birthday, setBirthday] = useState('')
   const [member_sex, setmember_sex] = useState('')
@@ -25,10 +21,9 @@ function MemberEdit(props) {
   //更新
   async function updateMember() {
     const newMember = {
-      member_name,
       email,
       password,
-      area,
+      member_name,
       member_phone,
       birthday,
       member_sex,
@@ -36,9 +31,9 @@ function MemberEdit(props) {
       member_aboutme,
     }
     try {
-      const response = await fetch('http://localhost:5000/member', {
-        //mode: 'no-cors',
-        method: 'update',
+      const response = await fetch(`http://localhost:5000/member/`, {
+        //mode: 'cors',
+        method: 'put',
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -47,11 +42,10 @@ function MemberEdit(props) {
       })
       if (response.ok) {
         const data = await response.json()
-        setMember(data)
+        setMembers(data)
         console.log(data)
         if (data.id) alert('更新成功')
-
-        history.push('/member')
+        //history.push('/member')
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -60,12 +54,19 @@ function MemberEdit(props) {
   }
   async function getMember(id) {
     try {
-      const response = await fetch('http://localhost:5000/member', {
-        method: 'get',
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
+        method: 'post',
       })
       if (response.ok) {
         const data = await response.json()
-        setMember(data)
+        // 設定到每個欄位
+        setEmail(data.email)
+        setPassword(data.password)
+        setMember_name(data.member_name)
+        setPhone(data.phone)
+        setmember_sex(data.member_sex)
+        setMember_id(data.member_id)
+        setMember_aboutme(data.member_aboutme)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -73,8 +74,13 @@ function MemberEdit(props) {
     }
   }
   useEffect(() => {
-    getMember()
-  }, [])
+    if (member > -1) {
+      console.log(member)
+      //console.log('h1 model')
+      //updateMember(id)
+      MemberEdit()
+    }
+  }, [member])
 
   //元件狀態
   const [validated, setValidated] = useState(false)
@@ -87,11 +93,10 @@ function MemberEdit(props) {
     }
     setValidated(true)
   }
-  {
-    //DOM表單
-    let display = <></>
-    //導入member[0]
-    display = member.length > 0 && (
+
+  //導入member[0]
+  return (
+    <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Form.Row>
           {/* email */}
@@ -139,7 +144,7 @@ function MemberEdit(props) {
               aria-describedby=""
               required
               onChange={(e) => {
-                setName(e.target.value)
+                setMember_name(e.target.value)
               }}
             />
             <Form.Control.Feedback type="invalid">
@@ -147,25 +152,24 @@ function MemberEdit(props) {
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
-        <Form.Row>
-          {/* 地區 */}
-          <Form.Group as={Col} md="12" controlId="validationCustom03">
-            <Form.Label>地區</Form.Label>
-            <span className="med-add-text-red">*</span>
-            <Form.Control
-              type="text"
-              placeholder="請輸入地區"
-              // defaultValue={member[0].area}
-              required
-              onChange={(e) => {
-                setArea(e.target.value)
-              }}
-            />
-            <Form.Control.Feedback type="invalid">
-              請輸入正確的地區
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Form.Row>
+        {/* <Form.Row>
+            <Form.Group as={Col} md="12" controlId="validationCustom03">
+              <Form.Label>地區</Form.Label>
+              <span className="med-add-text-red">*</span>
+              <Form.Control
+                type="text"
+                placeholder="請輸入地區"
+                defaultValue={member[0].area}
+                required
+                onChange={(e) => {
+                  setArea(e.target.value)
+                }}
+              />
+              <Form.Control.Feedback type="invalid">
+                請輸入正確的地區
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row> */}
         {/* 電話 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom04">
@@ -269,17 +273,17 @@ function MemberEdit(props) {
           </Form.Group>
         </Form.Row>
         <Button
+          type="sumit"
           className="memed-submit"
           onClick={() => {
-            updateMember()
+            updateMember(id)
           }}
         >
           確定
         </Button>
       </Form>
-    )
-
-    return <>{display}</>
-  }
+    </>
+  )
 }
+
 export default MemberEdit

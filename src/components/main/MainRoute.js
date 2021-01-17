@@ -11,7 +11,14 @@ function MainRoute() {
   return (
     <>
       <Switch>
+<<<<<<< HEAD
         <Route path="/myAccount">
+=======
+        <Route path="/shoppingcar">
+          <CarRoute />
+        </Route>
+        <Route path="/myAccount/:id">
+>>>>>>> ce07baf96e66f34c46cf2d4e30666d9fa5067e59
           <Member />
         </Route>
         <Route path="/itinerary">

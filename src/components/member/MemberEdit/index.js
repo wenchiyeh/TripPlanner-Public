@@ -10,10 +10,10 @@ function MemberEdit({ member }) {
   const [members, setMembers] = useState('')
   const [member_name, setMember_name] = useState('')
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  //const [password, setPassword] = useState('')
   //const [area, setArea] = useState('')
   const [member_phone, setPhone] = useState('')
-  const [birthday, setBirthday] = useState('')
+  //const [birthday, setBirthday] = useState('')
   const [member_sex, setmember_sex] = useState('')
   const [member_id, setMember_id] = useState('')
   const [member_aboutme, setMember_aboutme] = useState('')
@@ -22,18 +22,18 @@ function MemberEdit({ member }) {
   async function updateMember() {
     const newMember = {
       email,
-      password,
+      //password,
       member_name,
       member_phone,
-      birthday,
+      // birthday,
       member_sex,
       member_id,
       member_aboutme,
     }
     try {
-      const response = await fetch(`http://localhost:5000/member/`, {
-        //mode: 'cors',
-        method: 'put',
+      const response = await fetch(`http://localhost:5000/udmember`, {
+        mode: 'cors',
+        method: 'post',
         body: JSON.stringify(newMember),
         headers: {
           Accept: 'application/json',
@@ -55,15 +55,16 @@ function MemberEdit({ member }) {
   async function getMember(id) {
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
-        method: 'post',
+        mode: 'cors',
+        method: 'get',
       })
       if (response.ok) {
         const data = await response.json()
         // 設定到每個欄位
         setEmail(data.email)
-        setPassword(data.password)
         setMember_name(data.member_name)
         setPhone(data.phone)
+        // setBirthday(data.birthday)
         setmember_sex(data.member_sex)
         setMember_id(data.member_id)
         setMember_aboutme(data.member_aboutme)
@@ -74,13 +75,13 @@ function MemberEdit({ member }) {
     }
   }
   useEffect(() => {
-    if (member > -1) {
-      console.log(member)
-      //console.log('h1 model')
-      //updateMember(id)
-      MemberEdit()
+    if (member > 0) {
+      console.log('hi model')
+      //getMember(id)
+      updateMember(id)
     }
-  }, [member])
+    console.log('ud:', member)
+  }, [member, id])
 
   //元件狀態
   const [validated, setValidated] = useState(false)
@@ -111,23 +112,6 @@ function MemberEdit({ member }) {
                 defaultValue={member[0].email}
                 onChange={(e) => {
                   setEmail(e.target.value)
-                }}
-              />
-              <Form.Control.Feedback>正確!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          {/* 密碼 */}
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationCustom02">
-              <Form.Label>密碼</Form.Label>
-              <span className="med-add-text-red">*</span>
-              <Form.Control
-                required
-                type="password"
-                placeholder="請輸入密碼"
-                defaultValue={member[0].password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
                 }}
               />
               <Form.Control.Feedback>正確!</Form.Control.Feedback>
@@ -191,7 +175,7 @@ function MemberEdit({ member }) {
             </Form.Group>
           </Form.Row>
           {/* 出生日期 */}
-          <Form.Row>
+          {/* <Form.Row>
             <Form.Group as={Col} md="6" controlId="validationCustom05">
               <Form.Label>出生日期</Form.Label>
               <span className="med-add-text-red">*</span>
@@ -208,7 +192,7 @@ function MemberEdit({ member }) {
                 請輸入出生日期
               </Form.Control.Feedback>
             </Form.Group>
-          </Form.Row>
+          </Form.Row> */}
           {/* 性別 */}
           <Form.Row>
             <Form.Group as={Col} md="3" controlId="exampleForm.SelectCustom">

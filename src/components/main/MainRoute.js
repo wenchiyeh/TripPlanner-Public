@@ -11,7 +11,7 @@ import CarRoute from '../products/CarRoute'
 
 function MainRoute() {
   //console.log('主路由', member)
-  const member = useState(1)
+  //const member = useState(1)
 
   return (
     <>
@@ -20,7 +20,7 @@ function MainRoute() {
           <CarRoute />
         </Route>
         <Route path="/myAccount/:id">
-          <Member member={member} />
+          <Member />
         </Route>
         <Route path="/itinerary">
           <ItinRoute />

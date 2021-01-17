@@ -30,7 +30,8 @@ function MemberProfile({ member }) {
       <div className="person">
         <h3>一般會員</h3>
         <img src={memberimg} alt="" />
-        {/* <h4>{data[0].member_name}</h4> */}
+        {/* <h4>陳嘉賢</h4> */}
+        <h4>{member[0].member_name}</h4>
         <Button
           variant="primary"
           className="MemberList-title"
@@ -56,7 +57,6 @@ function MemberProfile({ member }) {
       </Modal>
     </>
   )
-
   return <>{display}</>
 
   //return member.length > 0 ? display : Loading

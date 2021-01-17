@@ -26,7 +26,7 @@ function Member() {
       if (response.ok) {
         const data = await response.json()
         setMember(data)
-        console.log('data:', data)
+        console.log('memberdata:', data)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -36,14 +36,14 @@ function Member() {
   useEffect(() => {
     if (member > 0) {
       getMember(id)
-      console.log('有資料嗎?', member)
-      console.log('有id?', id)
+      console.log('me有資料嗎?', member)
+      console.log('me有id?', id)
     }
   }, [member, id])
-  useEffect(() => {
-    console.log('有資料嗎?', member)
-    //console.log('member:', member)
-  }, [])
+  //useEffect(() => {
+  //console.log('me有資料嗎?', member)
+  //console.log('member:', member)
+  //}, [])
 
   //const Loading = <h1>Loading</h1>
 

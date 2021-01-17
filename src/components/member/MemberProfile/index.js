@@ -2,11 +2,15 @@
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
+import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
 //import { useHistory } from 'react-router-dom'
 function MemberProfile({ member }) {
   //let history = useHistory()
-  console.log('???', member)
+  let { id } = useParams()
+  //console.log('p有拿到member?', member)
+  console.log('id:', id)
+  //const [member, setMembber] = useState(1)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -14,14 +18,19 @@ function MemberProfile({ member }) {
   let memberimg = 'http://localhost:3000/images/member/member_1.jpg'
   //導入member[0]
 
-  const Loading = <h1>Loading</h1>
+  // useEffect(() => {
+  //   if (member >= 1) {
+  //     setMembber()
+  //   }
+  // }, [])
+  //const Loading = <h1>Loading</h1>
 
   const display = member.length > 0 && (
     <>
       <div className="person">
         <h3>一般會員</h3>
         <img src={memberimg} alt="" />
-        <h4>{member[0].member_name}</h4>
+        {/* <h4>{data[0].member_name}</h4> */}
         <Button
           variant="primary"
           className="MemberList-title"
@@ -47,8 +56,10 @@ function MemberProfile({ member }) {
       </Modal>
     </>
   )
-  return display
-  //return member.lenght > -1 ? display : Loading
+
+  return <>{display}</>
+
+  //return member.length > 0 ? display : Loading
 }
 
 export default MemberProfile

@@ -12,13 +12,14 @@ import Notice from './Notice'
 import MyAccount from '../components/member/MyAccount'
 
 function Member() {
-  const [member, setMember] = useState([])
+  const [member, setMember] = useState(1)
   let { id } = useParams()
-  async function getMember() {
+  async function getMember(id) {
     console.log('會員ID:', id)
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         //mode: 'no-cors',
+        mode: 'cors',
         method: 'get',
       })
       console.log(response)
@@ -33,49 +34,55 @@ function Member() {
     }
   }
   useEffect(() => {
-    getMember()
-    console.log('hi')
+    if (member > 0) {
+      getMember(id)
+      console.log('有資料嗎?', member)
+      console.log('有id?', id)
+    }
+  }, [member, id])
+  useEffect(() => {
+    console.log('有資料嗎?', member)
+    //console.log('member:', member)
   }, [])
-  // useEffect(() => {
-  //   console.log('member:', member)
-  // }, [member])
 
-  const Loading = <h1>Loading</h1>
+  //const Loading = <h1>Loading</h1>
 
   const display = (
-    <article className="article">
-      <div className="aside">
-        <section className="aboutMember">
-          <MemberProfile member={member} />
-          <StarRating />
-          <CalendarApp />
-        </section>
-        <nav>
-          <FunctionBar />
-          <Switch>
-            <Route path="/myAccount/historyOrder ">
-              <HistiryRoute />
-            </Route>
-            <Route path="/myAccount/TravelBuddies">
-              <MyTravelBuddies />
-            </Route>
-            <Route path="/myAccount/favorites">
-              <MeFavorites />
-            </Route>
-            <Route path="/myAccount/Notice">
-              <Notice />
-            </Route>
-            <Route path="/myAccount/myAccount">
-              <MyAccount />
-            </Route>
-          </Switch>
-        </nav>
-      </div>
-    </article>
+    <>
+      <article className="article">
+        <div className="aside">
+          <section className="aboutMember">
+            <MemberProfile member={member} />
+            <StarRating />
+            <CalendarApp />
+          </section>
+          <nav>
+            <FunctionBar />
+            <Switch>
+              <Route path="/myAccount/historyOrder ">
+                <HistiryRoute />
+              </Route>
+              <Route path="/myAccount/TravelBuddies">
+                <MyTravelBuddies />
+              </Route>
+              <Route path="/myAccount/favorites">
+                <MeFavorites />
+              </Route>
+              <Route path="/myAccount/Notice">
+                <Notice />
+              </Route>
+              <Route path="/myAccount/myAccount">
+                <MyAccount />
+              </Route>
+            </Switch>
+          </nav>
+        </div>
+      </article>
+    </>
   )
 
-  //return display
-  return member.length > -1 ? Loading : display
+  return display
+  //return member.length > 0 ? display : Loading
 }
 
 export default Member

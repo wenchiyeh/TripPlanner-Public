@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
@@ -10,6 +10,9 @@ import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 import CarRoute from '../products/CarRoute'
 
 function MainRoute() {
+  //console.log('主路由', member)
+  const member = useState(1)
+
   return (
     <>
       <Switch>
@@ -17,7 +20,7 @@ function MainRoute() {
           <CarRoute />
         </Route>
         <Route path="/myAccount/:id">
-          <Member />
+          <Member member={member} />
         </Route>
         <Route path="/itinerary">
           <ItinRoute />

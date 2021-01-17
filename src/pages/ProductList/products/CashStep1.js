@@ -1,11 +1,15 @@
-import { FaCcPaypal, FaCcVisa } from 'react-icons/fa'
-import React, { useState, useEffect } from 'react'
+import { FaCcVisa, FaCcApplePay } from 'react-icons/fa'
+import { SiJcb, SiMastercard } from 'react-icons/si'
+import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
+import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 import ShowCreditCard from './ShowCreditCard'
+import { useParams } from 'react-router-dom'
+
 function CashStep1({
   className,
   classDate,
@@ -52,10 +56,14 @@ function CashStep1({
       return totalTicket * reallyPrice[2]
     }
   }
+  let { product_id } = useParams()
   let history = useHistory()
 
   function goBack() {
     history.goBack()
+  }
+  function goCar3() {
+    history.push(`/productList/car3/${product_id}`)
   }
 
   const step1 = (
@@ -121,7 +129,7 @@ function CashStep1({
                   <AiFillPlusCircle />
                 </Button>
               </div>
-              <div className="pay-for-it">
+              <div className="pay-it">
                 <h3>NT$ </h3>
 
                 <h3>{showTicketPrice()}</h3>
@@ -154,7 +162,6 @@ function CashStep1({
     </>
   )
 
-  const [user, setUser] = useState([])
   const [user_name, setUser_name] = useState('')
   const [user_mail, setUser_mail] = useState('')
   const [user_phone, setUser_phone] = useState('')
@@ -162,8 +169,33 @@ function CashStep1({
   const [user_gender, setUser_gender] = useState('')
   const buy_ticket_price = showTicketPrice()
   const buy_ticket_type = ShowTicketType()
-
+  const math = 123456789098765432102
+  const ticket_number = Math.floor(Math.random(math) * math)
+  const now = new Date()
+  const year = now.getFullYear()
+  const month_rank = now.getMonth()
+  const month_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  const month = month_array[month_rank]
+  const day = now.getDate()
+  const buy_ticket_day = year + '-' + month + '-' + day
+  const [credit, setCredit] = useState()
   const [validated, setValidated] = useState(false)
+
+  console.log([
+    ticket_number,
+    className,
+    buy_ticket_type,
+    totalTicket,
+    buy_ticket_price,
+    buy_ticket_day,
+    user_name,
+    user_gender,
+    user_phone,
+    user_mail,
+    user_birthday,
+    credit,
+  ])
+
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -178,28 +210,31 @@ function CashStep1({
   }
   async function getUser() {
     try {
-      const response = await fetch('http://localhost:5000/gohistory', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_name,
-          user_mail,
-          user_phone,
-          user_birthday,
-          user_gender,
-          buy_ticket_price,
-          buy_ticket_type,
-        }),
-      })
+      const response = await fetch(
+        'http://localhost:5000/historyOrder/gohistory',
+        {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ticket_number,
+            className,
+            buy_ticket_type,
+            totalTicket,
+            buy_ticket_price,
+            buy_ticket_day,
+            user_name,
+            user_gender,
+            user_phone,
+            user_mail,
+            user_birthday,
+            credit,
+          }),
+        }
+      )
       if (response.ok) {
-        const data = await response.json()
-        setUser(data.member)
-        history.push('/login')
-      } else {
-        history.push('/sigon')
+        console.log('ok')
       }
     } catch (err) {
-      alert('請輸入正確的帳號密碼!')
       console.log(err)
     }
   }
@@ -243,7 +278,7 @@ function CashStep1({
               <div className="how-many-ticket">
                 <p>{totalTicket}</p>
               </div>
-              <div className="pay-for-it">
+              <div className="pay-it">
                 <h3>NT$ </h3>
                 <h3>{showTicketPrice()}</h3>
               </div>
@@ -350,7 +385,9 @@ function CashStep1({
                       setUser_gender(e.target.value)
                     }}
                   >
-                    <option disabled>-請選擇-</option>
+                    <option disabled selected>
+                      -請選擇-
+                    </option>
                     <option value="1">男性</option>
                     <option value="2">女性</option>
                   </Form.Control>
@@ -363,27 +400,77 @@ function CashStep1({
                 <div>
                   <div className="mb-3">
                     <Form.Check type="radio">
-                      <Form.Check.Input type="radio" name="pay-radio" />
-                      <Form.Check.Label className="pay-icon">
-                        <FaCcPaypal />
-                      </Form.Check.Label>
-                      <Form.Check.Label className="pay-icon">
-                        Paypal
-                      </Form.Check.Label>
+                      <Form.Check.Input
+                        type="radio"
+                        name="pay-radio"
+                        value="applepay"
+                        id="applepay"
+                        onChange={(e) => {
+                          setCredit(e.target.value)
+                        }}
+                      />
+                      <span>
+                        <Form.Check.Label
+                          className="pay-label"
+                          htmlFor="applepay"
+                        >
+                          ApplePay
+                        </Form.Check.Label>
+                        <Form.Check.Label
+                          className="pay-icon"
+                          htmlFor="applepay"
+                        >
+                          <FaCcApplePay />
+                        </Form.Check.Label>
+                      </span>
+                    </Form.Check>
+                  </div>
+
+                  <div className="mb-3">
+                    <Form.Check type="radio">
+                      <Form.Check.Input
+                        type="radio"
+                        name="pay-radio"
+                        value="atm"
+                        id="atm"
+                        onChange={(e) => {
+                          setCredit(e.target.value)
+                        }}
+                      />
+                      <span>
+                        <Form.Check.Label className="pay-label" htmlFor="atm">
+                          ATM
+                        </Form.Check.Label>
+                        <Form.Check.Label className="pay-icon" htmlFor="atm">
+                          <MdLocalAtm />
+                        </Form.Check.Label>
+                      </span>
                     </Form.Check>
                   </div>
                   <div className="mb-3">
                     <Form.Check type="radio">
-                      <Form.Check.Input type="radio" name="pay-radio" />
-                      <Form.Check.Label className="pay-icon">
-                        <FaCcVisa />
-                      </Form.Check.Label>
-                      <Form.Check.Label className="pay-icon">
-                        Visa
-                      </Form.Check.Label>
+                      <Form.Check.Input
+                        type="radio"
+                        name="pay-radio"
+                        value="visa"
+                        id="visa"
+                        onChange={(e) => {
+                          setCredit(e.target.value)
+                        }}
+                      />
+                      <span>
+                        <Form.Check.Label className="pay-label" htmlFor="visa">
+                          信用卡
+                        </Form.Check.Label>
+                        <Form.Check.Label className="pay-icon" htmlFor="visa">
+                          <FaCcVisa />
+                          <SiJcb />
+                          <SiMastercard />
+                        </Form.Check.Label>
+                      </span>
                     </Form.Check>
                   </div>
-                  <ShowCreditCard />
+                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">
@@ -397,7 +484,14 @@ function CashStep1({
                   <Button variant="light" className="cancel" onClick={goBack}>
                     取消
                   </Button>
-                  <Button variant="info">結帳</Button>
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      getUser(getUser)
+                    }}
+                  >
+                    結帳
+                  </Button>
                 </div>
               </div>
             </Form>

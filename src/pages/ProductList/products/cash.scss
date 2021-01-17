@@ -120,7 +120,7 @@ body {
             border-radius: 50%;
           }
         }
-        .pay-for-it {
+        .pay-it {
           justify-content: center;
           display: flex;
 
@@ -180,12 +180,22 @@ body {
       .pay-form {
         margin-left: 40px;
         display: flex;
+        span {
+          width: 200px;
+          display: flex;
+          justify-content: space-between;
+          .pay-label {
+            margin-right: 8px;
+            flex: 1 0 0;
+          }
 
-        .pay-icon {
-          margin-right: 8px;
-          svg {
-            width: 30px;
-            height: 20px;
+          .pay-icon {
+            flex: 1 0 0;
+
+            svg {
+              width: 30px;
+              height: 20px;
+            }
           }
         }
       }
@@ -233,9 +243,15 @@ body {
       .product-number {
         display: flex;
         margin-bottom: 40px;
+        justify-content: space-around;
 
         h3 {
           margin-right: 16px;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: contain;
         }
       }
       .inside-detail {

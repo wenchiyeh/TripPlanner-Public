@@ -15,13 +15,17 @@ function CashStep3() {
           <h4 className="done">訂單完成</h4>
           <div className="show-the-product">
             <div className="product-number">
-              <h3>商品編號</h3>
-              <h3>1313869028421103-1-7</h3>
+              <div>
+                <h3>商品編號</h3>
+                <h3>1313869028421103-1-7</h3>
+              </div>
+
+              <img src="/images/classPhoto/qrcode.jpg" alt="qrcode" />
             </div>
             <div className="inside-detail">
               <div>
-                <h4>購買日期</h4>
-                <h5>2020-12-29</h5>
+                <h4>活動日期</h4>
+                <h5>2021-1-20</h5>
               </div>
               <hr />
               <div>

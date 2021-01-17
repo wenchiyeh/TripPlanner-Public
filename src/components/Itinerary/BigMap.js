@@ -1,46 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FaPlus } from 'react-icons/fa'
+import { Button } from 'react-bootstrap'
 import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //引入 API key
 import { Key } from '../../Key'
-//
+//靜態景點資料
 let itinData = require('./itinlist.json')
 let handleItinData = itinData[2].data
+//
 //套件範例元件
-const AnyReactComponent = ({ text }) => <div>{text}</div>
+// const AnyReactComponent = ({ text }) => <div>{text}</div>
 //marker元件
 const PlaceMarker = ({ id, title, address }) => (
-  <div
-    // onClick={(e) => {
-    //   if (e.target.classList.contains('map-markerWrap')) {
-    //     if (e.target.querySelector('.map-info-close')) {
-    //       e.target
-    //         .querySelector('.map-marker-info')
-    //         .classList.remove('map-info-close')
-    //     } else {
-    //       e.target
-    //         .querySelector('.map-marker-info')
-    //         .classList.add('map-info-close')
-    //     }
-    //   }
-    //   console.log(e.target.classList)
-    // }}
-    className="map-markerWrap d-flex flex-column align-items-center"
-  >
-    <div className={`map-marker-info markerInfo${id}`}>
-      {/* map-info-open */}
+  <div className="map-markerWrap d-flex flex-column align-items-center">
+    <div className={`map-marker-info custom-box-shadow markerInfo${id}`}>
       <h5>{title}</h5>
-      {/* <p>{address}</p> */}
-      <h5>
-        加進行程 <FaPlus />
-      </h5>
+      <Button variant="info" onClick={() => {}}>
+        加進行程
+        <FaPlus />
+      </Button>
     </div>
     <div className="d-flex flex-column align-items-center">
       <img
         className="map-markerIcon"
-        // src={'/images/paperPlane.png'}
         src={'http://maps.google.com/mapfiles/ms/micons/red-dot.png'}
         alt={title}
         onClick={(e) => {
@@ -104,13 +88,13 @@ async function sendDatatoServer(data) {
     console.log(err)
   }
 }
-//
-function BigMap(props) {
-  //預設傳入值
-  const {
-    center = { lat: 24.969328305278708, lng: 121.1954124510366 }, //中央大學
-    zoom = 18, //越大放越大
-  } = props
+//本體
+function BigMap({
+  center = { lat: 24.969328305278708, lng: 121.1954124510366 }, //中央大學
+  zoom = 18, //越大放越大
+  dataFromUser,
+  setDataFromUser,
+}) {
   //
   // 預設位置
   const [myPosition, setMyPosition] = useState({
@@ -213,9 +197,9 @@ function BigMap(props) {
     handleAutocomplete()
   }, [inputText]) // eslint-disable-line react-hooks/exhaustive-deps
   //
-  useEffect(() => {
-    doRecord(places)
-  }, [places])
+  // useEffect(() => {
+  //   doRecord(places)
+  // }, [places])
 
   return (
     <div className="map-comp-wrapper">
@@ -258,10 +242,13 @@ function BigMap(props) {
         // options={mapOptions}
         yesIWantToUseGoogleMapApiInternals // 設定為 true
         onGoogleApiLoaded={({ map, maps }) => apiHasLoaded(map, maps)} // 載入完成後執行
-        // onClick={({ lng, lat }) => {
-        //   console.log(lng, lat)
-        //   doSearchPlace()
-        // }}
+        onClick={() => {
+          if (document.querySelector('.map-info-open')) {
+            document
+              .querySelector('.map-info-open')
+              .classList.remove('map-info-open')
+          }
+        }}
       >
         {handleItinData.map((item) => (
           <PlaceMarker

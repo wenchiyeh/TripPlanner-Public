@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import ItinEditorHeader from './ItinEditorHeader'
+import React, { useEffect, useState } from 'react'
 import SpotsBox from './SpotsBox'
-import { Button } from 'react-bootstrap'
-import { FaTimesCircle } from 'react-icons/fa'
+import ConfirmBox from '../main/ConfirmBox'
+import { Button, Modal } from 'react-bootstrap'
+import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 //
 //測試用假資料
@@ -10,6 +10,26 @@ import fakeTestingData from './testBoxData'
 
 function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
   const [tempData, setTempData] = useState(boxData)
+  //
+  //處理confirm
+  const [modalShow, setModalShow] = useState(false)
+  const [modalType, setModalType] = useState(<></>)
+  function createModal(props) {
+    setModalType(
+      <ConfirmBox
+        show={modalShow}
+        onHide={setModalShow}
+        resetDom={setModalType}
+        {...props}
+      />
+    )
+  }
+  useEffect(() => {
+    if (modalType !== <></>) {
+      setModalShow(true)
+    }
+  }, [modalType])
+  //
   //處理bar開關
   const classIsClose = [
     'itin-editor-daybox d-flex justify-content-between align-items-center',
@@ -35,6 +55,22 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
     setTempData(originArray) //當下所有數據
     // console.log(originArray)
   }
+  function dayPlus() {
+    const originArray = Array.from(tempData)
+    const nowDay = originArray.length
+    originArray.push({ title: `第 ${nowDay + 1} 日`, data: [] })
+    setTempData(originArray)
+  }
+  function dayDelete(day) {
+    const originArray = Array.from(tempData)
+    const nowDay = originArray.length
+    if (nowDay <= 1) {
+      return
+    } else {
+      originArray.splice(day, 1)
+      setTempData(originArray)
+    }
+  }
   const displayEdit = (
     <div className="itin-editor-wrapper">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -52,8 +88,18 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
               }}
               className={classIsClose[0]}
             >
-              <span>{data.title}</span>
-              <span className="box-close-btn">
+              <span>{`第 ${dayIndex + 1} 日`}</span>
+              <span
+                className="box-close-btn"
+                onClick={() => {
+                  if (Array.from(tempData).length > 1) {
+                    createModal({
+                      header: 'test',
+                      cb: dayDelete,
+                    })
+                  }
+                }}
+              >
                 <FaTimesCircle size={26} />
               </span>
             </div>
@@ -101,6 +147,12 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
           </div>
         ))}
       </DragDropContext>
+      <div className="itin-editor-daybox dayPlus d-flex align-items-center">
+        <span onClick={dayPlus}>
+          <FaPlusCircle size={26} />
+        </span>
+      </div>
+      {modalType}
     </div>
   )
   const displayNotEdit = (

@@ -1,23 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { useParams } from 'react-router-dom'
 import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditor from './ItinEditor'
 import BigMap from './BigMap'
 
 function ItinEditView({ isNew = true }) {
+  const [dataFromUser, setDataFromUser] = useState([])
   const displayNewView = (
     <div className="itin-editview-wrapper">
-      <BigMap />
+      <BigMap dataFromUser={dataFromUser} setDataFromUser={setDataFromUser} />
       <ItinEditorHeader
         isEdit={true}
         isPublish={false}
         isMe={true}
-        // title={dataFromDB[0].title}
+        dataFromUser={dataFromUser}
       />
-
       <ItinEditor
         isEdit={true}
-        // boxData={dataFromDB[1]}
+        dataFromUser={dataFromUser}
+        setDataFromUser={setDataFromUser}
       />
     </div>
   )

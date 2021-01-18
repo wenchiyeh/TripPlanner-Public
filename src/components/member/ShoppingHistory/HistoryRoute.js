@@ -6,7 +6,7 @@ import Detail from './Detail'
 function HistiryRoute() {
   return (
     <Switch>
-      <Route path="/myAccount/historyOrder/:id">
+      <Route path="/myAccount/historyOrder/:orderId">
         <Detail />
       </Route>
       <Route exact path="/myAccount/historyOrder">

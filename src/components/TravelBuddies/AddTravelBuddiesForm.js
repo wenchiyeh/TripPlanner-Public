@@ -23,6 +23,7 @@ function AddTravelBuddiesForm() {
   const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
   const [tbGenderNeeded, settbGenderNeeded] = useState('')
   const [tbThemeIntro, settbThemeIntro] = useState('')
+  const [citySelect, setCitySelect] = useState(false)
 
   async function addTravelBuddies() {
     const newTravelBuddies = {
@@ -79,8 +80,8 @@ function AddTravelBuddiesForm() {
 
   return (
     <>
-      <div class="add-travelbuddies-outbox">
-        <div class="add-travelbuddies-middle">
+      <div className="add-travelbuddies-outbox">
+        <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
             <canvas className="add-travelbuddies-picture">
@@ -117,6 +118,9 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-regioncategory1`}
                     name="tbRegionCategory[]"
                     value="1"
+                    onChange={() => {
+                      setCitySelect(true)
+                    }}
                   />
                   <Form.Check
                     inline
@@ -156,7 +160,10 @@ function AddTravelBuddiesForm() {
                 地區分類為必選
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="travelBuddieCityCategory">
+            <Form.Group
+              controlId="travelBuddieCityCategory"
+              style={{ display: 'none' }}
+            >
               <Form.Label htmlFor="travelBuddieCityCategory">
                 縣市分類：
               </Form.Label>
@@ -452,7 +459,8 @@ function AddTravelBuddiesForm() {
                     需求人數：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesPersonsNeeded"
+                    id="tbPersonsNeeded"
+                    name="tbPersonsNeeded"
                     type="number"
                     placeholder=""
                     required
@@ -548,32 +556,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
@@ -597,32 +605,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>

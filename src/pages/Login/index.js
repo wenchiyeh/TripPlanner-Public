@@ -7,7 +7,7 @@ import { useHistory, Link } from 'react-router-dom'
 
 function Login() {
   let history = useHistory()
-  const [member, setMember] = useState(-1)
+  const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   //alter

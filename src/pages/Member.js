@@ -5,11 +5,11 @@ import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useParams, Switch, Route } from 'react-router-dom'
 
-import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
-import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
-import MeFavorites from '../components/main/MeFavorites'
-import Notice from './Notice'
-import MyAccount from '../components/member/MyAccount'
+// import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
+// import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
+// import MeFavorites from '../components/main/MeFavorites'
+// import Notice from './Notice'
+// import MyAccount from '../components/member/MyAccount'
 
 function Member() {
   const [member, setMember] = useState(1)
@@ -58,24 +58,24 @@ function Member() {
           </section>
           <nav>
             <FunctionBar />
-            <Switch>
-              <Route path="/myAccount/historyOrder ">
-                <HistiryRoute />
-              </Route>
-              <Route path="/myAccount/TravelBuddies">
-                <MyTravelBuddies />
-              </Route>
-              <Route path="/myAccount/favorites">
-                <MeFavorites />
-              </Route>
-              <Route path="/myAccount/Notice">
-                <Notice />
-              </Route>
-              <Route path="/myAccount/myAccount">
-                <MyAccount />
-              </Route>
-            </Switch>
           </nav>
+          {/* <Switch>
+            <Route path="/myAccount/historyOrder ">
+              <HistiryRoute />
+            </Route>
+            <Route path="/myAccount/TravelBuddies">
+              <MyTravelBuddies />
+            </Route>
+            <Route path="/myAccount/favorites">
+              <MeFavorites />
+            </Route>
+            <Route path="/myAccount/Notice">
+              <Notice />
+            </Route>
+            <Route path="/myAccount/myAccount">
+              <MyAccount />
+            </Route>
+          </Switch> */}
         </div>
       </article>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
@@ -8,6 +8,7 @@ import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
 import CarRoute from '../products/CarRoute'
+//import MyAccount from '../member/MyAccount'
 
 function MainRoute() {
   //console.log('主路由', member)

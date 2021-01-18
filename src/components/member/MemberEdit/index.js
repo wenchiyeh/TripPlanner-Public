@@ -19,32 +19,32 @@ function MemberEdit({ member }) {
   const [member_aboutme, setMember_aboutme] = useState('')
 
   //更新
-  async function updateMember() {
-    const newMember = {
-      email,
-      //password,
-      member_name,
-      member_phone,
-      // birthday,
-      member_sex,
-      member_id,
-      member_aboutme,
-    }
+  async function updateMember(id) {
+    // const newMember = {
+    //   email,
+    //   //password,
+    //   member_name,
+    //   member_phone,
+    //   // birthday,
+    //   member_sex,
+    //   member_id,
+    //   member_aboutme,
+    //}
     try {
-      const response = await fetch(`http://localhost:5000/udmember`, {
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
         mode: 'cors',
         method: 'post',
-        body: JSON.stringify(newMember),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
+        // body: JSON.stringify(newMember),
+        // headers: {
+        //   Accept: 'application/json',
+        //   'Content-Type': 'application/json',
+        // },
       })
       if (response.ok) {
         const data = await response.json()
-        setMembers(data)
+        setEmail(data)
         console.log(data)
-        if (data.id) alert('更新成功')
+        if (data) alert('更新成功')
         //history.push('/member')
       }
     } catch (err) {
@@ -52,32 +52,31 @@ function MemberEdit({ member }) {
       console.log(err)
     }
   }
-  async function getMember(id) {
-    try {
-      const response = await fetch(`http://localhost:5000/member/${id}`, {
-        mode: 'cors',
-        method: 'get',
-      })
-      if (response.ok) {
-        const data = await response.json()
-        // 設定到每個欄位
-        setEmail(data.email)
-        setMember_name(data.member_name)
-        setPhone(data.phone)
-        // setBirthday(data.birthday)
-        setmember_sex(data.member_sex)
-        setMember_id(data.member_id)
-        setMember_aboutme(data.member_aboutme)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
+  // async function getMember() {
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/member`, {
+  //       mode: 'cors',
+  //       method: 'get',
+  //     })
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       // 設定到每個欄位
+  //       setEmail(data.email)
+  //       setMember_name(data.member_name)
+  //       setPhone(data.phone)
+  //       // setBirthday(data.birthday)
+  //       setmember_sex(data.member_sex)
+  //       setMember_id(data.member_id)
+  //       setMember_aboutme(data.member_aboutme)
+  //     }
+  //   } catch (err) {
+  //     alert('無法得到伺服器資料，請稍後再重試')
+  //     console.log(err)
+  //   }
+  // }
   useEffect(() => {
-    if (member > 0) {
+    if (member > -1) {
       console.log('hi model')
-      //getMember(id)
       updateMember(id)
     }
     console.log('ud:', member)

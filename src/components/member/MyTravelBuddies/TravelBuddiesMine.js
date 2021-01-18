@@ -11,10 +11,9 @@ import TBMembersSelect from './TBMembersSelect'
 
 function TravelBuddiesMine() {
   const [tbMine, settbMine] = useState([])
-  const [trNumber, settrNumber] = useState(0)
   async function gettbMine(props) {
     try {
-      const response = await fetch('http://localhost:5000/myaccounttb/tbmine', {
+      const response = await fetch('http://localhost:5000/tbmyaccount/tbmine', {
         method: 'get',
       })
       if (response.ok) {
@@ -31,29 +30,6 @@ function TravelBuddiesMine() {
     gettbMine()
   }, [])
 
-  const tbMineTable = (
-    <tbody>
-      {tbMine.length > 0 &&
-        tbMine.map((v, i) => {
-          return (
-            <tr key={i}>
-              <td>{(trNumber = settrNumber(trNumber + 1))}</td>
-              <td>{v.tb_themeName}</td>
-              <td>
-                {v.tb_dateBegin.toLocaleDateString() +
-                  '-' +
-                  v.tb_dateEnd.toLocaleDateString()}
-              </td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDelete />{' '}
-              </td>
-            </tr>
-          )
-        })}
-    </tbody>
-  )
   return (
     <tbody>
       <div className="travelbuddiesmine-outbox">
@@ -67,37 +43,38 @@ function TravelBuddiesMine() {
             </tr>
           </thead>
           <tbody>
-            {tbMineTable}
-            <tr>
-              <td>1</td>
-              <td>金門馬祖六天尋幽訪古</td>
-              <td>2021/01/26 - 2021/01/31</td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDelete />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>台灣西部好好玩！南投彰化雲林嘉義秘境行五日</td>
-              <td>2021/02/11 - 2021/02/15</td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDelete />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>高雄、小琉球玩個三天</td>
-              <td>2021/03/01 - 2021/03/03</td>
-              <td>
-                <TBButtonRead /> <TBMineButtonEdit />{' '}
-                <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
-                <TBMineButtonDeleteNoMembers />{' '}
-              </td>
-            </tr>
+            {tbMine.length > 0 &&
+              tbMine.map((v, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{v.tb_themeName}</td>
+                    <td>
+                      {v.tb_dateBegin.slice(0, 4) +
+                        '/' +
+                        v.tb_dateBegin.slice(5, 7) +
+                        '/' +
+                        v.tb_dateBegin.slice(8, 10) +
+                        ' ' +
+                        '-' +
+                        ' ' +
+                        v.tb_dateEnd.slice(0, 4) +
+                        '/' +
+                        v.tb_dateEnd.slice(5, 7) +
+                        '/' +
+                        v.tb_dateEnd.slice(8, 10)}
+                    </td>
+                    <td>
+                      <TBButtonRead /> <TBMineButtonEdit />{' '}
+                      <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                      <TBMineButtonDelete
+                        id={v.id}
+                        tb_themeName_={v.tb_themeName}
+                      />{' '}
+                    </td>
+                  </tr>
+                )
+              })}
           </tbody>
         </Table>
         <TBMembersSelect />

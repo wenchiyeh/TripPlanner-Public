@@ -5,15 +5,11 @@ import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import TravelBuddiesMainPage from '../../pages/TravelBuddiesMainPage'
 import TravelBuddiesChatroom from '../../pages/TravelBuddiesChatroom'
 
-function Test() {
-  let { id } = useParams()
-  return <h1>{id}</h1>
-}
-
 function TravelBuddiesRoute() {
+  let { id } = useParams()
   return (
     <Switch>
-      <Route path="/travelBuddy/view/:id">
+      <Route path="/travelBuddies/view/:id">
         <TravelBuddiesMainPage />
         {/* 自行更換成顯示用的元件，元件內使用import並useParams()可取得:id的值 */}
         {/* 實際做法可參考上方Test元件 */}

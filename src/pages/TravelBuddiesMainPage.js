@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 // import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
@@ -10,11 +11,12 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 
-function TravelBuddiesMainPage() {
+function TravelBuddiesMainPage(props) {
+  let id = props.id
   const [travelBuddies, setTravelBuddies] = useState([])
   async function getTravelBuddies(props) {
     try {
-      const response = await fetch('http://localhost:5000/travelbuddies', {
+      const response = await fetch('http://localhost:5000/travelbuddies/', {
         method: 'get',
       })
       if (response.ok) {
@@ -35,13 +37,13 @@ function TravelBuddiesMainPage() {
       <>
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
-            <img src="/images/member/DSC_7875.jpg" alt="上面的" />
+            <img src="/images/member/DSC_7875.jpg" alt="旅行揪團主圖片" />
           </div>
 
           <div className="tb-mainpage-flex">
             <div className="tb-mainpage-nameAndPhoto">
               <figure className="tb-mainpage-profilephoto">
-                <img src="/images/member/DSC_7875.jpg" alt="大頭貼" />
+                <img src="/images/member/DSC_7875.jpg" alt="揪團主頭貼" />
               </figure>
               <h4 className="tb-mainpage-owner">
                 {travelBuddies.length > 0 && travelBuddies[0].tb_owner}
@@ -75,7 +77,7 @@ function TravelBuddiesMainPage() {
                 <div className="tb-mainpage-icons-subgroup">
                   <div className="tb-mainpage-price">
                     <MdAttachMoney className="tb-mainpage-icons" />
-                    <p>價格</p>
+                    <p>預估</p>
                   </div>
                   <h3 className="tb-mainpage-much">
                     {travelBuddies[0].tb_estimatedCost}

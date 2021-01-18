@@ -50,7 +50,7 @@ function ProductList() {
                 title={v.className}
                 text={v.warning}
                 person={v.teacher_name}
-                price={'1000'}
+                price={v.ticket_price}
                 like={'222'}
                 mark={'222'}
                 image={'/classPhoto/' + v.classPhoto}

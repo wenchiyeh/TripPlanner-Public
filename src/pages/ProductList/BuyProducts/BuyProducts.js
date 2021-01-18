@@ -80,11 +80,19 @@ function BuyProducts({
 
   const dispalyBuy = (
     <>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
       <div className="container">
         <MyBreadCrumb />
         {/* 麵包屑 */}
         <figure className="heroPhoto">
-          <img src={pageUrl + classPhoto} alt="圖片替代文字" />
+          <img
+            src={pageUrl + classPhoto}
+            alt="圖片替代文字"
+            className="animate__animated animate__backInDown"
+          />
         </figure>
         <div className="title">
           <h2>{className}</h2>

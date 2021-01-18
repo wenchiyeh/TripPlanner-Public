@@ -65,6 +65,10 @@ function CashStep1({
 
   const step1 = (
     <>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
       <div className="In-the-car">
         <div className="car-one">
           <Icons />
@@ -91,7 +95,7 @@ function CashStep1({
               </div>
             </div>
             <hr />
-            <div className="chose-your-ticket">
+            <div className="chose-your-ticket   animate__animated  animate__rubberBand">
               <div>
                 <h3>{classDate}</h3>
               </div>

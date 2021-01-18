@@ -5,7 +5,12 @@ import { Form, Button, Col, InputGroup, Toast } from 'react-bootstrap'
 import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
 
-function Login() {
+function Login(props) {
+  //是否登入
+  console.log(props)
+  // 從App元件得到兩個屬性值，解構出來
+  const { isAuth, setIsAuth } = props
+
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
@@ -65,7 +70,7 @@ function Login() {
     }
   }, [member])
 
-  const mesin = <samp></samp>
+  const mesin = <samp isAuth={isAuth}></samp>
   const meserr = (
     <Toast
       show={showA}
@@ -146,6 +151,9 @@ function Login() {
             onClick={() => {
               if (password.length >= 3) {
                 toggleShowA()
+              }
+              if (member === true) {
+                setIsAuth(true)
               }
             }}
           >

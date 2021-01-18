@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
@@ -8,11 +8,30 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
-function Header() {
+function Header(props) {
+  // const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState('')
+
+  // const icn = () => setCount(count + 1)
+  // const desc = () => setCount(count - 1)
+  // useEffect((e) => {
+  //   if (count < 0) {
+  //     setIsLoading()
+  //   }
+  // }, [])
   const imagePath = '/images/testImage.jpg'
-  //const member = 0
   //登入登出
-  //const login = <span>登入/註冊</span>
+  const login = (
+    <Nav.Link
+      as={NavLink}
+      to="/login"
+      exact
+      className="Navbar-Title h5 "
+      // onClick={icn}
+    >
+      登入/註冊
+    </Nav.Link>
+  )
   const inlogin = (
     <>
       <NavDropdown
@@ -80,7 +99,7 @@ function Header() {
               {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
-            {/* {member > 1 ? inlogin : login} */}
+            {/* {isLoading > 0 ? inlogin : login} */}
             {inlogin}
           </Nav>
         </Navbar.Collapse>

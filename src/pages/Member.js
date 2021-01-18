@@ -11,9 +11,11 @@ import FunctionBar from '../components/member/FunctionBar'
 // import Notice from './Notice'
 // import MyAccount from '../components/member/MyAccount'
 
-function Member() {
+function Member(props) {
+  const [isLoading, setIsLoading] = useState(false)
   const [member, setMember] = useState('1')
   async function getMember(id) {
+    setIsLoading(true)
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         //mode: 'no-cors',
@@ -25,6 +27,10 @@ function Member() {
         const data = await response.json()
         setMember(data)
         console.log('memberdata:', data)
+        // 最後關起spinner，改呈現真正資料
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 1000)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -36,7 +42,7 @@ function Member() {
     console.log('me有資料嗎?', member)
   }, [])
 
-  //const Loading = <h1>Loading</h1>
+  const Loading = <h1>Loading</h1>
 
   const display = (
     <>
@@ -54,7 +60,7 @@ function Member() {
       </article>
     </>
   )
-  return display
+  return <>{isLoading ? Loading : display}</>
   //return member.length > 0 ? display : Loading
 }
 

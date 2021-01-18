@@ -1,0 +1,75 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- 主機： localhost:3306
+-- 產生時間： 2021 年 01 月 18 日 07:45
+-- 伺服器版本： 5.7.32
+-- PHP 版本： 7.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- 資料庫： `travelplanner`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `orderhistory`
+--
+
+CREATE TABLE `orderhistory` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '陳嘉賢',
+  `gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0913224137',
+  `mail` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '8M9cHnwh@gmail.com',
+  `birthday` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1992.04.04',
+  `ticket_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `className` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qrcode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'qrcodr.jpg',
+  `ticketNumber` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `purchaseDate` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payfor` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `many` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `orderhistory`
+--
+
+INSERT INTO `orderhistory` (`id`, `user_name`, `gender`, `phone`, `mail`, `birthday`, `ticket_type`, `price`, `className`, `qrcode`, `ticketNumber`, `purchaseDate`, `payfor`, `many`) VALUES
+(1, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '單人票', '1250', '遙感農事劇場，戴上耳機來場十二寮的時空之旅吧！', 'qrcodr.jpg', '598099637594770557', '2020-07-27', 'VISA', '1'),
+(2, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '早鳥票', '1380', '大人的植物連結課', 'qrcodr.jpg', '598099637594770557', '2020-09-21', 'VISA', '1'),
+(3, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '早鳥票', '1390', 'CCCAT吸吸貓 - 聽貓 - 駐唱之夜', 'qrcodr.jpg', '427781407968759018', '2020/05/05', 'VISA', '1'),
+(4, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '雙人票', '1800', '【街遊 Hidden Taipei】 北車迷城生存指南》', 'qrcodr.jpg', '808929187775712744', '2020-11-22', 'VISA', '2'),
+(5, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '單人票', '880', '雪季登山安全與準備 | 登山新手村 - 拼圖戶外生活', 'qrcodr.jpg', '910427463088752401', '2020-08-09', 'VISA', '1'),
+(6, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '早鳥票', '890', '【街遊 Hidden Taipei】 真人圖書館—戲如人生放映師', 'qrcodr.jpg', '988858544262526557', '2020-02-16', 'VISA', '1'),
+(7, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '早鳥票', '3490', '山城花語溫泉季｜實境遊樂園—神秘藏寶圖', 'qrcodr.jpg', '162848777951129506', '2020-04-22', 'VISA', '1'),
+(8, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '單人票', '990', '我的日常，你的秘密基地', 'qrcodr.jpg', '880806049714355861', '2020-08-09', 'VISA', '1'),
+(9, '陳嘉賢', '1', '0913224137', '8M9cHnwh@gmail.com', '1992-04-04', '單人票', '2580', '基礎雪地安全概論（台中場）', 'qrcodr.jpg', '105342641303542492', '2020-01-15', 'VISA', '1'),
+(10, 'Ray', '1', '093301901333', 'ggg@test.com', '2021-01-13', '單人票', '3960', '我的日常，你的秘密基地', 'qrcodr.jpg', '18522771547138208000', '2020-01-03', 'atm', '4'),
+(11, 'have?number', '1', '09879012312', 'w2e@acjpicj', '2021-01-14', '雙人票', '3900', '大人的植物連結課', 'qrcodr.jpg', '2762334017076811300', '2021-1-18', 'applepay', '3');
+
+--
+-- 已傾印資料表的索引
+--
+
+--
+-- 資料表索引 `orderhistory`
+--
+ALTER TABLE `orderhistory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+--
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `orderhistory`
+--
+ALTER TABLE `orderhistory`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;

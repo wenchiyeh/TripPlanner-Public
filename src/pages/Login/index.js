@@ -7,7 +7,7 @@ import { useHistory, Link } from 'react-router-dom'
 
 function Login() {
   let history = useHistory()
-  const [member, setMember] = useState(-1)
+  const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   //alter
@@ -19,7 +19,7 @@ function Login() {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
-      //event.stopPropagation()
+      event.stopPropagation()
     } else {
       event.preventDefault()
       event.stopPropagation()
@@ -35,7 +35,7 @@ function Login() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       })
-      console.log(email)
+      console.log('email?', email)
       if (response.ok) {
         const data = await response.json()
         if (data.result) {
@@ -50,7 +50,7 @@ function Login() {
     }
   }
   useEffect(() => {
-    if (member > -1 && member !== '') {
+    if (member > null && member !== '') {
       //console.log(`登入成功 會員: ${member}`)
       setMember()
       history.push(`/myAccount/${member}`)

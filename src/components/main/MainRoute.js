@@ -8,6 +8,9 @@ import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
 function MainRoute() {
+  //console.log('主路由', member)
+  //const member = useState(1)
+
   return (
     <>
       <Switch>

@@ -8,7 +8,6 @@ import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 import ShowCreditCard from './ShowCreditCard'
-import { useParams } from 'react-router-dom'
 
 function CashStep1({
   className,
@@ -18,7 +17,6 @@ function CashStep1({
   showTicketType,
 }) {
   const [tichectButton, setTichectButton] = useState(true)
-  let { product_id } = useParams()
 
   const earlyTicket = ticketData.earlyTicket
   const singleTicket = ticketData.singleTicket
@@ -58,7 +56,9 @@ function CashStep1({
     }
   }
   let history = useHistory()
-
+  function carThree() {
+    history.push('/productList/car3')
+  }
   function goBack() {
     history.goBack()
   }
@@ -181,7 +181,6 @@ function CashStep1({
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.preventDefault()
-      //event.stopPropagation()
     } else {
       event.preventDefault()
       event.stopPropagation()
@@ -208,6 +207,7 @@ function CashStep1({
             user_mail,
             user_birthday,
             credit,
+            ticket_number,
           }),
         }
       )
@@ -277,7 +277,7 @@ function CashStep1({
               <Form.Control type="hidden" value={totalTicket} />
               <Form.Control type="hidden" value={showTicketPrice()} />
               <Form.Control type="hidden" value={ShowTicketType()} />
-
+              <Form.Control type="hidden" value={ticket_number} />
               <Form.Row>
                 <Form.Group
                   as={Col}
@@ -466,9 +466,9 @@ function CashStep1({
                   </Button>
                   <Button
                     variant="info"
-                    number_data={ticket_number}
                     onClick={() => {
                       getUser()
+                      carThree()
                     }}
                   >
                     結帳

@@ -303,3 +303,30 @@ body {
     margin: 16px auto;
   }
 }
+
+.final-page {
+  width: 900px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    margin: 16px auto;
+    color: $info;
+    transition: 0.5s;
+    opacity: 0.6;
+  }
+  .airplanner {
+    width: 250px;
+    height: 250px;
+    margin: 16px auto;
+    opacity: 0.2;
+    color: $primary;
+  }
+  .gohomePage {
+    width: 150px;
+    height: 40px;
+    margin: 16px auto;
+    opacity: 0.8;
+  }
+}

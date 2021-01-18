@@ -6,6 +6,7 @@ export const pathnameList = [
   '/itinerary',
   '/productList/view/:id',
   '/productList/car',
+  '/productList/car3',
   '/productList',
 ]
 export const pathnameTextList = [
@@ -13,5 +14,6 @@ export const pathnameTextList = [
   '行程規劃',
   '達人講座/title',
   '購物車',
+  '完成購買',
   '達人講座',
 ]

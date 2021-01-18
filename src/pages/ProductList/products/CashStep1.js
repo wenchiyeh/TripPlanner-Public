@@ -62,9 +62,6 @@ function CashStep1({
   function goBack() {
     history.goBack()
   }
-  function goCar3() {
-    history.push(`/productList/car3/${product_id}`)
-  }
 
   const step1 = (
     <>
@@ -161,7 +158,6 @@ function CashStep1({
       </div>
     </>
   )
-
   const [user_name, setUser_name] = useState('')
   const [user_mail, setUser_mail] = useState('')
   const [user_phone, setUser_phone] = useState('')
@@ -201,7 +197,6 @@ function CashStep1({
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            ticket_number,
             className,
             buy_ticket_type,
             totalTicket,
@@ -346,7 +341,6 @@ function CashStep1({
                     type="date"
                     placeholder=""
                     required
-                    value="1993-01-01"
                     onChange={(e) => {
                       setUser_birthday(e.target.value)
                     }}
@@ -472,9 +466,9 @@ function CashStep1({
                   </Button>
                   <Button
                     variant="info"
+                    number_data={ticket_number}
                     onClick={() => {
                       getUser()
-                      goCar3()
                     }}
                   >
                     結帳

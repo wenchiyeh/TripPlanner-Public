@@ -23,6 +23,7 @@ function AddTravelBuddiesForm() {
   const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
   const [tbGenderNeeded, settbGenderNeeded] = useState('')
   const [tbThemeIntro, settbThemeIntro] = useState('')
+  const [citySelect, setCitySelect] = useState(false)
 
   async function addTravelBuddies() {
     const newTravelBuddies = {
@@ -117,6 +118,9 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-regioncategory1`}
                     name="tbRegionCategory[]"
                     value="1"
+                    onChange={() => {
+                      setCitySelect(true)
+                    }}
                   />
                   <Form.Check
                     inline
@@ -156,7 +160,10 @@ function AddTravelBuddiesForm() {
                 地區分類為必選
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="travelBuddieCityCategory">
+            <Form.Group
+              controlId="travelBuddieCityCategory"
+              style={{ display: 'none' }}
+            >
               <Form.Label htmlFor="travelBuddieCityCategory">
                 縣市分類：
               </Form.Label>
@@ -452,7 +459,8 @@ function AddTravelBuddiesForm() {
                     需求人數：
                   </Form.Label>
                   <Form.Control
-                    id="travelBuddiesPersonsNeeded"
+                    id="tbPersonsNeeded"
+                    name="tbPersonsNeeded"
                     type="number"
                     placeholder=""
                     required

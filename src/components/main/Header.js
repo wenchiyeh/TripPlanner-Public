@@ -42,10 +42,20 @@ function Header(props) {
         }
       >
         <NavDropdown.Item as={NavLink} to="/login">
-          會員中心
+          會員中心1
+        </NavDropdown.Item>
+        <NavDropdown.Item as={NavLink} to="/myAccount">
+          會員中心2
         </NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item as={NavLink} to="/">
+        <NavDropdown.Item
+          as={NavLink}
+          to="/"
+          onClick={() => {
+            localStorage.clear()
+            sessionStorage.clear()
+          }}
+        >
           登出
         </NavDropdown.Item>
       </NavDropdown>

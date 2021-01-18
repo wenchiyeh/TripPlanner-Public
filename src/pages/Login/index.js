@@ -7,7 +7,6 @@ import { useHistory, Link } from 'react-router-dom'
 
 function Login(props) {
   //是否登入
-  console.log(props)
   // 從App元件得到兩個屬性值，解構出來
   const { isAuth, setIsAuth } = props
 
@@ -43,11 +42,10 @@ function Login(props) {
       console.log('email?', email)
       if (response.ok) {
         const data = await response.json()
-        localStorage.setItem('member', true)
-
         if (data.result) {
           setMember(data.member)
-          sessionStorage.setItem('member', 'password')
+          localStorage.setItem('lsuserName', 'member')
+          sessionStorage.setItem('ssuserName', 'member')
         } else {
           console.log('請輸入正確的帳號密碼')
         }

@@ -3,6 +3,7 @@ import StarRating from '../components/member/StarRating'
 import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
+import { useHistory } from 'react-router-dom'
 //import { useParams, Switch, Route, Link } from 'react-router-dom'
 
 // import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
@@ -11,11 +12,18 @@ import FunctionBar from '../components/member/FunctionBar'
 // import Notice from './Notice'
 // import MyAccount from '../components/member/MyAccount'
 
-function Member(props) {
+document.addEventListener('DOMContentLoaded', function () {
+  const ssuserName = sessionStorage.getItem('ssuserName') || 'email'
+  if (ssuserName !== 'member' && ssuserName == null) {
+    window.location = '/login'
+  }
+})
+function Member() {
   const [isLoading, setIsLoading] = useState(false)
   const [member, setMember] = useState('1')
   async function getMember(id) {
     setIsLoading(true)
+
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         //mode: 'no-cors',
@@ -30,10 +38,10 @@ function Member(props) {
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {
           setIsLoading(false)
-        }, 1000)
+        }, 3000)
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -60,8 +68,7 @@ function Member(props) {
       </article>
     </>
   )
-  return <>{isLoading ? Loading : display}</>
-  //return member.length > 0 ? display : Loading
+  return <>{isLoading ? display : Loading}</>
 }
 
 export default Member

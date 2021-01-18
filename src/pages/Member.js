@@ -3,7 +3,7 @@ import StarRating from '../components/member/StarRating'
 import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
-import { useParams, Switch, Route } from 'react-router-dom'
+//import { useParams, Switch, Route, Link } from 'react-router-dom'
 
 // import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
 // import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
@@ -12,10 +12,8 @@ import { useParams, Switch, Route } from 'react-router-dom'
 // import MyAccount from '../components/member/MyAccount'
 
 function Member() {
-  const [member, setMember] = useState(1)
-  let { id } = useParams()
+  const [member, setMember] = useState('1')
   async function getMember(id) {
-    console.log('會員ID:', id)
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         //mode: 'no-cors',
@@ -34,16 +32,9 @@ function Member() {
     }
   }
   useEffect(() => {
-    if (member > 0) {
-      getMember(id)
-      console.log('me有資料嗎?', member)
-      console.log('me有id?', id)
-    }
-  }, [member, id])
-  //useEffect(() => {
-  //console.log('me有資料嗎?', member)
-  //console.log('member:', member)
-  //}, [])
+    getMember(member)
+    console.log('me有資料嗎?', member)
+  }, [])
 
   //const Loading = <h1>Loading</h1>
 
@@ -59,28 +50,10 @@ function Member() {
           <nav>
             <FunctionBar />
           </nav>
-          {/* <Switch>
-            <Route path="/myAccount/historyOrder ">
-              <HistiryRoute />
-            </Route>
-            <Route path="/myAccount/TravelBuddies">
-              <MyTravelBuddies />
-            </Route>
-            <Route path="/myAccount/favorites">
-              <MeFavorites />
-            </Route>
-            <Route path="/myAccount/Notice">
-              <Notice />
-            </Route>
-            <Route path="/myAccount/myAccount">
-              <MyAccount />
-            </Route>
-          </Switch> */}
         </div>
       </article>
     </>
   )
-
   return display
   //return member.length > 0 ? display : Loading
 }

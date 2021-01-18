@@ -19,7 +19,7 @@ function MemberProfile({ member }) {
     <>
       <div className="person">
         <h3>一般會員</h3>
-        <img src={member[0].member_photo_id} alt="" />
+        <img src={'images/userphoto/' + member[0].member_photo_id} alt="" />
         <h4>{member[0].member_name}</h4>
         <Button
           variant="primary"

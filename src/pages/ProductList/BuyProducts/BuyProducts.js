@@ -17,16 +17,45 @@ import {
   AiTwotoneHeart,
 } from 'react-icons/ai'
 
-function BuyProducts() {
+function BuyProducts({
+  earlyTicket,
+  singleTicket,
+  groupTicket,
+  earlyPrice,
+  singlePrice,
+  groupPrice,
+  classPhoto,
+  className,
+  classDate,
+  classTimeStart,
+  classTimeEnd,
+  location,
+  address,
+  ticket_type,
+  ticket_price,
+  warning,
+  classValue,
+  classOutline,
+  teacher_name,
+  teacher_title,
+  needToKnow,
+  teacher_photo,
+  teacher_history,
+  mapSrc,
+  changeData,
+}) {
   // 這是modal
   const [smShow, setSmShow] = useState(false)
   const handleShow = () => setSmShow(true)
 
   // 計數器
-  const [early, setEarly] = useState(0)
-  const [single, setSingle] = useState(0)
-  const [group, setGroup] = useState(0)
+  const [early, setEarly] = useState(earlyPrice)
+  const [single, setSingle] = useState(singlePrice)
+  const [group, setGroup] = useState(groupPrice)
 
+  useEffect(() => {
+    changeData(early, single, group)
+  }, [early, single, group])
   // 愛心
   const [liked, setLiked] = useState(0)
   const [count, setCount] = useState(48)
@@ -39,54 +68,26 @@ function BuyProducts() {
       setCount(count - 1)
     }
   }
+  let { product_id } = useParams()
 
   // 換頁
   let history = useHistory()
   function InTheCar() {
-    history.push('/shoppingcar/1')
+    history.push(`/productList/car1/${product_id}`)
   }
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
-  let { id } = useParams()
-  // const [isLoading, setIsLoading] = useState(1)
-
-  //資料庫
-  const [buyClass, setBuyClass] = useState([])
-  async function getBuyClass(props) {
-    try {
-      const response = await fetch(`http://localhost:5000/productList/${id}`, {
-        method: 'get',
-      })
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-
-        setBuyClass(data)
-        // setTimeout(() => {
-        //   if (data.length === 0) {
-        //     setIsLoading(3)
-        //   } else {
-        //     setIsLoading(0)
-        //   }
-        // }, 0)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
-
-  const dispalyBuy = buyClass.length > 0 && (
+  const dispalyBuy = (
     <>
       <div className="container">
         <MyBreadCrumb />
         {/* 麵包屑 */}
         <figure className="heroPhoto">
-          <img src={pageUrl + buyClass[0].classPhoto} alt="圖片替代文字" />
+          <img src={pageUrl + classPhoto} alt="圖片替代文字" />
         </figure>
         <div className="title">
-          <h2>{buyClass[0].className}</h2>
+          <h2>{className}</h2>
           <Button variant="info">收藏</Button>
         </div>
         <div className="buyTheTicket">
@@ -100,8 +101,7 @@ function BuyProducts() {
               <div>
                 <p>活動時間</p>
                 <p>
-                  {buyClass[0].classDate} {buyClass[0].classTimeStart}-
-                  {buyClass[0].classTimeEnd}
+                  {classDate} {classTimeStart}-{classTimeEnd}
                 </p>
               </div>
             </div>
@@ -110,8 +110,8 @@ function BuyProducts() {
               <FaMapMarkerAlt />
               <div>
                 <p>活動地點</p>
-                <p>{buyClass[0].location}</p>
-                <p>{buyClass[0].address}</p>
+                <p>{location}</p>
+                <p>{address}</p>
               </div>
             </div>
 
@@ -122,16 +122,14 @@ function BuyProducts() {
                 <p>價格</p>
                 <div className="ticketAndPrice">
                   <ul>
-                    {buyClass[0].ticket_type.split(',').length > 0 &&
-                      buyClass[0].ticket_type
-                        .split('-')
-                        .map((v, i) => <li>{v}</li>)}
+                    {ticket_type.split(',').map((v, i) => (
+                      <li key={i}>{v}</li>
+                    ))}
                   </ul>
                   <ul>
-                    {buyClass[0].ticket_price.split(',').length > 0 &&
-                      buyClass[0].ticket_price
-                        .split('-')
-                        .map((v, i) => <li>{v}</li>)}
+                    {ticket_price.split('-').map((v, i) => (
+                      <li key={i}>{v}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -140,7 +138,7 @@ function BuyProducts() {
             <div className="aboutIcon">
               <RiSurgicalMaskFill />
               <div className="tag">
-                <p>{buyClass[0].warning}</p>
+                <p>{warning}</p>
               </div>
             </div>
             <hr />
@@ -149,46 +147,77 @@ function BuyProducts() {
           <div className="IWantBuy">
             {/* 上半部右邊選擇區 */}
 
-            <p>{buyClass[0].className}</p>
+            <p>{className}</p>
             <div className="clock-time">
               <FiClock />
               <p>
-                {buyClass[0].classDate} {buyClass[0].classTimeStart}-
-                {buyClass[0].classTimeEnd}
+                {classDate} {classTimeStart}-{classTimeEnd}
               </p>
             </div>
 
             <div className="ticketBuy">
-              <p>早鳥票</p>
+              <p>{earlyTicket}</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setEarly(early - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{early}</p>
+                {early <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setEarly(early - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setEarly(early - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+
+                <p>{early <= 0 ? 0 : early}</p>
                 <Button variant="light" onClick={() => setEarly(early + 1)}>
                   <AiFillPlusCircle />
                 </Button>
               </div>
             </div>
             <div className="ticketBuy">
-              <p>單人票</p>
+              <p>{singleTicket}</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setSingle(single - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{single}</p>
+                {single <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setSingle(single - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setSingle(single - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+                <p>{single <= 0 ? 0 : single}</p>
                 <Button variant="light" onClick={() => setSingle(single + 1)}>
                   <AiFillPlusCircle />
                 </Button>
               </div>
             </div>
             <div className="ticketBuy">
-              <p>雙人票</p>
+              <p>{groupTicket}</p>
               <div className="plusAndMinus">
-                <Button variant="light" onClick={() => setGroup(group - 1)}>
-                  <AiFillMinusCircle />
-                </Button>
-                <p>{group}</p>
+                {group <= 0 ? (
+                  <Button
+                    variant="light"
+                    onClick={() => setGroup(group - 1)}
+                    disabled
+                  >
+                    <AiFillMinusCircle />
+                  </Button>
+                ) : (
+                  <Button variant="light" onClick={() => setGroup(group - 1)}>
+                    <AiFillMinusCircle />
+                  </Button>
+                )}
+                <p>{group <= 0 ? 0 : group}</p>
+
                 <Button variant="light" onClick={() => setGroup(group + 1)}>
                   <AiFillPlusCircle />
                 </Button>
@@ -196,10 +225,15 @@ function BuyProducts() {
             </div>
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
-
-              <Button variant="info" onClick={InTheCar}>
-                加入購物車
-              </Button>
+              {early === 0 && group === 0 && single === 0 ? (
+                <Button variant="info" onClick={InTheCar} disabled>
+                  加入購物車{' '}
+                </Button>
+              ) : (
+                <Button variant="info" onClick={InTheCar}>
+                  加入購物車{' '}
+                </Button>
+              )}
               <div className="followMyHeart">
                 <Button variant="light" onClick={() => tbLiked(liked)}>
                   {liked === 1 ? <AiTwotoneHeart /> : <AiOutlineHeart />}
@@ -213,46 +247,45 @@ function BuyProducts() {
         <div className="aboutClassDetails">
           <div className="introduction">
             <p className="classTitel">活動介紹</p>
-            <p className="calssInside">{buyClass[0].classValue}</p>
+            <p className="calssInside">{classValue}</p>
           </div>
           <div className="introduction">
             <p className="classTitel">活動大綱</p>
             <ul>
-              {buyClass[0].classOutline.split(',').length > 0 &&
-                buyClass[0].classOutline.split('-').map((v, i) => <li>{v}</li>)}
+              {classOutline.split('-').map((v, i) => (
+                <li key={i}>{v}</li>
+              ))}
             </ul>
           </div>
           <div className="introduction">
             <p className="classTitel">活動資訊</p>
             <ul>
-              <li>日期：{buyClass[0].classDate}</li>
+              <li>日期：{classDate}</li>
               <li>
-                時間：{buyClass[0].classTimeStart}-{buyClass.classTimeEnd}
+                時間：{classTimeStart}-{classTimeEnd}
               </li>
-              <li>地點：{buyClass[0].location}</li>
-              <li>講師：{buyClass[0].teacher_name}</li>
+              <li>地點：{location}</li>
+              <li>講師：{teacher_name}</li>
             </ul>
           </div>
 
           <div className="introduction">
-            <p className="classTitel">活動地點－{buyClass[0].location}</p>
-            <p className="calssInside">地點：{buyClass[0].address}</p>
+            <p className="classTitel">活動地點－{location}</p>
+            <p className="calssInside">地點：{address}</p>
           </div>
           <div className="introduction">
             <p className="classTitel">報名須知</p>
 
             <ul className="shouldKnow">
-              {buyClass[0].needToKnow.split(',').length > 0 &&
-                buyClass[0].needToKnow.split('-').map((v, i) => <li>{v}</li>)}
+              {needToKnow.split('-').map((v, i) => (
+                <li key={i}>{v}</li>
+              ))}
             </ul>
           </div>
           <div className="introduction">
             <p className="classTitel">關於講師</p>
             <Button variant="link" onClick={handleShow}>
-              <img
-                src={teacherUrl + buyClass[0].teacher_photo}
-                alt="圖片替代文字"
-              />
+              <img src={teacherUrl + teacher_photo} alt="圖片替代文字" />
             </Button>
             <Modal
               size="400x400"
@@ -266,16 +299,13 @@ function BuyProducts() {
                   id="example-modal-sizes-title-sm"
                   className="modalPhoto"
                 >
-                  <img
-                    src={teacherUrl + buyClass[0].teacher_photo}
-                    alt="圖片替代文字"
-                  />
+                  <img src={teacherUrl + teacher_photo} alt="圖片替代文字" />
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body className="nameAndTitle">
-                <h1>{buyClass[0].teacher_name}</h1>
-                <p>{buyClass[0].teacher_title}</p>
-                <p className="teacher_history">{buyClass[0].teacher_history}</p>
+                <h1>{teacher_name}</h1>
+                <p>{teacher_title}</p>
+                <p className="teacher_history">{teacher_history}</p>
               </Modal.Body>
             </Modal>
           </div>
@@ -284,12 +314,12 @@ function BuyProducts() {
             <p className="classTitel">活動地圖</p>
 
             <iframe
-              src={buyClass[0].mapSrc}
+              src={mapSrc}
               width="700px"
               height="300px"
-              frameborder="0"
+              frameBorder="0"
               aria-hidden="false"
-              tabindex="0"
+              tabIndex="0"
               className="thisIsMap"
               title="Map"
             />
@@ -298,16 +328,7 @@ function BuyProducts() {
       </div>
     </>
   )
-  useEffect(() => {
-    getBuyClass()
-  }, [])
 
-  // if (isLoading === 0) {
   return dispalyBuy
-  // } else if (isLoading === 1) {
-  // return <h1>404</h1>
-  // } else {
-  // return <h1>查無此商品</h1>
-  // }
 }
 export default BuyProducts

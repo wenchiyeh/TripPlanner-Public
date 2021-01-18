@@ -42,7 +42,7 @@ function Login() {
 
         if (data.result) {
           setMember(data.member)
-          sessionStorage.setItem('member', 'user')
+          sessionStorage.setItem('member', 'password')
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -64,6 +64,17 @@ function Login() {
       //history.push('/login')
     }
   }, [member])
+
+  const mesin = <samp></samp>
+  const meserr = (
+    <Toast
+      show={showA}
+      onClose={toggleShowA}
+      className="d-flex message-login-err"
+    >
+      <Toast.Body>請輸入正確帳號密碼</Toast.Body>
+    </Toast>
+  )
 
   const display = (
     <div className="body-login">
@@ -118,15 +129,7 @@ function Login() {
             </Form.Group>
           </Form.Row>
           {/* //跳訊息 */}
-          <Toast
-            show={showA}
-            onClose={toggleShowA}
-            className="d-flex message-login-err"
-          >
-            <Toast.Body>
-              {password.length > 6 ? '' : '請輸入正確帳號密碼'}
-            </Toast.Body>
-          </Toast>
+          {member === true ? mesin : meserr}
           <Button
             type="submit"
             className="login-btn"

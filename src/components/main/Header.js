@@ -10,7 +10,7 @@ import MebPopover from './MebPopover'
 
 function Header() {
   const imagePath = '/images/testImage.jpg'
-  //const [member, setMember] = useState()
+  //const member = 0
   //登入登出
   //const login = <span>登入/註冊</span>
   const inlogin = (

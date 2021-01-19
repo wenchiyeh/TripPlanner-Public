@@ -8,7 +8,7 @@ import { useHistory, Link } from 'react-router-dom'
 function Login(props) {
   //是否登入
   // 從App元件得到兩個屬性值，解構出來
-  const { isAuth, setIsAuth } = props
+  const { isAuth, setIsAuth, auth, setAuth } = props
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
@@ -41,10 +41,13 @@ function Login(props) {
       console.log('email?', email)
       if (response.ok) {
         const data = await response.json()
-        if (data.result) {
-          setMember(data.member)
+        console.log('我是誰', data)
+        if (data) {
+          setMember(data)
           localStorage.setItem('userName', 'memberId')
           localStorage.setItem('userid', data.member)
+          localStorage.setItem('userData', JSON.stringify(data))
+          setAuth(true)
           // sessionStorage.setItem('userName', 'memberId')
           // sessionStorage.setItem('userid', data.member)
         } else {
@@ -63,12 +66,13 @@ function Login(props) {
       history.push(`/myAccount`)
       // history.push(`/myAccount/${member}`)
     } else {
+      // history.push('/login')
       console.log('請重新輸入')
-      //history.push('/login')
     }
   }, [member])
 
-  const mesin = <samp isAuth={isAuth}></samp>
+  // const mesin = <samp isAuth={isAuth}></samp>
+  const mesin = <samp></samp>
   const meserr = (
     <Toast
       show={showA}
@@ -108,7 +112,11 @@ function Login(props) {
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} md="10" controlId="validationCustomUsername">
+            <Form.Group
+              as={Col}
+              md="10"
+              controlId="validationCustomUsernamepassword"
+            >
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="inputGroupPrepend">
@@ -147,7 +155,7 @@ function Login(props) {
             //   )
             // }}
             onClick={() => {
-              if (password.length >= 3) {
+              if (password.length < 6) {
                 toggleShowA()
               }
               if (member === true) {

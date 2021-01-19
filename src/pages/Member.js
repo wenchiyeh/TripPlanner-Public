@@ -4,7 +4,7 @@ import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useHistory } from 'react-router-dom'
-import { useParams, Switch, Route, Link } from 'react-router-dom'
+// import { useParams, Switch, Route, Link } from 'react-router-dom'
 
 // import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
 // import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
@@ -20,8 +20,11 @@ import { useParams, Switch, Route, Link } from 'react-router-dom'
 //   }
 // })
 function Member() {
+  // let history = useHistory()
   const [isLoading, setIsLoading] = useState(true)
-  const [member, setMember] = useState([])
+  const [member, setMember] = useState(
+    JSON.parse(localStorage.getItem('userData'))
+  )
   // setIsLoading(true)
   async function getMember(id) {
     try {
@@ -30,9 +33,10 @@ function Member() {
         mode: 'cors',
         method: 'get',
       })
-      console.log(response)
+
       if (response.ok) {
         const data = await response.json()
+        console.log('response:', response)
         setMember(data)
         console.log('memberdata:', data)
         // 最後關起spinner，改呈現真正資料
@@ -41,7 +45,8 @@ function Member() {
         }, 0)
       }
     } catch (err) {
-      // alert('無法得到伺服器資料，請稍後再重試')
+      alert('無法得到伺服器資料，請稍後再重試')
+      // history.push('/login')
       console.log(err)
     }
   }
@@ -68,7 +73,7 @@ function Member() {
   //   }
   // }
   useEffect(() => {
-    getMember(localStorage.getItem('userid'))
+    getMember(member.newsId)
     // console.log('me有資料嗎?', member)
   }, [])
 
@@ -91,6 +96,7 @@ function Member() {
     </>
   )
   return <>{isLoading ? Loading : display}</>
+  // return display
 }
 
 export default Member

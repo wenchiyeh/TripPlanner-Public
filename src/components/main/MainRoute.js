@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, useHistory, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
@@ -8,10 +8,6 @@ import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
 function MainRoute() {
-  let history = useHistory()
-  //console.log('主路由', member)
-  //const member = useState(1)
-
   function PrivateRoute({ component: Component, authed, ...rest }) {
     return (
       <Route
@@ -37,13 +33,6 @@ function MainRoute() {
           path="/myAccount"
           component={Member}
         />
-        {/* <Route path="/myAccount">
-          {localStorage.getItem('userName') ? (
-            <Member />
-          ) : (
-            history.push('/login')
-          )}
-        </Route> */}
         <Route path="/itinerary">
           <ItinRoute />
         </Route>

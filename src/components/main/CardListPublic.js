@@ -24,7 +24,7 @@ function CardListPublic({ data = handleTestData, type = 'itinerary' }) {
         />
       </Col>
     ))
-  } else if (type === 'travelBuddy') {
+  } else if (type === 'travelBuddies') {
     display = data.map((element, index) => (
       <Col key={index} xs={6} md={4}>
         <Card

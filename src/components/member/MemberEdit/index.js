@@ -1,17 +1,14 @@
 //會員查改
 import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import './MemberEdit.scss'
 
 function MemberEdit({ member }) {
   let { id } = useParams()
-  let history = useHistory()
-  const [members, setMembers] = useState('')
+  //const [members, setMembers] = useState('')
   const [member_name, setMember_name] = useState('')
   const [email, setEmail] = useState('')
-  //const [password, setPassword] = useState('')
-  //const [area, setArea] = useState('')
   const [member_phone, setPhone] = useState('')
   //const [birthday, setBirthday] = useState('')
   const [member_sex, setmember_sex] = useState('')
@@ -20,41 +17,40 @@ function MemberEdit({ member }) {
 
   //更新
   async function updateMember(id) {
-    // const newMember = {
-    //   email,
-    //   //password,
-    //   member_name,
-    //   member_phone,
-    //   // birthday,
-    //   member_sex,
-    //   member_id,
-    //   member_aboutme,
-    //}
+    const newMember = {
+      email,
+      member_name,
+      member_phone,
+      // birthday,
+      member_sex,
+      member_id,
+      member_aboutme,
+    }
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         mode: 'cors',
-        method: 'post',
-        // body: JSON.stringify(newMember),
-        // headers: {
-        //   Accept: 'application/json',
-        //   'Content-Type': 'application/json',
-        // },
+        method: 'put',
+        body: JSON.stringify(newMember),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
       })
       if (response.ok) {
         const data = await response.json()
         setEmail(data)
         console.log(data)
         if (data) alert('更新成功')
-        //history.push('/member')
+        //history.push('myAccount')
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
-  async function getMember() {
+  async function getMember(id) {
     try {
-      const response = await fetch(`http://localhost:5000/member`, {
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
         mode: 'cors',
         method: 'get',
       })
@@ -76,7 +72,7 @@ function MemberEdit({ member }) {
   }
   useEffect(() => {
     if (member > -1) {
-      console.log('hi model')
+      console.log('hi model', id)
       updateMember(id)
     }
     console.log('ud:', member)
@@ -257,7 +253,7 @@ function MemberEdit({ member }) {
             </Form.Group>
           </Form.Row>
           <Button
-            type="sumit"
+            type="submit"
             className="memed-submit"
             onClick={() => {
               updateMember(id)

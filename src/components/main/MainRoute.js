@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
@@ -8,6 +8,7 @@ import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
 function MainRoute() {
+  let history = useHistory()
   //console.log('主路由', member)
   //const member = useState(1)
 
@@ -15,7 +16,11 @@ function MainRoute() {
     <>
       <Switch>
         <Route path="/myAccount">
-          <Member />
+          {localStorage.getItem('userName') ? (
+            <Member />
+          ) : (
+            history.push('/login')
+          )}
         </Route>
         <Route path="/itinerary">
           <ItinRoute />

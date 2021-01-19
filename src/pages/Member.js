@@ -1,15 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import StarRating from '../components/member/StarRating'
 import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
+//import { useParams, Switch, Route, Link } from 'react-router-dom'
+
+// import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
+// import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
+// import MeFavorites from '../components/main/MeFavorites'
+// import Notice from './Notice'
+// import MyAccount from '../components/member/MyAccount'
+
 function Member() {
-  return (
+  const [member, setMember] = useState('1')
+  async function getMember(id) {
+    try {
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
+        //mode: 'no-cors',
+        mode: 'cors',
+        method: 'get',
+      })
+      console.log(response)
+      if (response.ok) {
+        const data = await response.json()
+        setMember(data)
+        console.log('memberdata:', data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getMember(member)
+    console.log('me有資料嗎?', member)
+  }, [])
+
+  //const Loading = <h1>Loading</h1>
+
+  const display = (
     <>
       <article className="article">
         <div className="aside">
           <section className="aboutMember">
-            <MemberProfile />
+            <MemberProfile member={member} />
             <StarRating />
             <CalendarApp />
           </section>
@@ -20,9 +54,8 @@ function Member() {
       </article>
     </>
   )
+  return display
+  //return member.length > 0 ? display : Loading
 }
 
 export default Member
-
-//這是會員的共用項目 Ray
-//這裡要麵包屑嗎？

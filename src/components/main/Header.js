@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
@@ -8,8 +8,30 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
-function Header({ handleLogin }) {
+function Header() {
   const imagePath = '/images/testImage.jpg'
+  //const [member, setMember] = useState()
+  //登入登出
+  //const login = <span>登入/註冊</span>
+  const inlogin = (
+    <>
+      <NavDropdown
+        title={
+          <figure className="Navebar-figure">
+            <img className="header-img-br" src={imagePath} alt="User Avatar" />
+          </figure>
+        }
+      >
+        <NavDropdown.Item as={NavLink} to="/login">
+          會員中心
+        </NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item as={NavLink} to="/">
+          登出
+        </NavDropdown.Item>
+      </NavDropdown>
+    </>
+  )
 
   return (
     <>
@@ -47,7 +69,7 @@ function Header({ handleLogin }) {
             <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/shoppingcar">
+            <Nav.Link as={NavLink} to="/productList/car">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>
@@ -58,25 +80,8 @@ function Header({ handleLogin }) {
               {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
-            <NavDropdown
-              title={
-                <figure className="Navebar-figure">
-                  <img
-                    className="header-img-br"
-                    src={imagePath}
-                    alt="User Avatar"
-                  />
-                </figure>
-              }
-            >
-              <NavDropdown.Item as={NavLink} to="/login">
-                會員中心
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/">
-                登出
-              </NavDropdown.Item>
-            </NavDropdown>
+            {/* {member > 1 ? inlogin : login} */}
+            {inlogin}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -6,7 +6,6 @@ import Member from '../../pages/Member'
 import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
-import CarRoute from '../products/CarRoute'
 
 function MainRoute() {
   let history = useHistory()
@@ -16,9 +15,6 @@ function MainRoute() {
   return (
     <>
       <Switch>
-        <Route path="/shoppingcar">
-          <CarRoute />
-        </Route>
         <Route path="/myAccount">
           {localStorage.getItem('userName') ? (
             <Member />

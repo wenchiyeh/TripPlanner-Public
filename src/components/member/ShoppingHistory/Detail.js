@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 function Detail() {
-  let { id } = useParams()
+  let { orderId } = useParams()
   const [isLoading, setIsLoading] = useState(1)
 
   const [orderDetail, setOrderDetail] = useState([])
   async function getOrderDetail(props) {
     try {
-      const response = await fetch(`http://localhost:5000/historyOrder/${id}`, {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/historyOrder/${orderId}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
+        console.log(data)
         setOrderDetail(data)
         setTimeout(() => {
           if (data.length === 0) {
@@ -37,6 +41,7 @@ function Detail() {
               <h4>訂單編號</h4>
               <h5>{orderDetail[0].ticketNumber}</h5>
             </div>
+            <img src="/images/classPhoto/qrcode.jpg" alt="Qrcode" />
             <hr />
             <div>
               <h4>購買日期</h4>
@@ -45,24 +50,24 @@ function Detail() {
             <hr />
             <div>
               <h4>講座名稱</h4>
-              <h5>{orderDetail[0].class_Name}</h5>
+              <h5>{orderDetail[0].className}</h5>
             </div>
             <hr />
-            {/*<div>
+            <div>
               <h4>票種</h4>
-              <h5>{orderDetail[0].ticket_Name}</h5>
+              <h5>{orderDetail[0].ticket_type}</h5>
             </div>
-            <hr />*/}
+            <hr />
             <div>
               <h4>張數</h4>
               <h5>{orderDetail[0].many}</h5>
             </div>
             <hr />
-            {/* <div>
+            <div>
               <h4>價格</h4>
-              <h5>{orderDetail[0].ticket_price}</h5>
+              <h5>{orderDetail[0].price}</h5>
             </div>
-            <hr />*/}
+            <hr />
             <div>
               <h4>付款方式</h4>
               <h5>{orderDetail[0].payfor}</h5>
@@ -71,7 +76,7 @@ function Detail() {
 
             <div>
               <h4>姓名</h4>
-              <h5>{orderDetail[0].user_Name}</h5>
+              <h5>{orderDetail[0].user_name}</h5>
             </div>
             <hr />
             <div>
@@ -81,17 +86,17 @@ function Detail() {
             <hr />
             <div>
               <h4>電話</h4>
-              <h5>{orderDetail[0].user_phone}</h5>
+              <h5>{orderDetail[0].phone}</h5>
             </div>
             <hr />
             <div>
               <h4>電子信箱</h4>
-              <h5>{orderDetail[0].user_mail}</h5>
+              <h5>{orderDetail[0].mail}</h5>
             </div>
             <hr />
             <div>
               <h4>出生日期</h4>
-              <h5>{orderDetail[0].user_birthday}</h5>
+              <h5>{orderDetail[0].birthday}</h5>
             </div>
             <hr />
           </div>

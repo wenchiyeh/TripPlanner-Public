@@ -1,5 +1,5 @@
-@import '../../style/custom.scss';
-@import '../../style/main.scss';
+@import '../../../style/custom.scss';
+@import '../../../style/main.scss';
 body {
   background-color: #f5f3f4;
 }
@@ -120,7 +120,7 @@ body {
             border-radius: 50%;
           }
         }
-        .pay-for-it {
+        .pay-it {
           justify-content: center;
           display: flex;
 
@@ -180,12 +180,22 @@ body {
       .pay-form {
         margin-left: 40px;
         display: flex;
+        span {
+          width: 200px;
+          display: flex;
+          justify-content: space-between;
+          .pay-label {
+            margin-right: 8px;
+            flex: 1 0 0;
+          }
 
-        .pay-icon {
-          margin-right: 8px;
-          svg {
-            width: 30px;
-            height: 20px;
+          .pay-icon {
+            flex: 1 0 0;
+
+            svg {
+              width: 30px;
+              height: 20px;
+            }
           }
         }
       }
@@ -233,9 +243,15 @@ body {
       .product-number {
         display: flex;
         margin-bottom: 40px;
+        justify-content: space-around;
 
         h3 {
           margin-right: 16px;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: contain;
         }
       }
       .inside-detail {
@@ -285,5 +301,33 @@ body {
   }
   h3 {
     margin: 16px auto;
+    color: $info;
+  }
+}
+
+.final-page {
+  width: 900px;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    margin: 16px auto;
+    color: $info;
+    transition: 0.5s;
+    opacity: 0.6;
+  }
+  .airplanner {
+    width: 250px;
+    height: 250px;
+    margin: 16px auto;
+    opacity: 0.2;
+    color: $primary;
+  }
+  .gohomePage {
+    width: 150px;
+    height: 40px;
+    margin: 16px auto;
+    opacity: 0.8;
   }
 }

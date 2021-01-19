@@ -89,24 +89,24 @@ function LineChart() {
         </Form.Row>
         {/* 性別 */}
         <Form>
-          <div class="form-check">
+          <div className="form-check">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
               checked
             />
-            <label class="form-check-label" for="flexRadioDefault1">
+            <label className="form-check-label" for="flexRadioDefault1">
               男性
             </label>
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault2"
             />
-            <label class="form-check-label" for="flexRadioDefault2">
+            <label className="form-check-label" for="flexRadioDefault2">
               女性
             </label>
           </div>

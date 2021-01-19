@@ -5,7 +5,10 @@ import { Form, Button, Col, InputGroup, Toast } from 'react-bootstrap'
 import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
 
-function Login() {
+function Login(props) {
+  //是否登入
+  // 從App元件得到兩個屬性值，解構出來
+  const { isAuth, setIsAuth, auth, setAuth } = props
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
@@ -38,8 +41,15 @@ function Login() {
       console.log('email?', email)
       if (response.ok) {
         const data = await response.json()
-        if (data.result) {
-          setMember(data.member)
+        console.log('我是誰', data)
+        if (data) {
+          setMember(data)
+          localStorage.setItem('userName', 'memberId')
+          localStorage.setItem('userid', data.member)
+          localStorage.setItem('userData', JSON.stringify(data))
+          setAuth(true)
+          // sessionStorage.setItem('userName', 'memberId')
+          // sessionStorage.setItem('userid', data.member)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -50,15 +60,28 @@ function Login() {
     }
   }
   useEffect(() => {
-    if (member > null && member !== '') {
+    if (localStorage.getItem('userid')) {
       //console.log(`登入成功 會員: ${member}`)
-      setMember()
-      history.push(`/myAccount/${member}`)
+      // setMember()
+      history.push(`/myAccount`)
+      // history.push(`/myAccount/${member}`)
     } else {
+      // history.push('/login')
       console.log('請重新輸入')
-      //history.push('/login')
     }
   }, [member])
+
+  // const mesin = <samp isAuth={isAuth}></samp>
+  const mesin = <samp></samp>
+  const meserr = (
+    <Toast
+      show={showA}
+      onClose={toggleShowA}
+      className="d-flex message-login-err"
+    >
+      <Toast.Body>請輸入正確帳號密碼</Toast.Body>
+    </Toast>
+  )
 
   const display = (
     <div className="body-login">
@@ -74,7 +97,7 @@ function Login() {
                   </InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
-                  type="text"
+                  type="email"
                   placeholder="您的信箱"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -89,7 +112,11 @@ function Login() {
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} md="10" controlId="validationCustomUsername">
+            <Form.Group
+              as={Col}
+              md="10"
+              controlId="validationCustomUsernamepassword"
+            >
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="inputGroupPrepend">
@@ -98,7 +125,7 @@ function Login() {
                 </InputGroup.Prepend>
                 <Form.Control
                   className="login-input-br"
-                  type="text"
+                  type="password"
                   placeholder="您的密碼"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -113,15 +140,7 @@ function Login() {
             </Form.Group>
           </Form.Row>
           {/* //跳訊息 */}
-          <Toast
-            show={showA}
-            onClose={toggleShowA}
-            className="d-flex message-login-err"
-          >
-            <Toast.Body>
-              {password.length > 6 ? '' : '請輸入正確帳號密碼'}
-            </Toast.Body>
-          </Toast>
+          {member === true ? mesin : meserr}
           <Button
             type="submit"
             className="login-btn"
@@ -136,8 +155,11 @@ function Login() {
             //   )
             // }}
             onClick={() => {
-              if (password.length >= 3) {
+              if (password.length < 6) {
                 toggleShowA()
+              }
+              if (member === true) {
+                setIsAuth(true)
               }
             }}
           >

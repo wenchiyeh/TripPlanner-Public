@@ -1,8 +1,36 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
 
-function TBJoinedButtonDropOut() {
+function TBJoinedButtonDropOut(props) {
   const [tbJoinedDropOut, settbJoinedDropOut] = useState(false)
+  let tb_id = props.id
+
+  const [tbMine, settbMine] = useState([])
+  const [tbSelect, settbSelect] = useState([])
+
+  async function tbDoDropOut() {
+    // 要使用try-catch來作錯誤處理
+    try {
+      // 從伺服器得到資料
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/tbjoined/${tb_id}`,
+        {
+          method: 'delete',
+        }
+      )
+
+      // ok只能判斷201-299狀態碼的情況
+      if (response.ok) {
+        // 剖析資料為JS的數值
+        const data = await response.json()
+        props.gettbJoined()
+      }
+    } catch (error) {
+      // 發生錯誤的處理情況
+      alert('無法得到伺服器資料，請稍後再重試-delete的問題')
+      console.log(error)
+    }
+  }
   return (
     <>
       <Button
@@ -17,7 +45,7 @@ function TBJoinedButtonDropOut() {
         onHide={() => settbJoinedDropOut(false)}
         aria-labelledby="tbJoinedDrop"
       >
-        <Form>
+        <div>
           <Modal.Header closeButton>
             <Modal.Title id="tbJoinedDrop" className="tbjoined-dropout-title">
               您確定要退出旅行揪團並通知團員嗎？
@@ -33,11 +61,19 @@ function TBJoinedButtonDropOut() {
             <Button variant="" className="tbjoined-button-dropout-cancel">
               取消
             </Button>
-            <Button variant="" className="tbjoined-button-dropout-confirm">
+            <Button
+              variant=""
+              className="tbjoined-button-dropout-confirm"
+              onClick={() => {
+                tbDoDropOut()
+                settbJoinedDropOut(false)
+              }}
+              type="button"
+            >
               確定
             </Button>
           </Modal.Footer>
-        </Form>
+        </div>
       </Modal>
     </>
   )

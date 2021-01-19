@@ -4,13 +4,8 @@ import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
 import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
-//import { useHistory } from 'react-router-dom'
 function MemberProfile({ member }) {
-  //let history = useHistory()
-  //let { id } = useParams(1)
-  //console.log('p有拿到member?', member)
   console.log('mp member:', member)
-  //const [member, setMembber] = useState(1)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)

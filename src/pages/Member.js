@@ -68,7 +68,7 @@ function Member() {
   //   }
   // }
   useEffect(() => {
-    getMember(sessionStorage.getItem('userid'))
+    getMember(localStorage.getItem('userid'))
     // console.log('me有資料嗎?', member)
   }, [])
 

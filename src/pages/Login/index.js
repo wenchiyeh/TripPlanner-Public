@@ -9,7 +9,6 @@ function Login(props) {
   //是否登入
   // 從App元件得到兩個屬性值，解構出來
   const { isAuth, setIsAuth } = props
-
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
@@ -45,8 +44,9 @@ function Login(props) {
         if (data.result) {
           setMember(data.member)
           localStorage.setItem('userName', 'memberId')
-          sessionStorage.setItem('userName', 'memberId')
-          sessionStorage.setItem('userid', data.member)
+          localStorage.setItem('userid', data.member)
+          // sessionStorage.setItem('userName', 'memberId')
+          // sessionStorage.setItem('userid', data.member)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -57,7 +57,7 @@ function Login(props) {
     }
   }
   useEffect(() => {
-    if (sessionStorage.getItem('userid')) {
+    if (localStorage.getItem('userid')) {
       //console.log(`登入成功 會員: ${member}`)
       // setMember()
       history.push(`/myAccount`)
@@ -93,7 +93,7 @@ function Login(props) {
                   </InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
-                  type="text"
+                  type="email"
                   placeholder="您的信箱"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -117,7 +117,7 @@ function Login(props) {
                 </InputGroup.Prepend>
                 <Form.Control
                   className="login-input-br"
-                  type="text"
+                  type="password"
                   placeholder="您的密碼"
                   aria-describedby="inputGroupPrepend"
                   required

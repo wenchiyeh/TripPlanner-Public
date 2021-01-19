@@ -1,16 +1,15 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
 import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
-
 import CarRoute from '../products/CarRoute'
-//import MyAccount from '../member/MyAccount'
 
 function MainRoute() {
+  let history = useHistory()
   //console.log('主路由', member)
   //const member = useState(1)
 
@@ -21,10 +20,10 @@ function MainRoute() {
           <CarRoute />
         </Route>
         <Route path="/myAccount">
-          {sessionStorage.getItem('userName') ? (
+          {localStorage.getItem('userName') ? (
             <Member />
           ) : (
-            (window.location = '/login')
+            history.push('/login')
           )}
         </Route>
         <Route path="/itinerary">

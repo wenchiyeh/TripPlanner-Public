@@ -9,16 +9,6 @@ import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
 function Header(props) {
-  // const [count, setCount] = useState(0)
-  const [isLoading, setIsLoading] = useState('')
-
-  // const icn = () => setCount(count + 1)
-  // const desc = () => setCount(count - 1)
-  // useEffect((e) => {
-  //   if (count < 0) {
-  //     setIsLoading()
-  //   }
-  // }, [])
   const imagePath = '/images/testImage.jpg'
   //登入登出
   const login = (
@@ -41,11 +31,8 @@ function Header(props) {
           </figure>
         }
       >
-        <NavDropdown.Item as={NavLink} to="/login">
-          會員中心1
-        </NavDropdown.Item>
         <NavDropdown.Item as={NavLink} to="/myAccount">
-          會員中心2
+          會員中心
         </NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item

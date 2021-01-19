@@ -6,14 +6,17 @@ import { IoMdTime } from 'react-icons/io'
 // let cardData = require('../../Itinerary/testJsonData.json')
 // let handleTestData = cardData[2].data
 
-function MeFavoritesgroup() {
+function MeFavoritesgroup(id) {
   const [trmef, setTrmef] = useState([])
 
   async function getTrmef(props) {
     try {
-      const response = await fetch('http://localhost:5000/meFavoritesgroup', {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/meFavoritesgroup/${id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
         setTrmef(data)

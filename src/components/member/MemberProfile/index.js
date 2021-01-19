@@ -4,13 +4,8 @@ import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
 import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
-//import { useHistory } from 'react-router-dom'
 function MemberProfile({ member }) {
-  //let history = useHistory()
-  //let { id } = useParams(1)
-  //console.log('p有拿到member?', member)
   console.log('mp member:', member)
-  //const [member, setMembber] = useState(1)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -19,7 +14,7 @@ function MemberProfile({ member }) {
     <>
       <div className="person">
         <h3>一般會員</h3>
-        <img src={member[0].member_photo_id} alt="" />
+        <img src={'images/userphoto/' + member[0].member_photo_id} alt="" />
         <h4>{member[0].member_name}</h4>
         <Button
           variant="primary"

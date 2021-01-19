@@ -1,10 +1,11 @@
 //會員查改
 import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
 
 function MemberEdit({ member }) {
+  let history = useHistory()
   let { id } = useParams()
   //const [members, setMembers] = useState('')
   const [member_name, setMember_name] = useState(member.member_name)
@@ -42,7 +43,7 @@ function MemberEdit({ member }) {
         setEmail(data)
         console.log(data)
         if (data) alert('更新成功')
-        //history.push('myAccount')
+        history.push('/myAccount')
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')

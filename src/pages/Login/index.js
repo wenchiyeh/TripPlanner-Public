@@ -66,12 +66,13 @@ function Login(props) {
       history.push(`/myAccount`)
       // history.push(`/myAccount/${member}`)
     } else {
+      // history.push('/login')
       console.log('請重新輸入')
-      //history.push('/login')
     }
   }, [member])
 
-  const mesin = <samp isAuth={isAuth}></samp>
+  // const mesin = <samp isAuth={isAuth}></samp>
+  const mesin = <samp></samp>
   const meserr = (
     <Toast
       show={showA}
@@ -111,7 +112,11 @@ function Login(props) {
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} md="10" controlId="validationCustomUsername">
+            <Form.Group
+              as={Col}
+              md="10"
+              controlId="validationCustomUsernamepassword"
+            >
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text id="inputGroupPrepend">
@@ -150,7 +155,7 @@ function Login(props) {
             //   )
             // }}
             onClick={() => {
-              if (password.length >= 3) {
+              if (password.length < 6) {
                 toggleShowA()
               }
               if (member === true) {

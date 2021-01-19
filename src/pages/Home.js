@@ -1,30 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
-import Card from '../components/main/Card'
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
-
-function Home(props) {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  }
-=======
 import '.././style/home.scss'
 import HomeHeader from '../components/main/HomeHeader'
 // import Footer from '../components/main/Footer'
@@ -45,23 +19,15 @@ import HomeP2scoll from '../components/main/HomeP2scoll'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 AOS.init()
->>>>>>> a100240a069a90278c78fb8cb4132985577c7b55
 
 function Home(props) {
   return (
     <>
-<<<<<<< HEAD
-      <div className="home-body">
-        <figure className="home-kv-figure ">
-          <img src="./images/kv.jpg" width="100%" alt="圖片替代文字" />
-        </figure>
-=======
       <div className="navbar-background" />
 
       <HomeHeader />
 
       <Kv />
->>>>>>> a100240a069a90278c78fb8cb4132985577c7b55
 
       <article className="home-body">
         <div className="Home-container">
@@ -73,35 +39,6 @@ function Home(props) {
           >
             <HomeTitle1 />
           </div>
-<<<<<<< HEAD
-          <div className="row home-p1">
-            <div className="col-5">
-              <figure className="home-p1-figure-left">
-                <img src="./images/p3.jpg" alt="圖片替代文字" />
-              </figure>
-              <figure className="home-p1-figure-left">
-                <img src="./images/p2.jpg" alt="圖片替代文字" />
-                <h2>個人化旅歷製作</h2>
-                <div className="line" />
-              </figure>
-            </div>
-            <div className="col-7">
-              <figure className="home-p1-figure-right-top">
-                <img src="./images/p4.png" alt="圖片替代文字" />
-              </figure>
-
-              <div className="row home-p1-figure-right-bottom">
-                <figure className="col-4">
-                  <img src="./images/p5.png" alt="圖片替代文字" />
-                </figure>
-                <figure className="col-4">
-                  <img src="./images/p6.jpg" alt="圖片替代文字" />
-                </figure>
-                <figure className="col-4">
-                  <img src="./images/p7.png" alt="圖片替代文字" />
-                </figure>
-              </div>
-=======
           <div>
             <HomeP1Image />
           </div>
@@ -144,7 +81,6 @@ function Home(props) {
           <div className="Home-container">
             <div className="p3-cardbackground">
               <img src="../images/homePhoto/inada_txt.svg" />
->>>>>>> a100240a069a90278c78fb8cb4132985577c7b55
             </div>
             <HomeP2 />
             <HomeP3 />

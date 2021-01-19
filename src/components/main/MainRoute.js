@@ -7,9 +7,6 @@ import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
-import CarRoute from '../products/CarRoute'
-//import MyAccount from '../member/MyAccount'
-
 function MainRoute() {
   //console.log('主路由', member)
   //const member = useState(1)
@@ -17,10 +14,7 @@ function MainRoute() {
   return (
     <>
       <Switch>
-        <Route path="/shoppingcar">
-          <CarRoute />
-        </Route>
-        <Route path="/myAccount/:id">
+        <Route path="/myAccount">
           <Member />
         </Route>
         <Route path="/itinerary">

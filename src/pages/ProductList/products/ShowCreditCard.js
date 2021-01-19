@@ -11,7 +11,7 @@ function getDisplayCardNumber(numberInput) {
 function TextInput({ label, type = 'text', id, value, ...props }) {
   return (
     <>
-      <label for={id}>{label}</label>
+      <label htmlFor={id}>{label}</label>
 
       <input id={id} type={type} value={value} {...props} />
     </>
@@ -110,7 +110,7 @@ const CardForm = ({
           }
           placeholder="YY"
           minLength="2"
-          maxLength="4"
+          maxLength="2"
           required
         />
       </li>
@@ -122,7 +122,7 @@ const CardForm = ({
           value={cvv}
           onChange={(e) => onChange({ key: 'cvv', value: e.target.value })}
           minLength="3"
-          maxLength="4"
+          maxLength="3"
         />
       </li>
     </ul>

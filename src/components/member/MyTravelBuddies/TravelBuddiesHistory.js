@@ -69,64 +69,13 @@ function TravelBuddiesHistory() {
                     {/* 這邊判斷式要拉session */}
                     <td>{v.tb_ownerId === 1 ? '揪團主' : '團員'}</td>
                     <td>
-                      <TBButtonRead /> <TBButtonChatroom />{' '}
+                      <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
                       <TBHistoryButtonRating />
                       <TBHistoryButtonGiveRating />{' '}
                     </td>
                   </tr>
                 )
               })}
-            <tr>
-              <td>1</td>
-              <td>台北熱門景點一日遊</td>
-              <td>2020/10/01 - 2020/10/01</td>
-              <td>揪團主</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBHistoryButtonRating />
-                <TBHistoryButtonGiveRating />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>北海岸、基隆二日遊</td>
-              <td>2020/10/06 - 2020/10/07</td>
-              <td>團員</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom />{' '}
-                <TBHistoryButtonRatingNo />
-                <TBHistoryButtonRatingDone />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>屏東海生館一日遊</td>
-              <td>2021/02/26 - 2021/02/26</td>
-              <td>團員</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBHistoryButtonRating />
-                <TBHistoryButtonGiveRating />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>北台灣深度之旅，八日！</td>
-              <td>2021/02/01 - 2021/02/08</td>
-              <td>揪團主</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBHistoryButtonRating />
-                <TBHistoryButtonGiveRating />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>北台灣深度之旅，八日！</td>
-              <td>2021/02/01 - 2021/02/08</td>
-              <td>揪團主</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBHistoryButtonRating />
-                <TBHistoryButtonGiveRating />{' '}
-              </td>
-            </tr>
           </tbody>
         </Table>
       </div>

@@ -52,28 +52,28 @@ function MemberEdit({ member }) {
       console.log(err)
     }
   }
-  // async function getMember() {
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/member`, {
-  //       mode: 'cors',
-  //       method: 'get',
-  //     })
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       // 設定到每個欄位
-  //       setEmail(data.email)
-  //       setMember_name(data.member_name)
-  //       setPhone(data.phone)
-  //       // setBirthday(data.birthday)
-  //       setmember_sex(data.member_sex)
-  //       setMember_id(data.member_id)
-  //       setMember_aboutme(data.member_aboutme)
-  //     }
-  //   } catch (err) {
-  //     alert('無法得到伺服器資料，請稍後再重試')
-  //     console.log(err)
-  //   }
-  // }
+  async function getMember() {
+    try {
+      const response = await fetch(`http://localhost:5000/member`, {
+        mode: 'cors',
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        // 設定到每個欄位
+        setEmail(data.email)
+        setMember_name(data.member_name)
+        setPhone(data.phone)
+        // setBirthday(data.birthday)
+        setmember_sex(data.member_sex)
+        setMember_id(data.member_id)
+        setMember_aboutme(data.member_aboutme)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
   useEffect(() => {
     if (member > -1) {
       console.log('hi model')

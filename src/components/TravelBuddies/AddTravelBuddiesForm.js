@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import FormControl from 'react-bootstrap/FormControl'
 import FormCheck from 'react-bootstrap/FormCheck'
 import FormFile from 'react-bootstrap/FormFile'
-import PicUploadRect from '../Itinerary/PicUploadRect'
+import TBPicUploadRect from './TBPicUploadRect'
 import Modal from 'react-bootstrap/Modal'
 
 function AddTravelBuddiesForm() {
@@ -59,7 +59,7 @@ function AddTravelBuddiesForm() {
         console.log(data)
 
         // 設定資料到member狀態
-        if (data.id) alert('新增成功')
+        if (data.id) console.log('success')
       }
     } catch (err) {
       // 發生錯誤的處理情況
@@ -80,13 +80,15 @@ function AddTravelBuddiesForm() {
 
   return (
     <>
-      <div class="add-travelbuddies-outbox">
-        <div class="add-travelbuddies-middle">
+      <div className="add-travelbuddies-outbox">
+        <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
-            <canvas className="add-travelbuddies-picture">
-              <div>請選擇檔案或拖曳上傳</div>
-            </canvas>
+            <TBPicUploadRect
+              giveClassName={{
+                wrap: 'detailPic',
+              }}
+            />
             <Form.Group controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
@@ -105,7 +107,7 @@ function AddTravelBuddiesForm() {
                 旅行揪團名稱為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="travelBuddiesRegionCategory">
+            {/* <Form.Group controlId="travelBuddiesRegionCategory">
               <Form.Label htmlFor="travelBuddiesRegionCategory">
                 地區分類：
               </Form.Label>
@@ -159,11 +161,8 @@ function AddTravelBuddiesForm() {
               <Form.Control.Feedback type="invalid">
                 地區分類為必選
               </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group
-              controlId="travelBuddieCityCategory"
-              style={{ display: 'none' }}
-            >
+            </Form.Group> */}
+            <Form.Group controlId="travelBuddieCityCategory">
               <Form.Label htmlFor="travelBuddieCityCategory">
                 縣市分類：
               </Form.Label>
@@ -556,32 +555,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
@@ -605,32 +604,32 @@ function AddTravelBuddiesForm() {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-even">
+                <div className="d-flex importfrom-row-even">
                   <div></div>
                   <div></div>
                   <div></div>
                 </div>
-                <div class="d-flex importfrom-row-odd">
+                <div className="d-flex importfrom-row-odd">
                   <div></div>
                   <div></div>
                   <div></div>

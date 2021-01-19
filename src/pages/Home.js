@@ -1,7 +1,7 @@
 import React from 'react'
 import '.././style/home.scss'
 import HomeHeader from '../components/main/HomeHeader'
-import Footer from '../components/main/Footer'
+// import Footer from '../components/main/Footer'
 import Kv from '../components/main/Kv'
 import HomeTitle1 from '../components/main/HomeTitle1'
 import HomeP1Image from '../components/main/HomeP1Image'
@@ -80,7 +80,7 @@ function Home(props) {
         <div className="p1-cardbackground-relative">
           <div className="Home-container">
             <div className="p3-cardbackground">
-              <img src="../images/inada_txt.svg" />
+              <img src="../images/homePhoto/inada_txt.svg" />
             </div>
             <HomeP2 />
             <HomeP3 />
@@ -94,7 +94,7 @@ function Home(props) {
               data-aos-delay="300"
               data-aos-duration="900"
             >
-              <img src="../images/p9.jpg" />
+              <img src="../images/homePhoto/p9.jpg" />
             </figure>
           </div>
         </div>
@@ -127,7 +127,7 @@ function Home(props) {
         </div>
       </article>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

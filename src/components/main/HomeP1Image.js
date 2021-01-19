@@ -15,9 +15,9 @@ function HomeP1Image(props) {
             data-aos-delay="300"
           >
             <div>
-              <img src="./images/p3.jpg" />
+              <img src="./images/homePhoto/p3.jpg" />
               <div className="P1Logo">
-                <img class="P1logo1" src="./images/logo.svg" />
+                <img class="P1logo1" src="./images/homePhoto/logo.svg" />
               </div>
             </div>
           </figure>
@@ -29,7 +29,7 @@ function HomeP1Image(props) {
             data-aos-delay="300"
             data-aos-offset="210"
           >
-            <img src="./images/p2.jpg" />
+            <img src="./images/homePhoto/p2.jpg" />
             <h2
               data-aos="zoom-in-right"
               data-aos-delay="600"
@@ -54,7 +54,7 @@ function HomeP1Image(props) {
             data-aos-duration="900"
             data-aos-delay="300"
           >
-            <img src="./images/p4.png" />
+            <img src="./images/homePhoto/p4.png" />
           </figure>
 
           <div
@@ -66,7 +66,7 @@ function HomeP1Image(props) {
           >
             <div className="col-4   ">
               <figure>
-                <img src="./images/p5.png" />
+                <img src="./images/homePhoto/p5.png" />
                 <div
                   data-aos="fade-zoom-in"
                   data-aos-easing="ease-out"
@@ -80,7 +80,7 @@ function HomeP1Image(props) {
             </div>
             <div className="col-4">
               <figure>
-                <img src="./images/p6.jpg" />
+                <img src="./images/homePhoto/p6.jpg" />
                 <div
                   data-aos="fade-zoom-in"
                   data-aos-easing="ease-out"
@@ -95,7 +95,7 @@ function HomeP1Image(props) {
 
             <div className="col-4">
               <figure>
-                <img src="./images/p7.png" />
+                <img src="./images/homePhoto/p7.png" />
                 <div
                   data-aos="fade-zoom-in"
                   data-aos-easing="ease-out"

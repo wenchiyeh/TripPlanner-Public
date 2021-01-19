@@ -9,6 +9,7 @@ import {
   scroller,
 } from 'react-scroll'
 import TaiwanMap from './TaiwanMap'
+
 import HomeSearchBar from './HomeSearchBar'
 import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
@@ -25,7 +26,6 @@ function Kv(props) {
   // const [{ data }] = useAxios(
   //   'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=CWB-CE3C77E2-B7C4-49F4-AE97-3E3F5E40BEAE&downloadType=WEB&format=JSON'
   // )
-  // console.log(data)
 
   if (navigator.geolocation) {
     function error() {
@@ -64,17 +64,14 @@ function Kv(props) {
       </div>
       <TaiwanMap />
 
-      <figure className="home-kv-figure ">
-        <img src="./images/kv.jpg" width="100%" />
-        <a onClick={() => scroll.scrollMore(920)}>
-          <div className="scroll-icon-relative">
-            <div className="chevron"></div>
-            <div className="chevron"></div>
-            <div className="chevron"></div>
-            <span className="text">Scroll down</span>
-          </div>
-        </a>
-      </figure>
+      <a onClick={() => scroll.scrollMore(920)}>
+        <div className="scroll-icon-relative">
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <div className="chevron"></div>
+          <span className="text">Scroll down</span>
+        </div>
+      </a>
       <a data-aos="fade-left" onClick={() => scroll.scrollTo(10)}>
         <section className="scrollTop row justify-content-center align-items-center">
           <div className="col">

@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import useSWR from 'swr'
 import { FiMapPin } from 'react-icons/fi'
-import { TiWeatherCloudy } from 'react-icons/ti'
+import { FaThermometerQuarter } from 'react-icons/fa'
+import $ from 'jquery'
 
+import {
+  TiWeatherCloudy,
+  TiWeatherPartlySunny,
+  TiWeatherDownpour,
+  TiWeatherShower,
+  TiWeatherStormy,
+  TiWeatherSunny,
+  TiWeatherWindyCloudy,
+  TiWeatherWindy,
+} from 'react-icons/ti'
+import { CgSun } from 'react-icons/cg'
+import { WiDayRain, WiDayFog, WiDayThunderstorm } from 'react-icons/wi'
+import { IoThunderstormOutline } from 'react-icons/io5'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+AOS.init()
 function TaiwanMap(props) {
   const [filter, setFilter] = useState('')
   const [domData, setDomData] = useState({
@@ -28,6 +45,8 @@ function TaiwanMap(props) {
       paths.forEach((e) => {
         e.onmouseover = function () {
           setFilter(this.dataset.nameZh)
+          // $('.kvImg').fadeOut(200)
+          // $('.kvImg').fadeIn(200)
         }
       })
     }
@@ -49,6 +68,8 @@ function TaiwanMap(props) {
       let high = ''
       let low = ''
       let weather = ''
+      let weatherIcon = ''
+
       let highArr = weatherElement.filter((el) => el.elementName === 'MaxT')
       let lowArr = weatherElement.filter((el) => el.elementName === 'MinT')
       let weatherArr = weatherElement.filter((el) => el.elementName === 'Wx')
@@ -57,6 +78,393 @@ function TaiwanMap(props) {
         low = lowArr[0].time[0].elementValue.value
         weather = weatherArr[0].time[0].elementValue[0].value
       }
+      let cityName = {
+        基隆市: 'Keelung',
+        新北市: 'New Taipei City',
+        臺北市: 'Taipei City',
+        桃園市: 'Taoyuan City',
+        新竹縣: 'Hsinchu County',
+        新竹市: 'Hsinchu City',
+        苗栗市: 'Miaoli City',
+        苗栗縣: 'Miaoli County',
+        臺中市: 'Taichung City',
+        彰化縣: 'Changhua County',
+        彰化市: 'Changhua City	',
+        南投市: 'Nantou City	',
+        南投縣: 'Nantou County',
+        雲林縣: 'Yunlin County',
+        嘉義縣: 'Chiayi County',
+        嘉義市: 'Chiayi City',
+        臺南市: 'Tainan City',
+        高雄市: 'Kaohsiung City',
+        屏東縣: 'Pingtung County',
+        屏東市: 'Pingtung City',
+        宜蘭縣: 'Yilan County',
+        宜蘭市: 'Yilan City',
+        花蓮縣: 'Hualien County',
+        花蓮市: 'Hualien  City',
+        臺東市: 'Taitung City',
+        臺東縣: 'Taitung County',
+        澎湖縣: 'Penghu County',
+        金門縣: 'Kinmen County',
+        馬祖: 'Matsu	Matus',
+      }
+
+      let KvCityName = cityName[filter]
+      let kvImagePath = './images/homePhoto/' + KvCityName + '.jpg'
+
+      //sunicon
+      let sun = ['晴天']
+      if (sun.includes(weather)) {
+        weatherIcon = <CgSun />
+      }
+      //sunicon
+      let Cloudy = ['多雲','陰天']
+      if (Cloudy.includes(weather)) {
+        weatherIcon = <TiWeatherCloudy />
+      }
+
+      //Sunny
+      let PartlySunny = ['晴時多雲', '多雲時晴']
+      if (PartlySunny.includes(weather)) {
+        weatherIcon = <TiWeatherPartlySunny />
+      }
+      //sunfog
+      let sunfog = [
+        '晴有霧',
+        '晴晨霧',
+        '晴時多雲有霧',
+        '晴時多雲晨霧',
+        '多雲時晴有霧',
+        '多雲時晴晨霧',
+        '多雲有霧',
+        '多雲晨霧',
+        '有霧',
+        '晨霧',
+        '陰有霧',
+        '陰晨霧',
+        '多雲時陰有霧',
+        '多雲時陰晨霧',
+        '陰時多雲有霧',
+        '陰時多雲晨霧',
+      ]
+      if (sunfog.includes(weather)) {
+        weatherIcon = <WiDayFog />
+      }
+      //Thunderstorm
+      let Thunderstorm = [
+        '晴午後多雲陣雨或雷雨',
+        '晴午後多雲雷陣雨',
+        '晴午後陣雨或雷雨',
+        '晴午後雷陣雨',
+        '晴午後多雲局部陣雨或雷雨',
+        '晴午後多雲局部短暫陣雨或雷雨',
+        '晴午後多雲局部短暫雷陣雨',
+        '晴午後多雲局部雷陣雨',
+        '晴午後多雲短暫陣雨或雷雨',
+        '晴午後多雲短暫雷陣雨',
+        '晴午後局部短暫雷陣雨',
+        '晴午後局部雷陣雨',
+        '晴午後短暫雷陣雨',
+        '晴雷陣雨',
+        '晴時多雲雷陣雨',
+        '晴時多雲午後短暫雷陣雨',
+        '晴午後陰局部陣雨或雷雨',
+        '晴午後陰局部短暫陣雨或雷雨',
+        '晴午後陰局部短暫雷陣雨',
+        '晴午後陰局部雷陣雨',
+      ]
+      if (Thunderstorm.includes(weather)) {
+        weatherIcon = <WiDayThunderstorm />
+      }
+      //Thunderstorm
+      let ThunderstormOutline = [
+        '多雲陣雨或雷雨',
+        '多雲短暫陣雨或雷雨',
+        '多雲短暫雷陣雨',
+        '多雲雷陣雨',
+        '短暫陣雨或雷雨後多雲',
+        '短暫雷陣雨後多雲 ',
+        '短暫陣雨或雷雨 ',
+        '多雲時晴短暫陣雨或雷雨',
+        '午後短暫雷陣雨',
+        '多雲時陰陣雨或雷雨',
+        '多雲時陰短暫陣雨或雷雨',
+        '多雲時陰短暫雷陣雨',
+        '多雲時陰雷陣雨',
+        '多雲時晴陣雨或雷雨',
+        '陰時多雲有雷陣雨',
+        '陰時多雲陣雨或雷雨',
+        '陰時多雲短暫陣雨或雷雨',
+        '陰時多雲短暫雷陣雨',
+        '陰時多雲雷陣雨',
+        '陰有陣雨或雷雨',
+        '陰有雷陣雨',
+        '陰陣雨或雷雨',
+        '陰雷陣雨',
+        '陰短暫陣雨或雷雨',
+        '陰短暫雷陣雨',
+        '雷雨',
+        '陣雨或雷雨後多雲',
+        '陰陣雨或雷雨後多雲',
+        '陰短暫陣雨或雷雨後多雲',
+        '陰短暫雷陣雨後多雲',
+        '陰雷陣雨後多雲',
+        '雷陣雨後多雲',
+        '陣雨或雷雨',
+        '雷陣雨',
+        '午後雷陣雨',
+        '多雲午後雷陣雨',
+        '多雲時晴雷陣雨',
+        '陰午後短暫雷陣雨',
+        '多雲午後局部雨',
+        '多雲午後局部陣雨',
+        '多雲午後局部短暫雨',
+        '多雲午後局部短暫陣雨',
+        '多雲午後陣雨',
+        '多雲午後短暫雨',
+        '多雲午後短暫陣雨',
+        '多雲時陰午後短暫陣雨',
+        '陰時多雲午後短暫陣雨',
+        '多雲時晴午後短暫陣雨',
+        '多雲午後局部陣雨或雷雨',
+        '多雲午後局部短暫陣雨或雷雨',
+        '多雲午後局部短暫雷陣雨',
+        '多雲午後局部雷陣雨',
+        '多雲午後陣雨或雷雨',
+        '多雲午後短暫陣雨或雷雨',
+        '多雲午後短暫雷陣雨',
+        '多雲時晴午後短暫雷陣雨',
+        '多雲時陰午後短暫雷陣雨',
+        '陰時多雲午後短暫雷陣雨',
+        '多雲局部陣雨或雷雨',
+        '多雲局部短暫陣雨或雷雨',
+        '多雲局部短暫雷陣雨',
+        '多雲局部雷陣雨',
+        '多雲時陰局部陣雨或雷雨',
+        '多雲時陰局部短暫陣雨或雷雨',
+        '多雲時陰局部短暫雷陣雨',
+        '多雲時陰局部雷陣雨',
+        '陰局部陣雨或雷雨',
+        '陰局部短暫陣雨或雷雨',
+        '陰局部短暫雷陣雨',
+        '陰局部雷陣雨',
+        '陰時多雲局部陣雨或雷雨',
+        '陰時多雲局部短暫陣雨或雷雨',
+        '陰時多雲局部短暫雷陣雨',
+        '陰時多雲局部雷陣雨',
+        '多雲有陣雨或雷雨有霧',
+        '多雲有雷陣雨有霧',
+        '多雲有霧有陣雨或雷雨',
+        '多雲有霧有雷陣雨',
+        '多雲局部陣雨或雷雨有霧',
+        '多雲局部短暫陣雨或雷雨有霧',
+        '多雲局部短暫雷陣雨有霧',
+        '多雲局部雷陣雨有霧',
+        '多雲陣雨或雷雨有霧',
+        '多雲短暫陣雨或雷雨有霧',
+        '多雲短暫雷陣雨有霧',
+        '多雲雷陣雨有霧',
+        '多雲時晴短暫陣雨或雷雨有霧',
+        '多雲時陰有陣雨或雷雨有霧',
+        '多雲時陰有雷陣雨有霧',
+        '多雲時陰有霧有陣雨或雷雨',
+        '多雲時陰局部陣雨或雷雨有霧',
+        '多雲時陰局部短暫陣雨或雷雨有霧',
+        '多雲時陰局部短暫雷陣雨有霧',
+        '多雲時陰局部雷陣雨有霧',
+        '多雲時陰陣雨或雷雨有霧',
+        '多雲時陰有霧有雷陣雨',
+        '陰局部雷陣雨有霧',
+        '陰短暫雷陣雨有霧',
+        '多雲時陰短暫雷陣雨有霧',
+        '多雲時陰雷陣雨有霧',
+        '陰局部短暫雷陣雨有霧',
+        '陰時多雲有陣雨或雷雨有霧',
+        '陰時多雲有雷陣雨有霧',
+        '陰時多雲雷陣雨有霧',
+        '陰局部陣雨或雷雨有霧',
+        '陰時多雲局部雷陣雨有霧',
+        '多雲時陰短暫陣雨或雷雨有霧',
+        '陰局部短暫陣雨或雷雨有霧',
+        '陰時多雲有霧有陣雨或雷雨',
+        '陰時多雲有霧有雷陣雨',
+        '陰時多雲局部陣雨或雷雨有霧',
+        '陰時多雲局部短暫陣雨或雷雨有霧',
+        '陰時多雲局部短暫雷陣雨有霧',
+        '陰時多雲陣雨或雷雨有霧',
+        '陰時多雲短暫陣雨或雷雨有霧',
+        '陰時多雲短暫雷陣雨有霧',
+        '陰短暫陣雨或雷雨有霧',
+        '雷陣雨有霧',
+        '短暫陣雨或雷雨有霧 ',
+        '陣雨或雷雨有霧',
+      ]
+      if (ThunderstormOutline.includes(weather)) {
+        ThunderstormOutline = <IoThunderstormOutline />
+      }
+
+      //sunrainicon
+      let sunrain = [
+        '晴午後陰局部雨',
+        '晴午後陰局部陣雨',
+        '晴午後陰局部短暫雨',
+        '晴午後陰局部短暫陣雨',
+        '晴陣雨或雷雨',
+        '晴時多雲陣雨或雷雨',
+        '晴午後陰短暫雨',
+        '晴午後陰短暫陣雨',
+        '晴短暫陣雨或雷雨',
+        '晴時多雲短暫陣雨',
+        '晴短暫陣雨',
+        '晴時多雲短暫陣雨或雷雨',
+        '晴時多雲陣雨',
+        '晴午後陰短暫陣雨或雷雨',
+        '晴午後陰短暫雷陣雨',
+        '晴午後多雲局部雨',
+        '晴午後多雲局部陣雨',
+        '晴午後多雲局部短暫雨',
+        '晴午後多雲局部短暫陣雨',
+        '晴午後多雲短暫雨',
+        '晴午後多雲短暫陣雨',
+        '晴午後局部雨',
+        '晴午後局部陣雨',
+        '晴午後局部短暫雨',
+        '晴午後局部短暫陣雨',
+        '晴午後陣雨',
+        '晴午後短暫雨',
+        '晴午後短暫陣雨',
+        '晴時多雲午後短暫陣雨',
+      ]
+      if (sunrain.includes(weather)) {
+        weatherIcon = <WiDayRain />
+      }
+
+      //rainIcon
+      let rain = [
+        '多雲陣雨',
+        '多雲短暫雨',
+        '多雲短暫陣雨',
+        '午後短暫陣雨',
+        '短暫陣雨',
+        '多雲時晴短暫陣雨',
+        '多雲時晴短暫雨',
+        '短暫雨',
+        '多雲時陰短暫雨',
+        '多雲時陰短暫陣雨',
+        '陰時多雲短暫雨 ',
+        '陰時多雲短暫陣雨',
+        '雨天 ',
+        '陰短暫雨',
+        '陰午後短暫陣雨 ',
+        '多雲時陰有雨',
+        '多雲時陰陣雨',
+        '多雲時晴陣雨',
+        '陰時多雲有雨',
+        '陰時多雲有陣雨',
+        '陰時多雲陣雨',
+        '陰有雨',
+        '陰有陣雨',
+        '陰雨',
+        '陰陣雨',
+        '陣雨',
+        '陰局部雨或雪有霧',
+        '短暫雨或雪有霧 ',
+        '有雨或雪有霧',
+        '短暫陣雨有霧',
+        '短暫陣雨晨霧',
+        '短暫雨有霧',
+        '短暫雨晨霧',
+        '有雨有霧',
+        '陣雨有霧',
+        '午後陣雨',
+        '多雲局部雨',
+        '多雲局部陣雨',
+        '多雲局部短暫雨',
+        '多雲局部短暫陣雨',
+        '多雲時陰局部雨',
+        '多雲時陰局部陣雨',
+        '多雲時陰局部短暫雨',
+        '多雲時陰局部短暫陣雨',
+        '陰局部雨',
+        '陰局部陣雨',
+        '陰局部短暫雨',
+        '陰局部短暫陣雨',
+        '陰時多雲局部雨',
+        '陰時多雲局部陣雨',
+        '陰時多雲局部短暫雨',
+        '陰時多雲局部短暫陣雨',
+        '多雲有霧有局部雨',
+        '多雲有霧有局部陣雨',
+        '多雲有霧有局部短暫雨',
+        '多雲有霧有局部短暫陣雨',
+        '多雲有霧有陣雨',
+        '多雲有霧有短暫雨',
+        '多雲有霧有短暫陣雨',
+        '多雲局部雨有霧',
+        '多雲局部雨晨霧',
+        '多雲局部陣雨有霧',
+        '多雲局部陣雨晨霧',
+        '多雲局部短暫雨有霧',
+        '多雲局部短暫雨晨霧',
+        '多雲局部短暫陣雨有霧',
+        '多雲局部短暫陣雨晨霧',
+        '多雲陣雨有霧',
+        '多雲短暫雨有霧',
+        '多雲短暫雨晨霧',
+        '多雲短暫陣雨有霧',
+        '多雲短暫陣雨晨霧',
+        '有霧有短暫雨',
+        '有霧有短暫陣雨',
+        '多雲時陰有霧有局部雨',
+        '多雲時陰有霧有局部陣雨',
+        '多雲時陰有霧有局部短暫雨',
+        '多雲時陰有霧有局部短暫陣雨',
+        '多雲時陰有霧有陣雨',
+        '多雲時陰有霧有短暫雨',
+        '多雲時陰有霧有短暫陣雨',
+        '多雲時陰局部雨有霧',
+        '多雲時陰局部陣雨有霧',
+        '多雲時陰局部短暫雨有霧',
+        '多雲時陰局部短暫陣雨有霧',
+        '多雲時陰陣雨有霧',
+        '多雲時陰短暫雨有霧',
+        '多雲時陰短暫雨晨霧',
+        '多雲時陰短暫陣雨有霧',
+        '多雲時陰短暫陣雨晨霧',
+        '陰有霧有陣雨',
+        '陰局部雨有霧',
+        '陰局部陣雨有霧',
+        '陰局部短暫陣雨有霧',
+        '陰時多雲有霧有局部雨',
+        '陰時多雲有霧有局部陣雨',
+        '陰時多雲有霧有局部短暫雨',
+        '陰時多雲有霧有局部短暫陣雨',
+        '陰時多雲有霧有陣雨',
+        '陰時多雲有霧有短暫雨',
+        '陰時多雲有霧有短暫陣雨',
+        '陰時多雲局部雨有霧',
+        '陰時多雲局部陣雨有霧',
+        '陰時多雲局部短暫雨有霧',
+        '陰時多雲局部短暫陣雨有霧',
+        '陰時多雲陣雨有霧',
+        '陰時多雲短暫雨有霧',
+        '陰時多雲短暫雨晨霧',
+        '陰時多雲短暫陣雨有霧',
+        '陰時多雲短暫陣雨晨霧',
+        '陰陣雨有霧',
+        '陰短暫雨有霧',
+        '陰短暫雨晨霧',
+        '陰短暫陣雨有霧',
+        '陰短暫陣雨晨霧',
+        '多雲時陰局部雨或雪有霧',
+        '陰時多雲局部雨或雪有霧',
+        '陰時多雲短暫雨',
+      ]
+      if (rain.includes(weather)) {
+        weatherIcon = <TiWeatherDownpour />
+      }
+      //rainIcon
 
       setDomData({
         ...domData,
@@ -64,14 +472,12 @@ function TaiwanMap(props) {
         low: low,
         high: high,
         weather: weather,
+        weatherIcon: weatherIcon,
+        KvCityName: KvCityName,
+        kvImagePath: kvImagePath,
       })
     }
   }, [result])
-  // console.log([domData][0].weatherIcon)
-  if ([domData][0].weather == '晴時多雲') {
-    const weatherIcon = 'TiWeatherCloudy'
-    console.log(weatherIcon)
-  }
 
   return (
     <>
@@ -390,18 +796,22 @@ function TaiwanMap(props) {
       </div>
       <div className="Api-txt">
         <h2>
-          <TiWeatherCloudy />
-          {/* <h1>{weatherIcon}</h1> */}
+          {[domData][0].weatherIcon}
           {[domData][0].weather}
         </h2>
         <h2>
-          {[domData][0].low}-{[domData][0].high}度
+          <FaThermometerQuarter />
+          {[domData][0].low}-{[domData][0].high}
+          °C
         </h2>
         <h4>
           <FiMapPin />
           {[filter]}
         </h4>
       </div>
+      <figure className="home-kv-figure ">
+        <img src={[domData][0].kvImagePath} width="100%" className="kvImg" />
+      </figure>
     </>
   )
 }

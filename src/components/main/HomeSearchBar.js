@@ -6,6 +6,11 @@ function HomeSearchBar(props) {
     <>
       <div className="homesearchbar-wrapper d-flex justify-content-between">
         <div className="homesearchbar-form-wrapper d-flex align-items-center">
+          
+          {/* <select className="form-custom searchbar-day" name="searchbar-day"> */}
+         
+          {/* </select> */}
+          <input className="form-custom homesearchbar-input" type="text" />
           <select
             className="form-custom homesearchbar-area"
             name="homesearchbar-area"
@@ -38,7 +43,6 @@ function HomeSearchBar(props) {
 
             <option value="test1"></option>
           </select>
-          {/* <select className="form-custom searchbar-day" name="searchbar-day"> */}
           <input
             className="form-custom homesearchbar-day"
             type="date"
@@ -48,8 +52,6 @@ function HomeSearchBar(props) {
             min="2018-01-01"
             max="2018-12-31"
           />
-          {/* </select> */}
-          <input className="form-custom homesearchbar-input" type="text" />
         </div>
         <div role="button" className="homedo-search-button"></div>
       </div>

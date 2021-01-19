@@ -1,68 +1,87 @@
-import React, { useState, useEffect } from 'react'
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-  Badge,
-} from 'react-bootstrap'
-
+import React, { useState } from 'react'
+import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
+import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
-import { FaRegBell } from 'react-icons/fa'
+import '../../style/header.scss'
+import MebPopover from './MebPopover'
 
-function Header(props) {
-  const imagePath = './images/testImage.jpg'
+function Header() {
+  const imagePath = '/images/testImage.jpg'
+  //const [member, setMember] = useState()
+  //登入登出
+  //const login = <span>登入/註冊</span>
+  const inlogin = (
+    <>
+      <NavDropdown
+        title={
+          <figure className="Navebar-figure">
+            <img className="header-img-br" src={imagePath} alt="User Avatar" />
+          </figure>
+        }
+      >
+        <NavDropdown.Item as={NavLink} to="/login">
+          會員中心
+        </NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item as={NavLink} to="/">
+          登出
+        </NavDropdown.Item>
+      </NavDropdown>
+    </>
+  )
 
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
-        <Navbar.Brand href="#home" className="Navbar-Logo">
-          <img src={Logo} width="150" />
+        <Navbar.Brand as={NavLink} to="/" className="Navbar-Logo">
+          <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={NavLink} to="/" exact className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/itinerary"
+              exact
+              className="Navbar-Title h5 "
+            >
               行程規劃
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/about" className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/travelBuddies"
+              className="Navbar-Title h5 "
+            >
               揪團旅行
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/login" className="Navbar-Title h5 ">
+            <Nav.Link
+              as={NavLink}
+              to="/productList"
+              className="Navbar-Title h5 "
+            >
               達人講座
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">
+            <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#memes">
+            <Nav.Link as={NavLink} to="/shoppingcar">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link href="#mell">
-              <FaRegBell className="Navbar-icon" />
+            <Nav.Link>
+              <div className="not-icon-mover">
+                <MebPopover className="Navbar-icon" />
+                {/* <Notification className="Navbar-icon " /> */}
+              </div>
+              {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
-            <NavDropdown
-              title={
-                <figure className="Navebar-figure">
-                  <img src={imagePath} />
-                </figure>
-              }
-            >
-              <NavDropdown.Item as={NavLink} to="/myAccount/">
-                會員中心
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to="/product/home">
-                登出
-              </NavDropdown.Item>
-            </NavDropdown>
+            {/* {member > 1 ? inlogin : login} */}
+            {inlogin}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

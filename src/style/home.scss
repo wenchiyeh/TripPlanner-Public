@@ -9,6 +9,7 @@
   margin: 0px;
   height: 800px;
 }
+
 .navbar-background {
   width: 100%;
   height: 800px;
@@ -362,11 +363,11 @@
 }
 
 .bg1 {
-  background-image: url(../public/images/shutterstock_720373051.jpg);
+  background-image: url(../images/HomeStyleIMG/shutterstock_720373051.jpg);
   opacity: 0.2;
 }
 .P5-bg {
-  background-image: url(../public/images/shutterstock_1126097171.jpg);
+  background-image: url(../images/HomeStyleIMG/shutterstock_1126097171.jpg);
   opacity: 0.2;
 }
 .parallax2 [class*='bg'] {
@@ -386,18 +387,20 @@
 }
 
 .bg2 {
-  background-image: url(../public/images/iStock-1188426344.jpg);
+  background-image: url(../images/HomeStyleIMG/iStock-1188426344.jpg);
 }
 .bg2-1 {
-  background-image: url(../public/images/girl-3959203_1920.jpg);
-}
-.bg3 {
-  background-image: url(../public/images/704_1706517_608235.jpg);
+  background-image: url(../images/HomeStyleIMG/girl-3959203_1920.jpg);
 }
 
 .p2-scoll1-txt {
   top: 180px;
   border-radius: 5px;
+}
+.p2-scoll1-txt h1 {
+  color: white;
+}
+.p2-scoll1-txt h4 {
   color: white;
 }
 
@@ -439,6 +442,7 @@
 .p2-icon {
   width: 35px;
   height: 40px;
+  color: white;
 }
 .p2-scoll1 {
   margin-top: 100px;
@@ -607,6 +611,8 @@
 
   stroke-width: 7;
 }
+.taiwan-svg path:hover {
+}
 
 .title_area {
   flex: 2;
@@ -632,5 +638,66 @@
   position: absolute;
   bottom: 10px;
   left: 60px;
-  color: white;
+  color: #ffffff;
+}
+.Api-txt h2 {
+  color: #ffffff;
+}
+.Api-txt h4 {
+  color: #ffffff;
+}
+//searchbar
+.navbar {
+  padding: 1px;
+  height: 80px;
+  width: 100%;
+}
+.HomeNavbar-color {
+  // background: black;
+  position: absolute;
+}
+.Navbar-Logo {
+  margin: 0px 200px 0px 60px;
+}
+.navbar img {
+  margin: 0;
+}
+
+.Navbar-icon {
+  width: 30px;
+  height: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
+  transition: 0.5s;
+  margin-right: 40px;
+}
+
+.HomeNavebar-figure {
+  width: 45px;
+  height: 45px;
+  margin-right: 60px;
+  margin-top: 10px;
+  opacity: 0.9;
+  transition: 0.5s;
+}
+
+.HomeNavebar-figure:hover {
+  opacity: 1;
+}
+
+.HomeNavebar-figure img {
+  height: 100%;
+  border-radius: 50%;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-menu {
+  text-align: center;
+  height: 100px;
+  transform: translateX(-30%);
+  position: relative;
+  opacity: 0.8;
 }

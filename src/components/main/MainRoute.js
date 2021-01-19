@@ -21,7 +21,11 @@ function MainRoute() {
           <CarRoute />
         </Route>
         <Route path="/myAccount">
-          <Member />
+          {sessionStorage.getItem('userName') ? (
+            <Member />
+          ) : (
+            (window.location = '/login')
+          )}
         </Route>
         <Route path="/itinerary">
           <ItinRoute />

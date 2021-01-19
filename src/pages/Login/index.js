@@ -44,8 +44,9 @@ function Login(props) {
         const data = await response.json()
         if (data.result) {
           setMember(data.member)
-          localStorage.setItem('lsuserName', 'member')
-          sessionStorage.setItem('ssuserName', 'member')
+          localStorage.setItem('userName', 'memberId')
+          sessionStorage.setItem('userName', 'memberId')
+          sessionStorage.setItem('userid', data.member)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -56,11 +57,10 @@ function Login(props) {
     }
   }
   useEffect(() => {
-    if (member > null && member !== '') {
+    if (sessionStorage.getItem('userid')) {
       //console.log(`登入成功 會員: ${member}`)
-      setMember()
+      // setMember()
       history.push(`/myAccount`)
-
       // history.push(`/myAccount/${member}`)
     } else {
       console.log('請重新輸入')

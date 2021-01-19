@@ -4,7 +4,7 @@ import MemberProfile from '../components/member/MemberProfile'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useHistory } from 'react-router-dom'
-//import { useParams, Switch, Route, Link } from 'react-router-dom'
+import { useParams, Switch, Route, Link } from 'react-router-dom'
 
 // import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
 // import MyTravelBuddies from '../components/member/MyTravelBuddies/MyTravelBuddies'
@@ -12,18 +12,18 @@ import { useHistory } from 'react-router-dom'
 // import Notice from './Notice'
 // import MyAccount from '../components/member/MyAccount'
 
-document.addEventListener('DOMContentLoaded', function () {
-  const ssuserName = sessionStorage.getItem('ssuserName') || 'email'
-  if (ssuserName !== 'member' && ssuserName == null) {
-    window.location = '/login'
-  }
-})
+// 這裡去寫 member使用者名稱
+// document.addEventListener('DOMContentLoaded', function () {
+//   const userName = sessionStorage.getItem('')
+//   if (userName == null) {
+//     window.location = '/login'
+//   }
+// })
 function Member() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [member, setMember] = useState('1')
+  const [isLoading, setIsLoading] = useState(true)
+  const [member, setMember] = useState([])
+  // setIsLoading(true)
   async function getMember(id) {
-    setIsLoading(true)
-
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
         //mode: 'no-cors',
@@ -38,16 +38,38 @@ function Member() {
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {
           setIsLoading(false)
-        }, 3000)
+        }, 0)
       }
     } catch (err) {
       // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
+  // async function getMember(id) {
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/member/${id}`, {
+  //       //mode: 'no-cors',
+  //       mode: 'cors',
+  //       method: 'get',
+  //     })
+  //     console.log(response)
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       setMember(data)
+  //       console.log('memberdata:', data)
+  //       // 最後關起spinner，改呈現真正資料
+  //       setTimeout(() => {
+  //         // setIsLoading(false)
+  //       }, 3000)
+  //     }
+  //   } catch (err) {
+  //     // alert('無法得到伺服器資料，請稍後再重試')
+  //     console.log(err)
+  //   }
+  // }
   useEffect(() => {
-    getMember(member)
-    console.log('me有資料嗎?', member)
+    getMember(sessionStorage.getItem('userid'))
+    // console.log('me有資料嗎?', member)
   }, [])
 
   const Loading = <h1>Loading</h1>
@@ -68,7 +90,7 @@ function Member() {
       </article>
     </>
   )
-  return <>{isLoading ? display : Loading}</>
+  return <>{isLoading ? Loading : display}</>
 }
 
 export default Member

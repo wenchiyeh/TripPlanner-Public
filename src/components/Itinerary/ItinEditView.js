@@ -47,7 +47,7 @@ function ItinEditView({ isNew = true }) {
   //新增行程
   function handleDataToDB() {
     if (dataFromUser[0].data.length === 0) return
-    let dataToDB = {}
+    let dataToDB = []
     let itinData = {
       member_id: 1, //先預設會員0
       title: document.querySelector('.itin-title-input').value
@@ -65,9 +65,9 @@ function ItinEditView({ isNew = true }) {
       })
     })
     dataToDB = [itinData, boxData]
-    console.log(`dataToDB = ${dataToDB}`)
+    console.log(dataToDB)
     console.log(boxData)
-    // sendDataToDB(dataToDB)
+    sendDataToDB(dataToDB)
   }
   async function sendDataToDB(dataToDB) {
     try {

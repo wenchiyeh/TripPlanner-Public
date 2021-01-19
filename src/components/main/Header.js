@@ -98,7 +98,7 @@ function Header({ auth, setAuth }) {
             <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/shoppingcar">
+            <Nav.Link as={NavLink} to="/productList/car">
               <FiShoppingCart className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link>

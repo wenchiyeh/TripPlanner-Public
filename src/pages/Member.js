@@ -21,7 +21,9 @@ import { useParams, Switch, Route, Link } from 'react-router-dom'
 // })
 function Member() {
   const [isLoading, setIsLoading] = useState(true)
-  const [member, setMember] = useState([])
+  const [member, setMember] = useState(
+    JSON.parse(localStorage.getItem('userData'))
+  )
   // setIsLoading(true)
   async function getMember(id) {
     try {
@@ -68,7 +70,7 @@ function Member() {
   //   }
   // }
   useEffect(() => {
-    getMember(localStorage.getItem('userid'))
+    getMember(member.newsId)
     // console.log('me有資料嗎?', member)
   }, [])
 
@@ -91,6 +93,7 @@ function Member() {
     </>
   )
   return <>{isLoading ? Loading : display}</>
+  // return display
 }
 
 export default Member

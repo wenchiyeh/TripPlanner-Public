@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom'
 
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
@@ -10,22 +10,39 @@ import CarRoute from '../products/CarRoute'
 
 function MainRoute() {
   let history = useHistory()
-  //console.log('主路由', member)
-  //const member = useState(1)
+
+  function PrivateRoute({ component: Component, authed, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          authed === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{ pathname: '/login', state: { from: props.location } }}
+            />
+          )
+        }
+      />
+    )
+  }
 
   return (
     <>
       <Switch>
-        <Route path="/shoppingcar">
-          <CarRoute />
-        </Route>
-        <Route path="/myAccount">
+        <PrivateRoute
+          authed={localStorage.getItem('userName') && true}
+          path="/myAccount"
+          component={Member}
+        />
+        {/* <Route path="/myAccount">
           {localStorage.getItem('userName') ? (
             <Member />
           ) : (
             history.push('/login')
           )}
-        </Route>
+        </Route> */}
         <Route path="/itinerary">
           <ItinRoute />
         </Route>

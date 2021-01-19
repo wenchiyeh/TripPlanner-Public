@@ -8,46 +8,59 @@ import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
-function Header(props) {
+function Header({ auth, setAuth }) {
   const imagePath = '/images/testImage.jpg'
-  //登入登出
-  const login = (
-    <Nav.Link
-      as={NavLink}
-      to="/login"
-      exact
-      className="Navbar-Title h5 "
-      // onClick={icn}
-    >
-      登入/註冊
-    </Nav.Link>
+  const [memberData, setMemberData] = useState(
+    JSON.parse(localStorage.getItem('userData'))
   )
-  const inlogin = (
-    <>
-      <NavDropdown
-        title={
-          <figure className="Navebar-figure">
-            <img className="header-img-br" src={imagePath} alt="User Avatar" />
-          </figure>
-        }
-      >
-        <NavDropdown.Item as={NavLink} to="/myAccount">
-          會員中心
-        </NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item
-          as={NavLink}
-          to="/"
-          onClick={() => {
-            localStorage.clear()
-            sessionStorage.clear()
-          }}
-        >
-          登出
-        </NavDropdown.Item>
-      </NavDropdown>
-    </>
-  )
+  // const [isLoading, setIsLoading] = useState(true)
+  //連結伺服器端
+  // useState
+  // useEffect(() => {
+
+  // console.log('hahaha')
+  // setTimeout(() => {
+  //   setIsLoading(false)
+  // }, 0)
+  // console.log('me有資料嗎?', member)
+  // }, [])
+  // const loginout = (
+  // <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h5 ">
+  //   登入/註冊
+  // </Nav.Link>
+  // )
+
+  // const login = (
+  //   <>
+  //     <NavDropdown
+  //       title={
+  //         <figure className="Navebar-figure">
+  //           <img
+  //             className="header-img-br"
+  //             // src={'images/userphoto/' + member[0].member_photo_id}
+  //             src={imagePath}
+  //             alt="User Avatar"
+  //           />
+  //         </figure>
+  //       }
+  //     >
+  //       <NavDropdown.Item as={NavLink} to="/myAccount">
+  //         會員中心
+  //       </NavDropdown.Item>
+  //       <NavDropdown.Divider />
+  //       <NavDropdown.Item
+  //         as={NavLink}
+  //         to="/"
+  //         onClick={() => {
+  //           localStorage.clear()
+  //           sessionStorage.clear()
+  //         }}
+  //       >
+  //         登出
+  //       </NavDropdown.Item>
+  //     </NavDropdown>
+  //   </>
+  // )
 
   return (
     <>
@@ -96,8 +109,46 @@ function Header(props) {
               {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
-            {/* {isLoading > 0 ? inlogin : login} */}
-            {inlogin}
+            {auth ? (
+              <NavDropdown
+                title={
+                  <figure className="Navebar-figure">
+                    <img
+                      className="header-img-br"
+                      // src={'images/userphoto/' + member[0].member_photo_id}
+                      src={imagePath}
+                      alt="User Avatar"
+                    />
+                  </figure>
+                }
+              >
+                <NavDropdown.Item as={NavLink} to="/myAccount">
+                  會員中心
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item
+                  as={NavLink}
+                  to="/"
+                  onClick={() => {
+                    localStorage.clear()
+                    sessionStorage.clear()
+                    setAuth(false)
+                  }}
+                >
+                  登出
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link
+                as={NavLink}
+                to="/login"
+                exact
+                className="Navbar-Title h5 "
+              >
+                登入/註冊
+              </Nav.Link>
+            )}
+            {/* {login} */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

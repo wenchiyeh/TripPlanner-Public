@@ -13,10 +13,14 @@ import Forgetpassword from './pages/forgetpassword'
 import MainRoute from './components/main/MainRoute'
 import ScrollToTop from './components/main/ScrollToTop'
 function App() {
+  const [auth, setAuth] = React.useState(localStorage.getItem('userName') || '')
+  React.useEffect(() => {
+    setAuth(localStorage.getItem('userName'))
+  }, [auth])
   return (
     <Router>
       <>
-        <Header />
+        <Header auth={auth} setAuth={setAuth} />
         <ScrollToTop>
           <Switch>
             <Route exact path="/">
@@ -24,7 +28,7 @@ function App() {
             </Route>
 
             <Route exact path="/login">
-              <Login />
+              <Login auth={auth} setAuth={setAuth} />
             </Route>
 
             <Route exact path="/sigon">

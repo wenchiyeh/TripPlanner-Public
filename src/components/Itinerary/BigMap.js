@@ -53,7 +53,6 @@ const PlaceMarker = ({
           }
           originArray[dayIndex - 1].data.push(insertData)
           setDataFromUser(originArray)
-          console.log(originArray)
         }}
       >
         加進行程
@@ -291,7 +290,7 @@ function BigMap({
         {handleItinData.map((item) => (
           <PlaceMarker
             key={item.id}
-            id={item.id}
+            id={item.place_id}
             // lat={item.geometry.location.lat()} //google取得版本
             // lng={item.geometry.location.lng()}
             lat={item.lat} //JSON引入版本

@@ -5,12 +5,12 @@ import ItinEditorBasicData from './itinEditorBasicData'
 import ItinEditor from './ItinEditor'
 import ItinEditorDetail from './ItinEditorDetail'
 //測試用假資料區
-import fakeTestingData from './testBoxData' //純box陣列
-let memberData = require('../member/member.json')
-let fakeMemberData = memberData[2].data[0] //純member陣列
-let cardData = require('./testJsonData.json')
-let fakeCardData = cardData[2].data[0] //純行程陣列
-let fakeUserId = 0 //預設使用者為0號
+// import fakeTestingData from './testBoxData' //純box陣列
+// let memberData = require('../member/member.json')
+// let fakeMemberData = memberData[2].data[0] //純member陣列
+// let cardData = require('./testJsonData.json')
+// let fakeCardData = cardData[2].data[0] //純行程陣列
+// let fakeUserId = 0 //預設使用者為0號
 //
 function ItinPublishView({ isEdit = false, isPublish = true }) {
   const [dataFromDB, segDataFromDB] = useState([])
@@ -55,9 +55,9 @@ function ItinPublishView({ isEdit = false, isPublish = true }) {
             isEdit={isEdit}
             isPublish={isPublish}
             memberName={dataFromDB[0].member_name}
-            avatar={'testImage.jpg'}
-            area={'北部'}
-            town={'台北'}
+            avatar={`member_${dataFromDB[0].member_id}.jpg`}
+            area={dataFromDB[0].region}
+            town={dataFromDB[0].location}
           />
           <ItinEditor
             isEdit={false} //任何情況下的publish頁都不需要修改功能

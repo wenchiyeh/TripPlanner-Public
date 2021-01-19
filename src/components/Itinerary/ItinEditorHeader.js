@@ -7,6 +7,7 @@ function ItinEditorHeader({
   isPublish = false,
   isMe = false,
   title = '行程表',
+  handleSubmit,
 }) {
   let history = useHistory()
   const displayPublish = (
@@ -17,7 +18,12 @@ function ItinEditorHeader({
       </div>
       {isEdit && (
         <div className="d-flex align-items-center">
-          <Button variant="info" onClick={() => {}}>
+          <Button
+            variant="info"
+            onClick={() => {
+              handleSubmit()
+            }}
+          >
             發表
           </Button>
           <Button
@@ -44,7 +50,12 @@ function ItinEditorHeader({
       <div className="d-flex justify-content-between align-items-center mb-3">
         <p>行程表製作</p>
         <span>
-          <Button variant="info" onClick={() => {}}>
+          <Button
+            variant="info"
+            onClick={() => {
+              handleSubmit()
+            }}
+          >
             發表
           </Button>
           <Button
@@ -59,7 +70,7 @@ function ItinEditorHeader({
       </div>
       {isEdit ? (
         <input
-          className="form-custom"
+          className="form-custom itin-title-input"
           type="text"
           placeholder="請輸入行程標題"
         />

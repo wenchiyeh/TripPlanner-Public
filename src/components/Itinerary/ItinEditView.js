@@ -12,6 +12,7 @@ function ItinEditView({ isNew = true }) {
   const [isLoading, setIsLoading] = useState(1)
   const [title, setTitle] = useState()
   let { itin_id } = useParams()
+  //取得行程資料
   async function getDataFromDB() {
     try {
       const response = await fetch(
@@ -43,6 +44,50 @@ function ItinEditView({ isNew = true }) {
       getDataFromDB()
     }
   }, [])
+  //新增行程
+  function handleDataToDB() {
+    if (dataFromUser[0].data.length === 0) return
+    let dataToDB = {}
+    let itinData = {
+      member_id: 1, //先預設會員0
+      title: document.querySelector('.itin-title-input').value
+        ? document.querySelector('.itin-title-input').value
+        : '我的新行程',
+      region: '',
+      location: dataFromUser[0].data[0].location,
+      duration: dataFromUser.length,
+    }
+    const boxData = dataFromUser
+    boxData.forEach((element, indexDay) => {
+      element.data.forEach((ele, indexBox) => {
+        ele.day = indexDay
+        ele.order = indexBox
+      })
+    })
+    dataToDB = [itinData, boxData]
+    console.log(`dataToDB = ${dataToDB}`)
+    console.log(boxData)
+    // sendDataToDB(dataToDB)
+  }
+  async function sendDataToDB(dataToDB) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/itinerary/createItin`,
+        {
+          method: 'post',
+          mode: 'cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToDB),
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
+  }
   const displayNewView = (
     <div className="itin-editview-wrapper">
       <BigMap dataFromUser={dataFromUser} setDataFromUser={setDataFromUser} />
@@ -51,6 +96,7 @@ function ItinEditView({ isNew = true }) {
         isPublish={false}
         isMe={true}
         title={title}
+        handleSubmit={handleDataToDB}
       />
       <ItinEditor
         isEdit={true}

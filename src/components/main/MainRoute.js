@@ -20,7 +20,7 @@ function MainRoute() {
         <Route path="/shoppingcar">
           <CarRoute />
         </Route>
-        <Route path="/myAccount/:id">
+        <Route path="/myAccount">
           <Member />
         </Route>
         <Route path="/itinerary">

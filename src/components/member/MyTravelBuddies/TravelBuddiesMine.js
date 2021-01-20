@@ -32,7 +32,7 @@ function TravelBuddiesMine() {
 
   return (
     <tbody>
-      <div className="travelbuddiesmine-outbox">
+      <div className="travelbuddiesmine-outbox tab-content-travelbuddies">
         <Table>
           <thead>
             <tr>

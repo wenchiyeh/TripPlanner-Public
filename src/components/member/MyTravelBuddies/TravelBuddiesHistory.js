@@ -33,7 +33,7 @@ function TravelBuddiesHistory() {
   }, [])
   return (
     <>
-      <div className="travelbuddieshistory-outbox">
+      <div className="travelbuddieshistory-outbox tab-content-travelbuddies">
         <Table>
           <thead>
             <tr>

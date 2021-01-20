@@ -6,33 +6,31 @@ import { IoMdTime } from 'react-icons/io'
 // let cardData = require('../../Itinerary/testJsonData.json')
 // let handleTestData = cardData[2].data
 
-function MeFavoritesgroup(id) {
-  const [trmef, setTrmef] = useState([])
+function MeFavoritesgroup() {
+  const [metbJoined, setMetbJoined] = useState([])
 
-  async function getTrmef(props) {
+  async function gettbJoined(props) {
     try {
-      const response = await fetch(
-        `http://localhost:5000/meFavoritesgroup/${id}`,
-        {
-          method: 'get',
-        }
-      )
+      const response = await fetch('http://localhost:5000/meFavoritesgroup', {
+        method: 'get',
+      })
       if (response.ok) {
         const data = await response.json()
-        setTrmef(data)
+        setMetbJoined(data)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
+
   useEffect(() => {
-    getTrmef()
+    gettbJoined()
   }, [])
 
   return (
     <>
-      {trmef.map((v, index) => (
+      {metbJoined.map((v, index) => (
         <div key={index} className="card-ingroup-box mb-3">
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
@@ -45,10 +43,10 @@ function MeFavoritesgroup(id) {
             </div>
             <div className="col-md-8 align-items-end">
               <div className="card-body">
-                <h3 className="card-title">{v.tr_name}</h3>
+                <h3 className="card-title">{v.tb_themeName}</h3>
                 <span className="mef-icno-style">
                   <IoMdTime />
-                  {v.tr_datebegin} - {v.tr_dataend}
+                  {v.tb_dateBegin} - {v.tb_dateEnd}
                 </span>
                 <span className="mef-icno-style d-flex justify-content-between">
                   {/* 地圖位置1 */}

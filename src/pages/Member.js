@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import StarRating from '../components/member/StarRating'
-import MemberProfile from '../components/member/MemberProfile'
+import MemberProfile from '../components/member/MemberProfile/index'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useHistory } from 'react-router-dom'

@@ -8,33 +8,10 @@ let cardData = require('../../Itinerary/testJsonData.json')
 let handleTestData = cardData[2].data
 //測試資料可以做成JSON檔之後用這個方式引入
 
-function MeFavoritesgroup(id) {
-  const [trmef, setTrmef] = useState([])
-
-  // async function getTrmef(props) {
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost:5000/meFavoritesgroup/${id}`,
-  //       {
-  //         method: 'get',
-  //       }
-  //     )
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       setTrmef(data)
-  //     }
-  //   } catch (err) {
-  //     alert('無法得到伺服器資料，請稍後再重試')
-  //     console.log(err)
-  //   }
-  // }
-  // useEffect(() => {
-  //   getTrmef()
-  // }, [])
-
+function MeFavoritesgroup({ metbJoined }) {
   return (
     <>
-      {trmef.map((e, index) => (
+      {metbJoined.map((e, index) => (
         <div key={index} className="card-ingroup-box mb-3">
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
@@ -47,10 +24,10 @@ function MeFavoritesgroup(id) {
             </div>
             <div className="col-md-8 align-items-end">
               <div className="card-body">
-                <h3 className="card-title">{e.mef_title}</h3>
+                <h3 className="card-title">{e.tb_themeName}</h3>
                 <span className="mef-icno-style">
                   <IoMdTime />
-                  {e.mef_dtime} - {e.mef_dend}
+                  {e.tb_dateBegin} - {e.tb_dateEnd}
                 </span>
                 <span className="mef-icno-style d-flex justify-content-between">
                   {/* 地圖位置1 */}

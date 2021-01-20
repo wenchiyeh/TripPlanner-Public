@@ -4,8 +4,8 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 //引入卡片
-let cardData = require('../../Itinerary/testJsonData.json')
-let handleTestData = cardData[2].data
+// let cardData = require('../../Itinerary/testJsonData.json')
+// let handleTestData = cardData[2].data
 //測試資料可以做成JSON檔之後用這個方式引入
 
 function MeFavoritesgroup({ metbJoined }) {

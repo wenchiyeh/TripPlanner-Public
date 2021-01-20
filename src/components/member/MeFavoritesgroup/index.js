@@ -60,7 +60,7 @@ function MeFavoritesgroup() {
                   </p>
                   <FaUsers />
                   &emsp;
-                  {v.tr_membername}
+                  {v.tb_name}
                   &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;

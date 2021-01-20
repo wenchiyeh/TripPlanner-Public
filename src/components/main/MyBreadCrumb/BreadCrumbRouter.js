@@ -12,7 +12,7 @@ export const pathnameList = [
 export const pathnameTextList = [
   '揪團旅行',
   '行程規劃',
-  '達人講座/title',
+  '講座商品',
   '購物車',
   '完成購買',
   '達人講座',

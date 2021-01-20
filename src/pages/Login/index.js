@@ -38,8 +38,11 @@ function Login() {
       console.log('email?', email)
       if (response.ok) {
         const data = await response.json()
+        localStorage.setItem('member', true)
+
         if (data.result) {
           setMember(data.member)
+          sessionStorage.setItem('member', 'user')
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -53,7 +56,9 @@ function Login() {
     if (member > null && member !== '') {
       //console.log(`登入成功 會員: ${member}`)
       setMember()
-      history.push(`/myAccount/${member}`)
+      history.push(`/myAccount`)
+
+      // history.push(`/myAccount/${member}`)
     } else {
       console.log('請重新輸入')
       //history.push('/login')

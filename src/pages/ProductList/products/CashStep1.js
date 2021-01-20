@@ -1,21 +1,14 @@
 import { FaCcVisa, FaCcApplePay } from 'react-icons/fa'
 import { SiJcb, SiMastercard } from 'react-icons/si'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
 import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
-import ShowCreditCard from './ShowCreditCard'
 
-function CashStep1({
-  className,
-  classDate,
-  ticket_price,
-  ticketData,
-  showTicketType,
-}) {
+function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
 
   const earlyTicket = ticketData.earlyTicket
@@ -65,6 +58,10 @@ function CashStep1({
 
   const step1 = (
     <>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
       <div className="In-the-car">
         <div className="car-one">
           <Icons />
@@ -91,7 +88,7 @@ function CashStep1({
               </div>
             </div>
             <hr />
-            <div className="chose-your-ticket">
+            <div className="chose-your-ticket animate__animated  animate__pulse">
               <div>
                 <h3>{classDate}</h3>
               </div>
@@ -165,7 +162,7 @@ function CashStep1({
   const [user_gender, setUser_gender] = useState('')
   const buy_ticket_price = showTicketPrice()
   const buy_ticket_type = ShowTicketType()
-  const math = 123456789098765432102
+  const math = 123456789898765432122
   const ticket_number = Math.floor(Math.random(math) * math)
   const now = new Date()
   const year = now.getFullYear()
@@ -218,6 +215,38 @@ function CashStep1({
       console.log(err)
     }
   }
+  console.log(
+    className,
+    buy_ticket_type,
+    totalTicket,
+    buy_ticket_price,
+    buy_ticket_day,
+    user_name,
+    user_gender,
+    user_phone,
+    user_mail,
+    user_birthday,
+    credit,
+    ticket_number
+  )
+  const [buttontype, setButtontype] = useState(false)
+  const aboutuser = {
+    name: '陳嘉賢',
+    mail: 'chancha@test.com',
+    phone: '0921039021',
+    birthday: '1992-04-04',
+    gender: '1',
+  }
+  // if (buttontype === true) {
+  //   setUser_name(aboutuser.name)
+  //   setUser_mail(aboutuser.mail)
+  //   setUser_phone(aboutuser.phone)
+  //   setUser_birthday(aboutuser.birthday)
+  // }
+
+  // useEffect(() => {
+  //   console.log(buttontype)
+  // }, [buttontype])
 
   const step2 = (
     <>
@@ -289,6 +318,7 @@ function CashStep1({
                   <Form.Control
                     type="text"
                     placeholder="請輸入姓名"
+                    defaultValue={buttontype === true ? aboutuser.name : ''}
                     onChange={(e) => {
                       setUser_name(e.target.value)
                     }}
@@ -308,6 +338,7 @@ function CashStep1({
                     required
                     type="text"
                     placeholder="請輸入信箱"
+                    defaultValue={buttontype === true ? aboutuser.mail : ''}
                     onChange={(e) => {
                       setUser_mail(e.target.value)
                     }}
@@ -324,6 +355,7 @@ function CashStep1({
                     type="text"
                     placeholder="0988888888"
                     required
+                    defaultValue={buttontype === true ? aboutuser.phone : ''}
                     onChange={(e) => {
                       setUser_phone(e.target.value)
                     }}
@@ -339,8 +371,8 @@ function CashStep1({
                   <span className="med-add-text-red">*</span>
                   <Form.Control
                     type="date"
-                    placeholder=""
                     required
+                    defaultValue={buttontype === true ? aboutuser.birthday : ''}
                     onChange={(e) => {
                       setUser_birthday(e.target.value)
                     }}
@@ -350,7 +382,7 @@ function CashStep1({
                   </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
-              <Form.Row>
+              <Form.Row className="have_button">
                 <Form.Group
                   as={Col}
                   md="3"
@@ -361,21 +393,29 @@ function CashStep1({
                   <Form.Control
                     as="select"
                     custom
+                    defaultValue="-請選擇-"
                     onChange={(e) => {
                       setUser_gender(e.target.value)
                     }}
                   >
-                    <option disabled selected>
-                      -請選擇-
-                    </option>
+                    <option disabled>-請選擇-</option>
                     <option value="1">男性</option>
                     <option value="2">女性</option>
                   </Form.Control>
                 </Form.Group>
+                {/* <Button
+                  variant="info"
+                  className="fast_input_button"
+                  onClick={() => {
+                    setButtontype(true)
+                  }}
+                >
+                  快速填寫
+                </Button> */}
               </Form.Row>
-
               <hr />
-              <h3 className="about-member">請選擇付款方式</h3>
+
+              <h3 className="about-member ">請選擇付款方式</h3>
               <div className="pay-form">
                 <div>
                   <div className="mb-3">
@@ -421,6 +461,7 @@ function CashStep1({
                         <Form.Check.Label className="pay-label" htmlFor="atm">
                           ATM
                         </Form.Check.Label>
+
                         <Form.Check.Label className="pay-icon" htmlFor="atm">
                           <MdLocalAtm />
                         </Form.Check.Label>
@@ -450,7 +491,6 @@ function CashStep1({
                       </span>
                     </Form.Check>
                   </div>
-                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">
@@ -465,11 +505,26 @@ function CashStep1({
                     取消
                   </Button>
                   <Button
+                    type="submit"
                     variant="info"
-                    onClick={() => {
-                      getUser()
-                      carThree()
-                    }}
+                    onClick={
+                      (user_name,
+                      user_phone,
+                      user_mail,
+                      user_birthday === ''
+                        ? console.log('還有資料還沒填寫喔')
+                        : () => {
+                            getUser()
+
+                            if (credit === 'visa') {
+                              window.location = 'https://p.ecpay.com.tw/6708411'
+                            } else if (credit === 'atm') {
+                              window.location = 'https://p.ecpay.com.tw/39F39C9'
+                            } else if (credit === 'applepay') {
+                              return carThree()
+                            }
+                          })
+                    }
                   >
                     結帳
                   </Button>

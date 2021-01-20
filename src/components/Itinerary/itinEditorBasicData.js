@@ -40,7 +40,7 @@ function ItinEditorBasicData({
     <div className="itin-BasicData-wapper">
       <div className="itin-BasicData-head d-flex justify-content-between">
         <figure className="itin-BasicData-avatar">
-          <img src={`/images/${avatar}`} alt={memberName} />
+          <img src={`/images/member/${avatar}`} alt={memberName} />
         </figure>
         <div className="w-100 d-flex flex-column justify-content-center">
           <div className="d-flex justify-content-between align-items-center w-100 my-1">

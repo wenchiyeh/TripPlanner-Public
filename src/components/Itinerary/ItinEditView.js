@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-// import { useParams } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditor from './ItinEditor'
 import BigMap from './BigMap'
 
 function ItinEditView({ isNew = true }) {
+  let history = useHistory()
   const [dataFromUser, setDataFromUser] = useState([
     { title: '第 1 日', data: [] },
   ])
@@ -49,6 +49,7 @@ function ItinEditView({ isNew = true }) {
     if (dataFromUser[0].data.length === 0) return
     let dataToDB = []
     let itinData = {
+      id: dataFromUser[0].data[0].itinerary_id,
       member_id: 1, //先預設會員0
       title: document.querySelector('.itin-title-input').value
         ? document.querySelector('.itin-title-input').value
@@ -70,19 +71,23 @@ function ItinEditView({ isNew = true }) {
     sendDataToDB(dataToDB)
   }
   async function sendDataToDB(dataToDB) {
+    let reqUrl = `http://localhost:5000/itinerary/createItin`
+    let reqBody = {
+      method: 'post',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataToDB),
+    }
+    if (!isNew) {
+      reqUrl = `http://localhost:5000/itinerary/edit`
+      reqBody.method = 'put'
+    }
     try {
-      const response = await fetch(
-        `http://localhost:5000/itinerary/createItin`,
-        {
-          method: 'post',
-          mode: 'cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dataToDB),
-        }
-      )
+      const response = await fetch(reqUrl, reqBody)
       if (response.ok) {
         const data = await response.json()
         console.log(data)
+        history.push(`/itinerary/view/${data.itin_id}`)
       }
     } catch (err) {
       console.log('fetch err')

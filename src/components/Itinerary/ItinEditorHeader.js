@@ -56,7 +56,7 @@ function ItinEditorHeader({
               handleSubmit()
             }}
           >
-            發表
+            送出
           </Button>
           <Button
             variant="danger"

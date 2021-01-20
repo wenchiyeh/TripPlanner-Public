@@ -19,26 +19,29 @@ function ItinRoute() {
   return (
     <>
       <Switch>
+        <Route path="/itinerary/my/:itin_id">
+          <ItinPublishView isEdit={false} />
+          {/* 私人的有大地圖的 */}
+        </Route>
         <Route path="/itinerary/view/:itin_id">
-          <ItinPublishView isEdit={false} isPublish={true} />
+          <ItinPublishView isEdit={false} />
+          {/* 公開的沒有大地圖的 */}
         </Route>
         <Route path="/itinerary/publish/:itin_id">
-          <ItinPublishView isEdit={true} isPublish={true} />
-        </Route>
-        <Route path="/itinerary/test">
-          <ItinList />
+          <ItinPublishView isEdit={true} />
+          {/* 準備發表用的 */}
         </Route>
         <Route path="/itinerary/new">
           <ItinEditView />
+          {/* 準備新增用的 */}
         </Route>
         <Route path="/itinerary/edit/:itin_id">
           <ItinEditView isNew={false} />
-        </Route>
-        <Route path="/itinerary/map">
-          <BigMap />
+          {/* 修改用的 */}
         </Route>
         <Route exact path="/itinerary">
           <Itinerary />
+          {/* 行程總表 */}
         </Route>
       </Switch>
     </>

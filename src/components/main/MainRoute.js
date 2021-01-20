@@ -1,24 +1,37 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-
+import { Route, Switch, Redirect } from 'react-router-dom'
 import ItinRoute from '../Itinerary/ItinRoute'
 import Member from '../../pages/Member'
 import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
-import CarRoute from '../products/CarRoute'
-
 function MainRoute() {
+  function PrivateRoute({ component: Component, authed, ...rest }) {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          authed === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{ pathname: '/login', state: { from: props.location } }}
+            />
+          )
+        }
+      />
+    )
+  }
+
   return (
     <>
       <Switch>
-        <Route path="/shoppingcar">
-          <CarRoute />
-        </Route>
-        <Route path="/myAccount">
-          <Member />
-        </Route>
+        <PrivateRoute
+          authed={localStorage.getItem('userName') && true}
+          path="/myAccount"
+          component={Member}
+        />
         <Route path="/itinerary">
           <ItinRoute />
         </Route>
@@ -28,7 +41,6 @@ function MainRoute() {
         <Route path="/LineChart">
           <LineChart />
         </Route>
-
         <Route path="/travelBuddies">
           <TravelBuddiesRoute />
         </Route>

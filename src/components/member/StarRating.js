@@ -21,7 +21,7 @@ function StarRating({ stars = 5, filled }) {
     <>
       <div className="star-rating-wrapper">
         <p>評分</p>
-        <label>3.5</label>
+        <label>4.5</label>
         {[...Array(stars).keys()].map((i) => (
           <span
             key={i}

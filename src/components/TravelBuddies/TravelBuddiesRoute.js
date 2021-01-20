@@ -3,12 +3,16 @@ import { Route, Switch, useParams } from 'react-router-dom'
 import TravelBuddies from '../../pages/TravelBuddies'
 import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import TravelBuddiesMainPage from '../../pages/TravelBuddiesMainPage'
+import TravelBuddiesReadPage from '../../pages/TravelBuddiesReadPage'
 import TravelBuddiesChatroom from '../../pages/TravelBuddiesChatroom'
 
 function TravelBuddiesRoute() {
   let { id } = useParams()
   return (
     <Switch>
+      <Route path="/travelBuddies/read/:id">
+        <TravelBuddiesReadPage />
+      </Route>
       <Route path="/travelBuddies/view/:id">
         <TravelBuddiesMainPage />
         {/* 自行更換成顯示用的元件，元件內使用import並useParams()可取得:id的值 */}

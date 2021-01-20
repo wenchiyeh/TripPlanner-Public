@@ -71,7 +71,7 @@ function TravelBuddiesHistory() {
                     <td>
                       <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
                       <TBHistoryButtonRating />
-                      <TBHistoryButtonGiveRating />{' '}
+                      <TBHistoryButtonGiveRating id={v.id} />{' '}
                     </td>
                   </tr>
                 )

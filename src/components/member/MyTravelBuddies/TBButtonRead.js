@@ -8,7 +8,7 @@ function TBButtonRead(props) {
   let id = props.id
   function toMainPage() {
     // history.push('/travelBuddies/mainpage/')
-    history.push('/travelBuddies/view/' + id)
+    history.push('/travelBuddies/read/' + id)
   }
   return (
     <>

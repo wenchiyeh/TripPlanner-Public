@@ -66,7 +66,10 @@ function TravelBuddiesMine() {
                     <td>
                       <TBButtonRead id={v.id} /> <TBMineButtonEdit />{' '}
                       <TBMineButtonMembersSelect id={v.id} />{' '}
-                      <TBButtonChatroom />{' '}
+                      <TBButtonChatroom
+                        id={v.id}
+                        tb_themeName_={v.tb_themeName}
+                      />{' '}
                       <TBMineButtonDelete
                         gettbMine={gettbMine}
                         id={v.id}

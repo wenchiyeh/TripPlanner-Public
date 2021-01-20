@@ -32,7 +32,7 @@ function TravelBuddiesJoined() {
 
   return (
     <>
-      <div className="travelbuddiesjoined-outbox">
+      <div className="travelbuddiesjoined-outbox tab-content-travelbuddies">
         <Table>
           <thead>
             <tr>

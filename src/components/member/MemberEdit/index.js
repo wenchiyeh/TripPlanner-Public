@@ -8,11 +8,19 @@ function MemberEdit({ member }) {
   let history = useHistory()
   let { id } = useParams()
   //const [members, setMembers] = useState('')
+  // const [memberData, setMemberData] = useState(
+  //   JSON.parse(localStorage.getItem('userData'))
+  // )
+  console.log('ed member:', member)
+  //
   const [member_name, setMember_name] = useState(member.member_name)
   const [email, setEmail] = useState(member.email)
   const [member_phone, setPhone] = useState(member.member_phone)
   const [birthday, setBirthday] = useState(member.birthday)
-  const [member_sex, setmember_sex] = useState(member.member_sex)
+  const [member_sex, setMember_sex] = useState(member.member_sex)
+  const [member_photo_id, setMember_photo_id] = useState(
+    member.setmember_photo_id
+  )
   const [member_id, setMember_id] = useState(member.member_id)
   const [member_aboutme, setMember_aboutme] = useState(member.member_aboutme)
 
@@ -25,6 +33,7 @@ function MemberEdit({ member }) {
       member_phone,
       birthday,
       member_sex,
+      member_photo_id,
       member_id,
       member_aboutme,
     }
@@ -59,13 +68,14 @@ function MemberEdit({ member }) {
       if (response.ok) {
         const data = await response.json()
         // 設定到每個欄位
-        setEmail(data.email)
-        setMember_name(data.member_name)
-        setPhone(data.phone)
-        setBirthday(data.birthday)
-        setmember_sex(data.member_sex)
-        setMember_id(data.member_id)
-        setMember_aboutme(data.member_aboutme)
+        setEmail(member.email)
+        setMember_name(member.member_name)
+        setPhone(member.phone)
+        setBirthday(member.birthday)
+        setMember_sex(member.member_sex)
+        setMember_photo_id(member.setmember_photo_id)
+        setMember_id(member.member_id)
+        setMember_aboutme(member.member_aboutme)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -73,11 +83,14 @@ function MemberEdit({ member }) {
     }
   }
   useEffect(() => {
-    if (member > -1) {
-      console.log('hi model', id)
+    if (member === 1) {
+      console.log('hi model沒有值', id)
       updateMember(id)
+      console.log('沒有值', id)
+      updateMember(member.newsId)
+      console.log('member.newsId:我有值', member.newsId)
+      console.log('ud:', member)
     }
-    console.log('ud:', member)
   }, [member, id])
 
   //元件狀態
@@ -93,6 +106,7 @@ function MemberEdit({ member }) {
   }
 
   //導入member[0]
+
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -198,7 +212,7 @@ function MemberEdit({ member }) {
               custom
               defaultValue={member.member_sex}
               onChange={(e) => {
-                setmember_sex(e.target.value)
+                setMember_sex(e.target.value)
               }}
             >
               <option disabled>-請選擇-</option>
@@ -212,7 +226,11 @@ function MemberEdit({ member }) {
             <div className="mb-3">
               <Form.File id="formcheck-api-regular">
                 <Form.File.Label>更換大頭照</Form.File.Label>
-                <Form.File.Input />
+                <Form.File.Input
+                  onChange={(e) => {
+                    setMember_photo_id(e.target.value)
+                  }}
+                />
               </Form.File>
             </div>
           </Form.Group>
@@ -257,6 +275,7 @@ function MemberEdit({ member }) {
           className="memed-submit"
           onClick={() => {
             updateMember(member.newsId)
+            console.log('onclick ed', member.newsId)
           }}
         >
           確定

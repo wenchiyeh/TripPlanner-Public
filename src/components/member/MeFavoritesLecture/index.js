@@ -12,12 +12,12 @@ function MeFavoritesLecture({
   // type = 'itinerary',
   //title = '講座蔥油餅吃到飽之旅講座蔥油餅', //標題
   //image, //圖片的檔名與附檔名ex: 'testImage.jpg'
-  time1 = '2020/01/01', //第一個日期
-  time2 = '2020/01/01', //第二個日期
+  // time1 = '2020/01/01', //第一個日期
+  // time2 = '2020/01/01', //第二個日期
   map1 = '北部', //地區1
   map2 = '桃園', //地區2
   duration = '19:00-21:00', //天數
-  person = '小智', //卡片內顯示的人名
+  // person = '小智', //卡片內顯示的人名
 }) {
   let history = useHistory()
   const [productCard, setProductCard] = useState('1')

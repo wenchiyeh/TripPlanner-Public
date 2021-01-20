@@ -8,7 +8,27 @@ import './ingroup.scss'
 // let handleTestData = cardData[2].data
 //測試資料可以做成JSON檔之後用這個方式引入
 
-function MeFavoritesgroup({ metbJoined }) {
+function MeFavoritesgroup() {
+  const [metbJoined, setMetbJoined] = useState([])
+
+  async function gettbJoined(props) {
+    try {
+      const response = await fetch('http://localhost:5000/meFavoritesgroup', {
+        method: 'get',
+      })
+      if (response.ok) {
+        const data = await response.json()
+        setMetbJoined(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    gettbJoined()
+  }, [])
   return (
     <>
       {metbJoined.map((e, index) => (
@@ -33,11 +53,11 @@ function MeFavoritesgroup({ metbJoined }) {
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {e.mef_city}
+                    {e.foreach}
                   </p>
                   <p className="card-style-mef mef-icon-map-move">
                     <FaMapMarkerAlt />
-                    {e.mef_erg}
+                    {e.foreach}
                   </p>
                   <button className="Ingroup-btn">聊天室</button>
                 </span>

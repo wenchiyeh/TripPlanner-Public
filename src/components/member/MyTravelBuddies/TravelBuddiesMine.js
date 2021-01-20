@@ -64,7 +64,7 @@ function TravelBuddiesMine() {
                         v.tb_dateEnd.slice(8, 10)}
                     </td>
                     <td>
-                      <TBButtonRead id={v.id} /> <TBMineButtonEdit />{' '}
+                      <TBButtonRead id={v.id} /> <TBMineButtonEdit id={v.id} />{' '}
                       <TBMineButtonMembersSelect id={v.id} />{' '}
                       <TBButtonChatroom
                         id={v.id}

@@ -25,7 +25,7 @@ function TravelBuddiesChatroom(props) {
     console.log(data)
   })
 
-  const send = () => {
+  function send() {
     let msg = {
       type: 'message',
       text: message,

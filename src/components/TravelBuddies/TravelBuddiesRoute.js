@@ -5,11 +5,15 @@ import AddTravelBuddies from '../../pages/AddTravelBuddies'
 import TravelBuddiesMainPage from '../../pages/TravelBuddiesMainPage'
 import TravelBuddiesReadPage from '../../pages/TravelBuddiesReadPage'
 import TravelBuddiesChatroom from '../../pages/TravelBuddiesChatroom'
+import EditTravelBuddiesForm from '../TravelBuddies/EditTravelBuddiesForm'
 
 function TravelBuddiesRoute() {
   let { id } = useParams()
   return (
     <Switch>
+      <Route path="/travelBuddies/edit/">
+        <EditTravelBuddiesForm />
+      </Route>
       <Route path="/travelBuddies/read/:id">
         <TravelBuddiesReadPage />
       </Route>

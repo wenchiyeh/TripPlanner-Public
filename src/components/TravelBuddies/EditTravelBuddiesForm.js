@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
+import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import FormControl from 'react-bootstrap/FormControl'
 import FormCheck from 'react-bootstrap/FormCheck'
@@ -8,36 +9,26 @@ import TBPicUploadRect from './TBPicUploadRect'
 import Modal from 'react-bootstrap/Modal'
 import $ from 'jquery'
 
-function AddTravelBuddiesForm() {
-  let history = useHistory()
+function EditTravelBuddiesForm() {
+  let { id } = useParams
   const [validated, setValidated] = useState(false)
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
-  const [tbThemeName, settbThemeName] = useState('1')
-  const [tbThemePhoto, settbThemePhoto] = useState('1')
-  const [tbCityCategory, settbCityCategory] = useState([1])
-  const [tbDateBegin, settbDateBegin] = useState('1')
-  const [tbDateEnd, settbDateEnd] = useState('1')
-  const [tbDaysCategory, settbDaysCategory] = useState('1')
-  const [tbLastApprovedDate, settbLastApprovedDate] = useState('1')
-  const [tbEstimatedCost, settbEstimatedCost] = useState('1')
-  const [tbPersonsNeeded, settbPersonsNeeded] = useState('1')
-  const [tbGenderNeeded, settbGenderNeeded] = useState('1')
-  const [tbThemeIntro, settbThemeIntro] = useState('1')
+  const [tbThemeName, settbThemeName] = useState('')
+  const [tbThemePhoto, settbThemePhoto] = useState('')
+  const [tbCityCategory, settbCityCategory] = useState([1, 2, 3])
+  const [tbDateBegin, settbDateBegin] = useState('')
+  const [tbDateEnd, settbDateEnd] = useState('')
+  const [tbDaysCategory, settbDaysCategory] = useState('')
+  const [tbLastApprovedDate, settbLastApprovedDate] = useState('')
+  const [tbEstimatedCost, settbEstimatedCost] = useState('')
+  const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
+  const [tbGenderNeeded, settbGenderNeeded] = useState('')
+  const [tbThemeIntro, settbThemeIntro] = useState('')
 
-  // settbCityCategory(
-  //   $('input:checkbox:checked[name="tbCityCategory"]').each(function (i) {
-  //     tbCityCategory[i] = this.value
-  //   })
-  // )
+  console.log(tbCityCategory)
 
-  function checkChange(e) {
-    $('input[name="tbCityCategory[]"]:checked').each(function (i) {
-      tbCityCategory[i] = this.value
-    })
-  }
-
-  async function addTravelBuddies() {
+  async function UpdateTravelBuddies(id) {
     const newTravelBuddies = {
       tbThemeName,
       tbThemePhoto,
@@ -51,28 +42,65 @@ function AddTravelBuddiesForm() {
       tbGenderNeeded,
       tbThemeIntro,
     }
-    console.log(newTravelBuddies)
     try {
-      // 從伺服器得到資料
-      const response = await fetch('http://localhost:5000/travelbuddies', {
-        method: 'post',
-        body: JSON.stringify(newTravelBuddies),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      // ok只能判斷201-299狀態碼的情況
+      const response = await fetch(
+        `http://localhost:5000/travelBuddies/${id}`,
+        {
+          mode: 'cors',
+          method: 'put',
+          body: JSON.stringify(newTravelBuddies),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       if (response.ok) {
-        // 剖析資料為JS的數值
         const data = await response.json()
-        console.log('data:', data)
-        if (data.id) console.log('success')
-        // history.push('/travlBuddies')
+        // settbThemeName(data.)
+        console.log(data)
+        if (data) alert('更新成功')
+        // history.push('/myAccount')
       }
     } catch (err) {
-      // 發生錯誤的處理情況
-      // alert('無法得到伺服器資料，請稍後再重試')
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  async function getTravelBuddies(props) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/${id}`,
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        settbThemeName(data[0].tb_themeName)
+        settbThemePhoto(data[0].tb_themePhoto)
+        let cities = data[0].tb_city
+        settbCityCategory(
+          $('input:checkbox').each(function () {
+            if (cities.includes($(this).val())) {
+              $(this).prop('checked', true)
+            } else {
+              $(this).prop('checked', false)
+            }
+          })
+        )
+        settbDateBegin(data[0].tb_dateBegin)
+        settbDateEnd(data[0].tb_dateEnd)
+        settbDaysCategory(data[0].tb_daysCategory)
+        settbLastApprovedDate(data[0].tb_lastApprovedDate)
+        settbEstimatedCost(data[0].tb_estimatedCost)
+        settbPersonsNeeded(data[0].tb_personsNeeded)
+        settbGenderNeeded(data[0].tb_genderNeeded)
+        settbThemeIntro(data[0].tb_themeIntro)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -187,7 +215,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory1`}
                     name="tbCityCategory[]"
                     value="1"
-                    onChange={(e) => checkChange(e)}
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -196,6 +228,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory2`}
                     name="tbCityCategory[]"
                     value="2"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -204,6 +241,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory3`}
                     name="tbCityCategory[]"
                     value="3"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -212,6 +254,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory4`}
                     name="tbCityCategory[]"
                     value="4"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -220,6 +267,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory5`}
                     name="tbCityCategory[]"
                     value="5"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -228,6 +280,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory6`}
                     name="tbCityCategory[]"
                     value="6"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -236,6 +293,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory7`}
                     name="tbCityCategory[]"
                     value="7"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -244,6 +306,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory8`}
                     name="tbCityCategory[]"
                     value="8"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -252,6 +319,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory9`}
                     name="tbCityCategory[]"
                     value="9"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -260,6 +332,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory10`}
                     name="tbCityCategory[]"
                     value="10"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -268,6 +345,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory11`}
                     name="tbCityCategory[]"
                     value="11"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -276,6 +358,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory12`}
                     name="tbCityCategory[]"
                     value="12"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -284,6 +371,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory13`}
                     name="tbCityCategory[]"
                     value="13"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -292,6 +384,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory14`}
                     name="tbCityCategory[]"
                     value="14"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -300,6 +397,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory15`}
                     name="tbCityCategory[]"
                     value="15"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -308,6 +410,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory16`}
                     name="tbCityCategory[]"
                     value="16"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -316,6 +423,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory17`}
                     name="tbCityCategory[]"
                     value="17"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -324,6 +436,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory18`}
                     name="tbCityCategory[]"
                     value="18"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -332,6 +449,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory19`}
                     name="tbCityCategory[]"
                     value="19"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -340,6 +462,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory20`}
                     name="tbCityCategory[]"
                     value="20"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -348,6 +475,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory21`}
                     name="tbCityCategory[]"
                     value="21"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -356,6 +488,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory22`}
                     name="tbCityCategory[]"
                     value="22"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                   <Form.Check
                     inline
@@ -364,6 +501,11 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory23`}
                     name="tbCityCategory[]"
                     value="23"
+                    onChange={(e) => {
+                      tbCityCategory.includes(e.target.value)
+                        ? settbCityCategory(tbCityCategory.pop(e.target.value))
+                        : settbCityCategory(tbCityCategory.push(e.target.value))
+                    }}
                   />
                 </div>
               ))}
@@ -585,12 +727,10 @@ function AddTravelBuddiesForm() {
             <br />
             <br />
             <Button
-              id="insertTravelBuddies"
               className="add-travelbuddies-preview"
-              onClick={() => addTravelBuddies()}
+              onClick={UpdateTravelBuddies}
             >
-              {' '}
-              新增
+              更新
             </Button>
             <br />
             <Modal
@@ -686,7 +826,11 @@ function AddTravelBuddiesForm() {
                 </div>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="" className="add-travelbuddy-importconfirm">
+                <Button
+                  variant=""
+                  className="add-travelbuddy-importconfirm"
+                  //   onClick={UpdateTravelBuddies()}
+                >
                   確認選擇
                 </Button>
               </Modal.Footer>
@@ -698,4 +842,4 @@ function AddTravelBuddiesForm() {
   )
 }
 
-export default AddTravelBuddiesForm
+export default EditTravelBuddiesForm

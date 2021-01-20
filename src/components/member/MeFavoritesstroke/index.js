@@ -18,7 +18,7 @@ function MeFavoritesstroke({
   duration = '3', //天數
   person = '小智', //卡片內顯示的人名
 }) {
-  const [meproductCard, setMeproductCard] = useState([])
+  const [meitinerary, setMeitinerary] = useState([])
 
   async function getProductCard(props) {
     try {
@@ -27,7 +27,7 @@ function MeFavoritesstroke({
       })
       if (response.ok) {
         const data = await response.json()
-        setMeproductCard(data)
+        setMeitinerary(data)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -40,7 +40,7 @@ function MeFavoritesstroke({
 
   return (
     <>
-      {meproductCard.map((element, index) => (
+      {meitinerary.map((element, index) => (
         <div key={index} className="card-ingroup-box mb-3">
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
@@ -56,21 +56,21 @@ function MeFavoritesstroke({
                 <h3 className="card-title">{element.title}</h3>
                 <span className="mef-icno-style">
                   <IoMdTime />
-                  {time1} - {time2}
+                  {element.publish_time} - {element.publish_time}
                 </span>
                 <span className="mef-icno-style d-flex justify-content-between">
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {map1}
+                    {element.location}
                   </p>
-                  <p className="card-style-mef">
+                  {/* <p className="card-style-mef">
                     <FaMapMarkerAlt />
-                    {map2}
-                  </p>
+                    {element.publish_time}
+                  </p> */}
                   <FaUsers />
                   &emsp;
-                  {person}
+                  {element.member_id}
                   &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;

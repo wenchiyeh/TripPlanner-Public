@@ -53,12 +53,12 @@ function MeFavoritesgroup() {
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {e.foreach}
+                    {e.tb_city}
                   </p>
-                  <p className="card-style-mef mef-icon-map-move">
+                  {/* <p className="card-style-mef mef-icon-map-move">
                     <FaMapMarkerAlt />
-                    {e.foreach}
-                  </p>
+                    {e.tb_city}
+                  </p> */}
                   <button className="Ingroup-btn">聊天室</button>
                 </span>
                 <br />

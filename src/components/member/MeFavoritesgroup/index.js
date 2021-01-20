@@ -56,7 +56,7 @@ function MeFavoritesgroup() {
                   </p>
                   <p className="card-style-mef">
                     <FaMapMarkerAlt />
-                    {v.tr_city}
+                    {v.tb_city}
                   </p>
                   <FaUsers />
                   &emsp;

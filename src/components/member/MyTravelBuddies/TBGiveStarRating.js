@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function TBGiveStarRating({ stars = 5, filled }) {
-  const [value, setValue] = React.useState(filled)
-  const [dynamicValue, setDynamicValue] = React.useState(filled)
+  const [value, setValue] = useState(filled)
+  const [dynamicValue, setDynamicValue] = useState(filled)
 
   const handleClick = (newValue) => {
     setValue(newValue)

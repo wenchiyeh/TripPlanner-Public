@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 // import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
@@ -12,8 +12,9 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 import TBButtonSignedUp from '../components/TravelBuddies/TBButtonSignedUp'
 
-function TravelBuddiesMainPage(props) {
+function TravelBuddiesReadPage(props) {
   let { id } = useParams()
+  let history = useHistory()
   const [travelBuddies, setTravelBuddies] = useState([])
   const [signedUp, setSignedUp] = useState(0)
   async function getTravelBuddies(props) {
@@ -41,12 +42,19 @@ function TravelBuddiesMainPage(props) {
     travelBuddies.length > 0 && (
       <>
         <div className="tb-mainpage-wrapper">
+          <Button
+            className="tb-mainpage-goback"
+            onClick={() => history.goBack()}
+          >
+            回我的揪團
+          </Button>
           <div className="tb-mainpage-hero-image">
             <img
               src={'/images/tbPhoto/' + travelBuddies[0].tb_themePhoto}
               alt={travelBuddies.tb_themePhoto}
             />
           </div>
+
           <div className="tb-mainpage-flex">
             <div className="tb-mainpage-nameAndPhoto">
               <figure className="tb-mainpage-profilephoto">
@@ -126,14 +134,6 @@ function TravelBuddiesMainPage(props) {
           </div>
           <div className="d-flex tb-mainpage-title">
             <h1> {travelBuddies[0].tb_themeName}</h1>
-            <div className="tb-mainpage-button-group">
-              <TBButtonSignedUp
-                id={travelBuddies[0].id}
-                themeName={travelBuddies[0].tb_themeName}
-                className="tb-mainpage-button"
-              />
-              <Button className="tb-mainpage-button">收藏</Button>
-            </div>
           </div>
           <div className="tb-mainpage-tag-group d-flex">
             <div className="tb-mainpage-tag">台灣西部</div>
@@ -181,4 +181,4 @@ function TravelBuddiesMainPage(props) {
   )
 }
 
-export default TravelBuddiesMainPage
+export default TravelBuddiesReadPage

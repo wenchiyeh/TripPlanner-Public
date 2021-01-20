@@ -7,7 +7,7 @@ import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
-
+import ShowCreditCard from './ShowCreditCard'
 function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
 
@@ -162,7 +162,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [user_gender, setUser_gender] = useState('')
   const buy_ticket_price = showTicketPrice()
   const buy_ticket_type = ShowTicketType()
-  const math = 123456789898765432122
+  const math = '125476768981876643252'
   const ticket_number = Math.floor(Math.random(math) * math)
   const now = new Date()
   const year = now.getFullYear()
@@ -171,9 +171,13 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const month = month_array[month_rank]
   const day = now.getDate()
   const buy_ticket_day = year + '-' + month + '-' + day
+  const hours = now.getHours()
+  const minutes = now.getMinutes()
+  const seconds = now.getSeconds()
+  const buy_ticket_time =
+    year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds
   const [credit, setCredit] = useState()
   const [validated, setValidated] = useState(false)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -205,6 +209,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
             user_birthday,
             credit,
             ticket_number,
+            buy_ticket_time,
           }),
         }
       )
@@ -227,8 +232,51 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
     user_mail,
     user_birthday,
     credit,
-    ticket_number
+    ticket_number,
+    buy_ticket_time
   )
+  async function buttonSubmit() {
+    try {
+      const response = await fetch('http://localhost:5000/controller', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          className,
+          buy_ticket_type,
+          totalTicket,
+          buy_ticket_price,
+          buy_ticket_day,
+          user_name,
+          user_gender,
+          user_phone,
+          user_mail,
+          user_birthday,
+          credit,
+          ticket_number,
+          buy_ticket_time,
+        }),
+      })
+      if (response.ok) {
+        console.log('ok')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  // console.log(
+  //   className,
+  //   buy_ticket_type,
+  //   totalTicket,
+  //   buy_ticket_price,
+  //   buy_ticket_day,
+  //   user_name,
+  //   user_gender,
+  //   user_phone,
+  //   user_mail,
+  //   user_birthday,
+  //   credit,
+  //   ticket_number
+  // )
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = {
     name: '陳嘉賢',
@@ -491,6 +539,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       </span>
                     </Form.Check>
                   </div>
+                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">
@@ -517,7 +566,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                             getUser()
 
                             if (credit === 'visa') {
-                              window.location = 'https://p.ecpay.com.tw/6708411'
+                              buttonSubmit()
                             } else if (credit === 'atm') {
                               window.location = 'https://p.ecpay.com.tw/39F39C9'
                             } else if (credit === 'applepay') {

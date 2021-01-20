@@ -4,7 +4,7 @@ import { Form, Col, Button } from 'react-bootstrap'
 import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
 
-function MemberEdit({ member }) {
+function MemberEdit({ member, setMember, handleClose }) {
   let history = useHistory()
   let { id } = useParams()
   //const [members, setMembers] = useState('')
@@ -18,9 +18,7 @@ function MemberEdit({ member }) {
   const [member_phone, setPhone] = useState(member.member_phone)
   const [birthday, setBirthday] = useState(member.birthday)
   const [member_sex, setMember_sex] = useState(member.member_sex)
-  const [member_photo_id, setMember_photo_id] = useState(
-    member.setmember_photo_id
-  )
+  const [member_photo_id, setMember_photo_id] = useState(member.member_photo_id)
   const [member_id, setMember_id] = useState(member.member_id)
   const [member_aboutme, setMember_aboutme] = useState(member.member_aboutme)
 
@@ -48,10 +46,21 @@ function MemberEdit({ member }) {
         },
       })
       if (response.ok) {
+        let handleMember = member
+        handleMember.id = id
+        handleMember.email = email
+        handleMember.member_name = member_name
+        handleMember.member_phone = member_phone
+        handleMember.birthday = birthday
+        handleMember.member_sex = member_sex
+        handleMember.member_photo_id = member_photo_id
+        handleMember.member_id = member_id
+        handleMember.member_aboutme = member_aboutme
+        setMember(handleMember)
         const data = await response.json()
         setEmail(data)
-        console.log(data)
         if (data) alert('更新成功')
+        handleClose()
         history.push('/myAccount')
       }
     } catch (err) {
@@ -59,39 +68,39 @@ function MemberEdit({ member }) {
       console.log(err)
     }
   }
-  async function getMember(id) {
-    try {
-      const response = await fetch(`http://localhost:5000/member/${id}`, {
-        mode: 'cors',
-        method: 'get',
-      })
-      if (response.ok) {
-        const data = await response.json()
-        // 設定到每個欄位
-        setEmail(member.email)
-        setMember_name(member.member_name)
-        setPhone(member.phone)
-        setBirthday(member.birthday)
-        setMember_sex(member.member_sex)
-        setMember_photo_id(member.setmember_photo_id)
-        setMember_id(member.member_id)
-        setMember_aboutme(member.member_aboutme)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
-  useEffect(() => {
-    if (member === 1) {
-      console.log('hi model沒有值', id)
-      updateMember(id)
-      console.log('沒有值', id)
-      updateMember(member.newsId)
-      console.log('member.newsId:我有值', member.newsId)
-      console.log('ud:', member)
-    }
-  }, [member, id])
+  // async function getMember(id) {
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/member/${id}`, {
+  //       mode: 'cors',
+  //       method: 'get',
+  //     })
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       // 設定到每個欄位
+  //       setEmail(member.email)
+  //       setMember_name(member.member_name)
+  //       setPhone(member.phone)
+  //       setBirthday(member.birthday)
+  //       setMember_sex(member.member_sex)
+  //       setMember_photo_id(member.setmember_photo_id)
+  //       setMember_id(member.member_id)
+  //       setMember_aboutme(member.member_aboutme)
+  //     }
+  //   } catch (err) {
+  //     alert('無法得到伺服器資料，請稍後再重試')
+  //     console.log(err)
+  //   }
+  // }
+  // useEffect(() => {
+  //   if (member === 1) {
+  //     console.log('hi model沒有值', id)
+  //     updateMember(id)
+  //     console.log('沒有值', id)
+  //     updateMember(member.newsId)
+  //     console.log('member.newsId:我有值', member.newsId)
+  //     console.log('ud:', member)
+  //   }
+  // }, [member, id])
 
   //元件狀態
   const [validated, setValidated] = useState(false)

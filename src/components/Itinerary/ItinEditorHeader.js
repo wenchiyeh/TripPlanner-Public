@@ -7,6 +7,7 @@ function ItinEditorHeader({
   isPublish = false,
   isMe = false,
   title = '行程表',
+  setTitle,
   handleSubmit,
 }) {
   let history = useHistory()
@@ -73,6 +74,10 @@ function ItinEditorHeader({
           className="form-custom itin-title-input"
           type="text"
           placeholder="請輸入行程標題"
+          defaultValue={title}
+          onChange={(e) => {
+            setTitle(e.target.value)
+          }}
         />
       ) : (
         <h2>{title}</h2>

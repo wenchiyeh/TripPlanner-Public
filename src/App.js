@@ -40,7 +40,7 @@ function App() {
             </Route>
 
             <Route path="/">
-              <MainRoute />
+              <MainRoute setAuth={setAuth} />
             </Route>
           </Switch>
         </ScrollToTop>

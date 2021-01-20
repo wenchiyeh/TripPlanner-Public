@@ -49,7 +49,7 @@ function ItinEditView({ isNew = true }) {
     if (dataFromUser[0].data.length === 0) return
     let dataToDB = []
     let itinData = {
-      id: dataFromUser[0].data[0].itinerary_id,
+      id: itin_id,
       member_id: 1, //先預設會員0
       title: document.querySelector('.itin-title-input').value
         ? document.querySelector('.itin-title-input').value
@@ -101,6 +101,7 @@ function ItinEditView({ isNew = true }) {
         isPublish={false}
         isMe={true}
         title={title}
+        setTitle={setTitle}
         handleSubmit={handleDataToDB}
       />
       <ItinEditor

@@ -158,8 +158,9 @@ function BuyProducts({
             <p>{className}</p>
             <div className="clock-time">
               <FiClock />
+              <p>{classDate}</p>
               <p>
-                {classDate} {classTimeStart}-{classTimeEnd}
+                {classTimeStart}-{classTimeEnd}
               </p>
             </div>
 

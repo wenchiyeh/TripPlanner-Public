@@ -13,9 +13,9 @@ import Forgetpassword from './pages/forgetpassword'
 import MainRoute from './components/main/MainRoute'
 import ScrollToTop from './components/main/ScrollToTop'
 function App() {
-  const [auth, setAuth] = React.useState(localStorage.getItem('userName') || '')
+  const [auth, setAuth] = React.useState(false)
   React.useEffect(() => {
-    setAuth(localStorage.getItem('userName'))
+    setAuth(localStorage.getItem('userData'))
   }, [auth])
   return (
     <Router>

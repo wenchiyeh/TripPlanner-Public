@@ -158,7 +158,6 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [user_name, setUser_name] = useState('')
   const [user_mail, setUser_mail] = useState('')
   const [user_phone, setUser_phone] = useState('')
-  const [user_birthday, setUser_birthday] = useState('')
   const [user_gender, setUser_gender] = useState('')
   const buy_ticket_price = showTicketPrice()
   const buy_ticket_type = ShowTicketType()
@@ -206,7 +205,6 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
             user_gender,
             user_phone,
             user_mail,
-            user_birthday,
             credit,
             ticket_number,
             buy_ticket_time,
@@ -230,14 +228,13 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
     user_gender,
     user_phone,
     user_mail,
-    user_birthday,
     credit,
     ticket_number,
     buy_ticket_time
   )
   async function buttonSubmit() {
     try {
-      const response = await fetch('http://localhost:5000/controller', {
+      const response = await fetch('http://localhost:5000/eco', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -250,7 +247,6 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
           user_gender,
           user_phone,
           user_mail,
-          user_birthday,
           credit,
           ticket_number,
           buy_ticket_time,
@@ -263,38 +259,9 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
       console.log(err)
     }
   }
-  // console.log(
-  //   className,
-  //   buy_ticket_type,
-  //   totalTicket,
-  //   buy_ticket_price,
-  //   buy_ticket_day,
-  //   user_name,
-  //   user_gender,
-  //   user_phone,
-  //   user_mail,
-  //   user_birthday,
-  //   credit,
-  //   ticket_number
-  // )
-  const [buttontype, setButtontype] = useState(false)
-  const aboutuser = {
-    name: '陳嘉賢',
-    mail: 'chancha@test.com',
-    phone: '0921039021',
-    birthday: '1992-04-04',
-    gender: '1',
-  }
-  // if (buttontype === true) {
-  //   setUser_name(aboutuser.name)
-  //   setUser_mail(aboutuser.mail)
-  //   setUser_phone(aboutuser.phone)
-  //   setUser_birthday(aboutuser.birthday)
-  // }
 
-  // useEffect(() => {
-  //   console.log(buttontype)
-  // }, [buttontype])
+  const [buttontype, setButtontype] = useState(false)
+  const aboutuser = JSON.parse(localStorage.getItem('userData'))
 
   const step2 = (
     <>
@@ -366,15 +333,14 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                   <Form.Control
                     type="text"
                     placeholder="請輸入姓名"
-                    defaultValue={buttontype === true ? aboutuser.name : ''}
+                    defaultValue={
+                      buttontype === true ? aboutuser.member_name : ''
+                    }
                     onChange={(e) => {
                       setUser_name(e.target.value)
                     }}
                     required
                   />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入正確的姓名
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -386,12 +352,11 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     required
                     type="text"
                     placeholder="請輸入信箱"
-                    defaultValue={buttontype === true ? aboutuser.mail : ''}
+                    defaultValue={buttontype === true ? aboutuser.email : ''}
                     onChange={(e) => {
                       setUser_mail(e.target.value)
                     }}
                   />
-                  <Form.Control.Feedback>正確!</Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -403,33 +368,16 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     type="text"
                     placeholder="0988888888"
                     required
-                    defaultValue={buttontype === true ? aboutuser.phone : ''}
+                    defaultValue={
+                      buttontype === true ? aboutuser.member_phone : ''
+                    }
                     onChange={(e) => {
                       setUser_phone(e.target.value)
                     }}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入正確的電話號碼
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} md="6" controlId="validationCustom05">
-                  <Form.Label>出生日期</Form.Label>
-                  <span className="med-add-text-red">*</span>
-                  <Form.Control
-                    type="date"
-                    required
-                    defaultValue={buttontype === true ? aboutuser.birthday : ''}
-                    onChange={(e) => {
-                      setUser_birthday(e.target.value)
-                    }}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入出生日期
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Form.Row>
+
               <Form.Row className="have_button">
                 <Form.Group
                   as={Col}
@@ -451,7 +399,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     <option value="2">女性</option>
                   </Form.Control>
                 </Form.Group>
-                {/* <Button
+                <Button
                   variant="info"
                   className="fast_input_button"
                   onClick={() => {
@@ -459,7 +407,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                   }}
                 >
                   快速填寫
-                </Button> */}
+                </Button>
               </Form.Row>
               <hr />
 
@@ -559,8 +507,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     onClick={
                       (user_name,
                       user_phone,
-                      user_mail,
-                      user_birthday === ''
+                      user_mail === ''
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
                             getUser()

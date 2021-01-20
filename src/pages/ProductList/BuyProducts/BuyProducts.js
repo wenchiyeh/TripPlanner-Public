@@ -75,6 +75,38 @@ function BuyProducts({
   function InTheCar() {
     history.push(`/productList/car1/${product_id}`)
   }
+
+  const data = {
+    earlyTicket,
+    singleTicket,
+    groupTicket,
+    earlyPrice,
+    singlePrice,
+    groupPrice,
+    classPhoto,
+    className,
+    classDate,
+    classTimeStart,
+    classTimeEnd,
+    location,
+    address,
+    ticket_type,
+    ticket_price,
+    warning,
+    classValue,
+    classOutline,
+    teacher_name,
+    teacher_title,
+    needToKnow,
+    teacher_photo,
+    teacher_history,
+    mapSrc,
+    changeData,
+  }
+  function getLocal() {
+    localStorage.setItem('product_Data', JSON.stringify(data))
+    console.log(data)
+  }
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
@@ -235,12 +267,19 @@ function BuyProducts({
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
               {early === 0 && group === 0 && single === 0 ? (
-                <Button variant="info" onClick={InTheCar} disabled>
+                <Button variant="info" disabled>
                   加入購物車{' '}
                 </Button>
               ) : (
-                <Button variant="info" onClick={InTheCar}>
-                  加入購物車{' '}
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    InTheCar()
+                    getLocal()
+                    // alert('已加入購物車')
+                  }}
+                >
+                  加入購物車
                 </Button>
               )}
               <div className="followMyHeart">

@@ -25,14 +25,13 @@ function TravelBuddiesMine() {
       console.log(err)
     }
   }
-
   useEffect(() => {
     gettbMine()
   }, [])
 
   return (
     <tbody>
-      <div className="travelbuddiesmine-outbox">
+      <div className="travelbuddiesmine-outbox tab-content-travelbuddies">
         <Table>
           <thead>
             <tr>
@@ -65,9 +64,14 @@ function TravelBuddiesMine() {
                         v.tb_dateEnd.slice(8, 10)}
                     </td>
                     <td>
-                      <TBButtonRead /> <TBMineButtonEdit />{' '}
-                      <TBMineButtonMembersSelect /> <TBButtonChatroom />{' '}
+                      <TBButtonRead id={v.id} /> <TBMineButtonEdit />{' '}
+                      <TBMineButtonMembersSelect id={v.id} />{' '}
+                      <TBButtonChatroom
+                        id={v.id}
+                        tb_themeName_={v.tb_themeName}
+                      />{' '}
                       <TBMineButtonDelete
+                        gettbMine={gettbMine}
                         id={v.id}
                         tb_themeName_={v.tb_themeName}
                       />{' '}
@@ -77,7 +81,6 @@ function TravelBuddiesMine() {
               })}
           </tbody>
         </Table>
-        <TBMembersSelect />
       </div>
       <div className="tb-pages">
         <Pages />

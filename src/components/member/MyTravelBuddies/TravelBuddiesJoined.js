@@ -32,7 +32,7 @@ function TravelBuddiesJoined() {
 
   return (
     <>
-      <div className="travelbuddiesjoined-outbox">
+      <div className="travelbuddiesjoined-outbox tab-content-travelbuddies">
         <Table>
           <thead>
             <tr>
@@ -67,34 +67,16 @@ function TravelBuddiesJoined() {
                     </td>
                     <td>{v.tb_membersStatus}</td>
                     <td>
-                      <TBButtonRead /> <TBButtonChatroom />{' '}
+                      <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
                       <TBJoinedButtonDropOut
-                        tb_id_={v.id}
+                        gettbJoined={gettbJoined}
+                        id={v.id}
                         tb_themeName_={v.tb_themeName}
                       />{' '}
                     </td>
                   </tr>
                 )
               })}
-            <tr>
-              <td>1</td>
-              <td>北台灣深度之旅，八日！</td>
-              <td>2021/02/01 - 2021/02/08</td>
-              <td>參加中</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom /> <TBJoinedButtonDropOut />{' '}
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>一天吃爆嘉義火雞肉飯</td>
-              <td>2021/02/26 - 2021/02/26</td>
-              <td>參加中</td>
-              <td>
-                <TBButtonRead /> <TBButtonChatroom />{' '}
-                <TBJoinedButtonDropOutNotApproved />{' '}
-              </td>
-            </tr>
           </tbody>
         </Table>
       </div>

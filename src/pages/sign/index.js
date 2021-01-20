@@ -58,7 +58,7 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
-                    type="text"
+                    type="email"
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
@@ -82,7 +82,7 @@ function Login(props) {
                   </InputGroup.Prepend>
                   <Form.Control
                     className="sogin-input-br"
-                    type="text"
+                    type="password"
                     placeholder="您的密碼"
                     aria-describedby="inputGroupPrepend"
                     required

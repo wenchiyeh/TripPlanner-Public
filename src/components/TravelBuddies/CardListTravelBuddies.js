@@ -16,7 +16,7 @@ function CardListTravelBudddies(props) {
                   id={element.id}
                   title={element.tb_themeName}
                   location={element.tb_city} //此行連接後端後請修正
-                  image={'testImage.jpg'} //此行連接後端後請修正
+                  image={'/tbPhoto/' + element.tb_themePhoto} //此行連接後端後請修正
                   time1={element.tb_dateBegin}
                   time2={element.tb_dateEnd}
                   duration={element.tb_daysCategory}

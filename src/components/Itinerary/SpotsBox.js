@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FaMapMarkerAlt, FaTimesCircle } from 'react-icons/fa' //  FaCar,FaTrain,FaWalking,
 let testData = {
   order: 0,
@@ -13,42 +13,43 @@ let testData = {
 
 function SpotsBox({
   isEdit = false,
-  data = testData,
+  data,
   index,
-  doEdit = () => {},
-  allData,
+  dataFromUser,
+  setDataFromUser,
+  doDelete,
 }) {
-  const { type, title, time, ...otherData } = data
-  const tempData = allData
-  function handleTime(time) {
-    if (time.length === 4) {
-      let temp = Array.from(time)
+  const { title, begin } = data
+  // const tempData = dataFromUser
+  function handleTime(begin) {
+    if (begin.length === 4) {
+      let temp = Array.from(begin)
       temp.splice(2, 0, ':')
       return temp.join('')
     } else {
-      return time
+      return begin
     }
   }
   const inputTimeClass = `box-input-time time${index[0]}${index[1]}`
   const inputTitleClass = `box-input-title input${index[0]}${index[1]}`
   useEffect(() => {
-    if (isEdit) {
+    if (isEdit && dataFromUser[0].data.length > 0) {
       if (
         document.querySelector(`.input${index[0]}${index[1]}`).value ===
-          tempData[index[0]].data[index[1]].title &&
+          dataFromUser[index[0]].data[index[1]].title &&
         document.querySelector(`.time${index[0]}${index[1]}`).value ===
-          handleTime(tempData[index[0]].data[index[1]].time)
+          handleTime(dataFromUser[index[0]].data[index[1]].begin)
       ) {
         return
       } else {
         document.querySelector(`.input${index[0]}${index[1]}`).value =
-          tempData[index[0]].data[index[1]].title
+          dataFromUser[index[0]].data[index[1]].title
         document.querySelector(
           `.time${index[0]}${index[1]}`
-        ).value = handleTime(tempData[index[0]].data[index[1]].time)
+        ).value = handleTime(dataFromUser[index[0]].data[index[1]].begin)
       }
     }
-  }, [tempData])
+  }, [dataFromUser])
 
   const typeIcon = <FaMapMarkerAlt size={26} />
   const displyEdit = (
@@ -59,8 +60,8 @@ function SpotsBox({
           className={inputTimeClass}
           type="time"
           onChange={(e) => {
-            tempData[index[0]].data[index[1]].time = e.target.value
-            doEdit(tempData)
+            dataFromUser[index[0]].data[index[1]].begin = e.target.value
+            setDataFromUser(dataFromUser)
           }}
         />
         <input
@@ -68,15 +69,15 @@ function SpotsBox({
           type="text"
           maxLength="12"
           onChange={(e) => {
-            tempData[index[0]].data[index[1]].title = e.target.value
-            doEdit(tempData)
+            dataFromUser[index[0]].data[index[1]].title = e.target.value
+            setDataFromUser(dataFromUser)
           }}
         />
       </span>
       <span
         className="box-close-btn"
         onClick={() => {
-          console.log('delete!')
+          doDelete()
         }}
       >
         <FaTimesCircle size={20} />
@@ -88,7 +89,7 @@ function SpotsBox({
       <span className="d-flex align-items-center">
         {typeIcon}
         &emsp; &emsp;
-        <h3 className="d-inline">{time}</h3>
+        <h3 className="d-inline">{begin}</h3>
       </span>
       <span className="w-100 text-center">
         <h4 className="d-inline">{title}</h4>

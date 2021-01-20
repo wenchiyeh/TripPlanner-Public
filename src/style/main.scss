@@ -44,6 +44,9 @@ h3 {
 h4 {
   font-size: 20px;
 }
+h5 {
+  font-size: 16px;
+}
 p {
   margin: 0;
 }
@@ -85,6 +88,8 @@ body {
 
 // home
 @import './home.scss';
+// 首頁Searchbar
+@import './HomeSearchbar.scss';
 
 //memberPage
 @import './memberPage.scss';

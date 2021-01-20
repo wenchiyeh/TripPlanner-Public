@@ -13,7 +13,7 @@ function CarNotice() {
         <table className="not-toble-ma-bt table-hover">
           <thead>
             <tr>
-              <th>有興趣的講座</th>
+              <th>感興趣的講座</th>
             </tr>
           </thead>
           <tbody>

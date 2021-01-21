@@ -1,6 +1,8 @@
 import React from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { withRouter, Link } from 'react-router-dom'
+
 AOS.init()
 function HomeP1Image(props) {
   return (
@@ -21,30 +23,32 @@ function HomeP1Image(props) {
               </div>
             </div>
           </figure>
-          <figure
-            className="home-p1-figure-left"
-            data-aos="fade-zoom-in"
-            data-aos-easing="ease-out"
-            data-aos-duration="900"
-            data-aos-delay="300"
-            data-aos-offset="210"
-          >
-            <img src="./images/homePhoto/p2.jpg" />
-            <h2
-              data-aos="zoom-in-right"
-              data-aos-delay="600"
-              data-aos-duration="1000"
+          <Link to="/itinerary">
+            <figure
+              className="home-p1-figure-left"
+              data-aos="fade-zoom-in"
+              data-aos-easing="ease-out"
+              data-aos-duration="900"
+              data-aos-delay="300"
+              data-aos-offset="210"
             >
-              個人化旅歷製作
-            </h2>
-            <div
-              className="line"
-              data-aos="zoom-in-right"
-              data-aos-delay="600"
-              data-aos-duration="1000"
-              data-aos-offset="-50"
-            />
-          </figure>
+              <img src="./images/homePhoto/p2.jpg" />
+              <h2
+                data-aos="zoom-in-right"
+                data-aos-delay="600"
+                data-aos-duration="1000"
+              >
+                個人化旅歷製作
+              </h2>
+              <div
+                className="line"
+                data-aos="zoom-in-right"
+                data-aos-delay="600"
+                data-aos-duration="1000"
+                data-aos-offset="-50"
+              />
+            </figure>
+          </Link>
         </div>
         <div className="col-7">
           <figure

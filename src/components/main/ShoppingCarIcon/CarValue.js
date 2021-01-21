@@ -1,12 +1,14 @@
 //通知表單
-import React from 'react'
+import React, { useEffect } from 'react'
 import './shoppingCar.scss'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
 function CarNotice() {
+  useEffect(() => {
+    JSON.parse(localStorage.getItem('product_Data'))
+  }, [])
   const productData = JSON.parse(localStorage.getItem('product_Data'))
-
   const dispaly = (
     <>
       <div className="">

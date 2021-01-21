@@ -75,13 +75,15 @@ function BuyProducts({
   function InTheCar() {
     history.push(`/productList/car1/${product_id}`)
   }
-
-  const [data, setData] = useState([])
+  const data = {
+    className: className,
+    classDate: classDate,
+    early,
+    single,
+    group,
+  }
   function getLocal() {
     localStorage.setItem('product_Data', JSON.stringify(data))
-    JSON.parse(localStorage.getItem('product_Data'))
-
-    console.log(data)
   }
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
@@ -250,9 +252,9 @@ function BuyProducts({
                 <Button
                   variant="info"
                   onClick={() => {
-                    InTheCar()
                     getLocal()
-                    // alert('已加入購物車')
+                    alert('已加入購物車')
+                    InTheCar()
                   }}
                 >
                   加入購物車

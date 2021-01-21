@@ -11,9 +11,11 @@ import ShowCreditCard from './ShowCreditCard'
 function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
 
-  const earlyTicket = ticketData.earlyTicket
-  const singleTicket = ticketData.singleTicket
-  const groupTicket = ticketData.groupTicket
+  const aboutClass = JSON.parse(localStorage.getItem('product_Data'))
+
+  const earlyTicket = aboutClass.early
+  const singleTicket = aboutClass.single
+  const groupTicket = aboutClass.group
   function ShowTicketType() {
     if (earlyTicket > 0) {
       return '早鳥票'
@@ -53,7 +55,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
     history.push('/productList/car3')
   }
   function goBack() {
-    history.goBack()
+    history.push(`/productList`)
   }
 
   const step1 = (
@@ -69,7 +71,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
 
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>{className}</h4>
+            <h4>{aboutClass.className}</h4>
           </div>
 
           <div className="you-sure">
@@ -90,7 +92,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
             <hr />
             <div className="chose-your-ticket animate__animated  animate__pulse">
               <div>
-                <h3>{classDate}</h3>
+                <h3>{aboutClass.classDate}</h3>
               </div>
               <div>{ShowTicketType()}</div>
 
@@ -218,24 +220,11 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
       console.log(err)
     }
   }
-  console.log(
-    className,
-    buy_ticket_type,
-    totalTicket,
-    buy_ticket_price,
-    buy_ticket_day,
-    user_name,
-    user_gender,
-    user_phone,
-    user_mail,
-    credit,
-    ticket_number,
-    buy_ticket_time
-  )
+
   async function buttonSubmit() {
     try {
-      const response = await fetch('http://localhost:5000/eco', {
-        method: 'post',
+      const response = await fetch('http://localhost:5000/paymentaction', {
+        method: 'get',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           className,
@@ -262,6 +251,14 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
 
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = JSON.parse(localStorage.getItem('userData'))
+  // useEffect(() => {
+  //   if (buttontype === true) {
+  //     setUser_name(aboutuser.member_name)
+  //     setUser_mail(aboutuser.email)
+  //     setUser_phone(aboutuser.member_phone)
+  //   }
+  // }, [])
+  console.log(user_name, user_gender, user_phone, user_mail)
 
   const step2 = (
     <>
@@ -505,12 +502,10 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     type="submit"
                     variant="info"
                     onClick={
-                      (user_name,
-                      user_phone,
-                      user_mail === ''
+                      user_name === '' && user_phone === '' && user_mail === ''
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
-                            getUser()
+                            // getUser()
 
                             if (credit === 'visa') {
                               buttonSubmit()
@@ -519,7 +514,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                             } else if (credit === 'applepay') {
                               return carThree()
                             }
-                          })
+                          }
                     }
                   >
                     結帳

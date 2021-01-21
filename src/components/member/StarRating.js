@@ -29,7 +29,7 @@ function StarRating({ stars = 5, filled }) {
             // onMouseLeave={handleMouseLeave}
             // onClick={() => handleClick(i + 1)}
           >
-            {dynamicValue >= i + 1 ? '★' : '☆'}
+            {dynamicValue >= i + 1 ? '★' : '★'}
           </span>
         ))}
       </div>

@@ -76,35 +76,11 @@ function BuyProducts({
     history.push(`/productList/car1/${product_id}`)
   }
 
-  const data = {
-    earlyTicket,
-    singleTicket,
-    groupTicket,
-    earlyPrice,
-    singlePrice,
-    groupPrice,
-    classPhoto,
-    className,
-    classDate,
-    classTimeStart,
-    classTimeEnd,
-    location,
-    address,
-    ticket_type,
-    ticket_price,
-    warning,
-    classValue,
-    classOutline,
-    teacher_name,
-    teacher_title,
-    needToKnow,
-    teacher_photo,
-    teacher_history,
-    mapSrc,
-    changeData,
-  }
+  const [data, setData] = useState([])
   function getLocal() {
     localStorage.setItem('product_Data', JSON.stringify(data))
+    JSON.parse(localStorage.getItem('product_Data'))
+
     console.log(data)
   }
   const pageUrl = '/images/classPhoto/'

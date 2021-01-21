@@ -3,7 +3,8 @@ import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
-import ShoppingCarIcon from './ShoppingCarIcon/ShoppingCarIcon'
+import { FiShoppingCart } from 'react-icons/fi'
+
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
@@ -98,9 +99,9 @@ function Header({ auth, setAuth }) {
             <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
-            <Nav.Link>
+            <Nav.Link as={NavLink} to="/productList/car">
               <div className="not-icon-mover">
-                <ShoppingCarIcon className="Navbar-icon" />
+                <FiShoppingCart className="Navbar-icon" />
               </div>
               <Badge variant="light">2</Badge>
             </Nav.Link>

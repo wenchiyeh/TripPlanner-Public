@@ -52,19 +52,19 @@ function MeFavoritesgroup() {
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {v.tr_region}
+                    {v.tb_region}
                   </p>
                   <p className="card-style-mef">
                     <FaMapMarkerAlt />
-                    {v.tb_region}
+                    {v.tb_city}
                   </p>
                   <FaUsers />
                   &emsp;
-                  {v.tb_name}
+                  {v.personsNeeded}
                   &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;
-                  {v.tr_needid !== -1 && v.tr_needid + '天'}
+                  {v.genderNeeded !== -1 && v.genderNeeded + '天'}
                 </span>
                 <br />
               </div>

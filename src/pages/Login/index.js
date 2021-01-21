@@ -62,12 +62,12 @@ function Login(props) {
   }
   // useEffect(() => {
   //   if (localStorage.getItem('userData')) {
-  //     //console.log(`登入成功 會員: ${member}`)
-  //     // setMember()
-  //     // history.push(`/myAccount`)
-  //     // history.push(`/myAccount/${member}`)
+  //     console.log(`登入成功 會員: ${member}`)
+  //     setMember()
+  //     history.push(`/myAccount`)
+  //     history.push(`/myAccount/${member}`)
   //   } else {
-  //     // history.push('/login')
+  //     history.push('/login')
   //     console.log('請重新輸入')
   //   }
   // }, [member])

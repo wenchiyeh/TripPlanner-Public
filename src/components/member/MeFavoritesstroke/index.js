@@ -46,7 +46,7 @@ function MeFavoritesstroke({
             <div className="col-md-4">
               <img
                 // 要放絕對路徑
-                src="http://localhost:3000/images/member/DSC_7437-37.jpg"
+                src={'/images/' + element.image}
                 className="card-img img-fluid"
                 alt="..."
               />
@@ -66,15 +66,15 @@ function MeFavoritesstroke({
                   </p>
                   {/* <p className="card-style-mef">
                     <FaMapMarkerAlt />
-                    {element.publish_time}
+                    {element.region}
                   </p> */}
                   <FaUsers />
                   &emsp;
-                  {element.member_id}
+                  {element.nickname}
                   &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;
-                  {duration !== -1 && duration + '天'}
+                  {duration + '天'}
                 </span>
                 <br />
               </div>

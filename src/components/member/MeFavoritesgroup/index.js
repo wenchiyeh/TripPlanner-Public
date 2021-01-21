@@ -6,7 +6,12 @@ import { IoMdTime } from 'react-icons/io'
 // let cardData = require('../../Itinerary/testJsonData.json')
 // let handleTestData = cardData[2].data
 
-function MeFavoritesgroup() {
+function MeFavoritesgroup({
+  map1 = '北部',
+  map2 = '台北',
+  groupname = '王華旺',
+  datatime = '1',
+}) {
   const [metbJoined, setMetbJoined] = useState([])
 
   async function gettbJoined(props) {
@@ -36,9 +41,9 @@ function MeFavoritesgroup() {
             <div className="col-md-4">
               <img
                 // 要放絕對路徑
-                src="http://localhost:3000/images/member/DSC_7437-37.jpg"
+                src={'/images/tbPhoto/' + v.tb_themePhoto}
                 className="card-img img-fluid"
-                alt="..."
+                alt={v.tb_themePhoto}
               />
             </div>
             <div className="col-md-8 align-items-end">
@@ -52,19 +57,18 @@ function MeFavoritesgroup() {
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {v.tb_region}
+                    {map1}
                   </p>
                   <p className="card-style-mef">
                     <FaMapMarkerAlt />
-                    {v.tb_city}
+                    {map2}
                   </p>
                   <FaUsers />
                   &emsp;
-                  {v.personsNeeded}
-                  &emsp;&emsp;
+                  {groupname} &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;
-                  {v.genderNeeded !== -1 && v.genderNeeded + '天'}
+                  {datatime + '天'}
                 </span>
                 <br />
               </div>

@@ -38,6 +38,7 @@ function MeFavoritesgroup() {
               <img
                 // 要放絕對路徑
                 src="http://localhost:3000/images/member/DSC_7437-37.jpg"
+                // src={'/images/tbPhoto/' + v.tb_themePhoto}
                 className="card-img img-fluid"
                 alt="..."
               />
@@ -53,12 +54,12 @@ function MeFavoritesgroup() {
                   {/* 地圖位置1 */}
                   <p className="card-style-mef ">
                     <FaMapMarkerAlt />
-                    {e.tb_city}
+                    {e.tb_region}
                   </p>
-                  {/* <p className="card-style-mef mef-icon-map-move">
+                  <p className="card-style-mef mef-icon-map-move">
                     <FaMapMarkerAlt />
                     {e.tb_city}
-                  </p> */}
+                  </p>
                   <button className="Ingroup-btn">聊天室</button>
                 </span>
                 <br />

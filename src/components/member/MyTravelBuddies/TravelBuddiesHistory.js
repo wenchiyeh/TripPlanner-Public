@@ -70,7 +70,7 @@ function TravelBuddiesHistory() {
                     <td>{v.tb_ownerId === 1 ? '揪團主' : '團員'}</td>
                     <td>
                       <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
-                      <TBHistoryButtonRating />
+                      <TBHistoryButtonRating id={v.id} />
                       <TBHistoryButtonGiveRating id={v.id} />{' '}
                     </td>
                   </tr>

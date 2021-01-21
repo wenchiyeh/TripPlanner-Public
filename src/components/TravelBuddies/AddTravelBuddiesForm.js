@@ -13,17 +13,17 @@ function AddTravelBuddiesForm() {
   const [validated, setValidated] = useState(false)
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
-  const [tbThemeName, settbThemeName] = useState('1')
-  const [tbThemePhoto, settbThemePhoto] = useState('1')
-  const [tbCityCategory, settbCityCategory] = useState([1])
-  const [tbDateBegin, settbDateBegin] = useState('1')
-  const [tbDateEnd, settbDateEnd] = useState('1')
-  const [tbDaysCategory, settbDaysCategory] = useState('1')
-  const [tbLastApprovedDate, settbLastApprovedDate] = useState('1')
-  const [tbEstimatedCost, settbEstimatedCost] = useState('1')
-  const [tbPersonsNeeded, settbPersonsNeeded] = useState('1')
-  const [tbGenderNeeded, settbGenderNeeded] = useState('1')
-  const [tbThemeIntro, settbThemeIntro] = useState('1')
+  const [tbThemeName, settbThemeName] = useState('')
+  const [tbThemePhoto, settbThemePhoto] = useState('')
+  const [tbCityCategory, settbCityCategory] = useState([])
+  const [tbDateBegin, settbDateBegin] = useState('')
+  const [tbDateEnd, settbDateEnd] = useState('')
+  const [tbDaysCategory, settbDaysCategory] = useState('')
+  const [tbLastApprovedDate, settbLastApprovedDate] = useState('')
+  const [tbEstimatedCost, settbEstimatedCost] = useState('')
+  const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
+  const [tbGenderNeeded, settbGenderNeeded] = useState('')
+  const [tbThemeIntro, settbThemeIntro] = useState('')
 
   // settbCityCategory(
   //   $('input:checkbox:checked[name="tbCityCategory"]').each(function (i) {
@@ -93,14 +93,14 @@ function AddTravelBuddiesForm() {
         <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
-            <TBPicUploadRect
-              giveClassName={{
-                wrap: 'detailPic',
-              }}
-              onChange={(e) => {
-                settbThemePhoto(e.target.value)
-              }}
-            />
+            <Form.File id="formcheck-api-regular">
+              <Form.File.Label>上傳主圖片</Form.File.Label>
+              <Form.File.Input
+                onChange={(e) => {
+                  settbThemePhoto(e.target.value)
+                }}
+              />
+            </Form.File>
             <Form.Group controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
@@ -196,6 +196,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory2`}
                     name="tbCityCategory[]"
                     value="2"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -204,6 +205,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory3`}
                     name="tbCityCategory[]"
                     value="3"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -212,6 +214,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory4`}
                     name="tbCityCategory[]"
                     value="4"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -220,6 +223,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory5`}
                     name="tbCityCategory[]"
                     value="5"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -236,6 +240,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory7`}
                     name="tbCityCategory[]"
                     value="7"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -244,6 +249,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory8`}
                     name="tbCityCategory[]"
                     value="8"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -260,6 +266,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory10`}
                     name="tbCityCategory[]"
                     value="10"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -268,6 +275,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory11`}
                     name="tbCityCategory[]"
                     value="11"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -284,6 +292,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory13`}
                     name="tbCityCategory[]"
                     value="13"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -292,6 +301,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory14`}
                     name="tbCityCategory[]"
                     value="14"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -300,6 +310,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory15`}
                     name="tbCityCategory[]"
                     value="15"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -308,6 +319,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory16`}
                     name="tbCityCategory[]"
                     value="16"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -316,6 +328,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory17`}
                     name="tbCityCategory[]"
                     value="17"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -324,6 +337,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory18`}
                     name="tbCityCategory[]"
                     value="18"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -332,6 +346,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory19`}
                     name="tbCityCategory[]"
                     value="19"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -340,6 +355,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory20`}
                     name="tbCityCategory[]"
                     value="20"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -348,6 +364,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory21`}
                     name="tbCityCategory[]"
                     value="21"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -356,6 +373,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory22`}
                     name="tbCityCategory[]"
                     value="22"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -364,6 +382,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory23`}
                     name="tbCityCategory[]"
                     value="23"
+                    onChange={(e) => checkChange(e)}
                   />
                 </div>
               ))}
@@ -505,46 +524,19 @@ function AddTravelBuddiesForm() {
                   <Form.Label htmlFor="travelBuddiesGenderNeeded">
                     需求性別：
                   </Form.Label>
-                  {['radio'].map((type) => (
-                    <div key={`inline-${type}`} className="mb-3 mt-2">
-                      <Form.Check
-                        inline
-                        label="男性"
-                        type={type}
-                        id={`inline-${type}-genderNeeded1`}
-                        name="tbGenderNeeded"
-                        value="男性"
-                        className="mr-3"
-                        onChange={(e) => {
-                          settbGenderNeeded(e.target.value)
-                        }}
-                      />
-                      <Form.Check
-                        inline
-                        label="女性"
-                        type={type}
-                        id={`inline-${type}-genderNeeded2`}
-                        name="tbGenderNeeded"
-                        value="女性"
-                        className="mr-3"
-                        onChange={(e) => {
-                          settbGenderNeeded(e.target.value)
-                        }}
-                      />
-                      <Form.Check
-                        inline
-                        label="男女皆可"
-                        type={type}
-                        id={`inline-${type}-genderNeeded2`}
-                        name="tbGenderNeeded"
-                        value="男女皆可"
-                        className="mr-3"
-                        onChange={(e) => {
-                          settbGenderNeeded(e.target.value)
-                        }}
-                      />
-                    </div>
-                  ))}
+                  <Form.Control
+                    as="select"
+                    id="tbGenderNeeded"
+                    name="tbGenderNeeded"
+                    placeholder=""
+                    onChange={(e) => {
+                      settbGenderNeeded(e.target.value)
+                    }}
+                  >
+                    <option value="男性">男性</option>
+                    <option value="女性">女性</option>
+                    <option value="男女皆可">男女皆可</option>
+                  </Form.Control>
                   <Form.Control.Feedback type="invalid">
                     請選擇需求性別
                   </Form.Control.Feedback>
@@ -586,8 +578,19 @@ function AddTravelBuddiesForm() {
             <br />
             <Button
               id="insertTravelBuddies"
-              className="add-travelbuddies-preview"
-              onClick={() => addTravelBuddies()}
+              className="add-travelbuddies-cancel"
+              onClick={() => history.push('/travelbuddies')}
+            >
+              {' '}
+              取消
+            </Button>
+            <Button
+              id="insertTravelBuddies"
+              className="add-travelbuddies-confirm"
+              onClick={() => {
+                addTravelBuddies()
+                history.push('/travelbuddies')
+              }}
             >
               {' '}
               新增

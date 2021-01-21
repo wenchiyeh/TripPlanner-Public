@@ -7,13 +7,15 @@ import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
-
+import ShowCreditCard from './ShowCreditCard'
 function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
 
-  const earlyTicket = ticketData.earlyTicket
-  const singleTicket = ticketData.singleTicket
-  const groupTicket = ticketData.groupTicket
+  const aboutClass = JSON.parse(localStorage.getItem('product_Data'))
+
+  const earlyTicket = aboutClass.early
+  const singleTicket = aboutClass.single
+  const groupTicket = aboutClass.group
   function ShowTicketType() {
     if (earlyTicket > 0) {
       return '早鳥票'
@@ -53,7 +55,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
     history.push('/productList/car3')
   }
   function goBack() {
-    history.goBack()
+    history.push(`/productList`)
   }
 
   const step1 = (
@@ -69,7 +71,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
 
         <div className="ticket-buy">
           <div className="ticket-title">
-            <h4>{className}</h4>
+            <h4>{aboutClass.className}</h4>
           </div>
 
           <div className="you-sure">
@@ -90,7 +92,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
             <hr />
             <div className="chose-your-ticket animate__animated  animate__pulse">
               <div>
-                <h3>{classDate}</h3>
+                <h3>{aboutClass.classDate}</h3>
               </div>
               <div>{ShowTicketType()}</div>
 
@@ -158,11 +160,10 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [user_name, setUser_name] = useState('')
   const [user_mail, setUser_mail] = useState('')
   const [user_phone, setUser_phone] = useState('')
-  const [user_birthday, setUser_birthday] = useState('')
   const [user_gender, setUser_gender] = useState('')
   const buy_ticket_price = showTicketPrice()
   const buy_ticket_type = ShowTicketType()
-  const math = 123456789898765432122
+  const math = '125476768981876643252'
   const ticket_number = Math.floor(Math.random(math) * math)
   const now = new Date()
   const year = now.getFullYear()
@@ -171,9 +172,13 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const month = month_array[month_rank]
   const day = now.getDate()
   const buy_ticket_day = year + '-' + month + '-' + day
+  const hours = now.getHours()
+  const minutes = now.getMinutes()
+  const seconds = now.getSeconds()
+  const buy_ticket_time =
+    year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds
   const [credit, setCredit] = useState()
   const [validated, setValidated] = useState(false)
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -202,9 +207,9 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
             user_gender,
             user_phone,
             user_mail,
-            user_birthday,
             credit,
             ticket_number,
+            buy_ticket_time,
           }),
         }
       )
@@ -215,38 +220,45 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
       console.log(err)
     }
   }
-  console.log(
-    className,
-    buy_ticket_type,
-    totalTicket,
-    buy_ticket_price,
-    buy_ticket_day,
-    user_name,
-    user_gender,
-    user_phone,
-    user_mail,
-    user_birthday,
-    credit,
-    ticket_number
-  )
-  const [buttontype, setButtontype] = useState(false)
-  const aboutuser = {
-    name: '陳嘉賢',
-    mail: 'chancha@test.com',
-    phone: '0921039021',
-    birthday: '1992-04-04',
-    gender: '1',
-  }
-  // if (buttontype === true) {
-  //   setUser_name(aboutuser.name)
-  //   setUser_mail(aboutuser.mail)
-  //   setUser_phone(aboutuser.phone)
-  //   setUser_birthday(aboutuser.birthday)
-  // }
 
+  async function buttonSubmit() {
+    try {
+      const response = await fetch('http://localhost:5000/paymentaction', {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          className,
+          buy_ticket_type,
+          totalTicket,
+          buy_ticket_price,
+          buy_ticket_day,
+          user_name,
+          user_gender,
+          user_phone,
+          user_mail,
+          credit,
+          ticket_number,
+          buy_ticket_time,
+        }),
+      })
+      if (response.ok) {
+        console.log('ok')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const [buttontype, setButtontype] = useState(false)
+  const aboutuser = JSON.parse(localStorage.getItem('userData'))
   // useEffect(() => {
-  //   console.log(buttontype)
-  // }, [buttontype])
+  //   if (buttontype === true) {
+  //     setUser_name(aboutuser.member_name)
+  //     setUser_mail(aboutuser.email)
+  //     setUser_phone(aboutuser.member_phone)
+  //   }
+  // }, [])
+  console.log(user_name, user_gender, user_phone, user_mail)
 
   const step2 = (
     <>
@@ -318,15 +330,14 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                   <Form.Control
                     type="text"
                     placeholder="請輸入姓名"
-                    defaultValue={buttontype === true ? aboutuser.name : ''}
+                    defaultValue={
+                      buttontype === true ? aboutuser.member_name : ''
+                    }
                     onChange={(e) => {
                       setUser_name(e.target.value)
                     }}
                     required
                   />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入正確的姓名
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -338,12 +349,11 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     required
                     type="text"
                     placeholder="請輸入信箱"
-                    defaultValue={buttontype === true ? aboutuser.mail : ''}
+                    defaultValue={buttontype === true ? aboutuser.email : ''}
                     onChange={(e) => {
                       setUser_mail(e.target.value)
                     }}
                   />
-                  <Form.Control.Feedback>正確!</Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
               <Form.Row>
@@ -355,33 +365,16 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     type="text"
                     placeholder="0988888888"
                     required
-                    defaultValue={buttontype === true ? aboutuser.phone : ''}
+                    defaultValue={
+                      buttontype === true ? aboutuser.member_phone : ''
+                    }
                     onChange={(e) => {
                       setUser_phone(e.target.value)
                     }}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入正確的電話號碼
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} md="6" controlId="validationCustom05">
-                  <Form.Label>出生日期</Form.Label>
-                  <span className="med-add-text-red">*</span>
-                  <Form.Control
-                    type="date"
-                    required
-                    defaultValue={buttontype === true ? aboutuser.birthday : ''}
-                    onChange={(e) => {
-                      setUser_birthday(e.target.value)
-                    }}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入出生日期
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Form.Row>
+
               <Form.Row className="have_button">
                 <Form.Group
                   as={Col}
@@ -403,7 +396,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     <option value="2">女性</option>
                   </Form.Control>
                 </Form.Group>
-                {/* <Button
+                <Button
                   variant="info"
                   className="fast_input_button"
                   onClick={() => {
@@ -411,7 +404,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                   }}
                 >
                   快速填寫
-                </Button> */}
+                </Button>
               </Form.Row>
               <hr />
 
@@ -491,6 +484,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       </span>
                     </Form.Check>
                   </div>
+                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">
@@ -508,22 +502,19 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                     type="submit"
                     variant="info"
                     onClick={
-                      (user_name,
-                      user_phone,
-                      user_mail,
-                      user_birthday === ''
+                      user_name === '' && user_phone === '' && user_mail === ''
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
-                            getUser()
+                            // getUser()
 
                             if (credit === 'visa') {
-                              window.location = 'https://p.ecpay.com.tw/6708411'
+                              buttonSubmit()
                             } else if (credit === 'atm') {
                               window.location = 'https://p.ecpay.com.tw/39F39C9'
                             } else if (credit === 'applepay') {
                               return carThree()
                             }
-                          })
+                          }
                     }
                   >
                     結帳

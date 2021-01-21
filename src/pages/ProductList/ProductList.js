@@ -16,7 +16,6 @@ function ProductList() {
   }, [searchFilter])
 
   useEffect(() => {
-    console.log(searchFilter)
     getDataFromDB()
   }, [searchFilter])
 
@@ -33,7 +32,6 @@ function ProductList() {
       if (response.ok) {
         const data = await response.json()
         segDataFromDB(data)
-        console.log('data = ', data)
         setTimeout(() => {
           if (data.length === 0) {
             setIsLoading(3)

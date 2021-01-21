@@ -13,6 +13,30 @@ function MemberProfile({ setMember }) {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  async function getMember(id) {
+    try {
+      const response = await fetch(`http://localhost:5000/member/${id}`, {
+        mode: 'cors',
+        method: 'get',
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        console.log('response:', response)
+        setMember(data)
+        localStorage.setItem('userData', JSON.stringify(data))
+        console.log('memberdata:', data)
+        // 最後關起spinner，改呈現真正資料
+        setTimeout(() => {
+          // setIsLoading(false)
+        }, 0)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
   const display = (
     <>
       <div className="person">

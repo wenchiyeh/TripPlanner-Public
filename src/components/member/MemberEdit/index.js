@@ -228,6 +228,7 @@ function MemberEdit({ member }) {
                 <Form.File.Label>更換大頭照</Form.File.Label>
                 <Form.File.Input
                   type="file"
+                  name="file"
                   onChange={(e) => {
                     setMember_photo_id(e.target.value)
                   }}

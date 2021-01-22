@@ -24,7 +24,7 @@ function HomeP2scoll2() {
               <div className="p2-scoll1-txt col-6   ">
                 <div className="row justify-content-around">
                   <div className="col-7.2">
-                    <h1>和附近朋友一起揪團旅行</h1>
+                    <h1>建立屬於自己的專屬旅行</h1>
                   </div>
                   <div className="col-2 ">
                     <hr data-aos="flip-left" data-aos-delay="900" />

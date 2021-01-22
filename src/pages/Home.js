@@ -41,8 +41,9 @@ function Home() {
           position.coords.longitude
         ).then(
           (response) => {
-            const address = response.results[8].address_components[0].long_name
+            const address = response.results[9].address_components[2].long_name
             settmapstory(address)
+            console.log(address)
           },
           (error) => {
             console.error(error)

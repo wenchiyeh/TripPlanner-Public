@@ -3,7 +3,6 @@ import { Button, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import './buy-products.scss'
-
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
 
 // icon
@@ -76,11 +75,17 @@ function BuyProducts({
     history.push(`/productList/car1/${product_id}`)
   }
   const data = {
-    className: className,
-    classDate: classDate,
+    className,
+    classDate,
     early,
     single,
     group,
+    classPhoto,
+    product_id,
+    classTimeStart,
+    classTimeEnd,
+    address,
+    location,
   }
   function getLocal() {
     localStorage.setItem('product_Data', JSON.stringify(data))
@@ -168,9 +173,8 @@ function BuyProducts({
             <p>{className}</p>
             <div className="clock-time">
               <FiClock />
-              <p>{classDate}</p>
               <p>
-                {classTimeStart}-{classTimeEnd}
+                {classDate} {classTimeStart}-{classTimeEnd}
               </p>
             </div>
 

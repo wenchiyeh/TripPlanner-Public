@@ -229,7 +229,7 @@ function MemberEdit({ member }) {
                 <Form.File.Input
                   type="text"
                   onChange={(e) => {
-                    setMember_photo_id(e.target.value)
+                    setMember_photo_id(e.target.files[0].name)
                   }}
                 />
               </Form.File>

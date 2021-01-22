@@ -39,8 +39,8 @@ function MeFavoritesgroup() {
             <div className="col-md-4">
               <img
                 // 要放絕對路徑
-                src="http://localhost:3000/images/member/DSC_7437-37.jpg"
-                // src={'/images/tbPhoto/' + v.tb_themePhoto}
+                // src="http://localhost:3000/images/member/DSC_7437-37.jpg"
+                src={'/images/tbPhoto/' + e.tb_themePhoto}
                 className="card-img img-fluid"
                 alt="..."
               />

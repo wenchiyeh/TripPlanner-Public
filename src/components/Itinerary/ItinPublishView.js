@@ -13,9 +13,11 @@ import ItinEditorDetail from './ItinEditorDetail'
 // let fakeUserId = 0 //預設使用者為0號
 //
 function ItinPublishView({ isEdit = false }) {
-  const [dataFromDB, segDataFromDB] = useState([])
+  const [dataFromDB, setgDataFromDB] = useState([])
+  const [dataToDB, setDataToDB] = useState()
   const [isLoading, setIsLoading] = useState(1)
   const [isPublish, setIsPublish] = useState(true)
+  const fs = require('fs')
   let isMe = false
   let { itin_id } = useParams()
   async function getDataFromDB() {
@@ -29,8 +31,9 @@ function ItinPublishView({ isEdit = false }) {
       )
       if (response.ok) {
         const data = await response.json()
-        segDataFromDB(data)
+        setgDataFromDB(data)
         console.log(`isPublish = ${data[0].publish_time}`)
+        console.log(data)
         if (data[0].publish_time === null) {
           setIsPublish(false)
         }
@@ -47,7 +50,42 @@ function ItinPublishView({ isEdit = false }) {
     }
   }
   function handleDataToDB() {
+    let dataReadyToSend = []
+    let dataItin = {
+      id: dataFromDB[1][0].data[0].itinerary_id,
+      info: document.querySelector('.itin-basicdata-text').value,
+      imageIndex:
+        '-1' && document.querySelector('input[name="itin-kv"]:checked').value,
+    }
+    let dataBox = []
+    for (let i = 0; i < dataFromDB[1].length; i++) {
+      console.log(`day ${i}`)
+      for (let j = 0; j < dataFromDB[1][i].data.length; j++) {
+        console.log(`day ${i} box ${j}`)
+        let url = `/images/boxImage/itin${dataFromDB[1][i].data[j].itinerary_id}-${i}-${j}`
+        if (document.querySelector(`.PicInfo${i}${j}`)) {
+          let imageData = document.querySelector(`.PicInfo${i}${j}`).src
+          let data64 = imageData.replace(/^data:image\/\w+;base64,/, '')
+          let dataBuffer = new Buffer.from(data64, 'base64')
+          fs.writeFile(url, dataBuffer, function (err) {
+            if (err) {
+              console.log('fail')
+            } else {
+              console.log('success')
+            }
+          })
+        }
+        let text = document.querySelector(`.textarea-${i}${j}`).value
+        dataBox.push({
+          index: `${i}${j}`,
+          image: url,
+          text: text,
+        })
+      }
+    }
+    dataReadyToSend = [dataItin, dataBox]
     console.log('publish!')
+    console.log(dataReadyToSend)
   }
   const displayView = dataFromDB.length > 0 && (
     <div className="itin-editor-frame">

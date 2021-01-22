@@ -15,6 +15,26 @@ function Login(props) {
 
     setValidated(true)
   }
+
+  //   const emailtext = (
+  //   <>
+  //   <div>
+  //   Email.send({
+  //     Host : "smtp.yourisp.com",
+  //     Username : "username",
+  //     Password : "password",
+  //     To : 'them@website.com',
+  //     From : "you@isp.com",
+  //     Subject : "This is the subject",
+  //     Body : "And this is the body"
+  // })
+  // .then(
+  //   message => alert(message)
+  // );
+  // </div>
+  // </>
+  //   )
+  // const srcemail = 'https://smtpjs.com/v3/smtp.js'
   return (
     <>
       <body className="body-sigon">
@@ -41,27 +61,6 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            {/* <Form.Row>
-              <Form.Group as={Col} md="10" controlId="validationCustomUsername">
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text id="inputGroupPrepend">
-                      <FaUnlockAlt />
-                    </InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control
-                    className="sogin-input-br"
-                    type="text"
-                    placeholder="您的密碼"
-                    aria-describedby="inputGroupPrepend"
-                    required
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    請輸入正確的密碼格式
-                  </Form.Control.Feedback>
-                </InputGroup>
-              </Form.Group>
-            </Form.Row> */}
             <Button type="submit" className="login-btn">
               送出
             </Button>

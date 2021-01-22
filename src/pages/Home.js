@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '.././style/home.scss'
-import HomeHeader from '../components/main/HomeHeader'
+// import HomeHeader from '../components/main/HomeHeader'
 // import Footer from '../components/main/Footer'
 import Kv from '../components/main/Kv'
 import HomeTitle1 from '../components/main/HomeTitle1'
@@ -63,10 +63,6 @@ function Home() {
 
   return (
     <>
-      <div className="navbar-background" />
-
-      <HomeHeader />
-
       <Kv mapstory={mapstory} />
 
       <article className="home-body">

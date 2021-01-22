@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
-
 import { FaCoins } from 'react-icons/fa'
-import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
 function Header({ auth, setAuth }) {
@@ -64,9 +62,27 @@ function Header({ auth, setAuth }) {
     </>
   )
 
+  let history = useHistory()
+  const [headerStyle, setHeaderStyle] = useState(0)
+  // const [memberData, setMemberData] = useState(
+  //   JSON.parse(localStorage.getItem('userData'))
+  // )
+  useEffect(() => {
+    if (history.location.pathname === '/') {
+      setHeaderStyle(0)
+    } else {
+      setHeaderStyle(1)
+    }
+  }, [history.location.pathname])
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        // bg={'primary'}
+        variant="dark"
+        className={headerStyle === 0 ? 'HomeNavbar-color' : 'HomeNavbar-inner'}
+      >
         <Navbar.Brand as={NavLink} to="/" className="Navbar-Logo">
           <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>
@@ -75,6 +91,7 @@ function Header({ auth, setAuth }) {
           <Nav className="mr-auto">
             <Nav.Link
               as={NavLink}
+              onClick={() => setHeaderStyle(1)}
               to="/itinerary"
               exact
               className="Navbar-Title h5 "
@@ -83,6 +100,7 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
+              onClick={() => setHeaderStyle(1)}
               to="/travelBuddies"
               className="Navbar-Title h5 "
             >
@@ -90,6 +108,7 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
+              onClick={() => setHeaderStyle(1)}
               to="/productList"
               className="Navbar-Title h5 "
             >
@@ -97,7 +116,11 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={NavLink} to="/member">
+            <Nav.Link
+              as={NavLink}
+              onClick={() => setHeaderStyle(1)}
+              to="/member"
+            >
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productList/car">

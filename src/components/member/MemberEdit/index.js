@@ -18,9 +18,9 @@ function MemberEdit({ member }) {
   const [member_phone, setPhone] = useState(member.member_phone)
   const [birthday, setBirthday] = useState(member.birthday)
   const [member_sex, setMember_sex] = useState(member.member_sex)
-  const [member_photo_id, setMember_photo_id] = useState(
-    member.setmember_photo_id
-  )
+  // const [member_photo_id, setMember_photo_id] = useState(
+  //   member.setmember_photo_id
+  // )
   const [member_id, setMember_id] = useState(member.member_id)
   const [member_aboutme, setMember_aboutme] = useState(member.member_aboutme)
 
@@ -33,7 +33,7 @@ function MemberEdit({ member }) {
       member_phone,
       birthday,
       member_sex,
-      member_photo_id,
+      // member_photo_id,
       member_id,
       member_aboutme,
     }
@@ -73,7 +73,7 @@ function MemberEdit({ member }) {
         setPhone(member.phone)
         setBirthday(member.birthday)
         setMember_sex(member.member_sex)
-        setMember_photo_id(member.setmember_photo_id)
+        // setMember_photo_id(member.setmember_photo_id)
         setMember_id(member.member_id)
         setMember_aboutme(member.member_aboutme)
       }
@@ -221,14 +221,13 @@ function MemberEdit({ member }) {
             </Form.Control>
           </Form.Group>
         </Form.Row>
-        <Form.Row>
+        {/* <Form.Row>
           <Form.Group>
             <div className="mb-3">
               <Form.File id="formcheck-api-regular">
                 <Form.File.Label>更換大頭照</Form.File.Label>
                 <Form.File.Input
-                  type="file"
-                  name="file"
+                  type="text"
                   onChange={(e) => {
                     setMember_photo_id(e.target.value)
                   }}
@@ -236,7 +235,7 @@ function MemberEdit({ member }) {
               </Form.File>
             </div>
           </Form.Group>
-        </Form.Row>
+        </Form.Row> */}
         {/* 暱稱 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom06">

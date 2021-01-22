@@ -1,9 +1,10 @@
 //免費註冊
 import React, { useState } from 'react'
-import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
+import { FaUserAlt, FaUnlockAlt, FaFacebook } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
 import './sign.scss'
+import LoginHooks from '../Login/LoginHooks'
 function Login() {
   let history = useHistory()
   const [member, setMember] = useState([])
@@ -101,15 +102,15 @@ function Login() {
             </Button>
             <div className="sogin-samp-text d-flex">
               <span>
-                <Link
+                {/* <Link
                   to="/sigon"
                   onClick={() => {
                     history.push('/login')
                   }}
                 >
                   登入
-                </Link>
-                {/* <a href="http://localhost:3000/login">登入</a> */}
+                </Link> */}
+                <a href="http://localhost:3000/login">登入</a>
               </span>
             </div>
             <div className="d-flex sogin-line-center">
@@ -122,7 +123,7 @@ function Login() {
                 <FaFacebook />
               </span>
               <span>
-                <FaGoogle />
+                <LoginHooks />
               </span>
             </div>
           </Form>

@@ -81,7 +81,7 @@ function ProductList() {
                 id={v.id}
                 time1={v.classDate}
                 title={v.className}
-                text={v.warning}
+                text={v.location}
                 person={v.teacher_name}
                 price={v.ticket_price}
                 like={'222'}

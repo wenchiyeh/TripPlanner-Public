@@ -44,7 +44,12 @@ function BuyProducts({
   changeData,
 }) {
   // 這是modal
+  // teacher Modal
   const [smShow, setSmShow] = useState(false)
+
+  // shoppingcar modal
+  const [smallShow, setSmallShow] = useState(false)
+
   const handleShow = () => setSmShow(true)
 
   // 計數器
@@ -73,6 +78,9 @@ function BuyProducts({
   let history = useHistory()
   function InTheCar() {
     history.push(`/productList/car1/${product_id}`)
+  }
+  function backProductList() {
+    history.push(`/productList`)
   }
   const data = {
     className,
@@ -250,20 +258,48 @@ function BuyProducts({
               {/* 上半部右邊下面按鈕 */}
               {early === 0 && group === 0 && single === 0 ? (
                 <Button variant="info" disabled>
-                  加入購物車{' '}
+                  加入購物車
                 </Button>
               ) : (
                 <Button
                   variant="info"
                   onClick={() => {
                     getLocal()
-                    // alert('已加入購物車')
-                    InTheCar()
+                    setSmallShow(true)
                   }}
                 >
                   加入購物車
                 </Button>
               )}
+              <Modal
+                size="sm"
+                show={smallShow}
+                onHide={() => setSmallShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    已加入購物車
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="modalButton">
+                  <Button
+                    variant="info"
+                    className="keepShop"
+                    onClick={() => backProductList()}
+                  >
+                    繼續購物
+                  </Button>
+                  <Button
+                    variant="info"
+                    className="goNextOne"
+                    onClick={() => InTheCar()}
+                  >
+                    下一步
+                  </Button>
+                </Modal.Body>
+              </Modal>
+
               <div className="followMyHeart">
                 <Button variant="light" onClick={() => tbLiked(liked)}>
                   {liked === 1 ? <AiTwotoneHeart /> : <AiOutlineHeart />}

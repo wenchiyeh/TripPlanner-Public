@@ -473,7 +473,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
                             getUser()
-
+                            carThree()
                             // if (credit === 'visa') {
                             //   window.location = 'https://p.ecpay.com.tw/6708411'
                             // } else if (credit === 'atm') {

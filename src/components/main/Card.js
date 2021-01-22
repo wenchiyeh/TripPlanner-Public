@@ -44,7 +44,7 @@ function Card({
   const calenderMark = (
     <>
       <FaRegCalendarCheck />
-      &emsp;
+      &ensp;
       {duration + '天'}
       &emsp;&emsp;
     </>
@@ -52,7 +52,7 @@ function Card({
   const priceMark = (
     <>
       <FaDollarSign />
-      &emsp;
+      &ensp;
       {price}
       &emsp;&emsp;
     </>
@@ -80,7 +80,7 @@ function Card({
         <p className="card-info content-small d-flex justify-content-between">
           <span>
             <FaUsers />
-            &emsp;
+            &ensp;
             {person}
             &emsp;&emsp;
             {duration !== -1 && calenderMark}
@@ -103,7 +103,7 @@ function Card({
           <div role="button" className="card-button">
             <p>
               <FaRegBookmark />
-              &emsp;
+              &ensp;
               {nowMark}
             </p>
           </div>

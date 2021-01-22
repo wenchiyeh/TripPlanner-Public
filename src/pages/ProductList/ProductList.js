@@ -8,9 +8,42 @@ import Carousel from '../../components/TravelBuddies/Carousel'
 
 function ProductList() {
   const [searchFilter, setSearchFilter] = useState({})
+  const [dataFromDB, segDataFromDB] = useState([])
+  const [isLoading, setIsLoading] = useState(1)
+
   useEffect(() => {
     getProductCard()
   }, [searchFilter])
+
+  useEffect(() => {
+    getDataFromDB()
+  }, [searchFilter])
+
+  async function getDataFromDB() {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/productList?` +
+          new URLSearchParams(searchFilter),
+        {
+          method: 'get',
+          mode: 'cors',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        segDataFromDB(data)
+        setTimeout(() => {
+          if (data.length === 0) {
+            setIsLoading(3)
+          } else {
+            setIsLoading(0)
+          }
+        }, 0)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
+  }
 
   const [productCard, setProductCard] = useState([])
 
@@ -32,7 +65,7 @@ function ProductList() {
     getProductCard()
   }, [])
 
-  return (
+  const displayView = (
     <>
       <Container>
         <MyBreadCrumb />
@@ -62,6 +95,14 @@ function ProductList() {
       </Container>
     </>
   )
+
+  if (isLoading === 0) {
+    return displayView
+  } else if (isLoading === 1) {
+    return <h1>讀取中</h1>
+  } else {
+    return <h1>查無行程</h1>
+  }
 }
 
 export default ProductList

@@ -9,7 +9,7 @@ import Notice from '../../pages/Notice'
 import MyAccount from '../member/MyAccount'
 function FunctionBar() {
   return (
-    // <Router>
+    //<Router>
     <>
       <div className="functio-bar">
         <Link to="/myAccount">我的帳戶</Link>
@@ -37,7 +37,7 @@ function FunctionBar() {
         </Route>
       </Switch>
     </>
-    // </Router>
+    //</Router>
   )
 }
 

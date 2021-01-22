@@ -75,6 +75,16 @@ function BuyProducts({
   function InTheCar() {
     history.push(`/productList/car1/${product_id}`)
   }
+  const data = {
+    className: className,
+    classDate: classDate,
+    early,
+    single,
+    group,
+  }
+  function getLocal() {
+    localStorage.setItem('product_Data', JSON.stringify(data))
+  }
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
@@ -158,8 +168,9 @@ function BuyProducts({
             <p>{className}</p>
             <div className="clock-time">
               <FiClock />
+              <p>{classDate}</p>
               <p>
-                {classDate} {classTimeStart}-{classTimeEnd}
+                {classTimeStart}-{classTimeEnd}
               </p>
             </div>
 
@@ -234,12 +245,19 @@ function BuyProducts({
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
               {early === 0 && group === 0 && single === 0 ? (
-                <Button variant="info" onClick={InTheCar} disabled>
+                <Button variant="info" disabled>
                   加入購物車{' '}
                 </Button>
               ) : (
-                <Button variant="info" onClick={InTheCar}>
-                  加入購物車{' '}
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    getLocal()
+                    alert('已加入購物車')
+                    InTheCar()
+                  }}
+                >
+                  加入購物車
                 </Button>
               )}
               <div className="followMyHeart">

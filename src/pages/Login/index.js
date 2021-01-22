@@ -44,12 +44,13 @@ function Login(props) {
         console.log('我是誰', data)
         if (data) {
           setMember(data)
-          localStorage.setItem('userName', 'memberId')
-          localStorage.setItem('userid', data.member)
+          // localStorage.setItem('userName', 'memberId')
+          // localStorage.setItem('userid', data.member)
           localStorage.setItem('userData', JSON.stringify(data))
           setAuth(true)
           // sessionStorage.setItem('userName', 'memberId')
           // sessionStorage.setItem('userid', data.member)
+          history.push(`/myAccount`)
         } else {
           console.log('請輸入正確的帳號密碼')
         }
@@ -59,17 +60,17 @@ function Login(props) {
       console.log(err)
     }
   }
-  useEffect(() => {
-    if (localStorage.getItem('userid')) {
-      //console.log(`登入成功 會員: ${member}`)
-      // setMember()
-      history.push(`/myAccount`)
-      // history.push(`/myAccount/${member}`)
-    } else {
-      // history.push('/login')
-      console.log('請重新輸入')
-    }
-  }, [member])
+  // useEffect(() => {
+  //   if (localStorage.getItem('userData')) {
+  //     console.log(`登入成功 會員: ${member}`)
+  //     setMember()
+  //     history.push(`/myAccount`)
+  //     history.push(`/myAccount/${member}`)
+  //   } else {
+  //     history.push('/login')
+  //     console.log('請重新輸入')
+  //   }
+  // }, [member])
 
   // const mesin = <samp isAuth={isAuth}></samp>
   const mesin = <samp></samp>

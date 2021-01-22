@@ -4,6 +4,7 @@ import '../../style/header.scss'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
+
 import { FaCoins } from 'react-icons/fa'
 import '../../style/header.scss'
 import MebPopover from './MebPopover'
@@ -99,14 +100,15 @@ function Header({ auth, setAuth }) {
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productList/car">
-              <FiShoppingCart className="Navbar-icon" />
+              <div className="not-icon-mover">
+                <FiShoppingCart className="Navbar-icon" />
+              </div>
+              <Badge variant="light">2</Badge>
             </Nav.Link>
             <Nav.Link>
               <div className="not-icon-mover">
                 <MebPopover className="Navbar-icon" />
-                {/* <Notification className="Navbar-icon " /> */}
               </div>
-              {/* <FaRegBell className="Navbar-icon" /> */}
               <Badge variant="light">5</Badge>
             </Nav.Link>
             {auth ? (

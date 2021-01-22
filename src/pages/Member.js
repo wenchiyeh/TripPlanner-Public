@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import StarRating from '../components/member/StarRating'
-import MemberProfile from '../components/member/MemberProfile'
+import MemberProfile from '../components/member/MemberProfile/index'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useHistory } from 'react-router-dom'
@@ -20,16 +20,14 @@ import { useHistory } from 'react-router-dom'
 //   }
 // })
 function Member() {
-  // let history = useHistory()
+  let history = useHistory()
   const [isLoading, setIsLoading] = useState(true)
   const [member, setMember] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
-  // setIsLoading(true)
   async function getMember(id) {
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
-        //mode: 'no-cors',
         mode: 'cors',
         method: 'get',
       })
@@ -38,6 +36,7 @@ function Member() {
         const data = await response.json()
         console.log('response:', response)
         setMember(data)
+        localStorage.setItem('userData', JSON.stringify(data))
         console.log('memberdata:', data)
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {
@@ -46,7 +45,7 @@ function Member() {
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
-      // history.push('/login')
+      history.push('/login')
       console.log(err)
     }
   }
@@ -74,9 +73,8 @@ function Member() {
   // }
   useEffect(() => {
     getMember(member.newsId)
-    // console.log('me有資料嗎?', member)
+    console.log('me有資料嗎?', member)
   }, [])
-
   const Loading = <h1>Loading</h1>
 
   const display = (
@@ -84,7 +82,7 @@ function Member() {
       <article className="article">
         <div className="aside">
           <section className="aboutMember">
-            <MemberProfile member={member} />
+            <MemberProfile member={member} setMember={setMember} />
             <StarRating />
             <CalendarApp />
           </section>

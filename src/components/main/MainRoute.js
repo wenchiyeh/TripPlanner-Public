@@ -6,14 +6,15 @@ import ProductsRoute from '../../pages/ProductList/ProductsRoute'
 import LineChart from '../../pages/LineChart '
 import TravelBuddiesRoute from '../TravelBuddies/TravelBuddiesRoute'
 
-function MainRoute() {
-  function PrivateRoute({ component: Component, authed, ...rest }) {
+function MainRoute({ setAuth }) {
+  function PrivateRoute({ component: Component, authed, setAuth, ...rest }) {
     return (
       <Route
         {...rest}
+        setAuth={setAuth}
         render={(props) =>
           authed === true ? (
-            <Component {...props} />
+            <Component setAuth={setAuth} {...props} />
           ) : (
             <Redirect
               to={{ pathname: '/login', state: { from: props.location } }}
@@ -28,9 +29,10 @@ function MainRoute() {
     <>
       <Switch>
         <PrivateRoute
-          authed={localStorage.getItem('userName') && true}
+          authed={localStorage.getItem('userData') && true}
           path="/myAccount"
           component={Member}
+          setAuth={setAuth}
         />
         <Route path="/itinerary">
           <ItinRoute />

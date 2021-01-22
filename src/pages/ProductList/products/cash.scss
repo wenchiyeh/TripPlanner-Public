@@ -167,6 +167,16 @@ body {
       // 以上為 step1 獨有
 
       // 以下為 step2 獨有
+      .have_button {
+        display: flex;
+        justify-content: space-between;
+
+        .fast_input_button {
+          width: 120px;
+          height: 40px;
+          margin-top: 60px;
+        }
+      }
 
       .about-member {
         margin-top: 32px;
@@ -330,4 +340,7 @@ body {
     margin: 16px auto;
     opacity: 0.8;
   }
+}
+.gobuyProduct {
+  margin-bottom: 16px;
 }

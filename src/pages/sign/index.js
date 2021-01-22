@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import './sign.scss'
 function Login(props) {
   let history = useHistory()
@@ -101,7 +101,15 @@ function Login(props) {
             </Button>
             <div className="sogin-samp-text d-flex">
               <span>
-                <a href="http://localhost:3000/login">登入</a>
+                <Link
+                  to="/sigon"
+                  onClick={() => {
+                    history.push('/login')
+                  }}
+                >
+                  登入
+                </Link>
+                {/* <a href="http://localhost:3000/login">登入</a> */}
               </span>
             </div>
             <div className="d-flex sogin-line-center">

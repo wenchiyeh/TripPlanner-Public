@@ -21,6 +21,7 @@ function MapProduct(props) {
       )
       if (response.ok) {
         const data = await response.json()
+
         setProductData(data)
       }
     } catch (err) {

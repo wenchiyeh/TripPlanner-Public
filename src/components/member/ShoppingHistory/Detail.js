@@ -94,11 +94,6 @@ function Detail() {
               <h5>{orderDetail[0].mail}</h5>
             </div>
             <hr />
-            <div>
-              <h4>出生日期</h4>
-              <h5>{orderDetail[0].birthday}</h5>
-            </div>
-            <hr />
           </div>
         </div>
       </div>

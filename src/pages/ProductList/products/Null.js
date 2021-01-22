@@ -25,7 +25,7 @@ function Null() {
             現在沒有想參加的講座喔
           </h3>
 
-          <Button variant="info" onClick={goToBuy}>
+          <Button variant="info" onClick={goToBuy} className="gobuyProduct">
             現在就去參加
           </Button>
         </div>

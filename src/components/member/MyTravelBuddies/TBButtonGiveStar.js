@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { Button, Modal, Form } from 'react-bootstrap'
 
 function TBButtonGiveStar(props) {
+  let history = useHistory()
   let memberName = props.memberName
   const [tbGiveStar, settbGiveStar] = useState(false)
   const [doGiveStar, setDoGiveStart] = useState(0)
@@ -38,6 +39,7 @@ function TBButtonGiveStar(props) {
         // 剖析資料為JS的數值
         const data = await response.json()
         console.log(data)
+        // props.getTBMembers()
       }
     } catch (error) {
       // 發生錯誤的處理情況
@@ -102,8 +104,9 @@ function TBButtonGiveStar(props) {
               onClick={() => {
                 setDoGiveStart(1)
                 giveStarRating()
+                settbGiveStar(false)
               }}
-              type="button"
+              type="submit"
             >
               確定
             </Button>

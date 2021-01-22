@@ -6,7 +6,6 @@ import TBButtonChatroom from './TBButtonChatroom'
 import TBHistoryButtonRating from './TBHistoryButtonRating'
 import TBHistoryButtonRatingNo from './TBHistoryButtonRatingNo'
 import TBHistoryButtonGiveRating from './TBHistoryButtonGiveRating'
-import TBHistoryButtonRatingDone from './TBHistoryButtonRatingDone'
 
 function TravelBuddiesHistory() {
   const [tbHistory, settbHistory] = useState([])

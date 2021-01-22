@@ -4,7 +4,7 @@ import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
 import './sign.scss'
-function Login(props) {
+function Login() {
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')

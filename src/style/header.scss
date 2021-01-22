@@ -70,3 +70,11 @@ figure{
     border-radius: 50%;
   }
 }
+
+//解決會員中心污染顏色
+.dropdown-item.active, .dropdown-item:active {
+  color:black;
+  // text-decoration: none;
+  background-color:transparent;
+}
+

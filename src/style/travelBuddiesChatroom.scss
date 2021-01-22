@@ -29,6 +29,24 @@
     }
     .travelbuddies-chatroom-maincontent {
       overflow: auto;
+      .tb-chatroom-res {
+        text-align: left;
+      }
+      .tb-chatroom-send {
+        text-align: right;
+      }
+    }
+    .travelbuddies-chatroom-sent-m {
+      text-align: right;
+      .message-btn {
+        width: 85px;
+        height: 36px;
+        border: none;
+        border-radius: 3px;
+        background: $main-red;
+        color: #ffffff;
+        font-size: 14px;
+      }
     }
   }
 }

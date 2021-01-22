@@ -1,15 +1,38 @@
-import React, { useState } from 'react'
-import ItinEditorHeader from './ItinEditorHeader'
+import React, { useEffect, useState } from 'react'
 import SpotsBox from './SpotsBox'
-import { Button } from 'react-bootstrap'
-import { FaTimesCircle } from 'react-icons/fa'
+import ConfirmBox from '../main/ConfirmBox'
+import { FaTimesCircle, FaPlusCircle } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 //
 //測試用假資料
 import fakeTestingData from './testBoxData'
 
-function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
-  const [tempData, setTempData] = useState(boxData)
+function ItinEditor({
+  isEdit = false,
+  tempData = fakeTestingData,
+  setTempData,
+}) {
+  // const [tempData, setTempData] = useState(boxData)
+  //
+  //處理confirm
+  const [modalShow, setModalShow] = useState(false)
+  const [modalType, setModalType] = useState(<></>)
+  function createModal(props) {
+    setModalType(
+      <ConfirmBox
+        show={modalShow}
+        onHide={setModalShow}
+        resetDom={setModalType}
+        {...props}
+      />
+    )
+  }
+  useEffect(() => {
+    if (modalType !== <></>) {
+      setModalShow(true)
+    }
+  }, [modalType])
+  //
   //處理bar開關
   const classIsClose = [
     'itin-editor-daybox d-flex justify-content-between align-items-center',
@@ -35,6 +58,27 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
     setTempData(originArray) //當下所有數據
     // console.log(originArray)
   }
+  function dayPlus() {
+    const originArray = Array.from(tempData)
+    const nowDay = originArray.length
+    originArray.push({ title: `第 ${nowDay + 1} 日`, data: [] })
+    setTempData(originArray)
+  }
+  function dayDelete(day) {
+    const originArray = Array.from(tempData)
+    const nowDay = originArray.length
+    if (nowDay <= 1) {
+      return
+    } else {
+      originArray.splice(day, 1)
+      setTempData(originArray)
+    }
+  }
+  function boxDelete(day, box) {
+    const originArray = Array.from(tempData)
+    originArray[day].data.splice(box, 1)
+    setTempData(originArray)
+  }
   const displayEdit = (
     <div className="itin-editor-wrapper">
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -52,8 +96,20 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
               }}
               className={classIsClose[0]}
             >
-              <span>{data.title}</span>
-              <span className="box-close-btn">
+              <span>{`第 ${dayIndex + 1} 日`}</span>
+              <span
+                className="box-close-btn"
+                onClick={() => {
+                  if (tempData.length > 1) {
+                    createModal({
+                      header: '請再次確認',
+                      text: `是否刪除第 ${dayIndex + 1} 日？`,
+                      cb: dayDelete,
+                      cbProps: [dayIndex],
+                    })
+                  }
+                }}
+              >
                 <FaTimesCircle size={26} />
               </span>
             </div>
@@ -81,8 +137,16 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                               index={[dayIndex, index]}
                               data={element}
                               isEdit={isEdit}
-                              allData={tempData}
-                              doEdit={setTempData}
+                              dataFromUser={tempData}
+                              setDataFromUser={setTempData}
+                              doDelete={() => {
+                                createModal({
+                                  header: '請再次確認',
+                                  text: `是否刪除此行程？`,
+                                  cb: boxDelete,
+                                  cbProps: [dayIndex, index],
+                                })
+                              }}
                             />
                           </div>
                         )}
@@ -90,17 +154,23 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                     </div>
                   ))}
                   {provided.placeholder}
-                  <div className="d-flex justify-content-center">
+                  {/* <div className="d-flex justify-content-center">
                     <Button variant="primary" onClick={() => {}}>
                       +行程
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </Droppable>
           </div>
         ))}
       </DragDropContext>
+      <div className="itin-editor-daybox dayPlus d-flex align-items-center">
+        <span onClick={dayPlus}>
+          <FaPlusCircle size={26} />
+        </span>
+      </div>
+      {modalType}
     </div>
   )
   const displayNotEdit = (
@@ -137,20 +207,22 @@ function ItinEditor({ isEdit = false, boxData = fakeTestingData }) {
                       })
                   }
                   e.currentTarget.className = classIsSelect[1]
-                  document
-                    .querySelector(`.boxInfo${dayIndex}${index}`)
-                    .classList.add('itin-detailPicText-show')
-                  document
-                    .querySelector(`.dayTitle${dayIndex}`)
-                    .classList.add('itin-detailPicText-show')
+                  if (document.querySelector(`.boxInfo${dayIndex}${index}`))
+                    document
+                      .querySelector(`.boxInfo${dayIndex}${index}`)
+                      .classList.add('itin-detailPicText-show')
+                  if (document.querySelector(`.dayTitle${dayIndex}`))
+                    document
+                      .querySelector(`.dayTitle${dayIndex}`)
+                      .classList.add('itin-detailPicText-show')
                 }}
               >
                 <SpotsBox
                   index={[dayIndex, index]}
                   data={element}
                   isEdit={isEdit}
-                  allData={tempData}
-                  doEdit={setTempData}
+                  dataFromUser={tempData}
+                  setDataFromUser={setTempData}
                 />
               </div>
             ))}

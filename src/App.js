@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -13,30 +13,31 @@ import Forgetpassword from './pages/forgetpassword'
 import MainRoute from './components/main/MainRoute'
 import ScrollToTop from './components/main/ScrollToTop'
 function App() {
+  const [auth, setAuth] = React.useState(false)
+  useEffect(() => {
+    setAuth(localStorage.getItem('userData'))
+  }, [auth])
+
   return (
     <Router>
       <>
-        <Header />
+        <Header auth={auth} setAuth={setAuth} />
         <ScrollToTop>
           <Switch>
             <Route exact path="/">
               <Home />
             </Route>
-
             <Route exact path="/login">
-              <Login />
+              <Login auth={auth} setAuth={setAuth} />
             </Route>
-
             <Route exact path="/sigon">
               <Sigon />
             </Route>
-
             <Route path="/forgetpassword">
               <Forgetpassword />
             </Route>
-
             <Route path="/">
-              <MainRoute />
+              <MainRoute setAuth={setAuth} />
             </Route>
           </Switch>
         </ScrollToTop>

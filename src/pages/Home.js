@@ -181,3 +181,5 @@ function Home() {
 }
 
 export default Home
+
+//建議 img 使用絕對路徑

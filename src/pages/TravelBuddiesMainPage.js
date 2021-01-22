@@ -10,15 +10,20 @@ import { IoIosPeople } from 'react-icons/io'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
+import TBButtonSignedUp from '../components/TravelBuddies/TBButtonSignedUp'
 
 function TravelBuddiesMainPage(props) {
-  let id = props.id
+  let { id } = useParams()
   const [travelBuddies, setTravelBuddies] = useState([])
+  const [signedUp, setSignedUp] = useState(0)
   async function getTravelBuddies(props) {
     try {
-      const response = await fetch('http://localhost:5000/travelbuddies/', {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/${id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
         setTravelBuddies(data)
@@ -37,9 +42,11 @@ function TravelBuddiesMainPage(props) {
       <>
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
-            <img src="/images/member/DSC_7875.jpg" alt="旅行揪團主圖片" />
+            <img
+              src={'/images/tbPhoto/' + travelBuddies[0].tb_themePhoto}
+              alt={travelBuddies.tb_themePhoto}
+            />
           </div>
-
           <div className="tb-mainpage-flex">
             <div className="tb-mainpage-nameAndPhoto">
               <figure className="tb-mainpage-profilephoto">
@@ -120,7 +127,10 @@ function TravelBuddiesMainPage(props) {
           <div className="d-flex tb-mainpage-title">
             <h1> {travelBuddies[0].tb_themeName}</h1>
             <div className="tb-mainpage-button-group">
-              <Button className="tb-mainpage-button">報名</Button>
+              <TBButtonSignedUp
+                id={travelBuddies[0].id}
+                themeName={travelBuddies[0].tb_themeName}
+              />
               <Button className="tb-mainpage-button">收藏</Button>
             </div>
           </div>

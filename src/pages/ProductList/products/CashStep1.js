@@ -221,34 +221,6 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
     }
   }
 
-  async function buttonSubmit() {
-    try {
-      const response = await fetch('http://localhost:5000/paymentaction', {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          className,
-          buy_ticket_type,
-          totalTicket,
-          buy_ticket_price,
-          buy_ticket_day,
-          user_name,
-          user_gender,
-          user_phone,
-          user_mail,
-          credit,
-          ticket_number,
-          buy_ticket_time,
-        }),
-      })
-      if (response.ok) {
-        console.log('ok')
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = JSON.parse(localStorage.getItem('userData'))
   // useEffect(() => {
@@ -508,7 +480,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                             // getUser()
 
                             if (credit === 'visa') {
-                              buttonSubmit()
+                              window.location = 'https://p.ecpay.com.tw/6708411'
                             } else if (credit === 'atm') {
                               window.location = 'https://p.ecpay.com.tw/39F39C9'
                             } else if (credit === 'applepay') {

@@ -432,7 +432,6 @@
 }
 .p2-scoll1-h4 {
   margin-top: 40px;
-  text-align: center;
 }
 
 .p2-scoll1-txt hr {
@@ -567,6 +566,78 @@
   font-size: 18px;
 }
 .scrollTop:hover {
+  opacity: 1;
+}
+.top1 {
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+  transition: 0.4s;
+  position: fixed;
+  bottom: 10px;
+  opacity: 0.5;
+  right: 10px;
+  z-index: 999;
+}
+.top1:hover {
+  width: 150px;
+  height: 150px;
+}
+.topitem1,
+.topitem2,
+.topitem3 {
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+  opacity: 0;
+  text-align: center;
+  color: white;
+  line-height: 50px;
+}
+.topitem1:hover,
+.topitem2:hover,
+.topitem3:hover {
+  transform: scale(1.2);
+}
+.top1 a:link {
+  text-decoration: none;
+  color: white;
+}
+.top1 a:visited {
+  color: white;
+}
+.top1:hover .topitem1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #4464be;
+  position: absolute;
+  right: 120px;
+  bottom: 20px;
+  transition: 0.4s;
+  opacity: 1;
+}
+.top1:hover .topitem2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #4464be;
+  position: absolute;
+  right: 40px;
+  bottom: 130px;
+  transition: 0.4s;
+  opacity: 1;
+}
+.top1:hover .topitem3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #4464be;
+  position: absolute;
+  right: 110px;
+  bottom: 100px;
+  transition: 0.4s;
   opacity: 1;
 }
 

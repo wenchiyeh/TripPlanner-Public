@@ -3,7 +3,7 @@ import { Table, Button, Modal } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBMineButtonEdit from './TBMineButtonEdit'
-import TBMineButtonMembersSelect from './TBMineButtonMembersSelect'
+import TBMineButtonSelectMembers from './TBMineButtonSelectMembers'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBMineButtonDelete from './TBMineButtonDelete'
 import TBMineButtonDeleteNoMembers from './TBMineButtonDeleteNoMembers'
@@ -64,8 +64,8 @@ function TravelBuddiesMine() {
                         v.tb_dateEnd.slice(8, 10)}
                     </td>
                     <td>
-                      <TBButtonRead id={v.id} /> <TBMineButtonEdit />{' '}
-                      <TBMineButtonMembersSelect id={v.id} />{' '}
+                      <TBButtonRead id={v.id} /> <TBMineButtonEdit id={v.id} />{' '}
+                      <TBMineButtonSelectMembers id={v.id} />{' '}
                       <TBButtonChatroom
                         id={v.id}
                         tb_themeName_={v.tb_themeName}

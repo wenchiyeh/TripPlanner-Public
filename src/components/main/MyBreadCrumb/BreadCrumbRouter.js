@@ -10,7 +10,7 @@ export const pathnameList = [
   '/productList',
 ]
 export const pathnameTextList = [
-  '揪團旅行',
+  '旅行揪團',
   '行程規劃',
   '講座商品',
   '購物車',

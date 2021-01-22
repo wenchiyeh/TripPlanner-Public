@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Link,
   DirectLink,
   Element,
   Events,
@@ -9,12 +8,12 @@ import {
   scroller,
 } from 'react-scroll'
 import TaiwanMap from './TaiwanMap'
+import { withRouter, Link } from 'react-router-dom'
 
 import HomeSearchBar from './HomeSearchBar'
 import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
 // import useAxios from 'axios-hooks'
-import Geocode from 'react-geocode'
 
 scroll.scrollToTop()
 scroller.scrollTo('scroll-to-element', {
@@ -26,35 +25,7 @@ function Kv(props) {
   // const [{ data }] = useAxios(
   //   'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=CWB-CE3C77E2-B7C4-49F4-AE97-3E3F5E40BEAE&downloadType=WEB&format=JSON'
   // )
-
-  if (navigator.geolocation) {
-    function error() {
-      alert('無法取得你的位置')
-    }
-    function success(position) {
-      console.log(position.coords.latitude, position.coords.longitude)
-      //google
-
-      Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
-      Geocode.setLanguage('zh-TW')
-      Geocode.enableDebug()
-      Geocode.fromLatLng(
-        position.coords.latitude,
-        position.coords.longitude
-      ).then(
-        (response) => {
-          const address = response.results[7].formatted_address
-          console.log(address)
-        },
-        (error) => {
-          console.error(error)
-        }
-      )
-    }
-    navigator.geolocation.getCurrentPosition(success, error)
-  } else {
-    alert('Sorry, 你的裝置不支援地理位置功能。')
-  }
+  let mapstory = props.mapstory
 
   return (
     <>
@@ -62,28 +33,39 @@ function Kv(props) {
         <h1>近在咫尺的美</h1>
         <HomeSearchBar />
       </div>
-      <TaiwanMap />
+      <TaiwanMap mapstory={mapstory} />
 
       <a onClick={() => scroll.scrollMore(920)}>
         <div className="scroll-icon-relative">
           <div className="chevron"></div>
           <div className="chevron"></div>
           <div className="chevron"></div>
-          <span className="text">Scroll down</span>
+          <span className="text">Scroll down </span>
         </div>
       </a>
-      <a data-aos="fade-left" onClick={() => scroll.scrollTo(10)}>
-        <section className="scrollTop row justify-content-center align-items-center">
-          <div className="col">
-            <span className="scroll-icon">
-              <span className="scroll-icon__dot"></span>
-            </span>
-            <h5>TOP</h5>
-          </div>
-        </section>
-      </a>
+      <div className="top1">
+        <div className="topitem1">
+          <Link to="/productList"> 講座</Link>
+        </div>
+        <div className="topitem2">
+          <Link to="/travelBuddies">揪團</Link>
+        </div>
+        <div className="topitem3">
+          <Link to="/itinerary">行程</Link>
+        </div>
+
+        <a data-aos="fade-left" onClick={() => scroll.scrollTo(10)}>
+          <section className="scrollTop row justify-content-center align-items-center">
+            <div className="col">
+              <span className="scroll-icon">
+                <span className="scroll-icon__dot"></span>
+              </span>
+              <h5>TOP</h5>
+            </div>
+          </section>
+        </a>
+      </div>
     </>
   )
 }
-
 export default Kv

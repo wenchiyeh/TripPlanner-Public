@@ -19,9 +19,10 @@ import { WiDayRain, WiDayFog, WiDayThunderstorm } from 'react-icons/wi'
 import { IoThunderstormOutline } from 'react-icons/io5'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-AOS.init()
 function TaiwanMap(props) {
-  const [filter, setFilter] = useState('')
+  let mapstory = props.mapstory
+  const [filter, setFilter] = useState()
+
   const [domData, setDomData] = useState({
     place: '',
     low: '',
@@ -36,6 +37,22 @@ function TaiwanMap(props) {
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error } = useSWR(url, fetcher)
   useEffect(() => {
+    AOS.init()
+  })
+  useEffect(() => {
+    if (mapstory.length > 0) {
+      setFilter(mapstory)
+    } else {
+      setFilter('南投縣')
+    }
+
+    let data = weatherData.filter((item) => {
+      return item.locationName === mapstory
+    })
+    setResult(data)
+  }, [weatherData])
+
+  useEffect(() => {
     paths = document.querySelectorAll('path')
     if (data) setWeatherData(data.cwbopendata.dataset.locations.location)
   }, [data])
@@ -45,8 +62,6 @@ function TaiwanMap(props) {
       paths.forEach((e) => {
         e.onmouseover = function () {
           setFilter(this.dataset.nameZh)
-          // $('.kvImg').fadeOut(200)
-          // $('.kvImg').fadeIn(200)
         }
       })
     }
@@ -61,7 +76,6 @@ function TaiwanMap(props) {
       setResult(resultData)
     }
   }, [filter])
-
   useEffect(() => {
     if (result && result.length > 0) {
       const { weatherElement } = result[0]
@@ -111,6 +125,7 @@ function TaiwanMap(props) {
       }
 
       let KvCityName = cityName[filter]
+
       let kvImagePath = './images/homePhoto/' + KvCityName + '.jpg'
 
       //sunicon
@@ -119,7 +134,7 @@ function TaiwanMap(props) {
         weatherIcon = <CgSun />
       }
       //sunicon
-      let Cloudy = ['多雲','陰天']
+      let Cloudy = ['多雲', '陰天', '多雲時陰', '陰時多雲']
       if (Cloudy.includes(weather)) {
         weatherIcon = <TiWeatherCloudy />
       }
@@ -464,6 +479,7 @@ function TaiwanMap(props) {
       if (rain.includes(weather)) {
         weatherIcon = <TiWeatherDownpour />
       }
+
       //rainIcon
 
       setDomData({

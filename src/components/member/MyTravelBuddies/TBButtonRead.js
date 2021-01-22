@@ -7,7 +7,6 @@ function TBButtonRead(props) {
   let history = useHistory()
   let id = props.id
   function toMainPage() {
-    // history.push('/travelBuddies/mainpage/')
     history.push('/travelBuddies/read/' + id)
   }
   return (

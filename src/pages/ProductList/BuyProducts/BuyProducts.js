@@ -95,9 +95,23 @@ function BuyProducts({
     address,
     location,
   }
-  function getLocal() {
-    localStorage.setItem('product_Data', JSON.stringify(data))
+
+  function newclass() {
+    const oldClass = JSON.parse(localStorage.getItem(product_id))
+    if (className !== oldClass.className) {
+      console.log('已經加過囉')
+    } else {
+      localStorage.setItem(product_id, JSON.stringify(data))
+      const array = JSON.parse(localStorage.getItem('product_idArray'))
+      localStorage.setItem('product_idArray', [...array, product_id])
+      console.log('array' + typeof array)
+      console.log('id' + typeof product_id)
+    }
   }
+  function getLocal() {
+    localStorage.setItem(product_id, JSON.stringify(data))
+  }
+
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
@@ -265,6 +279,7 @@ function BuyProducts({
                   variant="info"
                   onClick={() => {
                     getLocal()
+                    newclass()
                     setSmallShow(true)
                   }}
                 >

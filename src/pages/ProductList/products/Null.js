@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AiOutlineInbox } from 'react-icons/ai'
 import { BsFillTrashFill } from 'react-icons/bs'
-
+import { useParams } from 'react-router-dom'
 import { Container, Button } from 'react-bootstrap'
 import './cash.scss'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
@@ -15,7 +15,9 @@ function Null() {
   }
   const [crash, setCrash] = useState(true)
 
-  const aboutClass = JSON.parse(localStorage.getItem('product_Data'))
+  // localStorage.hasOwnProperty()
+
+  const aboutClass = JSON.parse(localStorage.getItem('product_idArray'))
   const pageUrl = '/images/classPhoto/'
   const productUrl = 'view/'
 

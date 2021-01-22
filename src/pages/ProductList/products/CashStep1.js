@@ -1,17 +1,20 @@
 import { FaCcVisa, FaCcApplePay } from 'react-icons/fa'
 import { SiJcb, SiMastercard } from 'react-icons/si'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
+import { useParams } from 'react-router-dom'
 import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 import ShowCreditCard from './ShowCreditCard'
+
 function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
+  let { product_id } = useParams()
 
-  const aboutClass = JSON.parse(localStorage.getItem('product_Data'))
+  const aboutClass = JSON.parse(localStorage.getItem(product_id))
 
   const earlyTicket = aboutClass.early
   const singleTicket = aboutClass.single

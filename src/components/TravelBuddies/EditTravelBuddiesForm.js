@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
+import { useParams } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import FormControl from 'react-bootstrap/FormControl'
 import FormCheck from 'react-bootstrap/FormCheck'
@@ -8,14 +9,15 @@ import TBPicUploadRect from './TBPicUploadRect'
 import Modal from 'react-bootstrap/Modal'
 import $ from 'jquery'
 
-function AddTravelBuddiesForm() {
+function EditTravelBuddiesForm(props) {
   let history = useHistory()
+  let { id } = useParams()
   const [validated, setValidated] = useState(false)
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
   const [tbThemeName, settbThemeName] = useState('')
   const [tbThemePhoto, settbThemePhoto] = useState('')
-  const [tbCityCategory, settbCityCategory] = useState([])
+  const [tbCityCategory, settbCityCategory] = useState([1, 2, 3])
   const [tbDateBegin, settbDateBegin] = useState('')
   const [tbDateEnd, settbDateEnd] = useState('')
   const [tbDaysCategory, settbDaysCategory] = useState('')
@@ -25,19 +27,13 @@ function AddTravelBuddiesForm() {
   const [tbGenderNeeded, settbGenderNeeded] = useState('')
   const [tbThemeIntro, settbThemeIntro] = useState('')
 
-  // settbCityCategory(
-  //   $('input:checkbox:checked[name="tbCityCategory"]').each(function (i) {
-  //     tbCityCategory[i] = this.value
-  //   })
-  // )
-
   function checkChange(e) {
     $('input[name="tbCityCategory[]"]:checked').each(function (i) {
       tbCityCategory[i] = this.value
     })
   }
 
-  async function addTravelBuddies() {
+  async function updateTravelBuddies() {
     const newTravelBuddies = {
       tbThemeName,
       tbThemePhoto,
@@ -51,31 +47,72 @@ function AddTravelBuddiesForm() {
       tbGenderNeeded,
       tbThemeIntro,
     }
-    console.log(newTravelBuddies)
     try {
-      // 從伺服器得到資料
-      const response = await fetch('http://localhost:5000/travelbuddies', {
-        method: 'post',
-        body: JSON.stringify(newTravelBuddies),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      // ok只能判斷201-299狀態碼的情況
+      const response = await fetch(
+        `http://localhost:5000/travelBuddies/${id}`,
+        {
+          mode: 'cors',
+          method: 'put',
+          body: JSON.stringify(newTravelBuddies),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       if (response.ok) {
-        // 剖析資料為JS的數值
         const data = await response.json()
-        console.log('data:', data)
-        if (data.id) console.log('success')
-        // history.push('/travlBuddies')
+        // settbThemeName(data.)
+        console.log(data)
+        // history.push('/myAccount')
       }
     } catch (err) {
-      // 發生錯誤的處理情況
-      // alert('無法得到伺服器資料，請稍後再重試')
+      alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
+
+  async function getTravelBuddies(props) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/edit/${id}`,
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+        settbThemeName(data[0].tb_themeName)
+        settbThemePhoto(data[0].tb_themePhoto)
+        let cities = data[0].tb_city
+        // settbCityCategory(
+        //   $('input:checkbox').each(function () {
+        //     if (cities.includes($(this).val())) {
+        //       $(this).prop('checked', true)
+        //     } else {
+        //       $(this).prop('checked', false)
+        //     }
+        //   })
+        // )
+        settbDateBegin(data[0].tb_dateBegin.slice(0, 10))
+        settbDateEnd(data[0].tb_dateEnd.slice(0, 10))
+        settbDaysCategory(data[0].tb_daysCategory)
+        settbLastApprovedDate(data[0].tb_lastApprovedDate.slice(0, 10))
+        settbEstimatedCost(data[0].tb_estimatedCost)
+        settbPersonsNeeded(data[0].tb_personsNeeded)
+        settbGenderNeeded(data[0].tb_genderNeeded)
+        settbThemeIntro(data[0].tb_themeIntro)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getTravelBuddies()
+  }, [])
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -92,13 +129,14 @@ function AddTravelBuddiesForm() {
       <div className="add-travelbuddies-outbox">
         <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
-            <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
+            <h1 className="add-travelbuddies-topic">編輯旅行揪團</h1>
             <Form.File id="formcheck-api-regular">
               <Form.File.Label>上傳主圖片</Form.File.Label>
               <Form.File.Input
                 onChange={(e) => {
                   settbThemePhoto(e.target.value)
                 }}
+                // value={tbThemePhoto}
               />
             </Form.File>
             <Form.Group controlId="travelBuddiesThemeName">
@@ -114,6 +152,7 @@ function AddTravelBuddiesForm() {
                   settbThemeName(e.target.value)
                 }}
                 required
+                value={tbThemeName}
               />
               <Form.Control.Feedback type="invalid">
                 旅行揪團名稱為必填欄位
@@ -232,6 +271,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory6`}
                     name="tbCityCategory[]"
                     value="6"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -258,6 +298,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory9`}
                     name="tbCityCategory[]"
                     value="9"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -284,6 +325,7 @@ function AddTravelBuddiesForm() {
                     id={`inline-${type}-citycategory12`}
                     name="tbCityCategory[]"
                     value="12"
+                    onChange={(e) => checkChange(e)}
                   />
                   <Form.Check
                     inline
@@ -405,6 +447,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDateBegin(e.target.value)
                     }}
+                    value={tbDateBegin}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇旅行開始日期
@@ -425,6 +468,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDateEnd(e.target.value)
                     }}
+                    value={tbDateEnd}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇旅行結束日期
@@ -443,6 +487,8 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDaysCategory(e.target.value)
                     }}
+                    value={tbDaysCategory}
+                    placeholder={tbDaysCategory}
                   >
                     <option value="1">1日遊</option>
                     <option value="2">2-3日遊</option>
@@ -466,11 +512,12 @@ function AddTravelBuddiesForm() {
                     id="tbLastApprovedDate"
                     name="tbLastApprovedDate"
                     type="date"
-                    placeholder=""
+                    placeholder={tbLastApprovedDate}
                     required
                     onChange={(e) => {
                       settbLastApprovedDate(e.target.value)
                     }}
+                    value={tbLastApprovedDate}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇最後審核日期
@@ -491,6 +538,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbEstimatedCost(e.target.value)
                     }}
+                    value={tbEstimatedCost}
                   />
                   <Form.Control.Feedback type="invalid">
                     請填寫預估花費
@@ -513,6 +561,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbPersonsNeeded(e.target.value)
                     }}
+                    value={tbPersonsNeeded}
                   />
                   <Form.Control.Feedback type="invalid">
                     請填寫需求人數
@@ -528,6 +577,7 @@ function AddTravelBuddiesForm() {
                     as="select"
                     id="tbGenderNeeded"
                     name="tbGenderNeeded"
+                    value={tbGenderNeeded}
                     placeholder=""
                     onChange={(e) => {
                       settbGenderNeeded(e.target.value)
@@ -556,6 +606,7 @@ function AddTravelBuddiesForm() {
                 onChange={(e) => {
                   settbThemeIntro(e.target.value)
                 }}
+                value={tbThemeIntro}
               />
               <Form.Control.Feedback type="invalid">
                 旅行揪團介紹為必填欄位
@@ -579,7 +630,7 @@ function AddTravelBuddiesForm() {
             <Button
               id="insertTravelBuddies"
               className="add-travelbuddies-cancel"
-              onClick={() => history.push('/travelbuddies')}
+              onClick={() => history.push('/myAccount/TravelBuddies')}
             >
               {' '}
               取消
@@ -588,12 +639,12 @@ function AddTravelBuddiesForm() {
               id="insertTravelBuddies"
               className="add-travelbuddies-confirm"
               onClick={() => {
-                addTravelBuddies()
-                history.push('/travelbuddies')
+                updateTravelBuddies()
+                history.push('/myAccount/TravelBuddies')
               }}
             >
               {' '}
-              新增
+              更新
             </Button>
             <br />
             <Modal
@@ -689,7 +740,11 @@ function AddTravelBuddiesForm() {
                 </div>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="" className="add-travelbuddy-importconfirm">
+                <Button
+                  variant=""
+                  className="add-travelbuddy-importconfirm"
+                  //   onClick={UpdateTravelBuddies()}
+                >
                   確認選擇
                 </Button>
               </Modal.Footer>
@@ -701,4 +756,4 @@ function AddTravelBuddiesForm() {
   )
 }
 
-export default AddTravelBuddiesForm
+export default EditTravelBuddiesForm

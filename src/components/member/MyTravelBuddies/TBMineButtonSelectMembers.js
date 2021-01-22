@@ -3,7 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap'
 // import TBGiveStarRating from './TBGiveStarRating'
 import { useHistory } from 'react-router-dom'
 
-function TBHistoryButtonGiveRating(props) {
+function TBMineButtonSelectMemvers(props) {
   let history = useHistory()
   let id = props.id
   return (
@@ -11,13 +11,13 @@ function TBHistoryButtonGiveRating(props) {
       <Button
         className="tbhistory-button-giverating"
         onClick={() => {
-          history.push('/travelBuddies/starRating/' + id)
+          history.push('/travelBuddies/selectMembers/' + id)
         }}
       >
-        評價團員
+        選擇團員
       </Button>
     </>
   )
 }
 
-export default TBHistoryButtonGiveRating
+export default TBMineButtonSelectMemvers

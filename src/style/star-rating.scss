@@ -24,3 +24,19 @@
     cursor: default;
   }
 }
+.starOn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #46beeb;
+  font-size: 30px;
+}
+.starOff {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: $main-gray;
+  font-size: 30px;
+}

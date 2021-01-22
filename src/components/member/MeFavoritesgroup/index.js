@@ -2,23 +2,37 @@
 import React, { useEffect, useState } from 'react'
 import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 
 // let cardData = require('../../Itinerary/testJsonData.json')
 // let handleTestData = cardData[2].data
 
 function MeFavoritesgroup({
-  map1 = '北部',
-  map2 = '台北',
-  groupname = '王華旺',
-  datatime = '1',
+  id = 1, //資料的id
+  time1 = -1, //第一個日期
+  time2 = -1, //第二個日期
+  price = -1, //價格
 }) {
   const [metbJoined, setMetbJoined] = useState([])
-
+  console.log('metbJoined', metbJoined)
+  let type = 'travelBuddies'
+  if (time1 === -1) {
+    type = 'travelBuddies'
+  } else if (time2 !== -1) {
+    type = 'travelBuddies'
+    // 改
+  } else if (price !== -1) {
+    type = 'travelBuddies'
+  }
+  let detailUrl = `/${type}/view/${id}`
   async function gettbJoined(props) {
     try {
-      const response = await fetch('http://localhost:5000/meFavoritesgroup', {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/travelBuddies/${id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
         setMetbJoined(data)
@@ -39,36 +53,56 @@ function MeFavoritesgroup({
         <div key={index} className="card-ingroup-box mb-3">
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
-              <img
-                // 要放絕對路徑
-                src={'/images/tbPhoto/' + v.tb_themePhoto}
-                className="card-img img-fluid"
-                alt={v.tb_themePhoto}
-              />
+              <Link to={detailUrl}>
+                <img
+                  src={'/images/tbPhoto/' + v.tb_themePhoto}
+                  className="card-img img-fluid"
+                  alt={v.tb_themePhoto}
+                />
+              </Link>
             </div>
             <div className="col-md-8 align-items-end">
               <div className="card-body">
                 <h3 className="card-title">{v.tb_themeName}</h3>
                 <span className="mef-icno-style">
-                  <IoMdTime />
-                  {v.tb_dateBegin} - {v.tb_dateEnd}
+                  <IoMdTime />{' '}
+                  {metbJoined[0].tb_dateBegin.slice(0, 4) +
+                    '/' +
+                    metbJoined[0].tb_dateBegin.slice(5, 7) +
+                    '/' +
+                    metbJoined[0].tb_dateBegin.slice(8, 10) +
+                    '-' +
+                    metbJoined[0].tb_dateEnd.slice(0, 4) +
+                    '/' +
+                    metbJoined[0].tb_dateEnd.slice(5, 7) +
+                    '/' +
+                    metbJoined[0].tb_dateEnd.slice(8, 10)}
                 </span>
                 <span className="mef-icno-style d-flex justify-content-between">
-                  {/* 地圖位置1 */}
-                  <p className="card-style-mef ">
-                    <FaMapMarkerAlt />
-                    {map1}
-                  </p>
-                  <p className="card-style-mef">
-                    <FaMapMarkerAlt />
-                    {map2}
-                  </p>
+                  {metbJoined[0].tb_region.split(',').length > 0 &&
+                    metbJoined[0].tb_region.split(',').map((v, i) => {
+                      return (
+                        <p className="card-style-mef">
+                          <FaMapMarkerAlt />
+                          <span>{v}</span>
+                        </p>
+                      )
+                    })}
+                  {metbJoined[0].tb_city.split(',').length > 0 &&
+                    metbJoined[0].tb_city.split(',').map((v, i) => {
+                      return (
+                        <p className="card-style-mef">
+                          <FaMapMarkerAlt />
+                          <span>{v}</span>
+                        </p>
+                      )
+                    })}
                   <FaUsers />
                   &emsp;
-                  {groupname} &emsp;&emsp;
+                  {metbJoined.length > 0 && metbJoined[0].tb_owner} &emsp;&emsp;
                   <FaRegCalendarCheck />
                   &emsp;
-                  {datatime + '天'}
+                  {metbJoined[0].tb_daysCategory}
                 </span>
                 <br />
               </div>

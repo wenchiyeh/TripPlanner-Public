@@ -26,6 +26,7 @@ function TravelBuddies(props) {
       if (response.ok) {
         const data = await response.json()
         settbDataMain(data)
+        console.log('tr', data)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')

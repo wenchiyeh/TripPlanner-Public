@@ -17,7 +17,7 @@ function EditTravelBuddiesForm(props) {
   const [importFromCollection, setImportFromCollection] = useState(false)
   const [tbThemeName, settbThemeName] = useState('')
   const [tbThemePhoto, settbThemePhoto] = useState('')
-  const [tbCityCategory, settbCityCategory] = useState([1, 2, 3])
+  const [tbCityCategory, settbCityCategory] = useState([])
   const [tbDateBegin, settbDateBegin] = useState('')
   const [tbDateEnd, settbDateEnd] = useState('')
   const [tbDaysCategory, settbDaysCategory] = useState('')
@@ -72,6 +72,16 @@ function EditTravelBuddiesForm(props) {
     }
   }
 
+  function getCities(cities) {
+    $('input:checkbox').each(function () {
+      if (cities.includes($(this).val())) {
+        $(this).prop('checked', true)
+      } else {
+        $(this).prop('checked', false)
+      }
+    })
+  }
+
   async function getTravelBuddies(props) {
     try {
       const response = await fetch(
@@ -82,19 +92,10 @@ function EditTravelBuddiesForm(props) {
       )
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         settbThemeName(data[0].tb_themeName)
         settbThemePhoto(data[0].tb_themePhoto)
-        let cities = data[0].tb_city
-        // settbCityCategory(
-        //   $('input:checkbox').each(function () {
-        //     if (cities.includes($(this).val())) {
-        //       $(this).prop('checked', true)
-        //     } else {
-        //       $(this).prop('checked', false)
-        //     }
-        //   })
-        // )
+        let cities = data[0].tb_city.split(',')
+        getCities(cities)
         settbDateBegin(data[0].tb_dateBegin.slice(0, 10))
         settbDateEnd(data[0].tb_dateEnd.slice(0, 10))
         settbDaysCategory(data[0].tb_daysCategory)
@@ -158,61 +159,6 @@ function EditTravelBuddiesForm(props) {
                 旅行揪團名稱為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
-            {/* <Form.Group controlId="travelBuddiesRegionCategory">
-              <Form.Label htmlFor="travelBuddiesRegionCategory">
-                地區分類：
-              </Form.Label>
-              {['checkbox'].map((type) => (
-                <div key={`inline-${type}`} className="mb-3">
-                  <Form.Check
-                    inline
-                    label="北部"
-                    type={type}
-                    id={`inline-${type}-regioncategory1`}
-                    name="tbRegionCategory[]"
-                    value="1"
-                    onChange={() => {
-                      setCitySelect(true)
-                    }}
-                  />
-                  <Form.Check
-                    inline
-                    label="中部"
-                    type={type}
-                    id={`inline-${type}-regioncategory2`}
-                    name="tbRegionCategory[]"
-                    value="2"
-                  />
-                  <Form.Check
-                    inline
-                    label="南部"
-                    type={type}
-                    id={`inline-${type}-regioncategory3`}
-                    name="tbRegionCategory[]"
-                    value="3"
-                  />
-                  <Form.Check
-                    inline
-                    label="東部"
-                    type={type}
-                    id={`inline-${type}-regioncategory4`}
-                    name="tbRegionCategory[]"
-                    value="4"
-                  />
-                  <Form.Check
-                    inline
-                    label="離島"
-                    type={type}
-                    id={`inline-${type}-regioncategory5`}
-                    name="tbRegionCategory[]"
-                    value="5"
-                  />
-                </div>
-              ))}
-              <Form.Control.Feedback type="invalid">
-                地區分類為必選
-              </Form.Control.Feedback>
-            </Form.Group> */}
             <Form.Group controlId="travelBuddieCityCategory">
               <Form.Label htmlFor="travelBuddieCityCategory">
                 縣市分類：

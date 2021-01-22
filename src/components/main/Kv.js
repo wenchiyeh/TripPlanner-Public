@@ -48,10 +48,10 @@ function Kv(props) {
           <Link to="/productList"> 講座</Link>
         </div>
         <div className="topitem2">
-          <Link to="/travelBuddies"> 揪團</Link>
+          <Link to="/travelBuddies">揪團</Link>
         </div>
         <div className="topitem3">
-          <Link to="/itinerary"> 揪團</Link>
+          <Link to="/itinerary">行程</Link>
         </div>
 
         <a data-aos="fade-left" onClick={() => scroll.scrollTo(10)}>

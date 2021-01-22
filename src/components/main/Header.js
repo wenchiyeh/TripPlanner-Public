@@ -1,71 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
-
 import { FaCoins } from 'react-icons/fa'
-import '../../style/header.scss'
 import MebPopover from './MebPopover'
 
 function Header({ auth, setAuth }) {
   const imagePath = '/images/testImage.jpg'
-  const [memberData, setMemberData] = useState(
-    JSON.parse(localStorage.getItem('userData'))
-  )
-  // const [isLoading, setIsLoading] = useState(true)
-  //連結伺服器端
-  // useState
-  // useEffect(() => {
-
-  // console.log('hahaha')
-  // setTimeout(() => {
-  //   setIsLoading(false)
-  // }, 0)
-  // console.log('me有資料嗎?', member)
-  // }, [])
-  // const loginout = (
-  // <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h5 ">
-  //   登入/註冊
-  // </Nav.Link>
+  let location = useLocation()
+  const [headerStyle, setHeaderStyle] = useState(0)
+  // const [memberData, setMemberData] = useState(
+  //   JSON.parse(localStorage.getItem('userData'))
   // )
-
-  // const login = (
-  //   <>
-  //     <NavDropdown
-  //       title={
-  //         <figure className="Navebar-figure">
-  //           <img
-  //             className="header-img-br"
-  //             // src={'images/userphoto/' + member[0].member_photo_id}
-  //             src={imagePath}
-  //             alt="User Avatar"
-  //           />
-  //         </figure>
-  //       }
-  //     >
-  //       <NavDropdown.Item as={NavLink} to="/myAccount">
-  //         會員中心
-  //       </NavDropdown.Item>
-  //       <NavDropdown.Divider />
-  //       <NavDropdown.Item
-  //         as={NavLink}
-  //         to="/"
-  //         onClick={() => {
-  //           localStorage.clear()
-  //           sessionStorage.clear()
-  //         }}
-  //       >
-  //         登出
-  //       </NavDropdown.Item>
-  //     </NavDropdown>
-  //   </>
-  // )
-
+  useEffect(() => {
+    console.log(location)
+    if (location.pathname === '/') {
+      setHeaderStyle(0)
+    } else {
+      setHeaderStyle(1)
+    }
+  }, [location.pathname])
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg={'primary'} variant="dark">
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        // bg={'primary'}
+        variant="dark"
+        className={headerStyle === 0 ? 'HomeNavbar-color' : 'HomeNavbar-inner'}
+      >
         <Navbar.Brand as={NavLink} to="/" className="Navbar-Logo">
           <img src={Logo} width="150" alt="圖片替代文字" />
         </Navbar.Brand>

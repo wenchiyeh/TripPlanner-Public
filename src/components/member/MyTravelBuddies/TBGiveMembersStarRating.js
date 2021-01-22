@@ -11,7 +11,7 @@ function TBGiveMembersStarRating(props) {
   let { id } = useParams()
   let tb_themeName = props.tb_themeName
   const [tbMemberJoined, settbMemberJoined] = useState([])
-  async function getTBMembers(props) {
+  async function getTBMembers() {
     try {
       const response = await fetch(
         `http://localhost:5000/travelbuddies/memberjoined/${id}`,

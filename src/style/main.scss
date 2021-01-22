@@ -79,7 +79,9 @@ body {
 .custom-box-shadow {
   box-shadow: 0 3px 6px rgba($color: $sub-dark-gray, $alpha: 0.6);
 }
-
+.HomeNavbar-inner {
+  background: $main-lightblue;
+}
 // header
 @import './header.scss';
 

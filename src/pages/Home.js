@@ -32,22 +32,22 @@ function Home() {
       function success(position) {
         // console.log(position.coords.latitude, position.coords.longitude)
         //google
-
-        Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
-        Geocode.setLanguage('zh-TW')
-        Geocode.enableDebug()
-        Geocode.fromLatLng(
-          position.coords.latitude,
-          position.coords.longitude
-        ).then(
-          (response) => {
-            const address = response.results[8].address_components[0].long_name
-            settmapstory(address)
-          },
-          (error) => {
-            console.error(error)
-          }
-        )
+        //   Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
+        //   Geocode.setLanguage('zh-TW')
+        //   Geocode.enableDebug()
+        //   Geocode.fromLatLng(
+        //     position.coords.latitude,
+        //     position.coords.longitude
+        //   ).then(
+        //     (response) => {
+        //       const address = response.results[9].address_components[2].long_name
+        //       settmapstory(address)
+        //       console.log(address)
+        //     },
+        //     (error) => {
+        //       console.error(error)
+        //     }
+        //   )
       }
 
       navigator.geolocation.getCurrentPosition(success, error)
@@ -62,10 +62,6 @@ function Home() {
 
   return (
     <>
-      <div className="navbar-background" />
-
-      <HomeHeader />
-
       <Kv mapstory={mapstory} />
 
       <article className="home-body">

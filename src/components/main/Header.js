@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
@@ -9,18 +9,19 @@ import MebPopover from './MebPopover'
 
 function Header({ auth, setAuth }) {
   const imagePath = '/images/testImage.jpg'
-  let history = useHistory()
+  let location = useLocation()
   const [headerStyle, setHeaderStyle] = useState(0)
   // const [memberData, setMemberData] = useState(
   //   JSON.parse(localStorage.getItem('userData'))
   // )
   useEffect(() => {
-    if (history.location.pathname === '/') {
+    console.log(location)
+    if (location.pathname === '/') {
       setHeaderStyle(0)
     } else {
       setHeaderStyle(1)
     }
-  }, [history.location.pathname])
+  }, [location.pathname])
   return (
     <>
       <Navbar

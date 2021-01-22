@@ -1,46 +1,55 @@
 //忘記密碼
-import React, { useState } from 'react'
+import React from 'react'
 import { FaUserAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import '../pages/sign/sign.scss'
+// import ContactUsfrom from './ContactUs'
+
+import emailjs from 'emailjs-com'
 function Login(props) {
-  const [validated, setValidated] = useState(false)
+  let history = useHistory()
+  // const [validated, setValidated] = useState(false)
+  // const [email, setEmail] = useState('')
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  // const handleSubmit = (event) => {
+  //   const form = event.currentTarget
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault()
+  //     event.stopPropagation()
+  //   }
 
-    setValidated(true)
+  //   setValidated(true)
+  // }
+  function sendEmail(e) {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        'gmail',
+        'template_f8ljmko',
+        e.target,
+        'user_sl9k8pn5cOSyv3mbGesif'
+      )
+      .then(
+        (result) => {
+          console.log(result.text)
+        },
+        (error) => {
+          console.log(error.text)
+        }
+      )
+    alert('成功寄出!')
+    history.push('/login')
   }
-
-  //   const emailtext = (
-  //   <>
-  //   <div>
-  //   Email.send({
-  //     Host : "smtp.yourisp.com",
-  //     Username : "username",
-  //     Password : "password",
-  //     To : 'them@website.com',
-  //     From : "you@isp.com",
-  //     Subject : "This is the subject",
-  //     Body : "And this is the body"
-  // })
-  // .then(
-  //   message => alert(message)
-  // );
-  // </div>
-  // </>
-  //   )
-  // const srcemail = 'https://smtpjs.com/v3/smtp.js'
   return (
     <>
       <body className="body-sigon">
         <div className="sogin-form form-group">
           <h1>忘記密碼</h1>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          {/* <ContactUsfrom /> */}
+          <Form onSubmit={sendEmail}>
+            {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
             <Form.Row>
               <Form.Group as={Col} md="10" controlId="validationCustomUsername">
                 <InputGroup>
@@ -54,6 +63,10 @@ function Login(props) {
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
+                    // onChange={() => {
+                    //   alert('成功寄送!')
+                    //   history.push('/login')
+                    // }}
                   />
                   <Form.Control.Feedback type="invalid">
                     請輸入正確的信箱格式
@@ -61,7 +74,13 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button type="submit" className="login-btn">
+            <Button
+              type="submit"
+              className="login-btn"
+              // onClick={() => {
+              //   history.push('/login')
+              // }}
+            >
               送出
             </Button>
             <div className="sogin-samp-text d-flex">
@@ -88,4 +107,5 @@ function Login(props) {
     </>
   )
 }
+
 export default Login

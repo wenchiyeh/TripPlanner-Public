@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
-import TBStarRating from './TBStarRating'
 
 function TBHistoryButtonRating(props) {
   const [tbHistoryButtonRating, settbHistoryButtonRating] = useState(false)
@@ -18,7 +17,8 @@ function TBHistoryButtonRating(props) {
       )
       if (response.ok) {
         const data = await response.json()
-        setRating(data)
+        console.log(data)
+        setRating(Math.round(data[0].rating))
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -62,9 +62,9 @@ function TBHistoryButtonRating(props) {
                     className={
                       index <= (hover || rating) ? 'starOn' : 'starOff'
                     }
-                    onClick={() => setRating(index)}
-                    onMouseEnter={() => setHover(index)}
-                    onMouseLeave={() => setHover(rating)}
+                    // onClick={() => setRating(index)}
+                    // onMouseEnter={() => setHover(index)}
+                    // onMouseLeave={() => setHover(rating)}
                   >
                     <span className="star">&#9733;</span>
                   </button>

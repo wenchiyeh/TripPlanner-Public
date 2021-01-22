@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import '../../style/header.scss'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 import { FaCoins } from 'react-icons/fa'
@@ -9,71 +9,19 @@ import MebPopover from './MebPopover'
 
 function Header({ auth, setAuth }) {
   const imagePath = '/images/testImage.jpg'
+  let location = useLocation()
+  const [headerStyle, setHeaderStyle] = useState(0)
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
-  // const [isLoading, setIsLoading] = useState(true)
-  //連結伺服器端
-  // useState
-  // useEffect(() => {
-
-  // console.log('hahaha')
-  // setTimeout(() => {
-  //   setIsLoading(false)
-  // }, 0)
-  // console.log('me有資料嗎?', member)
-  // }, [])
-
-  const loginout = (
-    <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h5 ">
-      登入/註冊
-    </Nav.Link>
-  )
-
-  const login = (
-    <>
-      <NavDropdown
-        title={
-          <figure className="Navebar-figure">
-            <img
-              className="header-img-br"
-              // src={'images/userphoto/' + memberData.member_photo_id}
-              src={imagePath}
-              alt="memberData.member_photo_id"
-            />
-          </figure>
-        }
-      >
-        <NavDropdown.Item as={NavLink} to="/myAccount">
-          會員中心
-        </NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item
-          as={NavLink}
-          to="/"
-          onClick={() => {
-            localStorage.clear()
-            sessionStorage.clear()
-          }}
-        >
-          登出
-        </NavDropdown.Item>
-      </NavDropdown>
-    </>
-  )
-
-  let history = useHistory()
-  const [headerStyle, setHeaderStyle] = useState(0)
-  // const [memberData, setMemberData] = useState(
-  //   JSON.parse(localStorage.getItem('userData'))
-  // )
   useEffect(() => {
-    if (history.location.pathname === '/') {
+    console.log(location)
+    if (location.pathname === '/') {
       setHeaderStyle(0)
     } else {
       setHeaderStyle(1)
     }
-  }, [history.location.pathname])
+  }, [location.pathname])
   return (
     <>
       <Navbar
@@ -91,7 +39,6 @@ function Header({ auth, setAuth }) {
           <Nav className="mr-auto">
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/itinerary"
               exact
               className="Navbar-Title h5 "
@@ -100,7 +47,6 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/travelBuddies"
               className="Navbar-Title h5 "
             >
@@ -108,7 +54,6 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/productList"
               className="Navbar-Title h5 "
             >
@@ -116,36 +61,33 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link
-              as={NavLink}
-              onClick={() => setHeaderStyle(1)}
-              to="/member"
-            >
+            <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productList/car">
               <div className="not-icon-mover">
                 <FiShoppingCart className="Navbar-icon" />
               </div>
-              {/* <Badge variant="light">2</Badge> */}
+              <Badge variant="light">2</Badge>
             </Nav.Link>
             <Nav.Link>
               <div className="not-icon-mover">
                 <MebPopover className="Navbar-icon" />
               </div>
-              {/* <Badge variant="light">5</Badge> */}
+              <Badge variant="light">5</Badge>
             </Nav.Link>
-            {auth ? login : loginout}
-            {/* {auth ? (
+            {auth ? (
               <NavDropdown
                 title={
                   <figure className="Navebar-figure">
-                    <img
-                      className="header-img-br"
-                      // src={'images/userphoto/' + member[0].member_photo_id}
-                      src={imagePath}
-                      alt="User Avatar"
-                    />
+                    {memberData && (
+                      <img
+                        className="header-img-br"
+                        src={'images/userphoto/' + memberData.member_photo_id}
+                        // src={imagePath}
+                        alt="User Avatar"
+                      />
+                    )}
                   </figure>
                 }
               >
@@ -174,7 +116,8 @@ function Header({ auth, setAuth }) {
               >
                 登入/註冊
               </Nav.Link>
-            )} */}
+            )}
+            {/* {login} */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

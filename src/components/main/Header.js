@@ -39,7 +39,6 @@ function Header({ auth, setAuth }) {
           <Nav className="mr-auto">
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/itinerary"
               exact
               className="Navbar-Title h5 "
@@ -48,7 +47,6 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/travelBuddies"
               className="Navbar-Title h5 "
             >
@@ -56,7 +54,6 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
-              onClick={() => setHeaderStyle(1)}
               to="/productList"
               className="Navbar-Title h5 "
             >
@@ -64,11 +61,7 @@ function Header({ auth, setAuth }) {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link
-              as={NavLink}
-              onClick={() => setHeaderStyle(1)}
-              to="/member"
-            >
+            <Nav.Link as={NavLink} to="/member">
               <FaCoins className="Navbar-icon" />
             </Nav.Link>
             <Nav.Link as={NavLink} to="/productList/car">

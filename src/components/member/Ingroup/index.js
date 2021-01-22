@@ -29,6 +29,8 @@ function MeFavoritesgroup() {
   useEffect(() => {
     gettbJoined()
   }, [])
+
+  const display = { display: 'none' }
   return (
     <>
       {metbJoined.map((e, index) => (
@@ -61,6 +63,14 @@ function MeFavoritesgroup() {
                     {e.tb_city}
                   </p>
                   <button className="Ingroup-btn">聊天室</button>
+                  <button
+                    className="Ingroup-btn"
+                    onChange={() => {
+                      display()
+                    }}
+                  >
+                    取消
+                  </button>
                 </span>
                 <br />
               </div>

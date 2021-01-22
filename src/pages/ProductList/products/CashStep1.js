@@ -223,14 +223,6 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
 
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = JSON.parse(localStorage.getItem('userData'))
-  // useEffect(() => {
-  //   if (buttontype === true) {
-  //     setUser_name(aboutuser.member_name)
-  //     setUser_mail(aboutuser.email)
-  //     setUser_phone(aboutuser.member_phone)
-  //   }
-  // }, [])
-  console.log(user_name, user_gender, user_phone, user_mail)
 
   const step2 = (
     <>
@@ -373,6 +365,9 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                   className="fast_input_button"
                   onClick={() => {
                     setButtontype(true)
+                    setUser_name(aboutuser.member_name)
+                    setUser_mail(aboutuser.email)
+                    setUser_phone(aboutuser.member_phone)
                   }}
                 >
                   快速填寫

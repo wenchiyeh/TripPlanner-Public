@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import '../../style/header.scss'
 import { NavLink, useLocation } from 'react-router-dom'
 import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
-import { FaCoins } from 'react-icons/fa'
+// import { FaCoins } from 'react-icons/fa'
 import MebPopover from './MebPopover'
 
 function Header({ auth, setAuth }) {
-  const imagePath = '/images/testImage.jpg'
+  // const imagePath = '/images/testImage.jpg'
   let location = useLocation()
   const [headerStyle, setHeaderStyle] = useState(0)
+  //判斷是否登入?
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
@@ -22,13 +23,13 @@ function Header({ auth, setAuth }) {
       setHeaderStyle(1)
     }
   }, [location.pathname])
-
+  //有登入
   const login = (
     <>
       <Nav.Link as={NavLink} to="/productList/car">
-        <div className="not-icon-mover">
-          <FiShoppingCart className="Navbar-icon" />
-        </div>
+        {/* <div className="not-icon-mover"> */}
+        <FiShoppingCart className="Navbar-icon" />
+        {/* </div> */}
         {/* <Badge variant="light">2</Badge> */}
       </Nav.Link>
       <Nav.Link>
@@ -69,16 +70,14 @@ function Header({ auth, setAuth }) {
       </NavDropdown>
     </>
   )
-
+  //登出狀態
   const loginout = (
     <>
       <Nav.Link as={NavLink} to="/productList/car">
-        <div className="not-icon-mover">
-          <FiShoppingCart className="Navbar-icon" />
-        </div>
+        <FiShoppingCart className="Navbar-icon" />
         {/* <Badge variant="light">2</Badge> */}
       </Nav.Link>
-      <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h6 ">
+      <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h6">
         登入/註冊
       </Nav.Link>
     </>
@@ -122,6 +121,7 @@ function Header({ auth, setAuth }) {
               達人講座
             </Nav.Link>
           </Nav>
+          {/* 判斷登入 */}
           <Nav>{auth ? login : loginout}</Nav>
         </Navbar.Collapse>
       </Navbar>

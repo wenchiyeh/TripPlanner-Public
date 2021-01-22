@@ -31,7 +31,7 @@ function Card({
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
-  let handelText = text && StrCutter(text, 62)
+  let handelText = text && StrCutter(text, 42)
   let type = 'itinerary'
   if (time1 === -1) {
     type = 'itinerary'

@@ -63,10 +63,6 @@ function Home() {
 
   return (
     <>
-      <div className="navbar-background" />
-
-      <HomeHeader />
-
       <Kv mapstory={mapstory} />
 
       <article className="home-body">

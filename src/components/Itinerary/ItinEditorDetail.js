@@ -1,4 +1,5 @@
 import React from 'react'
+import DisplayMap from './DisplayMap'
 //測試用假資料
 import fakeTestingData from './testBoxData'
 import PicUploadRect from './PicUploadRect'
@@ -8,29 +9,18 @@ function ItinEditorDetail({
   boxData = fakeTestingData,
   setData = () => {},
 }) {
-  // function handlePicUpload() {
-  //   fetch('http://localhost:5000/upload', {
-  //     method: 'post',
-  //     mode: 'cors',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({
-  //       test: 1,
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       return res.json()
-  //     })
-  //     .then((jsonData) => {
-  //       console.log(jsonData)
-  //     })
-  //     .catch((err) => {
-  //       console.log(`err = ${err}`)
-  //     })
-  // }
   const displayEdit = (
     <div className="itin-detail-wrapper">
       <div className="itin-map-header"></div>
-      <div className="itin-detail-map-wrapper"></div>
+      <div className="itin-detail-map-wrapper">
+        <DisplayMap
+          boxData={boxData}
+          center={{
+            lat: Number(boxData[0].data[0].lat),
+            lng: Number(boxData[0].data[0].lng),
+          }}
+        />
+      </div>
       <hr />
       {boxData.map((element, index) => (
         <h4 className={`dayTitle${index}`} key={index}>
@@ -47,11 +37,20 @@ function ItinEditorDetail({
               >
                 <p>{ele.title}</p>
                 <div className="itin-detail-checkKV">
-                  <input
-                    type="radio"
-                    name="itin-kv"
-                    value={`${indexDay}${indexBox}`}
-                  />
+                  {indexDay === 0 && indexBox === 0 ? (
+                    <input
+                      defaultChecked
+                      type="radio"
+                      name="itin-kv"
+                      value={`${indexDay}${indexBox}`}
+                    />
+                  ) : (
+                    <input
+                      type="radio"
+                      name="itin-kv"
+                      value={`${indexDay}${indexBox}`}
+                    />
+                  )}
                   設為主視覺
                 </div>
                 <PicUploadRect
@@ -76,7 +75,15 @@ function ItinEditorDetail({
   const displayConst = (
     <div className="itin-detail-wrapper">
       <div className="itin-map-header"></div>
-      <div className="itin-detail-map-wrapper"></div>
+      <div className="itin-detail-map-wrapper">
+        <DisplayMap
+          boxData={boxData}
+          center={{
+            lat: Number(boxData[0].data[0].lat),
+            lng: Number(boxData[0].data[0].lng),
+          }}
+        />
+      </div>
       <hr />
       {boxData.map((element, index) => (
         <h4 className={`dayTitle${index}`} key={index}>

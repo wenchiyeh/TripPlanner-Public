@@ -1,27 +1,21 @@
 import React from 'react'
-import { Route, Switch, useParams } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Itinerary from '../../pages/Itinerary'
 import ItinEditView from './ItinEditView'
-//測試用
-// import SpotBox from './SpotsBox'
-import ItinList from './ItinList'
 import ItinPublishView from './ItinPublishView'
-import BigMap from './BigMap'
-// import TestDragEditor from './TestDragEditor'
-//
-
-// function Test() {
-//   let { itin_id } = useParams()
-//   return <h1>{itin_id}</h1>
-// }
+import MyItinView from './MyItinView'
 
 function ItinRoute() {
   return (
     <>
       <Switch>
         <Route path="/itinerary/my/:itin_id">
-          <ItinPublishView isEdit={false} />
+          <MyItinView isEdit={false} />
           {/* 私人的有大地圖的 */}
+        </Route>
+        <Route path="/itinerary/my/edit/:itin_id">
+          <MyItinView isEdit={true} />
+          {/* 私人的修改 */}
         </Route>
         <Route path="/itinerary/view/:itin_id">
           <ItinPublishView isEdit={false} />
@@ -29,7 +23,7 @@ function ItinRoute() {
         </Route>
         <Route path="/itinerary/publish/:itin_id">
           <ItinPublishView isEdit={true} />
-          {/* 準備發表用的 */}
+          {/* 公開的修改含準備發表 */}
         </Route>
         <Route path="/itinerary/new">
           <ItinEditView />

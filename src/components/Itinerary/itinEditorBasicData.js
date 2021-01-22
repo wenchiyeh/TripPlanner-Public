@@ -60,7 +60,9 @@ function ItinEditorBasicData({
         </div>
       </div>
       <hr />
-      {isEdit && <textarea placeholder="行程簡介" />}
+      {isEdit && (
+        <textarea className="itin-basicdata-text" placeholder="行程簡介" />
+      )}
     </div>
   )
 }

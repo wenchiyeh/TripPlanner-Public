@@ -207,12 +207,14 @@ function ItinEditor({
                       })
                   }
                   e.currentTarget.className = classIsSelect[1]
-                  document
-                    .querySelector(`.boxInfo${dayIndex}${index}`)
-                    .classList.add('itin-detailPicText-show')
-                  document
-                    .querySelector(`.dayTitle${dayIndex}`)
-                    .classList.add('itin-detailPicText-show')
+                  if (document.querySelector(`.boxInfo${dayIndex}${index}`))
+                    document
+                      .querySelector(`.boxInfo${dayIndex}${index}`)
+                      .classList.add('itin-detailPicText-show')
+                  if (document.querySelector(`.dayTitle${dayIndex}`))
+                    document
+                      .querySelector(`.dayTitle${dayIndex}`)
+                      .classList.add('itin-detailPicText-show')
                 }}
               >
                 <SpotsBox

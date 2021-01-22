@@ -5,9 +5,9 @@ import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //引入 API key
-// import { Key } from '../../Key'
+import { Key } from '../../Key'
 //靜態景點資料
-let itinData = require('./itinlist.json')
+let itinData = require('./itinlistXXXX.json')
 let handleItinData = itinData[2].data
 //
 //套件範例元件
@@ -94,7 +94,7 @@ const PlaceMarker = ({
 function doRecord(data) {
   let handleDat = []
   data.forEach((ele, index) => {
-    if (ele.hasOwnProperty('business_status')) {
+    if (ele.hasOwnProperty('plus_code')) {
       handleDat.push({
         id: ele.place_id,
         title: ele.name,
@@ -125,6 +125,35 @@ async function sendDatatoServer(data) {
     console.log(err)
   }
 }
+//距離計算
+function distance(lat1, lon1, lat2, lon2, unit) {
+  if (lat1 === lat2 && lon1 === lon2) {
+    return 0
+  } else {
+    var radlat1 = (Math.PI * lat1) / 180
+    var radlat2 = (Math.PI * lat2) / 180
+    var theta = lon1 - lon2
+    var radtheta = (Math.PI * theta) / 180
+    var dist =
+      Math.sin(radlat1) * Math.sin(radlat2) +
+      Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta)
+    if (dist > 1) {
+      dist = 1
+    }
+    dist = Math.acos(dist)
+    dist = (dist * 180) / Math.PI
+    dist = dist * 60 * 1.1515
+    if (unit === 'K') {
+      //公里
+      dist = dist * 1.609344
+    }
+    if (unit === 'N') {
+      dist = dist * 0.8684
+    }
+    return dist
+  }
+}
+
 //本體
 function BigMap({
   center = { lat: 24.969328305278708, lng: 121.1954124510366 }, //中央大學
@@ -167,6 +196,7 @@ function BigMap({
       }
       setCurrentCenter(newPosition) // 改變地圖視角位置
       setMyPosition(newPosition) // 改變 MyPosition
+      //自動記錄開關 1
       // doSearchPlace() //改變中心後重新搜尋地標
     }
   }
@@ -234,6 +264,7 @@ function BigMap({
     handleAutocomplete()
   }, [inputText]) // eslint-disable-line react-hooks/exhaustive-deps
   //
+  //自動記錄開關 2
   // useEffect(() => {
   //   doRecord(places)
   // }, [places])
@@ -269,7 +300,7 @@ function BigMap({
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{
-          // key: Key,
+          key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         center={currentCenter}
@@ -287,21 +318,30 @@ function BigMap({
           }
         }}
       >
-        {handleItinData.map((item) => (
-          <PlaceMarker
-            key={item.id}
-            id={item.place_id}
-            // lat={item.geometry.location.lat()} //google取得版本
-            // lng={item.geometry.location.lng()}
-            lat={item.lat} //JSON引入版本
-            lng={item.lng}
-            title={item.title}
-            city={item.city}
-            address={item.address}
-            dataFromUser={dataFromUser}
-            setDataFromUser={setDataFromUser}
-          />
-        ))}
+        {handleItinData.map(
+          (item) =>
+            distance(
+              item.lat,
+              item.lng,
+              currentCenter.lat,
+              currentCenter.lng,
+              'K'
+            ) < 1 && (
+              <PlaceMarker
+                key={item.id}
+                id={item.place_id}
+                // lat={item.geometry.location.lat()} //google取得版本
+                // lng={item.geometry.location.lng()}
+                lat={item.lat} //JSON引入版本
+                lng={item.lng}
+                title={item.title}
+                city={item.city}
+                address={item.address}
+                dataFromUser={dataFromUser}
+                setDataFromUser={setDataFromUser}
+              />
+            )
+        )}
       </GoogleMapReact>
     </div>
   )

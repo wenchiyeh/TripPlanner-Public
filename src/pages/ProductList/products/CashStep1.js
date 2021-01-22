@@ -472,15 +472,15 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       user_name === '' && user_phone === '' && user_mail === ''
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
-                            // getUser()
+                            getUser()
 
-                            if (credit === 'visa') {
-                              window.location = 'https://p.ecpay.com.tw/6708411'
-                            } else if (credit === 'atm') {
-                              window.location = 'https://p.ecpay.com.tw/39F39C9'
-                            } else if (credit === 'applepay') {
-                              return carThree()
-                            }
+                            // if (credit === 'visa') {
+                            //   window.location = 'https://p.ecpay.com.tw/6708411'
+                            // } else if (credit === 'atm') {
+                            //   window.location = 'https://p.ecpay.com.tw/39F39C9'
+                            // } else if (credit === 'applepay') {
+                            //   return carThree()
+                            // }
                           }
                     }
                   >

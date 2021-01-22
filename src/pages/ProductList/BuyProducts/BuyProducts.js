@@ -257,7 +257,7 @@ function BuyProducts({
                   variant="info"
                   onClick={() => {
                     getLocal()
-                    alert('已加入購物車')
+                    // alert('已加入購物車')
                     InTheCar()
                   }}
                 >

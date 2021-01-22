@@ -130,7 +130,6 @@ function TravelBuddiesMainPage(props) {
               <TBButtonSignedUp
                 id={travelBuddies[0].id}
                 themeName={travelBuddies[0].tb_themeName}
-                className="tb-mainpage-button"
               />
               <Button className="tb-mainpage-button">收藏</Button>
             </div>

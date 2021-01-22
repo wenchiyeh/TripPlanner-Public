@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '.././style/home.scss'
 import HomeHeader from '../components/main/HomeHeader'
 // import Footer from '../components/main/Footer'
@@ -16,18 +16,57 @@ import HomeP5Card from '../components/main/HomeP5Card'
 import HomeP2scoll2 from '../components/main/HomeP2scoll2'
 
 import HomeP2scoll from '../components/main/HomeP2scoll'
+import Geocode from 'react-geocode'
+
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 AOS.init()
 
-function Home(props) {
+function Home() {
+  const [mapstory, settmapstory] = useState([])
+  function getmap(props) {
+    if (navigator.geolocation) {
+      function error() {
+        alert('無法取得你的位置')
+      }
+      function success(position) {
+        // console.log(position.coords.latitude, position.coords.longitude)
+        //google
+
+        Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
+        Geocode.setLanguage('zh-TW')
+        Geocode.enableDebug()
+        Geocode.fromLatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        ).then(
+          (response) => {
+            const address = response.results[8].address_components[0].long_name
+            settmapstory(address)
+          },
+          (error) => {
+            console.error(error)
+          }
+        )
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error)
+    } else {
+      alert('Sorry, 你的裝置不支援地理位置功能。')
+      const address = '新北市'
+    }
+  }
+  useEffect(() => {
+    getmap()
+  }, [mapstory])
+
   return (
     <>
       <div className="navbar-background" />
 
       <HomeHeader />
 
-      <Kv />
+      <Kv mapstory={mapstory} />
 
       <article className="home-body">
         <div className="Home-container">
@@ -74,7 +113,7 @@ function Home(props) {
             <HomeBtn />
           </div>
         </div>
-        <HomeP2scoll />
+        <HomeP2scoll mapstory={mapstory} />
         <HomeP2scoll2 />
 
         <div className="p1-cardbackground-relative">

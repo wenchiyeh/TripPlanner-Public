@@ -3,6 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap'
 
 function TBButtonSignedUp(props) {
   const [tbButtonSignedUp, settbButtonSignedUp] = useState(false)
+  const [tbButtonDropOut, settbButtonDropOut] = useState(false)
   const [signedUp, setSignedUp] = useState(0)
   let id = props.id
   console.log(id)
@@ -41,21 +42,13 @@ function TBButtonSignedUp(props) {
     }
   }
   async function membersDropOut() {
-    const newDropOut = {
-      id,
-    }
     // 要使用try-catch來作錯誤處理
     try {
       // 從伺服器得到資料
       const response = await fetch(
-        'http://localhost:5000/travelbuddies/tbdropout',
+        `http://localhost:5000/travelbuddies/tbdropout/${id}`,
         {
           method: 'delete',
-          body: JSON.stringify(newDropOut),
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
         }
       )
 
@@ -78,7 +71,7 @@ function TBButtonSignedUp(props) {
     <>
       {signedUp === 0 ? (
         <Button
-          className=""
+          className="tb-mainpage-button"
           onClick={() => {
             membersSignedUp()
             settbButtonSignedUp(true)
@@ -89,10 +82,10 @@ function TBButtonSignedUp(props) {
         </Button>
       ) : (
         <Button
-          className=""
+          className="tb-mainpage-button"
           onClick={() => {
             membersDropOut()
-            settbButtonSignedUp(true)
+            settbButtonDropOut(true)
             setSignedUp(0)
           }}
         >
@@ -117,8 +110,8 @@ function TBButtonSignedUp(props) {
       </Modal>
       <Modal
         size="lg"
-        show={tbButtonSignedUp}
-        onHide={() => settbButtonSignedUp(false)}
+        show={tbButtonDropOut}
+        onHide={() => settbButtonDropOut(false)}
         aria-labelledby="tbDropOut"
       >
         <div>

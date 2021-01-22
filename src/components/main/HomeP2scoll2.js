@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { FiMapPin } from 'react-icons/fi'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 AOS.init()
-function HomeP2scoll2(props) {
+function HomeP2scoll2() {
+  let history = useHistory()
+  function Goitinerary22() {
+    history.push('travelBuddies/new')
+  }
   return (
     <>
       <div className="p2-scoll">
@@ -33,12 +38,12 @@ function HomeP2scoll2(props) {
                   </div>
                 </div>
                 <h4 className="p2-scoll1-h4">
-                  陳涉曾經認為，燕雀安知鴻鵠之志句之志句涉曾經認為，燕雀安陳涉曾經認為
-                  認為燕雀安知鴻鵠之志句之陳涉曾經認為，燕雀安知鴻鵠之志句之志句涉曾經認為，
-                  燕雀安知鴻鵠之志句之志句涉曾經認為
+                  看到某個旅行社推出的行程很心動，但人數不夠開不了團？現在立即開創屬於自己的旅行，
+                  告訴大家你的行程，找找看有沒有人願意一起報名。
+                  從此不必在煩惱行程，湊到足夠的人數及可出發!
                 </h4>
                 <div className="row justify-content-around">
-                  <button className="Homebtn2">
+                  <button onClick={Goitinerary22} className="Homebtn2">
                     <h4>立馬揪團</h4>
                   </button>
                 </div>
@@ -50,5 +55,4 @@ function HomeP2scoll2(props) {
     </>
   )
 }
-
 export default HomeP2scoll2

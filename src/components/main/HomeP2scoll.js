@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { FiMapPin } from 'react-icons/fi'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 AOS.init()
 function HomeP2scoll(props) {
+  let history = useHistory()
+  function travelBuddies(data) {
+    history.push(`/travelBuddies?${data}`)
+  }
+
   return (
     <>
       <div className="p2-scoll1">
@@ -33,12 +39,16 @@ function HomeP2scoll(props) {
                   </div>
                 </div>
                 <h4 className="p2-scoll1-h4">
-                  陳涉曾經認為，燕雀安知鴻鵠之志句之志句涉曾經認為，燕雀安陳涉曾經認為
-                  認為燕雀安知鴻鵠之志句之陳涉曾經認為，燕雀安知鴻鵠之志句之志句涉曾經認為，
-                  燕雀安知鴻鵠之志句之志句涉曾經認為
+                  當生活覺得煩悶、缺少一些感動、對工作熱情不再...那就來場愉快的自助旅行吧！馬上揪個好伙伴，來場翻轉心情的冒險之旅！
                 </h4>
                 <div className="row justify-content-around">
-                  <button className="Homebtn2">
+                  <button
+                    onClick={() => {
+                      let mapstory = props.mapstory
+                      travelBuddies(JSON.stringify(mapstory))
+                    }}
+                    className="Homebtn2"
+                  >
                     <h4>尋找附近揪團</h4>
                   </button>
                 </div>
@@ -50,5 +60,4 @@ function HomeP2scoll(props) {
     </>
   )
 }
-
 export default HomeP2scoll

@@ -24,7 +24,7 @@ function MeFavoritesstroke({
 
   async function getProductCard(props) {
     try {
-      const response = await fetch('http://localhost:5000/itinerary', {
+      const response = await fetch(`http://localhost:5000/itinerary`, {
         method: 'get',
       })
       if (response.ok) {

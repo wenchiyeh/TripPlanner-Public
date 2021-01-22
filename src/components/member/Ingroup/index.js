@@ -3,19 +3,33 @@ import React, { useState, useEffect } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
-//引入卡片
-// let cardData = require('../../Itinerary/testJsonData.json')
-// let handleTestData = cardData[2].data
-//測試資料可以做成JSON檔之後用這個方式引入
+import { Link } from 'react-router-dom'
 
-function MeFavoritesgroup() {
+function MeFavoritesgroup({
+  id = 1, //資料的id
+  time1 = -1, //第一個日期
+  time2 = -1, //第二個日期
+  price = -1, //價格
+}) {
   const [metbJoined, setMetbJoined] = useState([])
-
+  let type = 'travelBuddies'
+  if (time1 === -1) {
+    type = 'travelBuddies'
+  } else if (time2 !== -1) {
+    type = 'travelBuddies'
+    // 改
+  } else if (price !== -1) {
+    type = 'travelBuddies'
+  }
+  let detailUrl = `/${type}/view/${id}`
   async function gettbJoined(props) {
     try {
-      const response = await fetch('http://localhost:5000/meFavoritesgroup', {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/travelBuddies/${id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
         setMetbJoined(data)
@@ -37,13 +51,13 @@ function MeFavoritesgroup() {
         <div key={index} className="card-ingroup-box mb-3">
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
-              <img
-                // 要放絕對路徑
-                // src="http://localhost:3000/images/member/DSC_7437-37.jpg"
-                src={'/images/tbPhoto/' + e.tb_themePhoto}
-                className="card-img img-fluid"
-                alt="..."
-              />
+              <Link to={detailUrl}>
+                <img
+                  src={'/images/tbPhoto/' + e.tb_themePhoto}
+                  className="card-img img-fluid"
+                  alt={e.tb_themePhoto}
+                />
+              </Link>
             </div>
             <div className="col-md-8 align-items-end">
               <div className="card-body">

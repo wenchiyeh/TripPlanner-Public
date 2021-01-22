@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //引入 API key
-// import { Key } from '../../Key'
+import { Key } from '../../Key'
 //靜態景點資料
 let itinData = require('./itinlistXXXX.json')
 let handleItinData = itinData[2].data
@@ -300,7 +300,7 @@ function BigMap({
       </div>
       <GoogleMapReact
         bootstrapURLKeys={{
-          // key: Key,
+          key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         center={currentCenter}

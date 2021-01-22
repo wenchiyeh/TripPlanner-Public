@@ -41,7 +41,9 @@ function Home() {
           position.coords.longitude
         ).then(
           (response) => {
-            const address = response.results[9].address_components[2].long_name
+            const address0 = response.results[6].formatted_address
+            const address1 = Array.from(address0)
+            const address = address1[2] + address1[3] + address1[4]
             settmapstory(address)
             console.log(address)
           },
@@ -65,9 +67,15 @@ function Home() {
     <>
       <div className="navbar-background" />
 
-      <HomeHeader />
+      <HomeHeader data-aos="fade-down" />
 
-      <Kv mapstory={mapstory} />
+      <Kv
+        mapstory={mapstory}
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="100"
+      />
 
       <article className="home-body">
         <div className="Home-container">

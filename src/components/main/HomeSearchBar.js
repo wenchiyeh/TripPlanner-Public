@@ -164,7 +164,6 @@ function HomeSearchBar({
         <div
           role="button"
           onClick={() => {
-            // setSearchFilter(returnObject)
             if (returnObject.page == '行程') {
               Goitinerary(JSON.stringify(returnObject))
             } else if (returnObject.page == '揪團') {

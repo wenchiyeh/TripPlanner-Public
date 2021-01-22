@@ -9,7 +9,8 @@ import {
 } from 'react-scroll'
 import TaiwanMap from './TaiwanMap'
 import { withRouter, Link } from 'react-router-dom'
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import HomeSearchBar from './HomeSearchBar'
 import ReactDOM from 'react-dom'
 import { render } from 'react-dom'
@@ -22,6 +23,8 @@ scroller.scrollTo('scroll-to-element', {
   smooth: 'easeInOutQuart',
 })
 function Kv(props) {
+  AOS.init()
+
   // const [{ data }] = useAxios(
   //   'https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=CWB-CE3C77E2-B7C4-49F4-AE97-3E3F5E40BEAE&downloadType=WEB&format=JSON'
   // )

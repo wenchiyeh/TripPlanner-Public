@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { AiOutlineInbox } from 'react-icons/ai'
 import { BsFillTrashFill } from 'react-icons/bs'
-import { useParams } from 'react-router-dom'
 import { Container, Button } from 'react-bootstrap'
 import './cash.scss'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
@@ -13,43 +12,56 @@ function Null() {
   function goToBuy() {
     history.push('/productList')
   }
-  const [crash, setCrash] = useState(true)
 
-  // localStorage.hasOwnProperty()
-
-  const aboutClass = JSON.parse(localStorage.getItem('product_idArray'))
   const pageUrl = '/images/classPhoto/'
   const productUrl = 'view/'
+  //取值
+  const aboutClass = JSON.parse(localStorage.getItem('product_id'))
+  //轉陣列
+  const getarray = aboutClass.split(',')
+  const showOrNotShow = getarray.length
+
+  //抓商品data
+  const getClassOne = JSON.parse(localStorage.getItem(getarray[1]))
+  const getClassTwo = JSON.parse(localStorage.getItem(getarray[2]))
+  const getClassThree = JSON.parse(localStorage.getItem(getarray[3]))
+  //轉成可map狀態
+  const mayob = [getClassOne, getClassTwo, getClassThree]
+
+  function resetlocal() {}
 
   const haveSothing = (
     <>
       <Container>
         <MyBreadCrumb />
-        <div className="go_center">
-          <figure className="nullphoto">
-            <img
-              src={pageUrl + aboutClass.classPhoto}
-              alt="圖片替代文字"
-              className="animate__animated animate__backInDown"
-            />
-          </figure>
-          <div className="carlabel">
-            <Link to={productUrl + aboutClass.product_id}>
-              <h4>{aboutClass.className}</h4>
-            </Link>
-            <p>{aboutClass.location}</p>
+        {mayob.map((v, i) => (
+          <div className="go_center" key={i}>
+            <figure className="nullphoto">
+              <img
+                src={pageUrl + v.classPhoto}
+                alt="圖片替代文字"
+                className="animate__animated animate__backInDown"
+              />
+            </figure>
+            <div className="carlabel">
+              <Link to={productUrl + v.product_id}>
+                <h4>{v.className}</h4>
+              </Link>
+              <p>{v.location}</p>
 
-            <p className="p1"> {aboutClass.classDate}</p>
+              <p className="p1"> {v.classDate}</p>
+              <p>
+                {v.classTimeStart}-{v.classTimeEnd}
+              </p>
+            </div>
             <p>
-              {aboutClass.classTimeStart}-{aboutClass.classTimeEnd}
+              <Button variant="link" product-data={v.product_id}>
+                <BsFillTrashFill />
+              </Button>
             </p>
           </div>
-          <p>
-            <Button variant="link" onClick={() => setCrash(false)}>
-              <BsFillTrashFill />
-            </Button>
-          </p>
-        </div>
+        ))}
+
         <hr />
       </Container>
     </>
@@ -81,7 +93,7 @@ function Null() {
     JSON.parse(localStorage.getItem('product_Data'))
   }, [])
 
-  return crash === true ? haveSothing : nothing
+  return showOrNotShow > 1 ? haveSothing : nothing
 }
 
 export default Null

@@ -49,9 +49,8 @@ function Login(props) {
           // localStorage.setItem('userName', 'memberId')
           // localStorage.setItem('userid', data.member)
           localStorage.setItem('userData', JSON.stringify(data))
-          const productData = {}
 
-          localStorage.setItem('product_id', JSON.stringify(productData))
+          localStorage.setItem('product_id', JSON.stringify('0'))
 
           setAuth(true)
           // sessionStorage.setItem('userName', 'memberId')

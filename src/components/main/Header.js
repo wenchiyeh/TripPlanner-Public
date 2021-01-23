@@ -15,7 +15,7 @@ function Header({ auth, setAuth }) {
   //   JSON.parse(localStorage.getItem('userData'))
   // )
   useEffect(() => {
-    console.log(location)
+    // console.log(location)
     if (location.pathname === '/') {
       setHeaderStyle(0)
     } else {

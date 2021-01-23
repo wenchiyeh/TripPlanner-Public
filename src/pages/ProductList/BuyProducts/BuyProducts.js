@@ -97,19 +97,16 @@ function BuyProducts({
   }
 
   function newclass() {
-    const oldClass = JSON.parse(localStorage.getItem(product_id))
-    if (className !== oldClass.className) {
-      console.log('已經加過囉')
-    } else {
-      localStorage.setItem(product_id, JSON.stringify(data))
-      const array = JSON.parse(localStorage.getItem('product_idArray'))
-      localStorage.setItem('product_idArray', [...array, product_id])
-      console.log('array' + typeof array)
-      console.log('id' + typeof product_id)
+    const getIDdata = JSON.parse(localStorage.getItem('product_id'))
+
+    if (getIDdata[0] === undefined) {
+      getIDdata[0] = product_id
+      localStorage.setItem(
+        'product_id',
+        JSON.stringify((getIDdata[0] = product_id))
+      )
+      console.log(getIDdata)
     }
-  }
-  function getLocal() {
-    localStorage.setItem(product_id, JSON.stringify(data))
   }
 
   const pageUrl = '/images/classPhoto/'
@@ -278,7 +275,7 @@ function BuyProducts({
                 <Button
                   variant="info"
                   onClick={() => {
-                    getLocal()
+                    // getLocal()
                     newclass()
                     setSmallShow(true)
                   }}

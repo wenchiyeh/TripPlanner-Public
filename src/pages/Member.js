@@ -37,6 +37,7 @@ function Member() {
         console.log('response:', response)
         setMember(data)
         localStorage.setItem('userData', JSON.stringify(data))
+
         console.log('memberdata:', data)
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {

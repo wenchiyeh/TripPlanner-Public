@@ -66,13 +66,10 @@ function ItinPublishView({ isEdit = false }) {
     let dataBox = []
     let formData = new FormData()
     for (let i = 0; i < dataFromDB[1].length; i++) {
-      console.log(`day ${i}`)
       for (let j = 0; j < dataFromDB[1][i].data.length; j++) {
-        console.log(`day ${i} box ${j}`)
         let text = document.querySelector(`.textarea-${i}${j}`).value
         let image = false
         if (document.querySelector(`.itin-input-${i}${j}`).files[0]) {
-          console.log('true')
           let imgFile = document.querySelector(`.itin-input-${i}${j}`)
           formData.append('file', imgFile.files[0])
           image = true

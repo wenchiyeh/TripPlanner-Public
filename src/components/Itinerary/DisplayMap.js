@@ -92,7 +92,6 @@ function DisplayMap({
         returnData.push(ele)
       })
     })
-    console.log(returnData)
     return returnData
   }
   return (

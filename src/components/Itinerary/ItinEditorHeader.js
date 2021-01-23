@@ -18,7 +18,7 @@ function ItinEditorHeader({
         {isEdit && <h2>發表我的行程表</h2>}
         <h1>{title}</h1>
       </div>
-      {isEdit && isMe && (
+      {isEdit && (
         <div className="d-flex align-items-center">
           <Button
             variant="info"

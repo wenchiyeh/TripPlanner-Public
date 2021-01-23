@@ -62,7 +62,7 @@ const PlaceMarker = ({
     <div className="d-flex flex-column align-items-center">
       <img
         className="map-markerIcon"
-        src={'http://maps.google.com/mapfiles/ms/micons/red-dot.png'}
+        src={'/images/marker.png'}
         alt={title}
         onClick={(e) => {
           e.preventDefault()

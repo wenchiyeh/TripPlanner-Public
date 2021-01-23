@@ -25,6 +25,8 @@
 .not-icon-mover{
   position: relative;
   top: 35px;
+  // align-items: center;
+  // justify-content: center;
 }
 .Navebar-figure {
   width: 45px;
@@ -68,3 +70,11 @@ figure{
     border-radius: 50%;
   }
 }
+
+//解決會員中心污染顏色
+.dropdown-item.active, .dropdown-item:active {
+  color:black;
+  // text-decoration: none;
+  background-color:transparent;
+}
+

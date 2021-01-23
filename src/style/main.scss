@@ -82,6 +82,9 @@ body {
 .HomeNavbar-inner {
   background: $main-lightblue;
 }
+.pages-bar {
+  margin: 0 auto;
+}
 // header
 @import './header.scss';
 

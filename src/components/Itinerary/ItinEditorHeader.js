@@ -15,7 +15,7 @@ function ItinEditorHeader({
   const displayPublish = (
     <div className="itin-editor-title publish-title d-flex justify-content-between">
       <div>
-        {isMe && <h2>發表我的行程表</h2>}
+        {isEdit && <h2>發表我的行程表</h2>}
         <h1>{title}</h1>
       </div>
       {isEdit && (
@@ -48,6 +48,14 @@ function ItinEditorHeader({
           >
             修改
           </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              history.push(`/itinerary/my/${itin_id}`)
+            }}
+          >
+            取消發布
+          </Button>
         </div>
       )}
     </div>
@@ -64,7 +72,7 @@ function ItinEditorHeader({
                 handleSubmit()
               }}
             >
-              發表
+              送出
             </Button>
             <Button
               variant="danger"
@@ -76,15 +84,25 @@ function ItinEditorHeader({
             </Button>
           </span>
         ) : (
-          <div className="d-flex align-items-center">
-            <Button
-              variant="info"
-              onClick={() => {
-                history.push(`/itinerary/edit/${itin_id}`)
-              }}
-            >
-              修改
-            </Button>
+          <div className="d-flex align-items-center justify-content-between">
+            <span>
+              <Button
+                variant="info"
+                onClick={() => {
+                  history.push(`/itinerary/edit/${itin_id}`)
+                }}
+              >
+                修改
+              </Button>
+              <Button
+                variant="info"
+                onClick={() => {
+                  history.push(`/itinerary/publish/${itin_id}`)
+                }}
+              >
+                發布
+              </Button>
+            </span>
           </div>
         )}
       </div>

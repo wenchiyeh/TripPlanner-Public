@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditorBasicData from './itinEditorBasicData'
 import ItinEditor from './ItinEditor'
@@ -14,12 +14,11 @@ import ItinEditorDetail from './ItinEditorDetail'
 //
 function ItinPublishView({ isEdit = false }) {
   const [dataFromDB, setgDataFromDB] = useState([])
-  const [dataToDB, setDataToDB] = useState()
   const [isLoading, setIsLoading] = useState(1)
   const [isPublish, setIsPublish] = useState(true)
-  const fs = require('fs')
-  let isMe = false
+  const [isMe, setIsMe] = useState(false)
   let { itin_id } = useParams()
+  let history = useHistory()
   async function getDataFromDB() {
     try {
       const response = await fetch(
@@ -32,8 +31,15 @@ function ItinPublishView({ isEdit = false }) {
       if (response.ok) {
         const data = await response.json()
         setgDataFromDB(data)
-        console.log(`isPublish = ${data[0].publish_time}`)
-        console.log(data)
+        if (JSON.parse(localStorage.getItem('userData'))) {
+          if (
+            data[0].member_id ===
+            JSON.parse(localStorage.getItem('userData')).newsId
+          ) {
+            setIsMe(true)
+            console.log('isMe')
+          }
+        }
         if (data[0].publish_time === null) {
           setIsPublish(false)
         }
@@ -49,7 +55,7 @@ function ItinPublishView({ isEdit = false }) {
       console.log('fetch err')
     }
   }
-  function handleDataToDB() {
+  async function handleDataToDB() {
     let dataReadyToSend = []
     let dataItin = {
       id: dataFromDB[1][0].data[0].itinerary_id,
@@ -58,54 +64,101 @@ function ItinPublishView({ isEdit = false }) {
         '-1' && document.querySelector('input[name="itin-kv"]:checked').value,
     }
     let dataBox = []
+    let formData = new FormData()
     for (let i = 0; i < dataFromDB[1].length; i++) {
       console.log(`day ${i}`)
       for (let j = 0; j < dataFromDB[1][i].data.length; j++) {
         console.log(`day ${i} box ${j}`)
-        let url = `/images/boxImage/itin${dataFromDB[1][i].data[j].itinerary_id}-${i}-${j}`
-        if (document.querySelector(`.PicInfo${i}${j}`)) {
-          let imageData = document.querySelector(`.PicInfo${i}${j}`).src
-          let data64 = imageData.replace(/^data:image\/\w+;base64,/, '')
-          let dataBuffer = new Buffer.from(data64, 'base64')
-          fs.writeFile(url, dataBuffer, function (err) {
-            if (err) {
-              console.log('fail')
-            } else {
-              console.log('success')
-            }
-          })
-        }
         let text = document.querySelector(`.textarea-${i}${j}`).value
+        let image = false
+        if (document.querySelector(`.itin-input-${i}${j}`).files[0]) {
+          console.log('true')
+          let imgFile = document.querySelector(`.itin-input-${i}${j}`)
+          formData.append('file', imgFile.files[0])
+          image = true
+        }
         dataBox.push({
-          index: `${i}${j}`,
-          image: url,
+          day: i,
+          order: j,
+          image: image,
           text: text,
         })
       }
     }
-    dataReadyToSend = [dataItin, dataBox]
-    console.log('publish!')
-    console.log(dataReadyToSend)
+    try {
+      let reqUrl = `http://localhost:5000/upload/itinBox`
+      let reqBody = {
+        method: 'post',
+        body: formData,
+      }
+      const response = await fetch(reqUrl, reqBody)
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+        dataBox.forEach((item) => {
+          if (item.image === true) {
+            item.image = `${data.url}` + data.name.shift()
+          } else {
+            item.image = null
+          }
+        })
+        dataReadyToSend = [dataItin, dataBox]
+        console.log(dataReadyToSend)
+        sendDataToDB(dataReadyToSend)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
   }
+  async function sendDataToDB(dataToDB) {
+    let reqUrl = `http://localhost:5000/itinerary/publish/${itin_id}`
+    let reqBody = {
+      method: 'put',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dataToDB),
+    }
+    try {
+      const response = await fetch(reqUrl, reqBody)
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+        history.push(`/itinerary/view/${itin_id}`)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
+  }
+  async function unPublish(itin_id) {
+    let reqUrl = `http://localhost:5000/itinerary/unpublish/${itin_id}`
+    let reqBody = {
+      method: 'put',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(itin_id),
+    }
+    try {
+      const response = await fetch(reqUrl, reqBody)
+      if (response.ok) {
+        history.push(`/itinerary/my/${itin_id}`)
+      }
+    } catch (err) {
+      console.log('fetch err')
+    }
+  }
+
   const displayView = dataFromDB.length > 0 && (
     <div className="itin-editor-frame">
       <ItinEditorHeader
         isEdit={isEdit}
-        isPublish={!isPublish}
+        isPublish={isPublish}
         isMe={isMe}
         title={dataFromDB[0].title}
-        handleSubmit={handleDataToDB}
+        handleSubmit={isEdit ? handleDataToDB : unPublish}
       />
       <main className="d-flex justify-content-between">
         <div>
-          <ItinEditorBasicData
-            isEdit={isEdit}
-            isPublish={isPublish}
-            memberName={dataFromDB[0].member_name}
-            avatar={`member_${dataFromDB[0].member_id}.jpg`}
-            area={dataFromDB[0].region}
-            town={dataFromDB[0].location}
-          />
+          <ItinEditorBasicData isEdit={isEdit} itinData={dataFromDB[0]} />
           <ItinEditor
             isEdit={false} //任何情況下的publish頁都不需要修改功能
             tempData={dataFromDB[1]}

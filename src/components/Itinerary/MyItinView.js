@@ -23,6 +23,14 @@ function MyItinView() {
       )
       if (response.ok) {
         const data = await response.json()
+        //私人行程需驗證是否為作者
+        if (
+          data[0].publish_time === null &&
+          data[0].member_id !== localStorage.getItem('userData').newsId
+        ) {
+          setIsLoading(3)
+          return
+        }
         let laglng = {
           lat: data[1][0].data[0].lat,
           lng: data[1][0].data[0].lng,
@@ -46,12 +54,12 @@ function MyItinView() {
     getDataFromDB()
   }, [])
   function handleSubmit() {
-    history.push(`/itinerary/publish/${itin_id}`)
+    history.push(`/itinerary/my/${itin_id}`)
   }
 
   const display = (
     <div className="itin-editview-wrapper">
-      <DisplayMap boxData={dataFromDB} center={center} />
+      <DisplayMap boxData={dataFromDB} center={center} size={'lg'} />
       <ItinEditorHeader
         isEdit={false}
         isPublish={false}

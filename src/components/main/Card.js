@@ -28,6 +28,7 @@ function Card({
   mark, //收藏人數
 }) {
   const imagePath = '/images/' + image
+  const backImage = 'http://localhost:5000/images/' + image
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
@@ -66,7 +67,11 @@ function Card({
         </p>
         <figure className="card-figure">
           <Link to={detailUrl}>
-            <img className="card-image" alt={title} src={imagePath} />
+            {type === 'itinerary' ? (
+              <img className="card-image" alt={title} src={backImage} />
+            ) : (
+              <img className="card-image" alt={title} src={imagePath} />
+            )}
           </Link>
         </figure>
         <div className="card-content">

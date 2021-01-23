@@ -1,9 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { FaPlus } from 'react-icons/fa'
-import { Button } from 'react-bootstrap'
+import React, { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
-import { debounce } from 'lodash'
-//利用debounce來避免敏感的onchange
+
 //引入 API key
 // import { Key } from '../../Key'
 
@@ -18,7 +15,7 @@ const PlaceMarker = ({ id, title }) => (
     <div className="d-flex flex-column align-items-center">
       <img
         className="map-markerIcon"
-        src={'http://maps.google.com/mapfiles/ms/micons/red-dot.png'}
+        src={'/images/marker.png'}
         alt={title}
         onClick={(e) => {
           e.preventDefault()
@@ -51,6 +48,7 @@ const PlaceMarker = ({ id, title }) => (
 function DisplayMap({
   center,
   zoom = 18, //越大放越大
+  size = '100',
   boxData,
 }) {
   //
@@ -98,7 +96,7 @@ function DisplayMap({
     return returnData
   }
   return (
-    <div className="itin-display-map">
+    <div className={size === '100' ? 'itin-display-map' : 'map-comp-wrapper'}>
       <GoogleMapReact
         bootstrapURLKeys={{
           // key: Key,

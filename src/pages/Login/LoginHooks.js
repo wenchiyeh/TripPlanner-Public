@@ -1,5 +1,5 @@
 //google 登入
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGoogleLogin } from 'react-google-login'
 import { FaGoogle } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom'
@@ -18,13 +18,15 @@ function LoginHooks() {
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj)
     // alert(`Logged in successfully welcome ${res.profileObj.name}`)
+    console.log('google name', res.profileObj.name)
     console.log('Google登入成功', res)
-    console.log('Google登入成功2', res.profileObj.name)
     refreshTokenSetup(res)
     if (res.profileObj.name === 'yushen liao') {
-      console.log('Google登入成功2', res.profileObj.name)
       history.push('/')
     }
+    // if (res.profileObj.name === 'yushen liao') {
+    //   console.log('Google登入成功2', res.profileObj.name)
+    // }
 
     //success
     // let str = JSON.stringify(res.result) //將物件列化成string，方便顯示結果在畫面上
@@ -49,7 +51,6 @@ function LoginHooks() {
     prompt: 'consent',
   })
 
-  useEffect(() => {}, [])
   return (
     <>
       <FaGoogle onClick={signIn} alt="google login" />

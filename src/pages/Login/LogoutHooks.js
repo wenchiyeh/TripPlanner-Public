@@ -25,11 +25,15 @@ function LogoutHooks() {
   })
 
   return (
-    <button onClick={signOut} className="button">
-      <img src="icons/google.svg" alt="google login" className="icon"></img>
+    // <button>
+    <>
+      {/* <img src="icons/google.svg" alt="google login" className="icon"></img> */}
 
-      <span className="buttonText">Sign out</span>
-    </button>
+      <span onClick={signOut} className="button">
+        登出
+      </span>
+      {/* </button> */}
+    </>
   )
 }
 

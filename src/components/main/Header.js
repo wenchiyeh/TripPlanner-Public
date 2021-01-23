@@ -46,7 +46,6 @@ function Header({ auth, setAuth }) {
               <img
                 className="header-img-br"
                 src={'images/userphoto/' + memberData.member_photo_id}
-                // src={imagePath}
                 alt="User Avatar"
               />
             )}
@@ -66,7 +65,7 @@ function Header({ auth, setAuth }) {
             setAuth(false)
           }}
         >
-          登出
+          <LogoutHooks />
         </NavDropdown.Item>
       </NavDropdown>
     </>
@@ -75,6 +74,7 @@ function Header({ auth, setAuth }) {
   const loginout = (
     <>
       <LogoutHooks />
+      testgoogle登出用
       <Nav.Link as={NavLink} to="/productList/car">
         <FiShoppingCart className="Navbar-icon" />
         {/* <Badge variant="light">2</Badge> */}

@@ -34,11 +34,11 @@ function Member() {
 
       if (response.ok) {
         const data = await response.json()
-        console.log('response:', response)
+        // console.log('response:', response)
         setMember(data)
         localStorage.setItem('userData', JSON.stringify(data))
 
-        console.log('memberdata:', data)
+        // console.log('memberdata:', data)
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {
           setIsLoading(false)
@@ -74,7 +74,7 @@ function Member() {
   // }
   useEffect(() => {
     getMember(member.newsId)
-    console.log('me有資料嗎?', member)
+    // console.log('me有資料嗎?', member)
   }, [])
   const Loading = <h1>Loading</h1>
 

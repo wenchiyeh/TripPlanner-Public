@@ -454,7 +454,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       </span>
                     </Form.Check>
                   </div>
-                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
+                  {credit === 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">

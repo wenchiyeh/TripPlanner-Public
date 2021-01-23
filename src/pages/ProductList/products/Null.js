@@ -8,41 +8,37 @@ import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function Null() {
-  let history = useHistory()
-  function goToBuy() {
-    history.push('/productList')
-  }
-
   const pageUrl = '/images/classPhoto/'
   const productUrl = 'view/'
   //取值
   const aboutClass = JSON.parse(localStorage.getItem('product_id'))
-  //轉陣列
+  //確保每次刷新頁面都會動作
+  useEffect(() => {
+    JSON.parse(localStorage.getItem('product_Data'))
+  }, [])
+  //轉成陣列
   const getarray = aboutClass.split(',')
-  const showOrNotShow = getarray.length
+  const shift0 = getarray.shift()
 
-  //抓商品data
-  const getClassOne = JSON.parse(localStorage.getItem(getarray[1]))
-  const getClassTwo = JSON.parse(localStorage.getItem(getarray[2]))
-  const getClassThree = JSON.parse(localStorage.getItem(getarray[3]))
-  //轉成可map狀態
-  const mayob = [getClassOne, getClassTwo, getClassThree]
+  // 抓商品data
+  let getvalue = getarray.map((v, i) => JSON.parse(localStorage.getItem(v)))
 
-  function resetlocal() {}
-
-  const haveSothing = (
+  return (
     <>
       <Container>
         <MyBreadCrumb />
-        {mayob.map((v, i) => (
-          <div className="go_center" key={i}>
-            <figure className="nullphoto">
-              <img
-                src={pageUrl + v.classPhoto}
-                alt="圖片替代文字"
-                className="animate__animated animate__backInDown"
-              />
-            </figure>
+        {getvalue.map((v, i) => (
+          <div className="go_center">
+            <Link to={productUrl + v.product_id}>
+              <figure className="nullphoto">
+                <img
+                  src={pageUrl + v.classPhoto}
+                  alt="圖片替代文字"
+                  className="animate__animated animate__backInDown"
+                />
+              </figure>
+            </Link>
+
             <div className="carlabel">
               <Link to={productUrl + v.product_id}>
                 <h4>{v.className}</h4>
@@ -55,18 +51,22 @@ function Null() {
               </p>
             </div>
             <p>
-              <Button variant="link" product-data={v.product_id}>
+              <Button variant="link" product_data={v.product_id}>
                 <BsFillTrashFill />
               </Button>
             </p>
           </div>
         ))}
-
-        <hr />
       </Container>
     </>
   )
-  const nothing = (
+}
+function Nothing() {
+  let history = useHistory()
+  function goToBuy() {
+    history.push('/productList')
+  }
+  return (
     <>
       <link
         rel="stylesheet"
@@ -88,12 +88,14 @@ function Null() {
       </Container>
     </>
   )
+}
+function Show() {
+  const aboutClass = JSON.parse(localStorage.getItem('product_id'))
+  const getarray = aboutClass.split(',')
 
-  useEffect(() => {
-    JSON.parse(localStorage.getItem('product_Data'))
-  }, [])
-
-  return showOrNotShow > 1 ? haveSothing : nothing
+  //判斷大於1 要顯示資料
+  const showOrNotShow = getarray.length
+  return showOrNotShow > 1 ? <Null /> : <Nothing />
 }
 
-export default Null
+export default Show

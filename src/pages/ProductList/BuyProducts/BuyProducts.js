@@ -97,7 +97,7 @@ function BuyProducts({
   }
   const getIDdata = JSON.parse(localStorage.getItem('product_id'))
   const getproductdata = JSON.parse(localStorage.getItem(product_id))
-  console.log(getproductdata)
+  // console.log(getproductdata)
   function newclass() {
     //寫入商品資訊
     localStorage.setItem(product_id, JSON.stringify(data))

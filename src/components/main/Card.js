@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fa'
 
 function Card({
+  imgFrom = 'front',
   id = 1, //資料的id
   title, //標題
   text, //內文
@@ -67,10 +68,10 @@ function Card({
         </p>
         <figure className="card-figure">
           <Link to={detailUrl}>
-            {type === 'itinerary' ? (
-              <img className="card-image" alt={title} src={backImage} />
-            ) : (
+            {imgFrom === 'front' ? (
               <img className="card-image" alt={title} src={imagePath} />
+            ) : (
+              <img className="card-image" alt={title} src={backImage} />
             )}
           </Link>
         </figure>

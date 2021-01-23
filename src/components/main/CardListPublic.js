@@ -28,6 +28,7 @@ function CardListPublic({
         return (
           <Col key={index} xs={6} md={4}>
             <Card
+              imgFrom={'back'}
               id={element.itin_id}
               title={element.title}
               text={element.info}

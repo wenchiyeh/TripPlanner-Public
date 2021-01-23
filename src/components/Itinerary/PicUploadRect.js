@@ -40,7 +40,7 @@ function PicUploadRect({
         document.querySelector(`.${giveClassName.input}`).click()
       }}
       className={giveClassName.img}
-      src={`/images/${originPic}`}
+      src={`http://localhost:5000/images/${originPic}`}
       alt={`PicInfo`}
     />
   )

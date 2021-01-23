@@ -4,7 +4,6 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 import { Link } from 'react-router-dom'
-import Mefmodal from '../Mefmodal'
 import { Modal, Button } from 'react-bootstrap'
 
 function MeFavoritesgroup({

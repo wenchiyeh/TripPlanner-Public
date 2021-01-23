@@ -7,8 +7,7 @@ import { useHistory } from 'react-router-dom'
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken'
 
-const clientId =
-  '1019700386473-hp6eatl7oegfmhgb74u4n5afmgqtla4r.apps.googleusercontent.com'
+const clientId = '請輸入KEY'
 
 function LoginHooks() {
   // const [newAuthRes, serNewAuthRes] = useState()

@@ -1,14 +1,17 @@
 //google 登出
 import React from 'react'
 import { useGoogleLogout } from 'react-google-login'
+import { useHistory } from 'react-router-dom'
 
 const clientId =
   '707788443358-u05p46nssla3l8tmn58tpo9r5sommgks.apps.googleusercontent.com'
 
 function LogoutHooks() {
+  let history = useHistory()
   const onLogoutSuccess = (res) => {
     console.log('Logged out Success')
-    alert('Logged out Successfully ✌')
+    // alert('Logged out Successfully ✌')
+    history.push('/')
   }
 
   const onFailure = () => {

@@ -4,6 +4,8 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 import { Link } from 'react-router-dom'
+import Mefmodal from '../Mefmodal'
+import { Modal, Button } from 'react-bootstrap'
 
 function MeFavoritesgroup({
   id = 1, //資料的id
@@ -44,11 +46,27 @@ function MeFavoritesgroup({
     gettbJoined()
   }, [])
 
-  const display = { display: 'none' }
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  function mefdelet() {
+    const listBtn = document.getElementById('show-card')
+    const textlistn = document.getElementById('card-ingroup-box')
+    listBtn.addEventListener('click', (e) => {
+      textlistn.style.display = textlistn.style.display === 'none' ? '' : 'none'
+    })
+  }
+
   return (
     <>
       {metbJoined.map((e, index) => (
-        <div key={index} className="card-ingroup-box mb-3">
+        <div
+          key={index}
+          id="card-ingroup-box"
+          className="card-ingroup-box mb-3"
+        >
           <div className="row no-gutters me-favorites-back-style">
             <div className="col-md-4">
               <Link to={detailUrl}>
@@ -76,15 +94,46 @@ function MeFavoritesgroup({
                     <FaMapMarkerAlt />
                     {e.tb_city}
                   </p>
-                  <button className="Ingroup-btn">聊天室</button>
+                  <button id="Ingroup-btn" className="Ingroup-btn">
+                    聊天室
+                  </button>
                   <button
+                    variant="primary"
                     className="Ingroup-btn"
-                    onChange={() => {
-                      display()
-                    }}
+                    onClick={handleShow}
                   >
                     取消
                   </button>
+                  <Modal
+                    show={show}
+                    onHide={handleClose}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    backdrop="static"
+                    keyboard={false}
+                    onClick={mefdelet}
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>請再次確認</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>是否刪除此揪團?</Modal.Body>
+                    <Modal.Footer>
+                      <Button onClick={handleClose} variant="secondary">
+                        否
+                      </Button>
+                      <Button
+                        id="show-card"
+                        variant="primary"
+                        type="sumbit"
+                        onChange={mefdelet}
+                        onClick={() => {
+                          handleClose()
+                        }}
+                      >
+                        送出
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </span>
                 <br />
               </div>
@@ -95,4 +144,5 @@ function MeFavoritesgroup({
     </>
   )
 }
+
 export default MeFavoritesgroup

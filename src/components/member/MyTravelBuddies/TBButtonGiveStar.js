@@ -13,11 +13,13 @@ function TBButtonGiveStar(props) {
   const [hover, setHover] = useState(0)
   const tb_id = props.tb_id
   const m_id = props.m_id
+  const give_id = JSON.parse(localStorage.getItem('userData')).newsId
   async function giveStarRating(props) {
     const newSignedUp = {
       tb_id,
       m_id,
       rating,
+      give_id,
     }
     // 要使用try-catch來作錯誤處理
     try {
@@ -50,20 +52,17 @@ function TBButtonGiveStar(props) {
   return (
     <>
       {doGiveStar === 0 ? (
-        <Button
-          className="tb-mainpage-button"
-          onClick={() => settbGiveStar(true)}
-        >
+        <Button className="tb-give-star" onClick={() => settbGiveStar(true)}>
           評價
         </Button>
       ) : (
-        <Button className="tb-mainpage-button">已評分</Button>
+        <Button className="tb-give-star">已評分</Button>
       )}
       <Modal
-        size=""
         show={tbGiveStar}
         onHide={() => settbGiveStar(false)}
         aria-labelledby="tbGiveStar"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>
@@ -72,26 +71,28 @@ function TBButtonGiveStar(props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div>{memberName}</div>
-            <br />
-            <div className="star-rating">
-              {[...Array(5)].map((star, index) => {
-                index += 1
-                return (
-                  <button
-                    type="button"
-                    key={index}
-                    className={
-                      index <= (hover || rating) ? 'starOn' : 'starOff'
-                    }
-                    onClick={() => setRating(index)}
-                    onMouseEnter={() => setHover(index)}
-                    onMouseLeave={() => setHover(rating)}
-                  >
-                    <span className="star">&#9733;</span>
-                  </button>
-                )
-              })}
+            <div className="star-rating-outbox">
+              <div className="star-rating-name">{memberName}</div>
+              <br />
+              <div>
+                {[...Array(5)].map((star, index) => {
+                  index += 1
+                  return (
+                    <button
+                      type="button"
+                      key={index}
+                      className={
+                        index <= (hover || rating) ? 'starOn' : 'starOff'
+                      }
+                      onClick={() => setRating(index)}
+                      onMouseEnter={() => setHover(index)}
+                      onMouseLeave={() => setHover(rating)}
+                    >
+                      <span className="star">&#9733;</span>
+                    </button>
+                  )
+                })}
+              </div>
             </div>
           </Modal.Body>
           <Modal.Footer>

@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
-import { Button, Modal, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import { Link, useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 function TBButtonChatroom(props) {
+  let history = useHistory()
   const id = props.id
-  // let history = useHistory()
-  // function Chatroom() {
-  //   history.push({`/travelBuddies/chatroom/`})
-  // }
-  const Chatroom = () => {}
+  console.log(id)
+  function Chatroom() {
+    history.push('/travelBuddies/chatroom/' + id)
+  }
   return (
     <>
-      <Link to={`/travelBuddies/chatroom?tb=${id}`}>
-        <Button type="submit" className="tb-button-chatroom" onclick={Chatroom}>
-          聊天室
-        </Button>
-      </Link>
+      <Button className="tb-button-chatroom" onClick={Chatroom}>
+        聊天室
+      </Button>
     </>
   )
 }
 
-export default TBButtonChatroom
+export default withRouter(TBButtonChatroom)

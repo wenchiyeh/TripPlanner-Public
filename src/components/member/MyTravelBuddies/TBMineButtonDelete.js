@@ -61,6 +61,7 @@ function TBMineButtonDelete(props) {
         show={tbMineDelete}
         onHide={() => settbMineDelete(false)}
         aria-labelledby="tbMineDelete"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>

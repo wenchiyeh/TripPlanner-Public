@@ -93,35 +93,51 @@ function TBButtonSignedUp(props) {
         </Button>
       )}
       <Modal
-        size="lg"
         show={tbButtonSignedUp}
         onHide={() => settbButtonSignedUp(false)}
         aria-labelledby="tbSignedUp"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>
             <Modal.Title id="tbSignedUp" className="tbjoined-dropout-title">
-              {'您已成功報名' + ' ' + props.themeName + ' ' + '！'}
+              報名成功
             </Modal.Title>
           </Modal.Header>
-
-          <Modal.Footer></Modal.Footer>
+          <Modal.Body>
+            <div className="tb-signedup-content">
+              {'您已成功報名' + ' ' + props.themeName + ' ' + '！'}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="" className="tbhistory-button-rating-close">
+              關閉
+            </Button>
+          </Modal.Footer>
         </div>
       </Modal>
       <Modal
-        size="lg"
         show={tbButtonDropOut}
         onHide={() => settbButtonDropOut(false)}
         aria-labelledby="tbDropOut"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>
             <Modal.Title id="tbDropOut" className="tbjoined-dropout-title">
-              {'您已取消報名' + ' ' + props.themeName + ' ' + '！'}
+              取消成功
             </Modal.Title>
           </Modal.Header>
-
-          <Modal.Footer></Modal.Footer>
+          <Modal.Body>
+            <div className="tb-signedup-content">
+              {'您已取消報名' + ' ' + props.themeName + ' ' + '！'}
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="" className="tbhistory-button-rating-close">
+              關閉
+            </Button>
+          </Modal.Footer>
         </div>
       </Modal>
     </>

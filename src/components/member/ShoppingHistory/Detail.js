@@ -16,7 +16,7 @@ function Detail() {
       )
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
         setOrderDetail(data)
         setTimeout(() => {
           if (data.length === 0) {

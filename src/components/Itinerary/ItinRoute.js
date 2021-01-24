@@ -9,13 +9,17 @@ function ItinRoute() {
   return (
     <>
       <Switch>
+        <Route path="/itinerary/new">
+          <ItinEditView />
+          {/* 準備新增用的 */}
+        </Route>
         <Route path="/itinerary/my/:itin_id">
           <MyItinView isEdit={false} />
           {/* 私人的有大地圖的 */}
         </Route>
-        <Route path="/itinerary/my/edit/:itin_id">
-          <MyItinView isEdit={true} />
-          {/* 私人的修改 */}
+        <Route path="/itinerary/edit/:itin_id">
+          <ItinEditView isNew={false} />
+          {/* 私人修改用的 */}
         </Route>
         <Route path="/itinerary/view/:itin_id">
           <ItinPublishView isEdit={false} />
@@ -24,14 +28,6 @@ function ItinRoute() {
         <Route path="/itinerary/publish/:itin_id">
           <ItinPublishView isEdit={true} />
           {/* 公開的修改含準備發表 */}
-        </Route>
-        <Route path="/itinerary/new">
-          <ItinEditView />
-          {/* 準備新增用的 */}
-        </Route>
-        <Route path="/itinerary/edit/:itin_id">
-          <ItinEditView isNew={false} />
-          {/* 修改用的 */}
         </Route>
         <Route exact path="/itinerary">
           <Itinerary />

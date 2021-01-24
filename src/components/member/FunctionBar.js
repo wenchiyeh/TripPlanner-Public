@@ -7,13 +7,14 @@ import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
 import MeFavorites from '../main/MeFavorites'
 import Notice from '../../pages/Notice'
 import MyAccount from '../member/MyAccount'
+import MyItineraryTabs from './MyItinerary/MyItineraryTabs'
 function FunctionBar() {
   return (
     //<Router>
     <>
       <div className="functio-bar">
         <Link to="/myAccount">我的帳戶</Link>
-        <Link to="h/Stroke">我的行程</Link>
+        <Link to="/myAccount/itinerary">我的行程</Link>
         <Link to="/myAccount/TravelBuddies">我的揪團</Link>
         <Link to="/myAccount/favorites">我的收藏</Link>
         <Link to="/myAccount/Notice">我的通知</Link>
@@ -22,6 +23,9 @@ function FunctionBar() {
       <Switch>
         <Route path="/myAccount/historyOrder">
           <HistiryRoute />
+        </Route>
+        <Route path="/myAccount/itinerary">
+          <MyItineraryTabs />
         </Route>
         <Route path="/myAccount/TravelBuddies">
           <MyTravelBuddies />

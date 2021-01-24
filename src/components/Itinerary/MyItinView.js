@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditor from './ItinEditor'
 import DisplayMap from './DisplayMap'
+import Spinner from '../main/Spinner'
+import NoData from '../main/NoData'
 
 function MyItinView() {
   const [isLoading, setIsLoading] = useState(1)
@@ -25,8 +27,8 @@ function MyItinView() {
         const data = await response.json()
         //私人行程需驗證是否為作者
         if (
-          data[0].publish_time === null &&
-          data[0].member_id !== localStorage.getItem('userData').newsId
+          data[0].member_id !==
+          JSON.parse(localStorage.getItem('userData')).newsId
         ) {
           setIsLoading(3)
           return
@@ -71,11 +73,11 @@ function MyItinView() {
   )
 
   if (isLoading === 1) {
-    return <h1>讀取中</h1>
+    return <Spinner text={'讀取中'} />
   } else if (isLoading === 0) {
     return display
   } else {
-    return <h1>查無資料</h1>
+    return <NoData text={'查無此行程'} />
   }
 }
 

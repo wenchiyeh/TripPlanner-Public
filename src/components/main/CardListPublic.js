@@ -14,7 +14,8 @@ function CardListPublic({
 }) {
   let [showRange, setShowRange] = useState([0, itemPerPage])
   let dataLength = data.length
-  let totalPage = Math.floor(dataLength / itemPerPage)
+  let totalPage = Math.floor(dataLength / itemPerPage) + 1
+  if (dataLength % itemPerPage === 0) totalPage -= 1
   function changePage(orderPage) {
     setShowRange([(orderPage - 1) * itemPerPage, orderPage * itemPerPage])
     window.scrollTo(0, 0)

@@ -42,7 +42,7 @@ function MemberProfile({ setMember }) {
       <div className="person">
         <h3>一般會員</h3>
         <img
-          src={'images/userphoto/' + memberData.member_photo_id}
+          src={'/images/userphoto/' + memberData.member_photo_id}
           alt={memberData.member_name}
         />
         <h4>{memberData.member_name}</h4>

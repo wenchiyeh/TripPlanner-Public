@@ -1,19 +1,21 @@
 //登入
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FaUserAlt, FaUnlockAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup, Toast } from 'react-bootstrap'
-import './login.scss'
 import { useHistory, Link } from 'react-router-dom'
+import './login.scss'
+import LoginHooks from './LoginHooks'
+// import LogoutHooks from './LogoutHooks'
 
 function Login(props) {
   //是否登入
   // 從App元件得到兩個屬性值，解構出來
-  const { isAuth, setIsAuth, auth, setAuth } = props
+  const { setIsAuth, setAuth } = props
   let history = useHistory()
   const [member, setMember] = useState([])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  //alter
+  //表單提示警告
   const [showA, setShowA] = useState(false)
   const toggleShowA = () => setShowA(!showA)
   //驗證表單
@@ -72,7 +74,7 @@ function Login(props) {
   //   }
   // }, [member])
 
-  // const mesin = <samp isAuth={isAuth}></samp>
+  //沒有則跳空的
   const mesin = <samp></samp>
   const meserr = (
     <Toast
@@ -145,16 +147,6 @@ function Login(props) {
           <Button
             type="submit"
             className="login-btn"
-            // state={loading ? 'loading' : undefined}
-            // onClick={() => {
-            //   setLoading(true)
-            //   setTimer(
-            //     setTimeout(
-            //       () => (onLogin ? onLogin() : setLoading(false)),
-            //       2000
-            //     )
-            //   )
-            // }}
             onClick={() => {
               if (password.length < 6) {
                 toggleShowA()
@@ -198,7 +190,9 @@ function Login(props) {
               <FaFacebook />
             </span>
             <span>
-              <FaGoogle />
+              {/* <FaGoogle /> */}
+              <LoginHooks />
+              {/* <LogoutHooks /> */}
             </span>
           </div>
         </Form>

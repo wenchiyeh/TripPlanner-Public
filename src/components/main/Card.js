@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fa'
 
 function Card({
+  imgFrom = 'front',
   id = 1, //資料的id
   title, //標題
   text, //內文
@@ -28,6 +29,7 @@ function Card({
   mark, //收藏人數
 }) {
   const imagePath = '/images/' + image
+  const backImage = 'http://localhost:5000/images/' + image
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
   let handelTitle = StrCutter(title, 15)
@@ -66,7 +68,11 @@ function Card({
         </p>
         <figure className="card-figure">
           <Link to={detailUrl}>
-            <img className="card-image" alt={title} src={imagePath} />
+            {imgFrom === 'front' ? (
+              <img className="card-image" alt={title} src={imagePath} />
+            ) : (
+              <img className="card-image" alt={title} src={backImage} />
+            )}
           </Link>
         </figure>
         <div className="card-content">

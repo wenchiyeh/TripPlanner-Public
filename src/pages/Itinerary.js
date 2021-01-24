@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import MyBreadCrumb from '../components//main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../components//main/SearchBar'
 import CardListPublic from '../components//main/CardListPublic'
-import Pages from '../components//main/Pages'
 import Carousel from '../components/TravelBuddies/Carousel'
 
 function Itinerary(props) {
@@ -62,8 +61,7 @@ function Itinerary(props) {
         <Col md={12}>
           <SearchBar setSearchFilter={setSearchFilter} />
         </Col>
-        <CardListPublic data={dataFromDB} type="itinerary" />
-        <Pages />
+        <CardListPublic data={dataFromDB} type="itinerary" itemPerPage={9} />
       </div>
     </>
   )

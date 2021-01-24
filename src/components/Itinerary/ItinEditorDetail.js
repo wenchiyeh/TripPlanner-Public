@@ -27,7 +27,7 @@ function ItinEditorDetail({
           {element.title}
         </h4>
       ))}
-      <form id="detailForm">
+      <form id="detailForm" method="post">
         {boxData.map((element, indexDay) => (
           <div key={indexDay}>
             {element.data.map((ele, indexBox) => (
@@ -64,6 +64,7 @@ function ItinEditorDetail({
                 <textarea
                   className={`textarea-${indexDay}${indexBox}`}
                   placeholder="您可以在此輸入心得或描述"
+                  defaultValue={ele.info}
                 />
               </div>
             ))}
@@ -103,7 +104,10 @@ function ItinEditorDetail({
                   <></>
                 ) : (
                   <div className="detailPic">
-                    <img src={`/images/${ele.image}`} alt={ele.title} />
+                    <img
+                      src={`http://localhost:5000/images/${ele.image}`}
+                      alt={ele.title}
+                    />
                   </div>
                 )}
                 <div className="showInfoText">

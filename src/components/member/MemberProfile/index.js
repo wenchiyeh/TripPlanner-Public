@@ -8,7 +8,7 @@ function MemberProfile({ setMember }) {
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
-  console.log('mp member:', memberData)
+  // console.log('mp member:', memberData)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)

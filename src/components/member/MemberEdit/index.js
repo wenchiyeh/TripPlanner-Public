@@ -59,29 +59,29 @@ function MemberEdit({ member }) {
       console.log(err)
     }
   }
-  async function getMember(id) {
-    try {
-      const response = await fetch(`http://localhost:5000/member/${id}`, {
-        mode: 'cors',
-        method: 'get',
-      })
-      if (response.ok) {
-        const data = await response.json()
-        // 設定到每個欄位
-        setEmail(member.email)
-        setMember_name(member.member_name)
-        setPhone(member.phone)
-        setBirthday(member.birthday)
-        setMember_sex(member.member_sex)
-        setMember_photo_id(member.setmember_photo_id)
-        setMember_id(member.member_id)
-        setMember_aboutme(member.member_aboutme)
-      }
-    } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
-      console.log(err)
-    }
-  }
+  // async function getMember(id) {
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/member/${id}`, {
+  //       mode: 'cors',
+  //       method: 'get',
+  //     })
+  //     if (response.ok) {
+  //       const data = await response.json()
+  //       // 設定到每個欄位
+  //       setEmail(member.email)
+  //       setMember_name(member.member_name)
+  //       setPhone(member.phone)
+  //       setBirthday(member.birthday)
+  //       setMember_sex(member.member_sex)
+  //       setMember_photo_id(member.setmember_photo_id)
+  //       setMember_id(member.member_id)
+  //       setMember_aboutme(member.member_aboutme)
+  //     }
+  //   } catch (err) {
+  //     alert('無法得到伺服器資料，請稍後再重試')
+  //     console.log(err)
+  //   }
+  // }
   useEffect(() => {
     if (member === 1) {
       console.log('hi model沒有值', id)

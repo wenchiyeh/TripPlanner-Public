@@ -45,16 +45,18 @@ function Null() {
 
     //把預設的0塞回去 不然會壞掉
     const unshiftArray = getarray.unshift(0)
-    console.log('加入0變成' + getarray)
+    console.log('加回預設的0 變成' + getarray)
 
     //轉回字串
     const strData = getarray.toString()
-    console.log(strData)
+    console.log('要更新的是' + strData)
 
     // const goLocal = localStorage.setItem('product_id', JSON.stringify(strData))
     // console.log(goLocal)
   }
-
+  useEffect(() => {
+    setButtonType()
+  }, [])
   return (
     <>
       <Container>
@@ -133,7 +135,6 @@ function Show() {
 
   //判斷大於1 要顯示資料
   const showOrNotShow = getarray.length
-
   return showOrNotShow > 1 ? <Null /> : <Nothing />
 }
 

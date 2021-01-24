@@ -33,7 +33,14 @@ function Kv(props) {
   return (
     <>
       <div className="kv-search">
-        <h1>近在咫尺的美</h1>
+        <h1
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-out"
+          data-aos-duration="900"
+          data-aos-delay="1300"
+        >
+          近在咫尺的美
+        </h1>
         <HomeSearchBar />
       </div>
       <TaiwanMap mapstory={mapstory} />

@@ -128,7 +128,13 @@ function HomeSearchBar({
   //
   return (
     <>
-      <div className="homesearchbar-wrapper d-flex justify-content-between">
+      <div
+        className="homesearchbar-wrapper d-flex justify-content-between"
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="1500"
+      >
         <div className="homesearchbar-form-wrapper d-flex align-items-center">
           <input
             ref={inputRef}

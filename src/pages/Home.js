@@ -41,14 +41,17 @@ function Home() {
           position.coords.longitude
         ).then(
           (response) => {
-            const address0 = response.results[6].formatted_address
+            const address0 = response.results[0].formatted_address
             const address1 = Array.from(address0)
-            const address = address1[2] + address1[3] + address1[4]
+            const address = address1[5] + address1[6] + address1[7]
             settmapstory(address)
+
             console.log(address)
           },
           (error) => {
             console.error(error)
+            const address = '桃園市'
+            settmapstory(address)
           }
         )
       }
@@ -56,7 +59,7 @@ function Home() {
       navigator.geolocation.getCurrentPosition(success, error)
     } else {
       alert('Sorry, 你的裝置不支援地理位置功能。')
-      const address = '基隆市'
+      const address = '桃園市'
     }
   }
   useEffect(() => {
@@ -67,7 +70,7 @@ function Home() {
     <>
       <div className="navbar-background" />
 
-      <HomeHeader data-aos="fade-down" />
+      {/* <HomeHeader data-aos="fade-down" /> */}
 
       <Kv
         mapstory={mapstory}

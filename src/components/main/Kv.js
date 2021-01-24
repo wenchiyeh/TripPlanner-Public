@@ -38,7 +38,7 @@ function Kv(props) {
       </div>
       <TaiwanMap mapstory={mapstory} />
 
-      <a onClick={() => scroll.scrollMore(920)}>
+      <a onClick={() => scroll.scrollMore(850)}>
         <div className="scroll-icon-relative">
           <div className="chevron"></div>
           <div className="chevron"></div>

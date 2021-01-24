@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //引入 API key
-import { Key } from '../../Key'
+// import { Key } from '../../Key'
 
 //marker元件
 const PlaceMarker = ({ id, title }) => (
@@ -101,7 +101,7 @@ function DisplayMap({
     <div className="itin-display-map">
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: Key,
+          // key: Key,
           libraries: ['places'], // 要在這邊放入要使用的 API
         }}
         // center={currentCenter}

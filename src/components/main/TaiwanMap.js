@@ -43,7 +43,7 @@ function TaiwanMap(props) {
     if (mapstory.length > 0) {
       setFilter(mapstory)
     } else {
-      setFilter('南投縣')
+      setFilter('基隆市')
     }
 
     let data = weatherData.filter((item) => {
@@ -98,7 +98,7 @@ function TaiwanMap(props) {
         臺北市: 'Taipei City',
         桃園市: 'Taoyuan City',
         新竹縣: 'Hsinchu County',
-        新竹市: 'Hsinchu City',
+        新竹市: 'Keelung',
         苗栗市: 'Miaoli City',
         苗栗縣: 'Miaoli County',
         臺中市: 'Taichung City',

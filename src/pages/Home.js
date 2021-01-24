@@ -56,7 +56,7 @@ function Home() {
       navigator.geolocation.getCurrentPosition(success, error)
     } else {
       alert('Sorry, 你的裝置不支援地理位置功能。')
-      const address = '新北市'
+      const address = '基隆市'
     }
   }
   useEffect(() => {

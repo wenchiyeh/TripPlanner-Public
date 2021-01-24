@@ -31,6 +31,26 @@ function SearchBar({
   const [selectDay, setSelectDay] = useState(0)
   const [nowArea, setNowArea] = useState(0)
   //偵測地區變化
+  //首頁快速搜尋--網址取值
+  useEffect(() => {
+    let HomeSearchbURL = new URL(window.location)
+    let params = HomeSearchbURL.searchParams
+    const area = params.get('area')
+    const town = params.get('town')
+    const day = params.get('day')
+    const keyword = params.get('keyword')
+    let HomeSearchstr = {
+      area: area,
+      town: town,
+      day: day,
+      keyword: keyword,
+    }
+    if (HomeSearchstr) {
+      setSearchFilter(HomeSearchstr)
+    }
+  }, [selectArea])
+
+  //**********************
   useEffect(() => {
     let currentValue = {
       keyword: inputText,
@@ -72,6 +92,7 @@ function SearchBar({
         break
     }
   }
+
   //
   return (
     <>

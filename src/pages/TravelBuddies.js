@@ -12,21 +12,14 @@ function TravelBuddies(props) {
   const [searchFilter, setSearchFilter] = useState({})
   const [tbDataMain, settbDataMain] = useState([])
   let history = useHistory()
-  // const searchdata = JSON.parse(props.returnObject)
-  // const { keyword, area, town, day } = searchdata
+
   function createTravelBuddies() {
     history.push('/travelBuddies/new')
   }
+
   useEffect(() => {
     console.log(searchFilter)
   }, [searchFilter])
-  // useEffect(() => {
-  //   if (searchdata.length > 0) {
-  //     setSearchFilter(searchdata)
-  //     console.log(searchdata)
-  //   }
-  // })
-  console.log(props)
 
   async function gettbDataMain(props) {
     try {

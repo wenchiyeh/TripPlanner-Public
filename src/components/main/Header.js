@@ -44,7 +44,7 @@ function Header({ auth, setAuth }) {
             {memberData && (
               <img
                 className="header-img-br"
-                src={'images/userphoto/' + memberData.member_photo_id}
+                src={'images/member/' + memberData.member_photo_id}
                 // src={imagePath}
                 alt="User Avatar"
               />

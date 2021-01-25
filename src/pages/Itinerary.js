@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 //
 import MyBreadCrumb from '../components//main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../components//main/SearchBar'
@@ -14,6 +14,7 @@ function Itinerary(props) {
   const [dataFromDB, segDataFromDB] = useState([])
   const [isLoading, setIsLoading] = useState(1)
   let history = useHistory()
+  let location = useLocation()
   function createItinerary() {
     if (localStorage.getItem('userData')) {
       history.push('/itinerary/new')
@@ -22,13 +23,13 @@ function Itinerary(props) {
     }
   }
   useEffect(() => {
-    console.log(searchFilter)
     getDataFromDB()
   }, [searchFilter])
   async function getDataFromDB() {
+    setIsLoading(1)
     try {
       const response = await fetch(
-        `http://localhost:5000/itinerary?` + new URLSearchParams(searchFilter),
+        `http://localhost:5000/itinerary${location.search}`,
         {
           method: 'get',
           mode: 'cors',
@@ -37,7 +38,6 @@ function Itinerary(props) {
       if (response.ok) {
         const data = await response.json()
         segDataFromDB(data)
-        // console.log('data = ', data)
         setTimeout(() => {
           if (data.length === 0) {
             setIsLoading(3)

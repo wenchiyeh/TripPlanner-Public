@@ -22,7 +22,7 @@ function ItinEditor({
       <ConfirmBox
         show={modalShow}
         onHide={setModalShow}
-        resetDom={setModalType}
+        resetdom={setModalType}
         {...props}
       />
     )
@@ -105,7 +105,7 @@ function ItinEditor({
                       header: '請再次確認',
                       text: `是否刪除第 ${dayIndex + 1} 日？`,
                       cb: dayDelete,
-                      cbProps: [dayIndex],
+                      cbprops: [dayIndex],
                     })
                   }
                 }}
@@ -144,7 +144,7 @@ function ItinEditor({
                                   header: '請再次確認',
                                   text: `是否刪除此行程？`,
                                   cb: boxDelete,
-                                  cbProps: [dayIndex, index],
+                                  cbprops: [dayIndex, index],
                                 })
                               }}
                             />

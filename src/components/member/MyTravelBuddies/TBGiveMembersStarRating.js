@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Form, Col, Button, Table } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
-import Modal from 'react-bootstrap/Modal'
-import $ from 'jquery'
 import TBButtonGiveStar from './TBButtonGiveStar'
 
-function TBGiveMembersStarRating(props) {
+function TBGiveMembersStarRating() {
   let history = useHistory()
   let { id } = useParams()
-  let tb_themeName = props.tb_themeName
   const [tbOwner, settbOwner] = useState([])
   const [tbMemberJoined, settbMemberJoined] = useState([])
   async function getTBOwner() {

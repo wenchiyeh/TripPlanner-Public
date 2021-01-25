@@ -14,7 +14,8 @@ function AddTravelBuddiesForm() {
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
   const [tbThemeName, settbThemeName] = useState('')
-  const [tbThemePhoto, settbThemePhoto] = useState('')
+  const [tbThemePhotoToBack, settbThemePhotoToBack] = useState('')
+  // const [tbThemePhoto, settbThemePhoto] = useState('')
   const [tbCityCategory, settbCityCategory] = useState([])
   const [tbDateBegin, settbDateBegin] = useState('')
   const [tbDateEnd, settbDateEnd] = useState('')
@@ -36,8 +37,28 @@ function AddTravelBuddiesForm() {
       tbCityCategory[i] = this.value
     })
   }
-
-  async function addTravelBuddies() {
+  async function handlePicToDB() {
+    let formData = new FormData()
+    let imgFile = document.querySelector('#tbMainPhoto')
+    formData.append('file', imgFile.files[0])
+    try {
+      let reqUrl = `http://localhost:5000/upload/tbPhoto`
+      let reqBody = {
+        method: 'post',
+        body: formData,
+      }
+      const response = await fetch(reqUrl, reqBody)
+      if (response.ok) {
+        const data = await response.json()
+        const tbThemePhoto = data.name[0]
+        console.log(data.name[0])
+        addTravelBuddies(tbThemePhoto)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  async function addTravelBuddies(tbThemePhoto) {
     const newTravelBuddies = {
       tbThemeName,
       tbThemePhoto,
@@ -93,15 +114,7 @@ function AddTravelBuddiesForm() {
         <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
-            <Form.File id="formcheck-api-regular">
-              <Form.File.Label>上傳主圖片</Form.File.Label>
-              <Form.File.Input
-                onChange={(e) => {
-                  settbThemePhoto(e.target.value)
-                }}
-              />
-            </Form.File>
-            <Form.Group controlId="travelBuddiesThemeName">
+            <Form.Group className="mt-3" controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
               </Form.Label>
@@ -119,61 +132,18 @@ function AddTravelBuddiesForm() {
                 旅行揪團名稱為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
-            {/* <Form.Group controlId="travelBuddiesRegionCategory">
-              <Form.Label htmlFor="travelBuddiesRegionCategory">
-                地區分類：
-              </Form.Label>
-              {['checkbox'].map((type) => (
-                <div key={`inline-${type}`} className="mb-3">
-                  <Form.Check
-                    inline
-                    label="北部"
-                    type={type}
-                    id={`inline-${type}-regioncategory1`}
-                    name="tbRegionCategory[]"
-                    value="1"
-                    onChange={() => {
-                      setCitySelect(true)
-                    }}
-                  />
-                  <Form.Check
-                    inline
-                    label="中部"
-                    type={type}
-                    id={`inline-${type}-regioncategory2`}
-                    name="tbRegionCategory[]"
-                    value="2"
-                  />
-                  <Form.Check
-                    inline
-                    label="南部"
-                    type={type}
-                    id={`inline-${type}-regioncategory3`}
-                    name="tbRegionCategory[]"
-                    value="3"
-                  />
-                  <Form.Check
-                    inline
-                    label="東部"
-                    type={type}
-                    id={`inline-${type}-regioncategory4`}
-                    name="tbRegionCategory[]"
-                    value="4"
-                  />
-                  <Form.Check
-                    inline
-                    label="離島"
-                    type={type}
-                    id={`inline-${type}-regioncategory5`}
-                    name="tbRegionCategory[]"
-                    value="5"
-                  />
-                </div>
-              ))}
-              <Form.Control.Feedback type="invalid">
-                地區分類為必選
-              </Form.Control.Feedback>
-            </Form.Group> */}
+            <Form.Group className="" controlId="travelBuddiesThemePhoto">
+              <Form.File id="travelBuddiesThemePhoto">
+                <Form.File.Label>旅行揪團主圖片：</Form.File.Label>
+                <Form.File.Input
+                  id="tbMainPhoto"
+                  onChange={(e) => {
+                    settbThemePhotoToBack(e.target.value)
+                  }}
+                />
+              </Form.File>
+            </Form.Group>
+
             <Form.Group controlId="travelBuddieCityCategory">
               <Form.Label htmlFor="travelBuddieCityCategory">
                 縣市分類：
@@ -561,7 +531,7 @@ function AddTravelBuddiesForm() {
                 旅行揪團介紹為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
-            <Button
+            {/* <Button
               className="add-travelbuddies-importfromi"
               onClick={() => setImportFromItinerary(true)}
             >
@@ -572,7 +542,7 @@ function AddTravelBuddiesForm() {
               onClick={() => setImportFromCollection(true)}
             >
               從我收藏的行程匯入
-            </Button>
+            </Button> */}
             <br />
             <br />
             <br />
@@ -588,7 +558,7 @@ function AddTravelBuddiesForm() {
               id="insertTravelBuddies"
               className="add-travelbuddies-confirm"
               onClick={() => {
-                addTravelBuddies()
+                handlePicToDB()
                 history.push('/travelbuddies')
               }}
             >

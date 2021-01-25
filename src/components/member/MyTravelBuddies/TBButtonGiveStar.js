@@ -5,15 +5,45 @@ import { Button, Modal, Form } from 'react-bootstrap'
 
 function TBButtonGiveStar(props) {
   let history = useHistory()
+  const member_id = JSON.parse(localStorage.getItem('userData')).newsId
   let memberName = props.memberName
   const [tbGiveStar, settbGiveStar] = useState(false)
   const [doGiveStar, setDoGiveStart] = useState(0)
   const [rating, setRating] = useState(0)
-  console.log(rating)
   const [hover, setHover] = useState(0)
   const tb_id = props.tb_id
   const m_id = props.m_id
   const give_id = JSON.parse(localStorage.getItem('userData')).newsId
+  const [memberAlready, setMemberAlready] = useState('')
+
+  async function getStarRating(props) {
+    // 要使用try-catch來作錯誤處理
+    try {
+      // 從伺服器得到資料
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/tbratingalready?tb_id=${tb_id}&m_id=${m_id}&give_id=${give_id}`,
+        {
+          method: 'get',
+        }
+      )
+      // ok只能判斷201-299狀態碼的情況
+      if (response.ok) {
+        // 剖析資料為JS的數值
+        const data = await response.json()
+        setMemberAlready(data)
+        console.log(memberAlready)
+        setDoGiveStart(memberAlready.length === 0 ? 0 : 1)
+      }
+    } catch (error) {
+      // 發生錯誤的處理情況
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getStarRating()
+  }, [])
+
   async function giveStarRating(props) {
     const newSignedUp = {
       tb_id,
@@ -51,7 +81,9 @@ function TBButtonGiveStar(props) {
   }
   return (
     <>
-      {doGiveStar === 0 ? (
+      {member_id === m_id ? (
+        <Button className="tb-give-star-mine">本人</Button>
+      ) : doGiveStar === 0 ? (
         <Button className="tb-give-star" onClick={() => settbGiveStar(true)}>
           評價
         </Button>
@@ -73,6 +105,7 @@ function TBButtonGiveStar(props) {
           <Modal.Body>
             <div className="star-rating-outbox">
               <div className="star-rating-name">{memberName}</div>
+              {/* <div>{memberAlready > 0 && memberAlready[1].member_already}</div> */}
               <br />
               <div>
                 {[...Array(5)].map((star, index) => {

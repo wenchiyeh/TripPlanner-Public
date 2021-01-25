@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-// import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
 import { BiCalendarCheck } from 'react-icons/bi'
@@ -19,6 +18,7 @@ function TravelBuddiesMainPage(props) {
   let { id } = useParams()
   const [travelBuddies, setTravelBuddies] = useState([])
   const [signedUp, setSignedUp] = useState(0)
+
   async function getTravelBuddies(props) {
     try {
       const response = await fetch(
@@ -46,14 +46,23 @@ function TravelBuddiesMainPage(props) {
         <div className="tb-mainpage-wrapper">
           <div className="tb-mainpage-hero-image">
             <img
-              src={'/images/tbPhoto/' + travelBuddies[0].tb_themePhoto}
-              alt={travelBuddies.tb_themePhoto}
+              src={
+                'http://localhost:5000/images/tbPhoto/' +
+                travelBuddies[0].tb_themePhoto
+              }
+              alt={travelBuddies[0].tb_themePhoto}
             />
           </div>
           <div className="tb-mainpage-flex">
             <div className="tb-mainpage-nameAndPhoto">
               <figure className="tb-mainpage-profilephoto">
-                <img src="/images/member/DSC_7875.jpg" alt="揪團主頭貼" />
+                <img
+                  src={
+                    'http://localhost:5000/images/member/' +
+                    travelBuddies[0].tb_memberphoto
+                  }
+                  alt={travelBuddies[0].tb_memberphoto}
+                />
               </figure>
               <h4 className="tb-mainpage-owner">
                 {travelBuddies.length > 0 && travelBuddies[0].tb_owner}

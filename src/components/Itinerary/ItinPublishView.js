@@ -39,12 +39,10 @@ function ItinPublishView({ isEdit = false }) {
             JSON.parse(localStorage.getItem('userData')).newsId
           ) {
             setIsMe(true)
-            console.log('isMe')
           }
         }
         if (data[0].publish_time === null) {
-          setIsLoading(3)
-          return
+          setIsPublish(false)
         }
         setTimeout(() => {
           if (data.length === 0) {
@@ -122,7 +120,20 @@ function ItinPublishView({ isEdit = false }) {
       const response = await fetch(reqUrl, reqBody)
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        let tempData = dataFromDB
+        tempData[0].publish_time = data.time
+        tempData[0].info = dataToDB[0].info
+        dataToDB[1].forEach((item) => {
+          if (item.text !== tempData[1][item.day].data[item.order].info) {
+            tempData[1][item.day].data[item.order].info = item.text
+          }
+          if (item.image !== null) {
+            tempData[1][item.day].data[item.order].image = item.image
+          }
+        })
+        setgDataFromDB(tempData)
+        setIsPublish(true)
+        isEdit = false
         history.push(`/itinerary/view/${itin_id}`)
       }
     } catch (err) {
@@ -151,14 +162,18 @@ function ItinPublishView({ isEdit = false }) {
     <div className="itin-editor-frame">
       <ItinEditorHeader
         isEdit={isEdit}
-        isPublish={isPublish}
+        isPublish={true}
         isMe={isMe}
         title={dataFromDB[0].title}
         handleSubmit={isEdit ? handleDataToDB : unPublish}
       />
       <main className="d-flex justify-content-between">
         <div>
-          <ItinEditorBasicData isEdit={isEdit} itinData={dataFromDB[0]} />
+          <ItinEditorBasicData
+            isEdit={isEdit}
+            isPublish={isPublish}
+            itinData={dataFromDB[0]}
+          />
           <ItinEditor
             isEdit={false} //任何情況下的publish頁都不需要修改功能
             tempData={dataFromDB[1]}

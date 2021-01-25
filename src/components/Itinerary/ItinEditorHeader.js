@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { FaTruckMonster } from 'react-icons/fa'
 import { useHistory, useParams } from 'react-router-dom'
+import BasicFetch from '../main/BasicFetch'
 
 function ItinEditorHeader({
   isEdit = false,
@@ -51,7 +53,15 @@ function ItinEditorHeader({
           <Button
             variant="danger"
             onClick={() => {
-              history.push(`/itinerary/my/${itin_id}`)
+              if (
+                BasicFetch({
+                  url: `itinerary/unpublish/${itin_id}`,
+                  method: 'put',
+                  data: { id: itin_id },
+                })
+              ) {
+                history.push(`/itinerary/my/${itin_id}`)
+              }
             }}
           >
             取消發布
@@ -61,7 +71,7 @@ function ItinEditorHeader({
     </div>
   )
   const displayPrivate = (
-    <div className="itin-editor-title">
+    <div className="itin-editor-title custom-box-shadow">
       <div className="d-flex justify-content-between align-items-center mb-3">
         {isEdit ? <p>行程表製作</p> : <p>我的行程表</p>}
         {isEdit ? (

@@ -197,14 +197,14 @@ function ItinEditor({
                 key={index}
                 className={classIsSelect[0]}
                 onClick={(e) => {
+                  document
+                    .querySelectorAll('.itin-detailPicText-show')
+                    .forEach((element) => {
+                      element.classList.remove('itin-detailPicText-show')
+                    })
                   if (document.querySelector('.box-select')) {
                     document.querySelector('.box-select').className =
                       classIsSelect[0]
-                    document
-                      .querySelectorAll('.itin-detailPicText-show')
-                      .forEach((element) => {
-                        element.classList.remove('itin-detailPicText-show')
-                      })
                   }
                   e.currentTarget.className = classIsSelect[1]
                   if (document.querySelector(`.boxInfo${dayIndex}${index}`))

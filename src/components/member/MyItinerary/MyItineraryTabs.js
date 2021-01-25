@@ -19,7 +19,7 @@ function MyItineraryTabs() {
   async function getMyItin() {
     try {
       const response = await fetch(
-        `http://localhost:5000/itinerary//myItin/${memberId}`,
+        `http://localhost:5000/itinerary/myItin/${memberId}`,
         {
           method: 'get',
         }

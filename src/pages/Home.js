@@ -32,28 +32,34 @@ function Home() {
       function success(position) {
         // console.log(position.coords.latitude, position.coords.longitude)
         //google
-        //   Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
-        //   Geocode.setLanguage('zh-TW')
-        //   Geocode.enableDebug()
-        //   Geocode.fromLatLng(
-        //     position.coords.latitude,
-        //     position.coords.longitude
-        //   ).then(
-        //     (response) => {
-        //       const address = response.results[9].address_components[2].long_name
-        //       settmapstory(address)
-        //       console.log(address)
-        //     },
-        //     (error) => {
-        //       console.error(error)
-        //     }
-        //   )
+
+        Geocode.setApiKey('AIzaSyDIaG31GEY2rsiG931nQn2nvxuvS7PQE4k')
+        Geocode.setLanguage('zh-TW')
+        Geocode.enableDebug()
+        Geocode.fromLatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        ).then(
+          (response) => {
+            const address0 = response.results[0].formatted_address
+            const address1 = Array.from(address0)
+            const address = address1[5] + address1[6] + address1[7]
+            settmapstory(address)
+
+            console.log(address)
+          },
+          (error) => {
+            console.error(error)
+            const address = '桃園市'
+            settmapstory(address)
+          }
+        )
       }
 
       navigator.geolocation.getCurrentPosition(success, error)
     } else {
       alert('Sorry, 你的裝置不支援地理位置功能。')
-      const address = '新北市'
+      const address = '桃園市'
     }
   }
   useEffect(() => {
@@ -62,7 +68,17 @@ function Home() {
 
   return (
     <>
-      <Kv mapstory={mapstory} />
+      <div className="navbar-background" />
+
+      {/* <HomeHeader data-aos="fade-down" /> */}
+
+      <Kv
+        mapstory={mapstory}
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="100"
+      />
 
       <article className="home-body">
         <div className="Home-container">

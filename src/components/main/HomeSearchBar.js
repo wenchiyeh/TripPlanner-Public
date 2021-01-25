@@ -17,6 +17,7 @@ function HomeSearchBar({
     ['全部', '澎湖', '金門', '馬祖', '綠島', '蘭嶼', '小琉球'],
   ],
   day = ['不限', '1日', '2-3日', '4-5日', '6-7日', '8日以上'],
+
   setSearchFilter = () => {},
 }) {
   let inputRef = useRef(null) // 建立輸入框參考點
@@ -28,13 +29,25 @@ function HomeSearchBar({
     day: 0,
     keyword: '',
   })
+
+  const searchParams = new URLSearchParams({
+    page: returnObject.page,
+    area: returnObject.area,
+    town: returnObject.town,
+    day: returnObject.day,
+    keyword: returnObject.keyword,
+  })
+
   //
   const [inputText, setInputText] = useState('')
   const [selectPage, setSelectPage] = useState('行程')
   const [selectArea, setSelectArea] = useState('全部')
   const [selectTown, setSelectTown] = useState('全部')
   const [selectDay, setSelectDay] = useState(0)
+  // const [searchParams, setsearchParams] = useState([])
+
   const [nowArea, setNowArea] = useState(0)
+
   //偵測地區變化
   useEffect(() => {
     let currentValue = {
@@ -44,6 +57,7 @@ function HomeSearchBar({
       town: selectTown,
       day: selectDay,
     }
+
     setReturnObject(currentValue)
     setNowArea(areaList.indexOf(selectArea))
   }, [selectArea]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -56,8 +70,21 @@ function HomeSearchBar({
       town: selectTown,
       day: selectDay,
     }
+
     setReturnObject(currentValue)
   }, [inputText, selectPage, selectTown, selectDay]) // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   const searchParams = new URLSearchParams(
+  //     {
+  //       page: selectPage,
+  //       keyword: inputText,
+  //       area: selectArea,
+  //       town: selectTown,
+  //       day: selectDay,
+  //     },
+  //     setsearchParams(searchParams)
+  //   )
+  // }, [searchParams])
   //記錄輸入框字串
   const handleInput = () => {
     setInputText(inputRef.current.value)
@@ -83,6 +110,7 @@ function HomeSearchBar({
     }
   }
   let history = useHistory()
+
   // function Goitinerary() {
   //   history.push('/itinerary')
 
@@ -100,7 +128,13 @@ function HomeSearchBar({
   //
   return (
     <>
-      <div className="homesearchbar-wrapper d-flex justify-content-between">
+      <div
+        className="homesearchbar-wrapper d-flex justify-content-between"
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="1500"
+      >
         <div className="homesearchbar-form-wrapper d-flex align-items-center">
           <input
             ref={inputRef}
@@ -164,13 +198,12 @@ function HomeSearchBar({
         <div
           role="button"
           onClick={() => {
-            // setSearchFilter(returnObject)
             if (returnObject.page == '行程') {
-              Goitinerary(JSON.stringify(returnObject))
+              Goitinerary(searchParams)
             } else if (returnObject.page == '揪團') {
-              GotravelBuddies(JSON.stringify(returnObject))
+              GotravelBuddies(searchParams)
             } else if (returnObject.page == '講座') {
-              GoproductList(JSON.stringify(returnObject))
+              GoproductList(searchParams)
             }
           }}
           className="homedo-search-button"

@@ -9,6 +9,10 @@ import Login from './pages/Login'
 import Sigon from './pages/sign'
 import Home from './pages/Home'
 import Forgetpassword from './pages/forgetpassword'
+import HomeAd1 from './pages/HomeAd1'
+import HomeAd2 from './pages/HomeAd2'
+import HomeAd3 from './pages/HomeAd3'
+
 //
 import MainRoute from './components/main/MainRoute'
 import ScrollToTop from './components/main/ScrollToTop'
@@ -25,7 +29,16 @@ function App() {
         <ScrollToTop>
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home auth={auth} setAuth={setAuth} />
+            </Route>
+            <Route exact path="/HomeAd1">
+              <HomeAd1 auth={auth} setAuth={setAuth} />
+            </Route>
+            <Route exact path="/HomeAd2">
+              <HomeAd2 auth={auth} setAuth={setAuth} />
+            </Route>
+            <Route exact path="/HomeAd3">
+              <HomeAd3 auth={auth} setAuth={setAuth} />
             </Route>
             <Route exact path="/login">
               <Login auth={auth} setAuth={setAuth} />

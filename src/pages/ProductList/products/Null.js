@@ -10,13 +10,10 @@ import { Link } from 'react-router-dom'
 function Null() {
   const pageUrl = '/images/classPhoto/'
   const productUrl = 'view/'
+  const checkUrl = 'car1/'
   //取值 是字串
   const aboutClass = JSON.parse(localStorage.getItem('product_id'))
 
-  //確保每次刷新頁面都會動作
-  useEffect(() => {
-    JSON.parse(localStorage.getItem('product_Data'))
-  }, [])
   //轉成陣列
   const getarray = aboutClass.split(',')
   const shift0 = getarray.shift()
@@ -30,33 +27,31 @@ function Null() {
   const [tackID, setTackID] = useState('')
   const [buttonType, setButtonType] = useState(true)
   const getCrash = getarray.indexOf(tackID)
-  console.log('找' + tackID + '在' + getCrash)
-
-  if (buttonType === false) {
+  // console.log('找' + tackID + '在' + getCrash)
+  if (getCrash != -1) {
     //進Array搜尋是否有相對應ID ＆取得位子
     const getCrash = getarray.indexOf(tackID)
 
     //刪掉陣列中相對位子的物件
     const splicearray = getarray.splice(getCrash, 1)
-    console.log('要刪掉的是' + splicearray)
-    console.log('只剩' + getarray)
+    // console.log('要刪掉的是' + splicearray)
+    // console.log('只剩' + getarray)
     //把local上的對應id刪掉
-    // const removeLocal = localStorage.removeItem(splicearray)
+    const removeLocal = localStorage.removeItem(splicearray)
 
     //把預設的0塞回去 不然會壞掉
     const unshiftArray = getarray.unshift(0)
-    console.log('加回預設的0 變成' + getarray)
+    // console.log('加回預設的0 變成' + getarray)
 
     //轉回字串
     const strData = getarray.toString()
-    console.log('要更新的是' + strData)
-
-    // const goLocal = localStorage.setItem('product_id', JSON.stringify(strData))
-    // console.log(goLocal)
+    // console.log('要更新的是' + getarray)
+    if (strData === '0') {
+      window.location.reload()
+    }
+    const goLocal = localStorage.setItem('product_id', JSON.stringify(strData))
   }
-  useEffect(() => {
-    setButtonType()
-  }, [])
+
   return (
     <>
       <Container>
@@ -72,7 +67,6 @@ function Null() {
                 />
               </figure>
             </Link>
-
             <div className="carlabel">
               <Link to={productUrl + v.product_id}>
                 <h4>{v.className}</h4>
@@ -84,9 +78,25 @@ function Null() {
                 {v.classTimeStart}-{v.classTimeEnd}
               </p>
             </div>
-            <p>
+            {v.early > 0 ? (
+              <p className="tickerZone">早鳥票：{v.early}</p>
+            ) : (
+              <span></span>
+            )}
+            {v.single > 0 ? (
+              <p className="tickerZone">單人票：{v.single}</p>
+            ) : (
+              <span></span>
+            )}
+            {v.group > 0 ? (
+              <p className="tickerZone">雙人票：{v.group}</p>
+            ) : (
+              <span></span>
+            )}
+            <div className="crashButtonAndbuyButton">
               <Button
                 variant="link"
+                className="crashButton"
                 onClick={() => {
                   setTackID(v.product_id)
                   setButtonType(false)
@@ -94,7 +104,12 @@ function Null() {
               >
                 <BsFillTrashFill />
               </Button>
-            </p>
+              <Link to={checkUrl + v.product_id}>
+                <Button variant="info" className="gocheck">
+                  去結帳
+                </Button>
+              </Link>
+            </div>
           </div>
         ))}
       </Container>
@@ -135,6 +150,7 @@ function Show() {
 
   //判斷大於1 要顯示資料
   const showOrNotShow = getarray.length
+
   return showOrNotShow > 1 ? <Null /> : <Nothing />
 }
 

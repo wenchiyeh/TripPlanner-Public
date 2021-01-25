@@ -40,6 +40,7 @@ function BuyProducts({
   needToKnow,
   teacher_photo,
   teacher_history,
+  like,
   mapSrc,
   changeData,
 }) {
@@ -62,7 +63,7 @@ function BuyProducts({
   }, [early, single, group])
   // 愛心
   const [liked, setLiked] = useState(0)
-  const [count, setCount] = useState(48)
+  const [count, setCount] = useState(like)
   const tbLiked = (value) => {
     if (value === 0) {
       setLiked(1)

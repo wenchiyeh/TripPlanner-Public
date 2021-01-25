@@ -1,20 +1,18 @@
-async function BasicFetch({ url, paramas = '', method = 'get', data = {} }) {
-  let reqBody = method
-  if (method === 'post') {
+async function BasicFetch({ url, method = 'get', data = {} }) {
+  let reqBody = { method: method }
+  if (method !== 'get') {
     reqBody = {
-      method: 'post',
+      method: method,
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }
   }
   try {
-    const response = await fetch(
-      `http://localhost:5000/${url}/${paramas}`,
-      reqBody
-    )
+    const response = await fetch(`http://localhost:5000/${url}`, reqBody)
     if (response.ok) {
       let data = await response.json()
+      console.log(reqBody)
       if (data.length > 0) {
         return true
       } else {

@@ -272,7 +272,7 @@ function BigMap({
 
   return (
     <div className="map-comp-wrapper">
-      <div className="map-search-wrapper">
+      <div className="map-search-wrapper custom-box-shadow">
         <input
           className="form-custom"
           ref={inputRef}
@@ -291,9 +291,9 @@ function BigMap({
                   >
                     　{item.structured_formatting.main_text}
                   </div>
-                  <div className="map-search-plus">
+                  {/* <div className="map-search-plus">
                     <FaPlus />
-                  </div>
+                  </div> */}
                 </div>
               ))
             : null}

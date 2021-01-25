@@ -5,12 +5,16 @@ import {
   FaRegClock,
   FaEye,
 } from 'react-icons/fa'
-function ItinEditorBasicData({ itinData, isEdit = false }) {
-  let timeAll = Array.from(itinData.publish_time.substr(0, 8))
-  timeAll.splice(6, 0, '/')
-  timeAll.splice(4, 0, '/')
-  let timeClock = Array.from(itinData.publish_time.substr(8))
-  timeClock.splice(2, 0, ':')
+function ItinEditorBasicData({ itinData, isEdit = false, isPublish }) {
+  let timeAll
+  let timeClock
+  if (isPublish) {
+    timeAll = Array.from(itinData.publish_time.substr(0, 8))
+    timeAll.splice(6, 0, '/')
+    timeAll.splice(4, 0, '/')
+    timeClock = Array.from(itinData.publish_time.substr(8))
+    timeClock.splice(2, 0, ':')
+  }
   const headData = (
     <div className="itin-basic-headdata d-flex justify-content-between align-items-center w-100 my-1">
       <span>
@@ -31,7 +35,7 @@ function ItinEditorBasicData({ itinData, isEdit = false }) {
     </div>
   )
   return (
-    <div className="itin-BasicData-wapper">
+    <div className="itin-BasicData-wapper custom-box-shadow">
       <div className="itin-BasicData-head d-flex justify-content-between">
         <figure className="itin-BasicData-avatar">
           <img

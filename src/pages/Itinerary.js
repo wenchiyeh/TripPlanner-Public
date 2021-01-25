@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import MyBreadCrumb from '../components//main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../components//main/SearchBar'
 import CardListPublic from '../components//main/CardListPublic'
-import Carousel from '../components/TravelBuddies/Carousel'
+import ItinCaro from '../components/Itinerary/ItinCaro'
 import Spinner from '../components/main/Spinner'
 import NoData from '../components/main/NoData'
 //
@@ -62,7 +62,7 @@ function Itinerary(props) {
           </Button>
         </div>
       </div>
-      <Carousel />
+      <ItinCaro />
       <div className="container">
         <Col md={12}>
           <SearchBar setSearchFilter={setSearchFilter} />

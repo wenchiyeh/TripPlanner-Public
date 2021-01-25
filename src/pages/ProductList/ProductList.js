@@ -84,8 +84,8 @@ function ProductList() {
                 text={v.location}
                 person={v.teacher_name}
                 price={v.ticket_price}
-                like={'222'}
-                mark={'222'}
+                like={v.likeheart}
+                mark={v.mark}
                 image={'/classPhoto/' + v.classPhoto}
                 location={v.classCity}
               />

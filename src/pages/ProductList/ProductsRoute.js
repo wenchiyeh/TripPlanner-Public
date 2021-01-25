@@ -60,6 +60,7 @@ function MapProduct(props) {
           needToKnow={v.needToKnow}
           teacher_photo={v.teacher_photo}
           teacher_history={v.teacher_history}
+          like={v.likeheart}
           mapSrc={v.mapSrc}
           teacher_title={v.teacher_title}
           changeData={props.changeData}

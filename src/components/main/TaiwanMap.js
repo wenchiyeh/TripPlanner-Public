@@ -43,7 +43,7 @@ function TaiwanMap(props) {
     if (mapstory.length > 0) {
       setFilter(mapstory)
     } else {
-      setFilter('南投縣')
+      setFilter('桃園市')
     }
 
     let data = weatherData.filter((item) => {
@@ -98,7 +98,7 @@ function TaiwanMap(props) {
         臺北市: 'Taipei City',
         桃園市: 'Taoyuan City',
         新竹縣: 'Hsinchu County',
-        新竹市: 'Hsinchu City',
+        新竹市: 'Keelung',
         苗栗市: 'Miaoli City',
         苗栗縣: 'Miaoli County',
         臺中市: 'Taichung City',
@@ -497,7 +497,13 @@ function TaiwanMap(props) {
 
   return (
     <>
-      <div className="taiwan-svg">
+      <div
+        className="taiwan-svg"
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="1800"
+      >
         <svg
           id="cf503461-00bd-459a-aeb5-062ebc913211"
           data-name="圖層 1"
@@ -810,7 +816,13 @@ function TaiwanMap(props) {
           </g>
         </svg>
       </div>
-      <div className="Api-txt">
+      <div
+        className="Api-txt"
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-out"
+        data-aos-duration="900"
+        data-aos-delay="1700"
+      >
         <h2>
           {[domData][0].weatherIcon}
           {[domData][0].weather}
@@ -826,7 +838,15 @@ function TaiwanMap(props) {
         </h4>
       </div>
       <figure className="home-kv-figure ">
-        <img src={[domData][0].kvImagePath} width="100%" className="kvImg" />
+        <img
+          src={[domData][0].kvImagePath}
+          width="100%"
+          className="kvImg"
+          data-aos="fade-zoom-in"
+          data-aos-easing="ease-in-back"
+          data-aos-delay="300"
+          data-aos-duration="900"
+        />
       </figure>
     </>
   )

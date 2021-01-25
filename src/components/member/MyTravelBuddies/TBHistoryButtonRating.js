@@ -37,10 +37,10 @@ function TBHistoryButtonRating(props) {
         查看評價
       </Button>{' '}
       <Modal
-        size="lg"
         show={tbHistoryButtonRating}
         onHide={() => settbHistoryButtonRating(false)}
         aria-labelledby="tbHistoryButtonRating"
+        centered={true}
       >
         <Form>
           <Modal.Header closeButton>
@@ -52,7 +52,7 @@ function TBHistoryButtonRating(props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="star-rating">
+            <div className="tb-check-star-rating">
               {[...Array(5)].map((star, index) => {
                 index += 1
                 return (

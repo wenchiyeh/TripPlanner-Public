@@ -93,6 +93,7 @@ function CarOneAndTwo(props) {
   useEffect(() => {
     getInCarOne()
   }, [])
+
   return (
     <>
       {inCarOne.length > 0 && (

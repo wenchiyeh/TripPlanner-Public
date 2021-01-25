@@ -4,6 +4,7 @@ import { Button, Modal, Form } from 'react-bootstrap'
 function TBJoinedButtonDropOut(props) {
   const [tbJoinedDropOut, settbJoinedDropOut] = useState(false)
   let tb_id = props.id
+  let tb_themeName = props.themeName
 
   const [tbMine, settbMine] = useState([])
   const [tbSelect, settbSelect] = useState([])
@@ -44,11 +45,12 @@ function TBJoinedButtonDropOut(props) {
         show={tbJoinedDropOut}
         onHide={() => settbJoinedDropOut(false)}
         aria-labelledby="tbJoinedDrop"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>
-            <Modal.Title id="tbJoinedDrop" className="tbjoined-dropout-title">
-              您確定要退出旅行揪團並通知團員嗎？
+            <Modal.Title id="tbJoinedDrop" className="tbmine-delete-title">
+              您確定要退出<span>{' ' + tb_themeName + ' '}</span>並通知團員嗎？
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -4,6 +4,8 @@ import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditorBasicData from './itinEditorBasicData'
 import ItinEditor from './ItinEditor'
 import ItinEditorDetail from './ItinEditorDetail'
+import Spinner from '../main/Spinner'
+import NoData from '../main/NoData'
 //測試用假資料區
 // import fakeTestingData from './testBoxData' //純box陣列
 // let memberData = require('../member/member.json')
@@ -41,7 +43,8 @@ function ItinPublishView({ isEdit = false }) {
           }
         }
         if (data[0].publish_time === null) {
-          setIsPublish(false)
+          setIsLoading(3)
+          return
         }
         setTimeout(() => {
           if (data.length === 0) {
@@ -175,9 +178,9 @@ function ItinPublishView({ isEdit = false }) {
   if (isLoading === 0) {
     return displayView
   } else if (isLoading === 1) {
-    return <h1>讀取中</h1>
+    return <Spinner text={'讀取中'} />
   } else {
-    return <h1>查無此行程</h1>
+    return <NoData text={'查無此行程'} />
   }
 }
 

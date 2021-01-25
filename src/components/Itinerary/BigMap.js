@@ -28,7 +28,8 @@ const PlaceMarker = ({
       <h5>{title}</h5>
       <Button
         variant="info"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault()
           const originArray = Array.from(dataFromUser)
           const dayIndex = originArray.length
           const boxInedx =
@@ -65,7 +66,7 @@ const PlaceMarker = ({
         src={'/images/marker.png'}
         alt={title}
         onClick={(e) => {
-          e.preventDefault()
+          e.stopPropagation()
           if (document.querySelector('.map-info-open')) {
             if (
               document.querySelector('.map-info-open') ===

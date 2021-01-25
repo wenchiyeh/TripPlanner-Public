@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBJoinedButtonDropOut from './TBJoinedButtonDropOut'
-import TBJoinedButtonDropOutNotApproved from './TBJoinedButtonDropOutNotApproved'
 
 function TravelBuddiesJoined() {
   const [tbJoined, settbJoined] = useState([])
+  const id = JSON.parse(localStorage.getItem('userData')).newsId
   async function gettbJoined(props) {
     try {
       const response = await fetch(
-        'http://localhost:5000/tbmyaccount/tbjoined',
+        `http://localhost:5000/tbmyaccount/tbjoined/${id}`,
         {
           method: 'get',
         }
@@ -67,11 +67,11 @@ function TravelBuddiesJoined() {
                     </td>
                     <td>{v.tb_membersStatus}</td>
                     <td>
-                      <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
+                      <TBButtonRead id={v.id} /> <TBButtonChatroom id={v.id} />{' '}
                       <TBJoinedButtonDropOut
                         gettbJoined={gettbJoined}
                         id={v.id}
-                        tb_themeName_={v.tb_themeName}
+                        themeName={v.tb_themeName}
                       />{' '}
                     </td>
                   </tr>

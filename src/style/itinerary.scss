@@ -58,14 +58,18 @@
   }
 }
 .map-markerWrap {
-  width: 250px;
-  transform: translateX(-125px);
+  width: 50px;
+  transform: translate(-29px, -50px);
   position: relative;
   img {
     position: relative;
     margin-bottom: 10px;
     z-index: 4;
     & + h5 {
+      text-align: center;
+      width: 150px;
+      position: absolute;
+      transform: translateY(70px);
       opacity: 0;
     }
     &:hover + h5 {
@@ -81,7 +85,7 @@
     position: absolute;
     z-index: 10;
     transform: translateY(-110px);
-    max-width: 250px;
+    min-width: 150px;
     padding: 10px;
     &.display-info {
       transform: translateY(-70px);
@@ -348,6 +352,33 @@
     &:hover {
       svg {
         color: $main-red;
+      }
+    }
+  }
+}
+.my-itinerary-table {
+  position: relative;
+  Table {
+    table-layout: fixed;
+    thead {
+      text-align: center;
+      font-weight: normal;
+      color: $font-black;
+      font-size: 16px;
+      background: $sub-gray;
+    }
+    tbody {
+      tr:nth-child(2n + 1) {
+        background: $main-gray;
+      }
+      tr:nth-child(2n) {
+        background: $sub-gray;
+      }
+      td:nth-child(1) {
+        text-align: center;
+      }
+      td {
+        vertical-align: middle;
       }
     }
   }

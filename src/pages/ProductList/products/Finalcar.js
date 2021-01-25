@@ -3,7 +3,7 @@ import { FaRegPaperPlane } from 'react-icons/fa'
 import { Container, Button } from 'react-bootstrap'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
 import { useHistory } from 'react-router-dom'
-
+import Spinner from '../../../components/main/Spinner'
 import './cash.scss'
 
 function Example() {
@@ -15,21 +15,6 @@ function Example() {
   setTimeout(() => {
     setIsLoading(false)
   }, 3000)
-  const spinner = (
-    <>
-      <Container>
-        <div className="spinner-grow text-success" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-        <div className="spinner-grow text-danger" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-        <div className="spinner-grow text-warning" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </Container>
-    </>
-  )
 
   const display = (
     <>
@@ -50,7 +35,7 @@ function Example() {
     </>
   )
 
-  return isLoading === true ? spinner : display
+  return isLoading === true ? <Spinner text={'讀取中'} /> : display
 }
 
 export default Example

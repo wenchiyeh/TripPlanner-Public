@@ -4,6 +4,7 @@ import MemberProfile from '../components/member/MemberProfile/index'
 import CalendarApp from '../components/member/CalendarApp'
 import FunctionBar from '../components/member/FunctionBar'
 import { useHistory } from 'react-router-dom'
+import { message } from 'antd'
 // import { useParams, Switch, Route, Link } from 'react-router-dom'
 
 // import HistiryRoute from '../components/member/ShoppingHistory/HistoryRoute'
@@ -25,6 +26,15 @@ function Member() {
   const [member, setMember] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
+
+  const key = 'updatable'
+
+  const openMessage = () => {
+    message.loading({ content: 'Loading...', key })
+    setTimeout(() => {
+      message.success({ content: 'Loaded!', key, duration: 1 })
+    }, 500)
+  }
   async function getMember(id) {
     try {
       const response = await fetch(`http://localhost:5000/member/${id}`, {
@@ -42,10 +52,11 @@ function Member() {
         // 最後關起spinner，改呈現真正資料
         setTimeout(() => {
           setIsLoading(false)
+          openMessage()
         }, 0)
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       history.push('/login')
       console.log(err)
     }

@@ -3,10 +3,20 @@ import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
+import { message } from 'antd'
 
 function MemberEdit({ member }) {
   let history = useHistory()
   let { id } = useParams()
+  const success = () => {
+    message.success({
+      content: '更新成功!',
+      className: 'custom-class',
+      style: {
+        marginTop: '20vh',
+      },
+    })
+  }
   //const [members, setMembers] = useState('')
   // const [memberData, setMemberData] = useState(
   //   JSON.parse(localStorage.getItem('userData'))
@@ -48,11 +58,12 @@ function MemberEdit({ member }) {
         const data = await response.json()
         setEmail(data)
         console.log(data)
-        if (data) alert('更新成功')
+        // if (data) success()
+        //  alert('更新成功')
         history.push('/myAccount')
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -274,6 +285,8 @@ function MemberEdit({ member }) {
           onClick={() => {
             updateMember(member.newsId)
             console.log('onclick ed', member.newsId)
+            success()
+            setTimeout(() => {}, 3000)
           }}
         >
           確定

@@ -6,7 +6,7 @@ import MemberEdit from '../MemberEdit'
 import './MemberProfile.scss'
 import $ from 'jquery'
 // import Upload from './Upload'
-function MemberProfile({ member }) {
+function MemberProfile({ member, setMember }) {
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
@@ -47,7 +47,7 @@ function MemberProfile({ member }) {
         console.log('ud1img:', url)
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -71,7 +71,7 @@ function MemberProfile({ member }) {
         // localStorage.setItem('userData', JSON.stringify(data))
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -153,7 +153,7 @@ function MemberProfile({ member }) {
         <Modal.Body>
           <MemberEdit
             member={member}
-            // setMember={setMember}
+            setMember={setMember}
             handleClose={handleClose}
           />
         </Modal.Body>

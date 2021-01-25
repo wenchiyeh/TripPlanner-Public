@@ -4,6 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
 import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
+// import Upload from './Upload'
 function MemberProfile({ setMember }) {
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
@@ -12,6 +13,14 @@ function MemberProfile({ setMember }) {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  // const handleChangeShow = () => setShow(true)
+  // const handleChangeclose = () => setShow(true)
+  //   handleChange(event) {
+  //     this.setState({
+  //       file: URL.createObjectURL(event.target.files[0]),
+  //     })
+  //   }
 
   // async function getMember(id) {
   //   try {
@@ -36,13 +45,19 @@ function MemberProfile({ setMember }) {
   //     console.log(err)
   //   }
   // }
-
+  function readURL(imgFile) {
+    var newPreview = document.getElementById('preview_ie')
+    newPreview.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src =
+      imgFile.value
+    newPreview.style.width = '150px'
+    newPreview.style.height = '150px'
+  }
   const display = (
     <>
       <div className="person">
         <h3>一般會員</h3>
         <img
-          src={'images/userphoto/' + memberData.member_photo_id}
+          src={'/images/userphoto/' + memberData.member_photo_id}
           alt={memberData.member_name}
         />
         <h4>{memberData.member_name}</h4>

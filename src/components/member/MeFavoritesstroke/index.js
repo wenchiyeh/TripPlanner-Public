@@ -11,6 +11,7 @@ function MeFavoritesstroke({
   time2 = -1, //第二個日期
   price = -1, //價格})
   itemPerPage = 9,
+  // map1 = '北部',
 }) {
   let type = 'travelBuddies'
   if (time1 === -1) {
@@ -41,6 +42,47 @@ function MeFavoritesstroke({
   useEffect(() => {
     getProductCard()
   }, [])
+
+  function cityToRegion(location) {
+    let region = '北部'
+    switch (location) {
+      case '台北':
+      case '新北':
+      case '基隆':
+      case '桃園':
+      case '新竹':
+        region = '北部'
+        break
+      case '雲林':
+      case '南投':
+      case '彰化':
+      case '台中':
+      case '苗栗':
+        region = '中部'
+        break
+      case '屏東':
+      case '高雄':
+      case '台南':
+      case '嘉義':
+        region = '南部'
+        break
+      case '宜蘭':
+      case '花蓮':
+      case '台東':
+        region = '東部'
+        break
+      case '蘭嶼':
+      case '綠島':
+      case '馬祖':
+      case '金門':
+      case '澎湖':
+      case '小琉球':
+        region = '離島'
+        break
+    }
+    return region
+  }
+
   let [showRange, setShowRange] = useState([0, itemPerPage])
   let dataLength = meitinerary.length
   let totalPage = Math.floor(dataLength / itemPerPage)
@@ -71,15 +113,25 @@ function MeFavoritesstroke({
                 <div className="card-body">
                   <h3 className="card-title">{element.title}</h3>
                   <span className="mef-icno-style">
-                    <IoMdTime />
-                    {element.publish_time} - {element.publish_time}
+                    <IoMdTime />{' '}
+                    {meitinerary[0].publish_time.slice(0, 4) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(5, 7) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(8, 10) +
+                      '-' +
+                      meitinerary[0].publish_time.slice(0, 4) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(5, 7) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(8, 10)}
                   </span>
                   <span className="mef-icno-style d-flex justify-content-between">
                     {/* 地圖位置1 */}
-                    {/* <p className="card-style-mef ">
-                    <FaMapMarkerAlt />
-                    {element.region.cityToRegion()}
-                  </p> */}
+                    <p className="card-style-mef ">
+                      <FaMapMarkerAlt />
+                      {cityToRegion()}
+                    </p>
                     <p className="card-style-mef">
                       <FaMapMarkerAlt />
                       {element.location}

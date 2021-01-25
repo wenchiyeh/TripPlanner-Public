@@ -62,9 +62,6 @@ function TBHistoryButtonRating(props) {
                     className={
                       index <= (hover || rating) ? 'starOn' : 'starOff'
                     }
-                    // onClick={() => setRating(index)}
-                    // onMouseEnter={() => setHover(index)}
-                    // onMouseLeave={() => setHover(rating)}
                   >
                     <span className="star">&#9733;</span>
                   </button>

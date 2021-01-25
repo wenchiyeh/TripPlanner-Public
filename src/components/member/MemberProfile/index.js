@@ -1,15 +1,20 @@
 //修改會員資料卡片
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
 // import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
 import $ from 'jquery'
 // import Upload from './Upload'
-function MemberProfile({ setMember }) {
+function MemberProfile({ member }) {
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
+  useEffect(() => {
+    setMemberData(JSON.parse(localStorage.getItem('userData')))
+    console.log('hhhhhuserData', memberData)
+  }, [])
+  console.log('setMember', member)
   // console.log('mp member:', memberData)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
@@ -60,12 +65,17 @@ function MemberProfile({ setMember }) {
       if (response.ok) {
         // console.log('ud id', id)
         // console.log('ud url', url)
+        // const data = await response.json()
+        // console.log('response:', response)
+        // setMember(data)
+        // localStorage.setItem('userData', JSON.stringify(data))
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
+
   //前端改圖
   function readURL(input) {
     if (input.files && input.files[0]) {
@@ -77,8 +87,8 @@ function MemberProfile({ setMember }) {
         )
         $('#imagePreview').hide()
         $('#imagePreview').fadeIn(650)
-        memberPicUpload(memberData.newsId)
-        console.log('memberData.newsId', memberData.newsId)
+        memberPicUpload(member.newsId)
+        console.log('memberData.newsId', member.newsId)
       }
       reader.readAsDataURL(input.files[0])
     }
@@ -87,8 +97,7 @@ function MemberProfile({ setMember }) {
   //   readURL(this)
   // })
 
-  const uuuurl =
-    'http://localhost:5000/images/member/' + memberData.member_photo_id
+  const uuuurl = 'http://localhost:5000/images/member/' + member.member_photo_id
   const img = (
     <>
       <div class="avatar-upload">
@@ -122,7 +131,7 @@ function MemberProfile({ setMember }) {
           src={'/images/userphoto/' + memberData.member_photo_id}
           alt={memberData.member_name}
         /> */}
-        <h4>{memberData.member_name}</h4>
+        <h4>{member.member_name}</h4>
         <Button
           variant="primary"
           className="MemberList-title"
@@ -143,8 +152,8 @@ function MemberProfile({ setMember }) {
         </Modal.Header>
         <Modal.Body>
           <MemberEdit
-            member={memberData}
-            setMember={setMember}
+            member={member}
+            // setMember={setMember}
             handleClose={handleClose}
           />
         </Modal.Body>

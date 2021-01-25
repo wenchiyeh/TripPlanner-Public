@@ -17,13 +17,17 @@ function Header({ auth, setAuth }) {
     JSON.parse(localStorage.getItem('userData'))
   )
   useEffect(() => {
+    setMemberData(JSON.parse(localStorage.getItem('userData')))
+    console.log('hhhhhuserData', memberData)
+  }, [auth])
+  useEffect(() => {
     // console.log(location)
     if (location.pathname === '/') {
       setHeaderStyle(0)
     } else {
       setHeaderStyle(1)
     }
-  }, [location.pathname])
+  }, [location.pathname, auth])
   //有登入
   const login = (
     <>
@@ -79,8 +83,8 @@ function Header({ auth, setAuth }) {
   //登出狀態
   const loginout = (
     <>
-      <LogoutHooks />
-      testgoogle登出用
+      {/* <LogoutHooks />
+      testgoogle登出用 */}
       <Nav.Link as={NavLink} to="/productList/car">
         <FiShoppingCart className="Navbar-icon" />
         {/* <Badge variant="light">2</Badge> */}

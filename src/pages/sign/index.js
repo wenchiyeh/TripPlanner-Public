@@ -35,6 +35,7 @@ function Login() {
       if (response.ok) {
         const data = await response.json()
         setMember(data.member)
+        alert('註冊成功!')
         history.push('/login')
       } else {
         history.push('/sigon')

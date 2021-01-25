@@ -4,7 +4,6 @@ import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBHistoryButtonRating from './TBHistoryButtonRating'
-import TBHistoryButtonRatingNo from './TBHistoryButtonRatingNo'
 import TBHistoryButtonGiveRating from './TBHistoryButtonGiveRating'
 
 function TravelBuddiesHistory() {

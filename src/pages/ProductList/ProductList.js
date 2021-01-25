@@ -4,7 +4,7 @@ import { Col, Row, Container } from 'react-bootstrap'
 import MyBreadCrumb from '../../components/main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../../components/main/SearchBar'
 import Card from '../../components/main/Card'
-import Carousel from '../../components/TravelBuddies/Carousel'
+import Carousel from './Product_carousel'
 
 function ProductList() {
   const [searchFilter, setSearchFilter] = useState({})

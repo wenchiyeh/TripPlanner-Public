@@ -16,6 +16,7 @@ function EditTravelBuddiesForm(props) {
   const [importFromItinerary, setImportFromItinerary] = useState(false)
   const [importFromCollection, setImportFromCollection] = useState(false)
   const [tbThemeName, settbThemeName] = useState('')
+  const [tbThemePhotoToBack, settbThemePhotoToBack] = useState('')
   const [tbThemePhoto, settbThemePhoto] = useState('')
   const [tbCityCategory, settbCityCategory] = useState([])
   const [tbDateBegin, settbDateBegin] = useState('')
@@ -33,7 +34,29 @@ function EditTravelBuddiesForm(props) {
     })
   }
 
-  async function updateTravelBuddies() {
+  async function handlePicToDB() {
+    let formData = new FormData()
+    let imgFile = document.querySelector('#tbMainPhoto')
+    formData.append('file', imgFile.files[0])
+    try {
+      let reqUrl = `http://localhost:5000/upload/tbPhoto`
+      let reqBody = {
+        method: 'post',
+        body: formData,
+      }
+      const response = await fetch(reqUrl, reqBody)
+      if (response.ok) {
+        const data = await response.json()
+        const tbThemePhoto = data.name[0]
+        console.log(data.name[0])
+        updateTravelBuddies(tbThemePhoto)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async function updateTravelBuddies(tbThemePhoto) {
     const newTravelBuddies = {
       tbThemeName,
       tbThemePhoto,
@@ -93,7 +116,7 @@ function EditTravelBuddiesForm(props) {
       if (response.ok) {
         const data = await response.json()
         settbThemeName(data[0].tb_themeName)
-        settbThemePhoto(data[0].tb_themePhoto)
+        settbThemePhotoToBack(data[0].tb_themePhoto)
         let cities = data[0].tb_city.split(',')
         getCities(cities)
         settbDateBegin(data[0].tb_dateBegin.slice(0, 10))
@@ -131,15 +154,6 @@ function EditTravelBuddiesForm(props) {
         <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
             <h1 className="add-travelbuddies-topic">編輯旅行揪團</h1>
-            <Form.File id="formcheck-api-regular">
-              <Form.File.Label>上傳主圖片</Form.File.Label>
-              <Form.File.Input
-                onChange={(e) => {
-                  settbThemePhoto(e.target.value)
-                }}
-                // value={tbThemePhoto}
-              />
-            </Form.File>
             <Form.Group controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
@@ -158,6 +172,17 @@ function EditTravelBuddiesForm(props) {
               <Form.Control.Feedback type="invalid">
                 旅行揪團名稱為必填欄位
               </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="" controlId="travelBuddiesThemePhoto">
+              <Form.File id="travelBuddiesThemePhoto">
+                <Form.File.Label>旅行揪團主圖片：</Form.File.Label>
+                <Form.File.Input
+                  id="tbMainPhoto"
+                  onChange={(e) => {
+                    settbThemePhotoToBack(e.target.value)
+                  }}
+                />
+              </Form.File>
             </Form.Group>
             <Form.Group controlId="travelBuddieCityCategory">
               <Form.Label htmlFor="travelBuddieCityCategory">
@@ -558,7 +583,7 @@ function EditTravelBuddiesForm(props) {
                 旅行揪團介紹為必填欄位
               </Form.Control.Feedback>
             </Form.Group>
-            <Button
+            {/* <Button
               className="add-travelbuddies-importfromi"
               onClick={() => setImportFromItinerary(true)}
             >
@@ -569,7 +594,7 @@ function EditTravelBuddiesForm(props) {
               onClick={() => setImportFromCollection(true)}
             >
               從我收藏的行程匯入
-            </Button>
+            </Button> */}
             <br />
             <br />
             <br />
@@ -585,7 +610,7 @@ function EditTravelBuddiesForm(props) {
               id="insertTravelBuddies"
               className="add-travelbuddies-confirm"
               onClick={() => {
-                updateTravelBuddies()
+                handlePicToDB()
                 history.push('/myAccount/TravelBuddies')
               }}
             >

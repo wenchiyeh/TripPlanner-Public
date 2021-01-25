@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 function TravelBuddiesChatroom(props) {
   let { id } = useParams()
+  let history = useHistory()
   const userData = JSON.parse(localStorage.getItem('userData'))
   const user = userData.member_name
   const ws = new WebSocket('ws://localhost:8082')
@@ -81,6 +83,12 @@ function TravelBuddiesChatroom(props) {
             <span>{tbInfo.length > 0 && tbInfo[0].themeName + ' '}</span>
             的聊天室
           </h1>
+          <Button
+            className="tb-mainpage-goback"
+            onClick={() => history.goBack()}
+          >
+            回我的揪團
+          </Button>
         </div>
         <div className="d-flex mt-3">
           <div className=" travelbuddies-chatroom-members">

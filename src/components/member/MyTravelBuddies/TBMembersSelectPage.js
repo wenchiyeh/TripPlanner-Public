@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Col, Button, Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router'
-import Modal from 'react-bootstrap/Modal'
-import $ from 'jquery'
 import TBButtonSelect from './TBButtonSelect'
 
 function TBMemberSelectPage() {
@@ -36,14 +34,14 @@ function TBMemberSelectPage() {
         <div className="add-travelbuddies-middle">
           <h1 className="add-travelbuddies-topic">選擇團員</h1>
           <tbody>
-            <div className="travelbuddiesmine-outbox">
+            <div className="travelbuddiesselect-outbox">
               <Table>
                 <thead>
                   <tr>
-                    <th width="60px">No.</th>
-                    <th width="180px">旅行揪團名稱</th>
-                    <th width="120px">報名團員</th>
-                    <th>狀態</th>
+                    <th width="100px">No.</th>
+                    <th width="300px">旅行揪團名稱</th>
+                    <th width="200px">報名團員</th>
+                    <th width="200px">狀態</th>
                     <th>操作</th>
                   </tr>
                 </thead>
@@ -73,7 +71,7 @@ function TBMemberSelectPage() {
           </tbody>
           <Button
             id="insertTravelBuddies"
-            className="add-travelbuddies-confirm"
+            className="tb-members-select-back-to-account"
             onClick={() => {
               history.push('/myAccount/TravelBuddies')
             }}

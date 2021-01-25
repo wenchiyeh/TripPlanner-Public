@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Modal } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBMineButtonEdit from './TBMineButtonEdit'
 import TBMineButtonSelectMembers from './TBMineButtonSelectMembers'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBMineButtonDelete from './TBMineButtonDelete'
-import TBMineButtonDeleteNoMembers from './TBMineButtonDeleteNoMembers'
-import TBMembersSelect from './TBMembersSelect'
 
 function TravelBuddiesMine() {
   const [tbMine, settbMine] = useState([])
+  const id = JSON.parse(localStorage.getItem('userData')).newsId
   async function gettbMine(props) {
     try {
-      const response = await fetch('http://localhost:5000/tbmyaccount/tbmine', {
-        method: 'get',
-      })
+      const response = await fetch(
+        `http://localhost:5000/tbmyaccount/tbmine/${id}`,
+        {
+          method: 'get',
+        }
+      )
       if (response.ok) {
         const data = await response.json()
         settbMine(data)
@@ -68,7 +70,7 @@ function TravelBuddiesMine() {
                       <TBMineButtonSelectMembers id={v.id} />{' '}
                       <TBButtonChatroom
                         id={v.id}
-                        tb_themeName_={v.tb_themeName}
+                        tb_themeName={v.tb_themeName}
                       />{' '}
                       <TBMineButtonDelete
                         gettbMine={gettbMine}

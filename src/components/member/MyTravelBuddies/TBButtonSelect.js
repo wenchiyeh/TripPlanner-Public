@@ -46,7 +46,7 @@ function TBButtonSelect(props) {
     <>
       {beSelected === '審核中' ? (
         <Button
-          className="tb-mainpage-button"
+          className="tb-members-select"
           onClick={() => {
             membersSelect()
             setBeSelected('參與中')
@@ -55,7 +55,7 @@ function TBButtonSelect(props) {
           選擇
         </Button>
       ) : (
-        <Button className="tb-mainpage-button">已選擇</Button>
+        <Button className="tb-members-select">已選擇</Button>
       )}
     </>
   )

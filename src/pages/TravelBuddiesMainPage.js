@@ -11,8 +11,11 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 import TBButtonSignedUp from '../components/TravelBuddies/TBButtonSignedUp'
+import TBMineButtonEditMain from '../components/member/MyTravelBuddies/TBMineButtonEditMain'
 
 function TravelBuddiesMainPage(props) {
+  const userData = JSON.parse(localStorage.getItem('userData'))
+  const user = userData.member_name
   let { id } = useParams()
   const [travelBuddies, setTravelBuddies] = useState([])
   const [signedUp, setSignedUp] = useState(0)
@@ -124,20 +127,22 @@ function TravelBuddiesMainPage(props) {
                 )
               })}
           </div>
+
           <div className="d-flex tb-mainpage-title">
             <h1> {travelBuddies[0].tb_themeName}</h1>
-            <div className="tb-mainpage-button-group">
-              <TBButtonSignedUp
-                id={travelBuddies[0].id}
-                themeName={travelBuddies[0].tb_themeName}
-              />
-              <Button className="tb-mainpage-button">收藏</Button>
-            </div>
-          </div>
-          <div className="tb-mainpage-tag-group d-flex">
-            <div className="tb-mainpage-tag">台灣西部</div>
-            <div className="tb-mainpage-tag">彰化花海</div>
-            <div className="tb-mainpage-tag">網美景點</div>
+            {travelBuddies[0].tb_owner == user ? (
+              <div className="tb-mainpage-button-group">
+                <TBMineButtonEditMain id={travelBuddies[0].id} />
+              </div>
+            ) : (
+              <div className="tb-mainpage-button-group">
+                <TBButtonSignedUp
+                  id={travelBuddies[0].id}
+                  themeName={travelBuddies[0].tb_themeName}
+                />
+                <Button className="tb-mainpage-button">收藏</Button>
+              </div>
+            )}
           </div>
           <div className="tb-mainpage-maincontent-wrapper">
             <div className="tb-mainpage-maincontent">

@@ -39,17 +39,19 @@ function HomeP2scoll(props) {
                   </div>
                 </div>
                 <h4 className="p2-scoll1-h4">
-                  當生活覺得煩悶、缺少一些感動、對工作熱情不再...那就來場愉快的自助旅行吧！馬上揪個好伙伴，來場翻轉心情的冒險之旅！
+                  對於許多來說，最享受的莫過於三五好友，一同旅行。吃吃玩玩，彷彿重溫年輕的記憶。但對有些大人來說，也常常為了找不到旅伴而煩惱。
+                  不妨透過旅歷認識旅伴，來場翻轉心情的冒險之旅！一起遊覽世界。
                 </h4>
                 <div className="row justify-content-around">
                   <button
                     onClick={() => {
                       let mapstory = props.mapstory
-                      travelBuddies(JSON.stringify(mapstory))
+                      // travelBuddies(JSON.stringify(mapstory))
+                      travelBuddies('桃園市')
                     }}
                     className="Homebtn2"
                   >
-                    <h4>尋找附近揪團</h4>
+                    <h4>尋找揪團</h4>
                   </button>
                 </div>
               </div>

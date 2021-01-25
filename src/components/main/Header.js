@@ -45,8 +45,14 @@ function Header({ auth, setAuth }) {
             {memberData && (
               <img
                 className="header-img-br"
-                src={'images/userphoto/' + memberData.member_photo_id}
-                alt="User Avatar"
+                src={
+                  'http://localhost:5000/images/member/' +
+                  memberData.member_photo_id
+                }
+                alt={
+                  'http://localhost:5000/images/member/' +
+                  memberData.member_photo_id
+                }
               />
             )}
           </figure>

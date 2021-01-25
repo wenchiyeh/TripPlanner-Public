@@ -94,27 +94,33 @@ function ItinEditorDetail({
       <form id="detailForm">
         {boxData.map((element, indexDay) => (
           <div key={indexDay}>
-            {element.data.map((ele, indexBox) => (
-              <div
-                className={`itin-detail-pictext-wrapper boxInfo${indexDay}${indexBox}`}
-                key={indexBox}
-              >
-                <p>{ele.title}</p>
-                {ele.image === '' || ele.image === null ? (
-                  <></>
-                ) : (
-                  <div className="detailPic">
-                    <img
-                      src={`http://localhost:5000/images/${ele.image}`}
-                      alt={ele.title}
-                    />
+            {element.data.map((ele, indexBox) => {
+              let nomalClass = `itin-detail-pictext-wrapper boxInfo${indexDay}${indexBox}`
+              let defaultCheck = `itin-detail-pictext-wrapper boxInfo${indexDay}${indexBox} itin-detailPicText-show`
+              return (
+                <div
+                  className={
+                    indexDay === 0 && indexBox === 0 ? defaultCheck : nomalClass
+                  }
+                  key={indexBox}
+                >
+                  <p>{ele.title}</p>
+                  {ele.image === '' || ele.image === null ? (
+                    <></>
+                  ) : (
+                    <div className="detailPic">
+                      <img
+                        src={`http://localhost:5000/images/${ele.image}`}
+                        alt={ele.title}
+                      />
+                    </div>
+                  )}
+                  <div className="showInfoText">
+                    <p>{ele.info}</p>
                   </div>
-                )}
-                <div className="showInfoText">
-                  <p>{ele.info}</p>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         ))}
       </form>

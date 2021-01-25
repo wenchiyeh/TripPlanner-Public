@@ -227,6 +227,17 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = JSON.parse(localStorage.getItem('userData'))
 
+  function removeCar() {
+    const productIDdata = JSON.parse(localStorage.getItem(product_id))
+    const delproductData = localStorage.removeItem(product_id)
+    const productIDarray = JSON.parse(localStorage.getItem('product_id'))
+    const IDarray = productIDarray.split(',')
+    const findID = IDarray.indexOf(product_id)
+    const cutID = IDarray.splice(findID, 1)
+    const strArray = IDarray.toString()
+    const newIDarray = localStorage.setItem('product_id', strArray)
+  }
+
   const step2 = (
     <>
       <div className="In-the-car">
@@ -477,13 +488,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                         : () => {
                             getUser()
                             carThree()
-                            // if (credit === 'visa') {
-                            //   window.location = 'https://p.ecpay.com.tw/6708411'
-                            // } else if (credit === 'atm') {
-                            //   window.location = 'https://p.ecpay.com.tw/39F39C9'
-                            // } else if (credit === 'applepay') {
-                            //   return carThree()
-                            // }
+                            removeCar()
                           }
                     }
                   >

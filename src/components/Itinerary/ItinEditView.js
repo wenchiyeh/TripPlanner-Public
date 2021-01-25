@@ -67,8 +67,6 @@ function ItinEditView({ isNew = true }) {
       })
     })
     dataToDB = [itinData, boxData]
-    console.log(dataToDB)
-    console.log(boxData)
     sendDataToDB(dataToDB)
   }
   async function sendDataToDB(dataToDB) {

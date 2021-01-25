@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap'
 // import Pages from '../../main/Pages'
 import './history-table.scss'
 import TableTest from './TableTest'
-
+import Pages from '../../main/Pages'
 function ShoppingHistory() {
   const [historyOrder, setHistoryOrder] = useState([])
   async function getHistoryOrder(props) {
@@ -52,6 +52,7 @@ function ShoppingHistory() {
             ))}
           </tbody>
         </Table>
+        <Pages />
       </div>
     </>
   )

@@ -4,14 +4,16 @@ import { Modal, Button } from 'react-bootstrap'
 function ConfirmBox(props) {
   const {
     cb = () => alert('ok'),
-    cbProps,
+    cbprops,
     header = '請再次確認',
     subHeader = '',
     text = '是否進行此操作',
+    resetdom,
+    ...rest
   } = props
   return (
     <Modal
-      {...props}
+      {...rest}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -26,17 +28,17 @@ function ConfirmBox(props) {
       <Modal.Footer>
         <Button
           onClick={() => {
-            props.resetDom(<></>)
-            props.onHide(false)
-            cb(...cbProps)
+            resetdom(<></>)
+            rest.onHide(false)
+            cb(...cbprops)
           }}
         >
           送出
         </Button>
         <Button
           onClick={() => {
-            props.resetDom(<></>)
-            props.onHide(false)
+            resetdom(<></>)
+            rest.onHide(false)
           }}
         >
           取消

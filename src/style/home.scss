@@ -8,6 +8,8 @@
   overflow: hidden;
   margin: 0px;
   height: 800px;
+  position: relative;
+  z-index: -2;
 }
 
 .navbar-background {
@@ -17,6 +19,7 @@
   opacity: 0.3;
   position: absolute;
   box-shadow: inset 0px 70px 40px 0 #000;
+  z-index: -1;
 }
 
 .scroll-icon-relative {
@@ -432,6 +435,7 @@
 }
 .p2-scoll1-h4 {
   margin-top: 40px;
+  text-align: center;
 }
 
 .p2-scoll1-txt hr {
@@ -771,4 +775,18 @@
   transform: translateX(-30%);
   position: relative;
   opacity: 0.8;
+}
+.HomeAdImg {
+  margin: 0 0 150px 0;
+  // height: 500px;
+  width: 100%;
+}
+.HomeAd h1 {
+  margin: 0 0 50px 0;
+}
+.HomeAd p {
+  margin: 0 0 50px 0;
+}
+.HomeAdTeg {
+  margin-bottom: 15px;
 }

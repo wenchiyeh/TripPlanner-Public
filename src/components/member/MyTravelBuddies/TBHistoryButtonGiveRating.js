@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Button, Modal, Form } from 'react-bootstrap'
-// import TBGiveStarRating from './TBGiveStarRating'
 import { useHistory } from 'react-router-dom'
 
 function TBHistoryButtonGiveRating(props) {

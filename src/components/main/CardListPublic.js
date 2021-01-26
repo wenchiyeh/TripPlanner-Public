@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import Card from './Card'
 import Pages from './Pages'
 import { Col, Row, Container } from 'react-bootstrap'
+//測試資料可以做成JSON檔之後用這個方式引入
+//
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+AOS.init()
 //
 let cardData = require('../Itinerary/testJsonData.json')
 let handleTestData = cardData[2].data
-//測試資料可以做成JSON檔之後用這個方式引入
-
+//
+//
 function CardListPublic({
   data = handleTestData,
   type = 'itinerary',
@@ -63,12 +68,17 @@ function CardListPublic({
     ))
   }
   return (
-    <>
-      <Container>
+    <div
+      data-aos-easing="ease-in"
+      data-aos="fade-in"
+      data-aos-delay="50"
+      data-aos-duration="800"
+    >
+      <div>
         <Row>{display}</Row>
         <Pages pages={totalPage} changePage={changePage} />
-      </Container>
-    </>
+      </div>
+    </div>
   )
 }
 export default CardListPublic

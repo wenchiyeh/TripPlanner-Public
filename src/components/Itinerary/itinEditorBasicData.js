@@ -39,7 +39,7 @@ function ItinEditorBasicData({ itinData, isEdit = false, isPublish }) {
       <div className="itin-BasicData-head d-flex justify-content-between">
         <figure className="itin-BasicData-avatar">
           <img
-            src={`http://localhost:5000/images/userphoto/${itinData.member_photo_id}`}
+            src={`http://localhost:5000/images/member/${itinData.member_photo_id}`}
             alt={itinData.member_name}
           />
         </figure>

@@ -8,7 +8,7 @@ import CardListPublic from '../components//main/CardListPublic'
 import ItinCaro from '../components/Itinerary/ItinCaro'
 import Spinner from '../components/main/Spinner'
 import NoData from '../components/main/NoData'
-//
+
 function Itinerary(props) {
   const [searchFilter, setSearchFilter] = useState({})
   const [dataFromDB, segDataFromDB] = useState([])
@@ -52,7 +52,7 @@ function Itinerary(props) {
   }
 
   const displayView = (
-    <>
+    <div>
       <div className="container itin-close-wrap">
         <MyBreadCrumb />
         <div className="d-flex justify-content-between">
@@ -69,7 +69,7 @@ function Itinerary(props) {
         </Col>
         <CardListPublic data={dataFromDB} type="itinerary" itemPerPage={9} />
       </div>
-    </>
+    </div>
   )
 
   if (isLoading === 0) {

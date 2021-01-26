@@ -103,7 +103,7 @@ function MeFavoritesstroke({
               <div className="col-md-4">
                 <Link to={detailUrl}>
                   <img
-                    src={'/images/' + element.image}
+                    src={'http://localhost:5000/images/' + element.image}
                     className="card-img img-fluid"
                     alt={element.image}
                   />

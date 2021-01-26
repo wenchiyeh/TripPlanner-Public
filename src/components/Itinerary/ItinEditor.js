@@ -56,7 +56,7 @@ function ItinEditor({
       reorderItem
     )
     setTempData(originArray) //當下所有數據
-    // console.log(originArray)
+    console.log(originArray)
   }
   function dayPlus() {
     const originArray = Array.from(tempData)

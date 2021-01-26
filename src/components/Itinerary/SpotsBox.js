@@ -33,7 +33,8 @@ function SpotsBox({
   const inputTimeClass = `box-input-time time${index[0]}${index[1]}`
   const inputTitleClass = `box-input-title input${index[0]}${index[1]}`
   useEffect(() => {
-    if (isEdit && dataFromUser[0].data.length > 0) {
+    // if (isEdit && dataFromUser[0].data.length > 0) {
+    if (isEdit) {
       if (
         document.querySelector(`.input${index[0]}${index[1]}`).value ===
           dataFromUser[index[0]].data[index[1]].title &&

@@ -97,7 +97,9 @@ function BuyProducts({
     address,
     location,
   }
+
   const getIDdata = JSON.parse(localStorage.getItem('product_id'))
+
   const getproductdata = JSON.parse(localStorage.getItem(product_id))
   // console.log(getproductdata)
   function newclass() {
@@ -221,15 +223,25 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <p>{early <= 0 ? 0 : early}</p>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{early <= 0 ? 0 : early}</p>
+                  ) : (
+                    <p>{getproductdata.early}</p>
+                  )
                 ) : (
-                  <p>{getproductdata.early}</p>
+                  <p>{early}</p>
                 )}
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <Button variant="light" onClick={() => setEarly(early + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setEarly(early + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
                   <Button variant="light" disabled>
                     <AiFillPlusCircle />
@@ -253,16 +265,29 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <p>{single <= 0 ? 0 : single}</p>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{single <= 0 ? 0 : single}</p>
+                  ) : (
+                    <p>{getproductdata.getIDdata}</p>
+                  )
                 ) : (
-                  <p>{getproductdata.single}</p>
+                  <p>{single}</p>
                 )}
 
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <Button variant="light" onClick={() => setSingle(single + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button
+                      variant="light"
+                      onClick={() => setSingle(single + 1)}
+                    >
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
                   <Button variant="light" disabled>
                     <AiFillPlusCircle />
@@ -286,15 +311,25 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <p>{group <= 0 ? 0 : group}</p>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{group <= 0 ? 0 : group}</p>
+                  ) : (
+                    <p>{getproductdata.group}</p>
+                  )
                 ) : (
-                  <p>{getproductdata.group}</p>
+                  <p>{group}</p>
                 )}
-                {getIDdata.indexOf(product_id) === -1 ? (
-                  <Button variant="light" onClick={() => setGroup(group + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setGroup(group + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
                   <Button variant="light" disabled>
                     <AiFillPlusCircle />
@@ -306,10 +341,30 @@ function BuyProducts({
               {/* 上半部右邊下面按鈕 */}
 
               {early === 0 && group === 0 && single === 0 ? (
-                JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <Button variant="info" disabled>
+                getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="info" disabled>
+                      加入購物車
+                    </Button>
+                  ) : (
+                    <Button variant="info" onClick={() => InTheCar()}>
+                      現在就去結帳
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="info" onClick={() => alert('請先登入')}>
+                    加入購物車
+                  </Button>
+                )
+              ) : getIDdata != null ? (
+                getIDdata.indexOf(product_id) === -1 ? (
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      newclass()
+                      setSmallShow(true)
+                    }}
+                  >
                     加入購物車
                   </Button>
                 ) : (
@@ -317,21 +372,9 @@ function BuyProducts({
                     現在就去結帳
                   </Button>
                 )
-              ) : JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                <Button
-                  variant="info"
-                  onClick={() => {
-                    newclass()
-                    setSmallShow(true)
-                  }}
-                >
-                  加入購物車
-                </Button>
               ) : (
-                <Button variant="info" onClick={() => InTheCar()}>
-                  現在就去結帳
+                <Button variant="info" onClick={() => alert('請先登入')}>
+                  加入購物車
                 </Button>
               )}
               <Modal

@@ -230,7 +230,7 @@ function BuyProducts({
                     <p>{getproductdata.early}</p>
                   )
                 ) : (
-                  <p>{early}</p>
+                  <p>{early <= 0 ? 0 : early}</p>
                 )}
                 {getIDdata != null ? (
                   getIDdata.indexOf(product_id) === -1 ? (
@@ -243,7 +243,7 @@ function BuyProducts({
                     </Button>
                   )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setEarly(early + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}
@@ -272,7 +272,7 @@ function BuyProducts({
                     <p>{getproductdata.getIDdata}</p>
                   )
                 ) : (
-                  <p>{single}</p>
+                  <p>{single <= 0 ? 0 : single}</p>
                 )}
 
                 {getIDdata != null ? (
@@ -289,7 +289,7 @@ function BuyProducts({
                     </Button>
                   )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setSingle(single + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}
@@ -318,7 +318,7 @@ function BuyProducts({
                     <p>{getproductdata.group}</p>
                   )
                 ) : (
-                  <p>{group}</p>
+                  <p>{group <= 0 ? 0 : group}</p>
                 )}
                 {getIDdata != null ? (
                   getIDdata.indexOf(product_id) === -1 ? (
@@ -331,7 +331,7 @@ function BuyProducts({
                     </Button>
                   )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setGroup(group + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}

@@ -51,6 +51,7 @@ function BuyProducts({
 
   // shoppingcar modal
   const [smallShow, setSmallShow] = useState(false)
+  const [loginShow, setLoginShow] = useState(false)
 
   const handleShow = () => setSmShow(true)
 
@@ -83,6 +84,9 @@ function BuyProducts({
   }
   function backProductList() {
     history.push(`/productList`)
+  }
+  function goLogin() {
+    history.push(`/login`)
   }
   const data = {
     className,
@@ -352,7 +356,7 @@ function BuyProducts({
                     </Button>
                   )
                 ) : (
-                  <Button variant="info" onClick={() => alert('請先登入')}>
+                  <Button variant="info" onClick={() => setLoginShow(true)}>
                     加入購物車
                   </Button>
                 )
@@ -373,7 +377,7 @@ function BuyProducts({
                   </Button>
                 )
               ) : (
-                <Button variant="info" onClick={() => alert('請先登入')}>
+                <Button variant="info" onClick={() => setLoginShow(true)}>
                   加入購物車
                 </Button>
               )}
@@ -404,6 +408,26 @@ function BuyProducts({
                     下一步
                   </Button>
                 </Modal.Body>
+              </Modal>
+
+              <Modal
+                size="sm"
+                show={loginShow}
+                onHide={() => setLoginShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    請先登入
+                  </Modal.Title>
+                  <small className="none">
+                    {loginShow === true
+                      ? setTimeout(() => {
+                          goLogin()
+                        }, 2000)
+                      : console.log('ok')}
+                  </small>
+                </Modal.Header>
               </Modal>
 
               <div className="followMyHeart">

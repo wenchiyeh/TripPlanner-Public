@@ -32,7 +32,7 @@ function NewNotice({
         setMetbJoined(data)
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }

@@ -20,7 +20,7 @@ import { message } from 'antd'
 //     window.location = '/login'
 //   }
 // })
-function Member() {
+function Member({ setAuth }) {
   let history = useHistory()
   const [isLoading, setIsLoading] = useState(true)
   const [member, setMember] = useState(
@@ -94,7 +94,11 @@ function Member() {
       <article className="article">
         <div className="aside">
           <section className="aboutMember">
-            <MemberProfile member={member} setMember={setMember} />
+            <MemberProfile
+              member={member}
+              setMember={setMember}
+              setAuth={setAuth}
+            />
             <StarRating />
             <CalendarApp />
           </section>

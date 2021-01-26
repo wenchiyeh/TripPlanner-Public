@@ -80,7 +80,7 @@ function ItinEditor({
     setTempData(originArray)
   }
   const displayEdit = (
-    <div className="itin-editor-wrapper">
+    <div className="itin-editor-wrapper custom-box-shadow">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {tempData.map((data, dayIndex) => (
           <div key={dayIndex}>
@@ -174,7 +174,7 @@ function ItinEditor({
     </div>
   )
   const displayNotEdit = (
-    <div className="itin-editor-wrapper">
+    <div className="itin-editor-wrapper custom-box-shadow">
       {tempData.map((data, dayIndex) => (
         <div key={dayIndex}>
           <div

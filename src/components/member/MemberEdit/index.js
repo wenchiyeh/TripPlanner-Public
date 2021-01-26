@@ -3,10 +3,20 @@ import React, { useState, useEffect } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { useParams, useHistory } from 'react-router-dom'
 import './MemberEdit.scss'
+import { message } from 'antd'
 
 function MemberEdit({ member }) {
   let history = useHistory()
   let { id } = useParams()
+  const success = () => {
+    message.success({
+      content: '更新成功!',
+      className: 'custom-class',
+      style: {
+        marginTop: '20vh',
+      },
+    })
+  }
   //const [members, setMembers] = useState('')
   // const [memberData, setMemberData] = useState(
   //   JSON.parse(localStorage.getItem('userData'))
@@ -18,9 +28,6 @@ function MemberEdit({ member }) {
   const [member_phone, setPhone] = useState(member.member_phone)
   const [birthday, setBirthday] = useState(member.birthday)
   const [member_sex, setMember_sex] = useState(member.member_sex)
-  const [member_photo_id, setMember_photo_id] = useState(
-    member.setmember_photo_id
-  )
   const [member_id, setMember_id] = useState(member.member_id)
   const [member_aboutme, setMember_aboutme] = useState(member.member_aboutme)
 
@@ -33,7 +40,7 @@ function MemberEdit({ member }) {
       member_phone,
       birthday,
       member_sex,
-      member_photo_id,
+      // member_photo_id,
       member_id,
       member_aboutme,
     }
@@ -51,11 +58,12 @@ function MemberEdit({ member }) {
         const data = await response.json()
         setEmail(data)
         console.log(data)
-        if (data) alert('更新成功')
+        // if (data) success()
+        //  alert('更新成功')
         history.push('/myAccount')
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -221,7 +229,7 @@ function MemberEdit({ member }) {
             </Form.Control>
           </Form.Group>
         </Form.Row>
-        <Form.Row>
+        {/* <Form.Row>
           <Form.Group>
             <div className="mb-3">
               <Form.File id="formcheck-api-regular">
@@ -235,7 +243,7 @@ function MemberEdit({ member }) {
               </Form.File>
             </div>
           </Form.Group>
-        </Form.Row>
+        </Form.Row> */}
         {/* 暱稱 */}
         <Form.Row>
           <Form.Group as={Col} md="12" controlId="validationCustom06">
@@ -277,6 +285,8 @@ function MemberEdit({ member }) {
           onClick={() => {
             updateMember(member.newsId)
             console.log('onclick ed', member.newsId)
+            success()
+            setTimeout(() => {}, 3000)
           }}
         >
           確定

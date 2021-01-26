@@ -5,6 +5,7 @@ import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
 import './sign.scss'
 import LoginHooks from '../Login/LoginHooks'
+import { message } from 'antd'
 function Login() {
   let history = useHistory()
   const [member, setMember] = useState([])
@@ -24,6 +25,10 @@ function Login() {
     }
     setValidated(true)
   }
+
+  const success = () => {
+    message.success('註冊成功!')
+  }
   //連結伺服器端
   async function getMember() {
     try {
@@ -35,6 +40,7 @@ function Login() {
       if (response.ok) {
         const data = await response.json()
         setMember(data.member)
+        // alert('註冊成功!')
         history.push('/login')
       } else {
         history.push('/sigon')
@@ -97,7 +103,7 @@ function Login() {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button type="submit" className="login-btn">
+            <Button type="submit" className="login-btn" onClick={success}>
               註冊
             </Button>
             <div className="sogin-samp-text d-flex">

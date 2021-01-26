@@ -80,8 +80,18 @@ function MeFavoritesgroup({
               <div className="card-body">
                 <h3 className="card-title">{e.tb_themeName}</h3>
                 <span className="mef-icno-style">
-                  <IoMdTime />
-                  {e.tb_dateBegin} - {e.tb_dateEnd}
+                  <IoMdTime />{' '}
+                  {metbJoined[0].tb_dateBegin.slice(0, 4) +
+                    '/' +
+                    metbJoined[0].tb_dateBegin.slice(5, 7) +
+                    '/' +
+                    metbJoined[0].tb_dateBegin.slice(8, 10) +
+                    '-' +
+                    metbJoined[0].tb_dateEnd.slice(0, 4) +
+                    '/' +
+                    metbJoined[0].tb_dateEnd.slice(5, 7) +
+                    '/' +
+                    metbJoined[0].tb_dateEnd.slice(8, 10)}
                 </span>
                 <span className="mef-icno-style d-flex justify-content-between">
                   {/* 地圖位置1 */}

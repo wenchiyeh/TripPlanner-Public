@@ -21,8 +21,8 @@ function CardListTravelBudddies(props) {
                   time2={element.tb_dateEnd}
                   duration={element.tb_daysCategory}
                   person={element.tb_owner} //此行連接後端後請修正
-                  like={element.heart}
-                  mark={element.keep}
+                  like={element.tb_liked}
+                  mark={element.tb_mark}
                 />
               </Col>
             ))}

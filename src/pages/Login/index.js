@@ -5,9 +5,13 @@ import { Form, Button, Col, InputGroup, Toast } from 'react-bootstrap'
 import { useHistory, Link } from 'react-router-dom'
 import './login.scss'
 import LoginHooks from './LoginHooks'
+import { message } from 'antd'
 // import LogoutHooks from './LogoutHooks'
 
 function Login(props) {
+  const success = () => {
+    message.success('歡迎蒞臨~履歷!')
+  }
   //是否登入
   // 從App元件得到兩個屬性值，解構出來
   const { setIsAuth, setAuth } = props
@@ -55,6 +59,7 @@ function Login(props) {
           setAuth(true)
           // sessionStorage.setItem('userName', 'memberId')
           // sessionStorage.setItem('userid', data.member)
+          success()
           history.push(`/myAccount`)
         } else {
           console.log('請輸入正確的帳號密碼')

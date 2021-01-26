@@ -2,27 +2,28 @@
 import React from 'react'
 import { useGoogleLogin } from 'react-google-login'
 import { FaGoogle } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 // refresh token
-import { refreshTokenSetup } from '../utils/refreshToken'
+// import { refreshTokenSetup } from '../utils/refreshToken'
 
-const clientId = '請輸入KEY'
+const clientId =
+  '707788443358-u05p46nssla3l8tmn58tpo9r5sommgks.apps.googleusercontent.com'
 
 function LoginHooks() {
   // const [newAuthRes, serNewAuthRes] = useState()
   // const id_token = ''
   // JSON.parse(localStorage.setItem('authToken', newAuthRes))
-  let history = useHistory()
+  // let history = useHistory()
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj)
     // alert(`Logged in successfully welcome ${res.profileObj.name}`)
     console.log('google name', res.profileObj.name)
     console.log('Google登入成功', res)
-    refreshTokenSetup(res)
-    if (res.profileObj.name === 'yushen liao') {
-      history.push('/')
-    }
+    // refreshTokenSetup(res)
+    // if (res.profileObj.name === 'yushen liao') {
+    //   history.push('/')
+    // }
     // if (res.profileObj.name === 'yushen liao') {
     //   console.log('Google登入成功2', res.profileObj.name)
     // }
@@ -33,16 +34,16 @@ function LoginHooks() {
     // document.getElementById('content').innerHTML = str
   }
 
-  const onFailure = (res) => {
-    console.log('Login failed: res:', res)
-    alert(
-      `Failed to login. 😢 Please ping this to repo owner twitter.com/sivanesh_fiz`
-    )
-  }
+  // const onFailure = (res) => {
+  //   console.log('Login failed: res:', res)
+  // alert(
+  //   `Failed to login. 😢 Please ping this to repo owner twitter.com/sivanesh_fiz`
+  // )
+  // }
 
   const { signIn } = useGoogleLogin({
     onSuccess,
-    onFailure,
+    // onFailure,
     clientId,
     isSignedIn: true,
     accessType: 'offline',

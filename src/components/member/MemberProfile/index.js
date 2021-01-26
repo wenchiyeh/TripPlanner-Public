@@ -2,50 +2,136 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import MemberEdit from '../MemberEdit'
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
-function MemberProfile({ setMember }) {
+import $ from 'jquery'
+// import Upload from './Upload'
+function MemberProfile({ member, setMember }) {
   const [memberData, setMemberData] = useState(
     JSON.parse(localStorage.getItem('userData'))
   )
+  useEffect(() => {
+    setMemberData(JSON.parse(localStorage.getItem('userData')))
+    console.log('hhhhhuserData', memberData)
+  }, [])
+  console.log('setMember', member)
   // console.log('mp member:', memberData)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  // async function getMember(id) {
-  //   try {
-  //     const response = await fetch(`http://localhost:5000/member/${id}`, {
-  //       mode: 'cors',
-  //       method: 'get',
+  // const handleChangeShow = () => setShow(true)
+  // const handleChangeclose = () => setShow(true)
+  //   handleChange(event) {
+  //     this.setState({
+  //       file: URL.createObjectURL(event.target.files[0]),
   //     })
-
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       console.log('response:', response)
-  //       setMember(data)
-  //       localStorage.setItem('userData', JSON.stringify(data))
-  //       console.log('memberdata:', data)
-  //       // 最後關起spinner，改呈現真正資料
-  //       setTimeout(() => {
-  //         // setIsLoading(false)
-  //       }, 0)
-  //     }
-  //   } catch (err) {
-  //     alert('無法得到伺服器資料，請稍後再重試')
-  //     console.log(err)
   //   }
-  // }
 
+  async function memberPicUpload(id) {
+    let formData = new FormData()
+    let imgFile = document.querySelector('#imageUpload')
+    if (imgFile) formData.append('file', imgFile.files[0])
+    try {
+      const response = await fetch(`http://localhost:5000/upload/member`, {
+        mode: 'cors',
+        method: 'post',
+        body: formData,
+      })
+      if (response.ok) {
+        const data = await response.json()
+        let url = data.name[0]
+        // let url = '' + data.url + data.name[0]
+        memberPicChange(id, url)
+        console.log('udid:', id)
+        console.log('ud1img:', url)
+      }
+    } catch (err) {
+      // alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  async function memberPicChange(id, url) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/member/updataPic/${id}`,
+        {
+          mode: 'cors',
+          method: 'put',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ img: url }),
+        }
+      )
+      if (response.ok) {
+        // console.log('ud id', id)
+        // console.log('ud url', url)
+        // const data = await response.json()
+        // console.log('response:', response)
+        // setMember(data)
+        // localStorage.setItem('userData', JSON.stringify(data))
+      }
+    } catch (err) {
+      // alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+
+  //前端改圖
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader()
+      reader.onload = function (e) {
+        $('#imagePreview').css(
+          'backgroundImage',
+          'url(' + e.target.result + ')'
+        )
+        $('#imagePreview').hide()
+        $('#imagePreview').fadeIn(650)
+        memberPicUpload(member.newsId)
+        console.log('memberData.newsId', member.newsId)
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+  // $('#imageUpload').change(function () {
+  //   readURL(this)
+  // })
+
+  const uuuurl = 'http://localhost:5000/images/member/' + member.member_photo_id
+  const img = (
+    <>
+      <div class="avatar-upload">
+        <div class="avatar-edit">
+          <input
+            type="file"
+            id="imageUpload"
+            accept=".png, .jpg, .jpeg"
+            onChange={(e) => readURL(e.target)}
+          />
+          <label for="imageUpload"></label>
+        </div>
+        <div class="avatar-preview">
+          <div
+            id="imagePreview"
+            style={{
+              backgroundImage: `url(${uuuurl})`,
+            }}
+          ></div>
+        </div>
+      </div>
+    </>
+  )
   const display = (
     <>
       <div className="person">
         <h3>一般會員</h3>
-        <img
+        {img}
+        {/* <img
+          id="preview_ie"
           src={'/images/userphoto/' + memberData.member_photo_id}
           alt={memberData.member_name}
-        />
-        <h4>{memberData.member_name}</h4>
+        /> */}
+        <h4>{member.member_name}</h4>
         <Button
           variant="primary"
           className="MemberList-title"
@@ -66,7 +152,7 @@ function MemberProfile({ setMember }) {
         </Modal.Header>
         <Modal.Body>
           <MemberEdit
-            member={memberData}
+            member={member}
             setMember={setMember}
             handleClose={handleClose}
           />

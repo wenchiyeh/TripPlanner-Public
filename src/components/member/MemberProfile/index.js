@@ -5,6 +5,7 @@ import MemberEdit from '../MemberEdit'
 // import { useParams } from 'react-router-dom'
 import './MemberProfile.scss'
 import $ from 'jquery'
+import { message } from 'antd'
 // import Upload from './Upload'
 function MemberProfile({ setMember, setAuth }) {
   const [memberData, setMemberData] = useState(
@@ -15,6 +16,15 @@ function MemberProfile({ setMember, setAuth }) {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const success = () => {
+    message.success({
+      content: '更新成功!',
+      className: 'custom-class',
+      style: {
+        marginTop: '20vh',
+      },
+    })
+  }
   // const handleChangeShow = () => setShow(true)
   // const handleChangeclose = () => setShow(true)
   //   handleChange(event) {
@@ -47,9 +57,10 @@ function MemberProfile({ setMember, setAuth }) {
         document.querySelector(
           '.header-img-br'
         ).src = `http://localhost:5000/images/member/${url}`
+        success()
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }
@@ -69,7 +80,7 @@ function MemberProfile({ setMember, setAuth }) {
         // console.log('ud url', url)
       }
     } catch (err) {
-      alert('無法得到伺服器資料，請稍後再重試')
+      // alert('無法得到伺服器資料，請稍後再重試')
       console.log(err)
     }
   }

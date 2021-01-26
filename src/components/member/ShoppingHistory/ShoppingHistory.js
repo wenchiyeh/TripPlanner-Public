@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
-// import Pages from '../../main/Pages'
+import Pages from '../../main/Pages'
 import './history-table.scss'
 import TableTest from './TableTest'
-import Pages from '../../main/Pages'
 function ShoppingHistory() {
   const [historyOrder, setHistoryOrder] = useState([])
+
   async function getHistoryOrder(props) {
     try {
       const response = await fetch(`http://localhost:5000/historyOrder`, {
@@ -32,6 +32,7 @@ function ShoppingHistory() {
     setShowRange([(orderPage - 1) * itemPerPage, orderPage * itemPerPage])
     window.scrollTo(0, 0)
   }
+
   return (
     <>
       <div className="table-history">
@@ -47,20 +48,28 @@ function ShoppingHistory() {
             </tr>
           </thead>
           <tbody>
-            {historyOrder.map((v, i) => (
-              <tr key={i}>
-                <TableTest
-                  orderId={v.id}
-                  PurchaseDate={v.purchaseDate}
-                  ticketNumber={v.ticketNumber}
-                  many={v.many}
-                  price={v.price}
-                />
-              </tr>
-            ))}
+            {historyOrder.map((v, i) => {
+              let isPublish = '是'
+              if (v.publish_time === null) isPublish = '否'
+              if (i < showRange[0] || i >= showRange[1]) {
+                return null
+              } else {
+                return (
+                  <tr key={i}>
+                    <TableTest
+                      orderId={v.id}
+                      PurchaseDate={v.purchaseDate}
+                      ticketNumber={v.ticketNumber}
+                      many={v.many}
+                      price={v.price}
+                    />
+                  </tr>
+                )
+              }
+            })}
           </tbody>
         </Table>
-        {/* <Pages pages={totalPage} changePage={changePage} /> */}
+        <Pages pages={totalPage} changePage={changePage} />
       </div>
     </>
   )

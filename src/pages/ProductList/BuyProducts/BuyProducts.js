@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import './buy-products.scss'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
+import Spinner from '../../../components/main/Spinner'
 
 // icon
 import { FiClock } from 'react-icons/fi'
@@ -220,16 +221,12 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <p>{early <= 0 ? 0 : early}</p>
                 ) : (
                   <p>{getproductdata.early}</p>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <Button variant="light" onClick={() => setEarly(early + 1)}>
                     <AiFillPlusCircle />
                   </Button>
@@ -256,17 +253,13 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <p>{single <= 0 ? 0 : single}</p>
                 ) : (
                   <p>{getproductdata.single}</p>
                 )}
 
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <Button variant="light" onClick={() => setSingle(single + 1)}>
                     <AiFillPlusCircle />
                   </Button>
@@ -293,16 +286,12 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <p>{group <= 0 ? 0 : group}</p>
                 ) : (
                   <p>{getproductdata.group}</p>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata.indexOf(product_id) === -1 ? (
                   <Button variant="light" onClick={() => setGroup(group + 1)}>
                     <AiFillPlusCircle />
                   </Button>
@@ -468,7 +457,11 @@ function BuyProducts({
       </div>
     </>
   )
+  const [isLoading, setIsLoading] = useState(true)
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 1000)
 
-  return dispalyBuy
+  return isLoading === true ? <Spinner text={'讀取中'} /> : dispalyBuy
 }
 export default BuyProducts

@@ -23,7 +23,15 @@ function ShoppingHistory() {
   useEffect(() => {
     getHistoryOrder()
   }, [])
-
+  let itemPerPage = 9
+  let [showRange, setShowRange] = useState([0, itemPerPage])
+  let dataLength = historyOrder.length
+  let totalPage = Math.floor(dataLength / itemPerPage) + 1
+  if (dataLength % itemPerPage === 0) totalPage -= 1
+  function changePage(orderPage) {
+    setShowRange([(orderPage - 1) * itemPerPage, orderPage * itemPerPage])
+    window.scrollTo(0, 0)
+  }
   return (
     <>
       <div className="table-history">
@@ -52,7 +60,7 @@ function ShoppingHistory() {
             ))}
           </tbody>
         </Table>
-        <Pages />
+        {/* <Pages pages={totalPage} changePage={changePage} /> */}
       </div>
     </>
   )

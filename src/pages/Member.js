@@ -87,7 +87,7 @@ function Member({ setAuth }) {
     getMember(member.newsId)
     // console.log('me有資料嗎?', member)
   }, [])
-  const Loading = <h1>Loading</h1>
+  const Loading = <h1>'</h1>
 
   const display = (
     <>

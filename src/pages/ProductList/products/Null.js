@@ -146,12 +146,13 @@ function Nothing() {
 }
 function Show() {
   const aboutClass = JSON.parse(localStorage.getItem('product_id'))
-  const getarray = aboutClass.split(',')
-
-  //判斷大於1 要顯示資料
-  const showOrNotShow = getarray.length
-
-  return showOrNotShow > 1 ? <Null /> : <Nothing />
+  if (aboutClass != null) {
+    const getarray = aboutClass.split(',')
+    const showOrNotShow = getarray.length
+    return showOrNotShow > 1 ? <Null /> : <Nothing />
+  } else {
+    return <Nothing />
+  }
 }
 
 export default Show

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import './buy-products.scss'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
+import Spinner from '../../../components/main/Spinner'
 
 // icon
 import { FiClock } from 'react-icons/fi'
@@ -50,6 +51,7 @@ function BuyProducts({
 
   // shoppingcar modal
   const [smallShow, setSmallShow] = useState(false)
+  const [loginShow, setLoginShow] = useState(false)
 
   const handleShow = () => setSmShow(true)
 
@@ -83,6 +85,9 @@ function BuyProducts({
   function backProductList() {
     history.push(`/productList`)
   }
+  function goLogin() {
+    history.push(`/login`)
+  }
   const data = {
     className,
     classDate,
@@ -96,7 +101,9 @@ function BuyProducts({
     address,
     location,
   }
+
   const getIDdata = JSON.parse(localStorage.getItem('product_id'))
+
   const getproductdata = JSON.parse(localStorage.getItem(product_id))
   // console.log(getproductdata)
   function newclass() {
@@ -220,21 +227,27 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{early <= 0 ? 0 : early}</p>
+                  ) : (
+                    <p>{getproductdata.early}</p>
+                  )
+                ) : (
                   <p>{early <= 0 ? 0 : early}</p>
-                ) : (
-                  <p>{getproductdata.early}</p>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <Button variant="light" onClick={() => setEarly(early + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setEarly(early + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setEarly(early + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}
@@ -256,22 +269,31 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <p>{single <= 0 ? 0 : single}</p>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{single <= 0 ? 0 : single}</p>
+                  ) : (
+                    <p>{getproductdata.getIDdata}</p>
+                  )
                 ) : (
-                  <p>{getproductdata.single}</p>
+                  <p>{single <= 0 ? 0 : single}</p>
                 )}
 
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <Button variant="light" onClick={() => setSingle(single + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button
+                      variant="light"
+                      onClick={() => setSingle(single + 1)}
+                    >
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setSingle(single + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}
@@ -293,21 +315,27 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{group <= 0 ? 0 : group}</p>
+                  ) : (
+                    <p>{getproductdata.group}</p>
+                  )
+                ) : (
                   <p>{group <= 0 ? 0 : group}</p>
-                ) : (
-                  <p>{getproductdata.group}</p>
                 )}
-                {JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <Button variant="light" onClick={() => setGroup(group + 1)}>
-                    <AiFillPlusCircle />
-                  </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setGroup(group + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
                 ) : (
-                  <Button variant="light" disabled>
+                  <Button variant="light" onClick={() => setGroup(group + 1)}>
                     <AiFillPlusCircle />
                   </Button>
                 )}
@@ -317,10 +345,30 @@ function BuyProducts({
               {/* 上半部右邊下面按鈕 */}
 
               {early === 0 && group === 0 && single === 0 ? (
-                JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                  <Button variant="info" disabled>
+                getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="info" disabled>
+                      加入購物車
+                    </Button>
+                  ) : (
+                    <Button variant="info" onClick={() => InTheCar()}>
+                      現在就去結帳
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="info" onClick={() => setLoginShow(true)}>
+                    加入購物車
+                  </Button>
+                )
+              ) : getIDdata != null ? (
+                getIDdata.indexOf(product_id) === -1 ? (
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      newclass()
+                      setSmallShow(true)
+                    }}
+                  >
                     加入購物車
                   </Button>
                 ) : (
@@ -328,21 +376,9 @@ function BuyProducts({
                     現在就去結帳
                   </Button>
                 )
-              ) : JSON.parse(localStorage.getItem('product_id')).indexOf(
-                  product_id
-                ) === -1 ? (
-                <Button
-                  variant="info"
-                  onClick={() => {
-                    newclass()
-                    setSmallShow(true)
-                  }}
-                >
-                  加入購物車
-                </Button>
               ) : (
-                <Button variant="info" onClick={() => InTheCar()}>
-                  現在就去結帳
+                <Button variant="info" onClick={() => setLoginShow(true)}>
+                  加入購物車
                 </Button>
               )}
               <Modal
@@ -372,6 +408,26 @@ function BuyProducts({
                     下一步
                   </Button>
                 </Modal.Body>
+              </Modal>
+
+              <Modal
+                size="sm"
+                show={loginShow}
+                onHide={() => setLoginShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    請先登入
+                  </Modal.Title>
+                  <small className="none">
+                    {loginShow === true
+                      ? setTimeout(() => {
+                          goLogin()
+                        }, 2000)
+                      : console.log('ok')}
+                  </small>
+                </Modal.Header>
               </Modal>
 
               <div className="followMyHeart">
@@ -468,7 +524,11 @@ function BuyProducts({
       </div>
     </>
   )
+  const [isLoading, setIsLoading] = useState(true)
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 1000)
 
-  return dispalyBuy
+  return isLoading === true ? <Spinner text={'讀取中'} /> : dispalyBuy
 }
 export default BuyProducts

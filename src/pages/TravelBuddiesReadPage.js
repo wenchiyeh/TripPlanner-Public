@@ -9,7 +9,6 @@ import { IoIosPeople } from 'react-icons/io'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
-import TBButtonSignedUp from '../components/TravelBuddies/TBButtonSignedUp'
 
 function TravelBuddiesReadPage(props) {
   let { id } = useParams()

@@ -1,7 +1,7 @@
 //會員中心頁連結
 import React from 'react'
 import { Nav } from 'react-bootstrap'
-import { BrowserRouter as Route, NavLink, Switch, Link } from 'react-router-dom'
+import { Route, NavLink, Switch, Link } from 'react-router-dom'
 import HistiryRoute from '../member/ShoppingHistory/HistoryRoute'
 import MyTravelBuddies from './MyTravelBuddies/MyTravelBuddies'
 import MeFavorites from '../main/MeFavorites'

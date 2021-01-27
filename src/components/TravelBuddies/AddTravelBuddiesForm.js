@@ -25,6 +25,7 @@ function AddTravelBuddiesForm() {
   const [tbPersonsNeeded, settbPersonsNeeded] = useState('')
   const [tbGenderNeeded, settbGenderNeeded] = useState('')
   const [tbThemeIntro, settbThemeIntro] = useState('')
+  const [buttonDemo, setButtonDemo] = useState(false)
 
   // settbCityCategory(
   //   $('input:checkbox:checked[name="tbCityCategory"]').each(function (i) {
@@ -37,6 +38,19 @@ function AddTravelBuddiesForm() {
       tbCityCategory[i] = this.value
     })
   }
+
+  function setDemo() {
+    settbThemeName('綠島一週小旅行')
+    settbDateBegin('2021-04-01')
+    settbDateEnd('2021-04-07')
+    settbLastApprovedDate('2021-03-25')
+    settbEstimatedCost('10000')
+    settbPersonsNeeded('5')
+    settbThemeIntro(
+      '綠島舊名火燒島，位於臺東市東方約33公里的海面上，面積16.2平方公里，由火山集塊岩所構成的島嶼，因長年受風化及海水侵蝕，形成曲折多變的海岸景觀。巍峨奇岩巨石、陡峭台地海岸、潔淨的白色沙灘、翠綠草原、獨特的海底溫泉、嶙峋珊瑚礁裙、綺麗海底世界、以及豐盛的植物等優渥的條件，使得綠島這個遺世獨立的小島，搖身一變成東部的海上樂園。'
+    )
+  }
+
   async function handlePicToDB() {
     let formData = new FormData()
     let imgFile = document.querySelector('#tbMainPhoto')
@@ -113,7 +127,18 @@ function AddTravelBuddiesForm() {
       <div className="add-travelbuddies-outbox">
         <div className="add-travelbuddies-middle">
           <Form validated={validated} onSubmit={handleSubmit}>
-            <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
+            <div className="d-flex">
+              <h1 className="add-travelbuddies-topic">新增旅行揪團</h1>
+              <Button
+                className="demo-button"
+                onClick={() => {
+                  setButtonDemo(true)
+                  setDemo()
+                }}
+              >
+                Demo 小幫手
+              </Button>
+            </div>
             <Form.Group className="mt-3" controlId="travelBuddiesThemeName">
               <Form.Label htmlFor="travelBuddiesThemeName">
                 旅行揪團名稱：
@@ -126,6 +151,7 @@ function AddTravelBuddiesForm() {
                 onChange={(e) => {
                   settbThemeName(e.target.value)
                 }}
+                defaultValue={buttonDemo === true ? '綠島一週小旅行' : ''}
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -375,6 +401,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDateBegin(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '2021-04-01' : ''}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇旅行開始日期
@@ -395,6 +422,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDateEnd(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '2021-04-07' : ''}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇旅行結束日期
@@ -413,6 +441,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbDaysCategory(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '4' : ''}
                   >
                     <option value="1">1日遊</option>
                     <option value="2">2-3日遊</option>
@@ -441,6 +470,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbLastApprovedDate(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '2021-03-25' : ''}
                   />
                   <Form.Control.Feedback type="invalid">
                     請選擇最後審核日期
@@ -461,6 +491,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbEstimatedCost(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '10000' : ''}
                   />
                   <Form.Control.Feedback type="invalid">
                     請填寫預估花費
@@ -483,6 +514,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbPersonsNeeded(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '5' : ''}
                   />
                   <Form.Control.Feedback type="invalid">
                     請填寫需求人數
@@ -502,6 +534,7 @@ function AddTravelBuddiesForm() {
                     onChange={(e) => {
                       settbGenderNeeded(e.target.value)
                     }}
+                    defaultValue={buttonDemo === true ? '男女皆可' : ''}
                   >
                     <option value="男性">男性</option>
                     <option value="女性">女性</option>
@@ -526,6 +559,11 @@ function AddTravelBuddiesForm() {
                 onChange={(e) => {
                   settbThemeIntro(e.target.value)
                 }}
+                defaultValue={
+                  buttonDemo === true
+                    ? '綠島舊名火燒島，位於臺東市東方約33公里的海面上，面積16.2平方公里，由火山集塊岩所構成的島嶼，因長年受風化及海水侵蝕，形成曲折多變的海岸景觀。巍峨奇岩巨石、陡峭台地海岸、潔淨的白色沙灘、翠綠草原、獨特的海底溫泉、嶙峋珊瑚礁裙、綺麗海底世界、以及豐盛的植物等優渥的條件，使得綠島這個遺世獨立的小島，搖身一變成東部的海上樂園。'
+                    : ''
+                }
               />
               <Form.Control.Feedback type="invalid">
                 旅行揪團介紹為必填欄位

@@ -30,9 +30,9 @@ function TBButtonGiveStar(props) {
       if (response.ok) {
         // 剖析資料為JS的數值
         const data = await response.json()
-        setMemberAlready(data)
-        console.log(memberAlready)
-        setDoGiveStart(memberAlready.length === 0 ? 0 : 1)
+        // setMemberAlready(data)
+        // console.log(memberAlready)
+        setDoGiveStart(data.length === 0 ? 0 : 1)
       }
     } catch (error) {
       // 發生錯誤的處理情況
@@ -88,7 +88,7 @@ function TBButtonGiveStar(props) {
           評價
         </Button>
       ) : (
-        <Button className="tb-give-star">已評分</Button>
+        <Button className="tb-give-star">已評價</Button>
       )}
       <Modal
         show={tbGiveStar}

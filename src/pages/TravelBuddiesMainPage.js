@@ -165,7 +165,9 @@ function TravelBuddiesMainPage(props) {
                       travelBuddies[0].tb_dateBegin.slice(5, 7) +
                       '/' +
                       travelBuddies[0].tb_dateBegin.slice(8, 10) +
+                      ' ' +
                       '-' +
+                      ' ' +
                       travelBuddies[0].tb_dateEnd.slice(0, 4) +
                       '/' +
                       travelBuddies[0].tb_dateEnd.slice(5, 7) +
@@ -177,9 +179,9 @@ function TravelBuddiesMainPage(props) {
                   <AiOutlineClockCircle className="tb-mainpage-maincontent-icons" />
                   <div>{travelBuddies[0].tb_daysCategory}</div>
                 </div>
-                <div className="tb-mainpage-liked">
+                {/* <div className="tb-mainpage-liked">
                   <TravelBuddiesLiked />
-                </div>
+                </div> */}
               </div>
               <hr />
               <div className="tb-mainpage-intro">

@@ -25,9 +25,9 @@ function TBButtonSignedUp(props) {
       if (response.ok) {
         // 剖析資料為JS的數值
         const data = await response.json()
-        console.log(data)
-        setSignedUpAlready(data)
-        setSignedUp(signedUpAlready.length !== 0 ? 1 : 0)
+        // console.log(data)
+        // setSignedUpAlready(data)
+        setSignedUp(data.length === 0 ? 0 : 1)
       }
     } catch (error) {
       // 發生錯誤的處理情況

@@ -89,7 +89,12 @@ function Header({ auth, setAuth }) {
         <FiShoppingCart className="Navbar-icon" />
         {/* <Badge variant="light">2</Badge> */}
       </Nav.Link>
-      <Nav.Link as={NavLink} to="/login" exact className="Navbar-Title h6">
+      <Nav.Link
+        as={NavLink}
+        to="/login"
+        exact
+        className="Navbar-Title h6 d-flex"
+      >
         登入/註冊
       </Nav.Link>
     </>

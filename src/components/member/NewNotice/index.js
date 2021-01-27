@@ -1,6 +1,7 @@
 //通知鈴鐺表單
 import React, { useState, useEffect } from 'react'
 import './newnotice.scss'
+import { useHistory } from 'react-router-dom'
 
 function NewNotice({
   id = 1, //資料的id
@@ -8,6 +9,7 @@ function NewNotice({
   time2 = -1, //第二個日期
   price = -1, //價格
 }) {
+  let history = useHistory()
   const [metbJoined, setMetbJoined] = useState([])
   let type = 'travelBuddies'
   if (time1 === -1) {

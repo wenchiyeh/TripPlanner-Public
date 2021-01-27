@@ -5,6 +5,7 @@ import { IoMdTime } from 'react-icons/io'
 import './ingroup.scss'
 import { Link } from 'react-router-dom'
 import { Modal, Button } from 'react-bootstrap'
+import NoData from '../../main/NoData'
 
 function MeFavoritesgroup({
   id = 1, //資料的id
@@ -150,6 +151,10 @@ function MeFavoritesgroup({
           </div>
         </div>
       ))}
+      {/* <div id="show-card " style={{ display: 'none' }} onChange={mefdelet}>
+        <NoData />
+        <h2 className="center">尚未加入揪團</h2>
+      </div> */}
     </>
   )
 }

@@ -26,7 +26,8 @@
   position: absolute;
   width: 60px;
   height: 60px;
-  bottom: 6%;
+  top: 70%;
+  // bottom: 6%;
   right: 47%;
 }
 
@@ -655,7 +656,7 @@
   width: 150px;
   position: absolute;
   right: 70px;
-  bottom: 10px;
+  top: 60%;
   transition: 0.5s;
 }
 .taiwan-svg:hover {
@@ -716,7 +717,7 @@
 }
 .Api-txt {
   position: absolute;
-  bottom: 10px;
+  top: 70%;
   left: 60px;
   color: #ffffff;
 }

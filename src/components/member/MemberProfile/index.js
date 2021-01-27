@@ -6,7 +6,7 @@ import MemberEdit from '../MemberEdit'
 import './MemberProfile.scss'
 import $ from 'jquery'
 import { message } from 'antd'
-import { FaCameraRetro } from 'react-icons/fa'
+import { FaCamera } from 'react-icons/fa'
 // import Upload from './Upload'
 function MemberProfile({ setMember, setAuth }) {
   const [memberData, setMemberData] = useState(
@@ -119,7 +119,7 @@ function MemberProfile({ setMember, setAuth }) {
             onChange={(e) => readURL(e.target)}
           />
           <label for="imageUpload">
-            <FaCameraRetro className="mepo-img-ud-svg d-flex" />
+            <FaCamera className="mepo-img-ud-svg d-flex" />
           </label>
         </div>
         <div class="avatar-preview">

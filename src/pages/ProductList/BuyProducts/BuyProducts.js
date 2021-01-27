@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import './buy-products.scss'
 import MyBreadCrumb from '../../../components/main/MyBreadCrumb/MyBreadCrumb'
+import Spinner from '../../../components/main/Spinner'
 
 // icon
 import { FiClock } from 'react-icons/fi'
@@ -40,11 +41,18 @@ function BuyProducts({
   needToKnow,
   teacher_photo,
   teacher_history,
+  like,
   mapSrc,
   changeData,
 }) {
   // 這是modal
+  // teacher Modal
   const [smShow, setSmShow] = useState(false)
+
+  // shoppingcar modal
+  const [smallShow, setSmallShow] = useState(false)
+  const [loginShow, setLoginShow] = useState(false)
+
   const handleShow = () => setSmShow(true)
 
   // 計數器
@@ -57,7 +65,7 @@ function BuyProducts({
   }, [early, single, group])
   // 愛心
   const [liked, setLiked] = useState(0)
-  const [count, setCount] = useState(48)
+  const [count, setCount] = useState(like)
   const tbLiked = (value) => {
     if (value === 0) {
       setLiked(1)
@@ -74,6 +82,12 @@ function BuyProducts({
   function InTheCar() {
     history.push(`/productList/car1/${product_id}`)
   }
+  function backProductList() {
+    history.push(`/productList`)
+  }
+  function goLogin() {
+    history.push(`/login`)
+  }
   const data = {
     className,
     classDate,
@@ -87,9 +101,28 @@ function BuyProducts({
     address,
     location,
   }
-  function getLocal() {
-    localStorage.setItem('product_Data', JSON.stringify(data))
+
+  const getIDdata = JSON.parse(localStorage.getItem('product_id'))
+
+  const getproductdata = JSON.parse(localStorage.getItem(product_id))
+  // console.log(getproductdata)
+  function newclass() {
+    //寫入商品資訊
+    localStorage.setItem(product_id, JSON.stringify(data))
+    if (getIDdata === 0) {
+      //第一筆寫入
+      localStorage.setItem('product_id', JSON.stringify(product_id))
+    } else if (getIDdata.indexOf(product_id) !== -1) {
+      // indexOf 字串搜索 找到會就不等於-1
+      console.log('加過了')
+    } else if (getIDdata.indexOf(product_id) === -1) {
+      // indexOf 字串搜索 找不到會回傳-1
+      //就把新的商品ID加進去
+      const plusID = getIDdata + ',' + product_id
+      localStorage.setItem('product_id', JSON.stringify(plusID))
+    }
   }
+
   const pageUrl = '/images/classPhoto/'
   const teacherUrl = '/images/teacher/'
 
@@ -194,11 +227,30 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-
-                <p>{early <= 0 ? 0 : early}</p>
-                <Button variant="light" onClick={() => setEarly(early + 1)}>
-                  <AiFillPlusCircle />
-                </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{early <= 0 ? 0 : early}</p>
+                  ) : (
+                    <p>{getproductdata.early}</p>
+                  )
+                ) : (
+                  <p>{early <= 0 ? 0 : early}</p>
+                )}
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setEarly(early + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="light" onClick={() => setEarly(early + 1)}>
+                    <AiFillPlusCircle />
+                  </Button>
+                )}
               </div>
             </div>
             <div className="ticketBuy">
@@ -217,10 +269,34 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                <p>{single <= 0 ? 0 : single}</p>
-                <Button variant="light" onClick={() => setSingle(single + 1)}>
-                  <AiFillPlusCircle />
-                </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{single <= 0 ? 0 : single}</p>
+                  ) : (
+                    <p>{getproductdata.getIDdata}</p>
+                  )
+                ) : (
+                  <p>{single <= 0 ? 0 : single}</p>
+                )}
+
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button
+                      variant="light"
+                      onClick={() => setSingle(single + 1)}
+                    >
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="light" onClick={() => setSingle(single + 1)}>
+                    <AiFillPlusCircle />
+                  </Button>
+                )}
               </div>
             </div>
             <div className="ticketBuy">
@@ -239,31 +315,121 @@ function BuyProducts({
                     <AiFillMinusCircle />
                   </Button>
                 )}
-                <p>{group <= 0 ? 0 : group}</p>
-
-                <Button variant="light" onClick={() => setGroup(group + 1)}>
-                  <AiFillPlusCircle />
-                </Button>
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <p>{group <= 0 ? 0 : group}</p>
+                  ) : (
+                    <p>{getproductdata.group}</p>
+                  )
+                ) : (
+                  <p>{group <= 0 ? 0 : group}</p>
+                )}
+                {getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="light" onClick={() => setGroup(group + 1)}>
+                      <AiFillPlusCircle />
+                    </Button>
+                  ) : (
+                    <Button variant="light" disabled>
+                      <AiFillPlusCircle />
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="light" onClick={() => setGroup(group + 1)}>
+                    <AiFillPlusCircle />
+                  </Button>
+                )}
               </div>
             </div>
             <div className="buttonAndHeart">
               {/* 上半部右邊下面按鈕 */}
+
               {early === 0 && group === 0 && single === 0 ? (
-                <Button variant="info" disabled>
-                  加入購物車{' '}
-                </Button>
+                getIDdata != null ? (
+                  getIDdata.indexOf(product_id) === -1 ? (
+                    <Button variant="info" disabled>
+                      加入購物車
+                    </Button>
+                  ) : (
+                    <Button variant="info" onClick={() => InTheCar()}>
+                      現在就去結帳
+                    </Button>
+                  )
+                ) : (
+                  <Button variant="info" onClick={() => setLoginShow(true)}>
+                    加入購物車
+                  </Button>
+                )
+              ) : getIDdata != null ? (
+                getIDdata.indexOf(product_id) === -1 ? (
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      newclass()
+                      setSmallShow(true)
+                    }}
+                  >
+                    加入購物車
+                  </Button>
+                ) : (
+                  <Button variant="info" onClick={() => InTheCar()}>
+                    現在就去結帳
+                  </Button>
+                )
               ) : (
-                <Button
-                  variant="info"
-                  onClick={() => {
-                    getLocal()
-                    alert('已加入購物車')
-                    InTheCar()
-                  }}
-                >
+                <Button variant="info" onClick={() => setLoginShow(true)}>
                   加入購物車
                 </Button>
               )}
+              <Modal
+                size="sm"
+                show={smallShow}
+                onHide={() => setSmallShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    已加入購物車
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="modalButton">
+                  <Button
+                    variant="info"
+                    className="keepShop"
+                    onClick={() => backProductList()}
+                  >
+                    繼續購物
+                  </Button>
+                  <Button
+                    variant="info"
+                    className="goNextOne"
+                    onClick={() => InTheCar()}
+                  >
+                    下一步
+                  </Button>
+                </Modal.Body>
+              </Modal>
+
+              <Modal
+                size="sm"
+                show={loginShow}
+                onHide={() => setLoginShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    請先登入
+                  </Modal.Title>
+                  <small className="none">
+                    {loginShow === true
+                      ? setTimeout(() => {
+                          goLogin()
+                        }, 2000)
+                      : console.log('ok')}
+                  </small>
+                </Modal.Header>
+              </Modal>
+
               <div className="followMyHeart">
                 <Button variant="light" onClick={() => tbLiked(liked)}>
                   {liked === 1 ? <AiTwotoneHeart /> : <AiOutlineHeart />}
@@ -358,7 +524,11 @@ function BuyProducts({
       </div>
     </>
   )
+  const [isLoading, setIsLoading] = useState(true)
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 1000)
 
-  return dispalyBuy
+  return isLoading === true ? <Spinner text={'讀取中'} /> : dispalyBuy
 }
 export default BuyProducts

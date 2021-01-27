@@ -497,13 +497,7 @@ function TaiwanMap(props) {
 
   return (
     <>
-      <div
-        className="taiwan-svg"
-        data-aos="fade-zoom-in"
-        data-aos-easing="ease-out"
-        data-aos-duration="900"
-        data-aos-delay="1800"
-      >
+      <div className="taiwan-svg">
         <svg
           id="cf503461-00bd-459a-aeb5-062ebc913211"
           data-name="圖層 1"

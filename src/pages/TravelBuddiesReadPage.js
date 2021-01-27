@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
-// import { Route, Switch, useParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { MdAttachMoney } from 'react-icons/md'
 import { BiCalendarCheck } from 'react-icons/bi'
@@ -134,11 +133,6 @@ function TravelBuddiesReadPage(props) {
           </div>
           <div className="d-flex tb-mainpage-title">
             <h1> {travelBuddies[0].tb_themeName}</h1>
-          </div>
-          <div className="tb-mainpage-tag-group d-flex">
-            <div className="tb-mainpage-tag">台灣西部</div>
-            <div className="tb-mainpage-tag">彰化花海</div>
-            <div className="tb-mainpage-tag">網美景點</div>
           </div>
           <div className="tb-mainpage-maincontent-wrapper">
             <div className="tb-mainpage-maincontent">

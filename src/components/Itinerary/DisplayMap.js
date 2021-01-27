@@ -18,7 +18,7 @@ const PlaceMarker = ({ id, title }) => (
         src={'/images/marker.png'}
         alt={title}
         onClick={(e) => {
-          e.preventDefault()
+          e.stopPropagation()
           if (document.querySelector('.map-info-open')) {
             if (
               document.querySelector('.map-info-open') ===

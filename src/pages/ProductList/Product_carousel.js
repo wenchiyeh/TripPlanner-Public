@@ -24,7 +24,7 @@ function Carousel() {
   async function getCarousel(props) {
     try {
       const response = await fetch(
-        `http://localhost:5000/travelbuddies/carousel`,
+        `http://localhost:5000/productList/product_carousel`,
         {
           method: 'get',
         }
@@ -48,7 +48,7 @@ function Carousel() {
         <Slider {...settings} className="carousel-outbox row">
           {carouselImg.length > 0 &&
             carouselImg.map((v, i) => (
-              <Link to={'/travelBuddies/view/' + v.id}>
+              <Link to={'/productList/view/' + v.id}>
                 <div
                   key={i}
                   className={
@@ -59,11 +59,10 @@ function Carousel() {
                 >
                   <img
                     src={
-                      'http://localhost:5000/images/tbPhoto/' + v.tb_themePhoto
+                      'http://localhost:5000/images/classPhoto/' + v.classPhoto
                     }
-                    alt={v.tb_themePhoto}
+                    alt={v.classPhoto}
                   />
-                  {/* <h1 className="carousel-title">{v.tb_themeName}</h1> */}
                 </div>
               </Link>
             ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -25,7 +25,11 @@ function App() {
   return (
     <Router>
       <>
-        <Header auth={auth} setAuth={setAuth} />
+        <Header
+          auth={localStorage.getItem('userData') && true}
+          // auth={auth}
+          setAuth={setAuth}
+        />
         <ScrollToTop>
           <Switch>
             <Route exact path="/">

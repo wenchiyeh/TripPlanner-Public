@@ -22,7 +22,7 @@ function ItinEditor({
       <ConfirmBox
         show={modalShow}
         onHide={setModalShow}
-        resetDom={setModalType}
+        resetdom={setModalType}
         {...props}
       />
     )
@@ -56,7 +56,7 @@ function ItinEditor({
       reorderItem
     )
     setTempData(originArray) //當下所有數據
-    // console.log(originArray)
+    console.log(originArray)
   }
   function dayPlus() {
     const originArray = Array.from(tempData)
@@ -80,7 +80,7 @@ function ItinEditor({
     setTempData(originArray)
   }
   const displayEdit = (
-    <div className="itin-editor-wrapper">
+    <div className="itin-editor-wrapper custom-box-shadow">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {tempData.map((data, dayIndex) => (
           <div key={dayIndex}>
@@ -105,7 +105,7 @@ function ItinEditor({
                       header: '請再次確認',
                       text: `是否刪除第 ${dayIndex + 1} 日？`,
                       cb: dayDelete,
-                      cbProps: [dayIndex],
+                      cbprops: [dayIndex],
                     })
                   }
                 }}
@@ -144,7 +144,7 @@ function ItinEditor({
                                   header: '請再次確認',
                                   text: `是否刪除此行程？`,
                                   cb: boxDelete,
-                                  cbProps: [dayIndex, index],
+                                  cbprops: [dayIndex, index],
                                 })
                               }}
                             />
@@ -174,7 +174,7 @@ function ItinEditor({
     </div>
   )
   const displayNotEdit = (
-    <div className="itin-editor-wrapper">
+    <div className="itin-editor-wrapper custom-box-shadow">
       {tempData.map((data, dayIndex) => (
         <div key={dayIndex}>
           <div
@@ -197,14 +197,14 @@ function ItinEditor({
                 key={index}
                 className={classIsSelect[0]}
                 onClick={(e) => {
+                  document
+                    .querySelectorAll('.itin-detailPicText-show')
+                    .forEach((element) => {
+                      element.classList.remove('itin-detailPicText-show')
+                    })
                   if (document.querySelector('.box-select')) {
                     document.querySelector('.box-select').className =
                       classIsSelect[0]
-                    document
-                      .querySelectorAll('.itin-detailPicText-show')
-                      .forEach((element) => {
-                        element.classList.remove('itin-detailPicText-show')
-                      })
                   }
                   e.currentTarget.className = classIsSelect[1]
                   if (document.querySelector(`.boxInfo${dayIndex}${index}`))

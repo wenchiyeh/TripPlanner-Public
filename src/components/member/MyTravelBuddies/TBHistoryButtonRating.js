@@ -4,9 +4,32 @@ import { Button, Modal, Form } from 'react-bootstrap'
 function TBHistoryButtonRating(props) {
   const [tbHistoryButtonRating, settbHistoryButtonRating] = useState(false)
   const [rating, setRating] = useState(0)
+  const [ratingData, setRatingData] = useState(0)
+  const [members, setMembers] = useState(0)
   console.log(rating)
   const [hover, setHover] = useState(0)
   const tb_id = props.id
+  async function getMembers() {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/travelbuddies/tbratingmembers/${tb_id}`,
+        {
+          method: 'get',
+        }
+      )
+      if (response.ok) {
+        const data = await response.json()
+        console.log(data)
+        setMembers(data)
+      }
+    } catch (err) {
+      alert('無法得到伺服器資料，請稍後再重試')
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getMembers()
+  }, [])
   async function getStarRating() {
     try {
       const response = await fetch(
@@ -19,6 +42,7 @@ function TBHistoryButtonRating(props) {
         const data = await response.json()
         console.log(data)
         setRating(Math.round(data[0].rating))
+        setRatingData(data)
       }
     } catch (err) {
       alert('無法得到伺服器資料，請稍後再重試')
@@ -37,10 +61,10 @@ function TBHistoryButtonRating(props) {
         查看評價
       </Button>{' '}
       <Modal
-        size="lg"
         show={tbHistoryButtonRating}
         onHide={() => settbHistoryButtonRating(false)}
         aria-labelledby="tbHistoryButtonRating"
+        centered={true}
       >
         <Form>
           <Modal.Header closeButton>
@@ -52,7 +76,14 @@ function TBHistoryButtonRating(props) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="star-rating">
+            <div className="tb-check-star-rating">
+              <h5>
+                {ratingData.length && ratingData[0].member_giveRating}
+                人已評價，
+                {(members.length && members[0].member_count) -
+                  (ratingData.length && ratingData[0].member_giveRating)}
+                人尚未評價
+              </h5>
               {[...Array(5)].map((star, index) => {
                 index += 1
                 return (
@@ -62,9 +93,6 @@ function TBHistoryButtonRating(props) {
                     className={
                       index <= (hover || rating) ? 'starOn' : 'starOff'
                     }
-                    // onClick={() => setRating(index)}
-                    // onMouseEnter={() => setHover(index)}
-                    // onMouseLeave={() => setHover(rating)}
                   >
                     <span className="star">&#9733;</span>
                   </button>

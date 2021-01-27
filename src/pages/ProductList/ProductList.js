@@ -4,8 +4,12 @@ import { Col, Row, Container } from 'react-bootstrap'
 import MyBreadCrumb from '../../components/main/MyBreadCrumb/MyBreadCrumb'
 import SearchBar from '../../components/main/SearchBar'
 import Card from '../../components/main/Card'
-import Carousel from '../../components/TravelBuddies/Carousel'
-
+import Carousel from './Product_carousel'
+//
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+AOS.init()
+//
 function ProductList() {
   const [searchFilter, setSearchFilter] = useState({})
   const [dataFromDB, segDataFromDB] = useState([])
@@ -73,25 +77,32 @@ function ProductList() {
       </Container>
       <Carousel />
       <Container>
-        <SearchBar setSearchFilter={setSearchFilter} />
-        <Row>
-          {productCard.map((v, i) => (
-            <Col xs={6} md={4} key={i}>
-              <Card
-                id={v.id}
-                time1={v.classDate}
-                title={v.className}
-                text={v.location}
-                person={v.teacher_name}
-                price={v.ticket_price}
-                like={'222'}
-                mark={'222'}
-                image={'/classPhoto/' + v.classPhoto}
-                location={v.classCity}
-              />
-            </Col>
-          ))}
-        </Row>
+        <div
+          data-aos-easing="ease-in"
+          data-aos="fade-in"
+          data-aos-delay="50"
+          data-aos-duration="800"
+        >
+          <SearchBar setSearchFilter={setSearchFilter} />
+          <Row>
+            {productCard.map((v, i) => (
+              <Col xs={6} md={4} key={i}>
+                <Card
+                  id={v.id}
+                  time1={v.classDate}
+                  title={v.className}
+                  text={v.location}
+                  person={v.teacher_name}
+                  price={v.ticket_price}
+                  like={v.likeheart}
+                  mark={v.mark}
+                  image={'/classPhoto/' + v.classPhoto}
+                  location={v.classCity}
+                />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </Container>
     </>
   )

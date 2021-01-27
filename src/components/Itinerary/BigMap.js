@@ -28,7 +28,8 @@ const PlaceMarker = ({
       <h5>{title}</h5>
       <Button
         variant="info"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault()
           const originArray = Array.from(dataFromUser)
           const dayIndex = originArray.length
           const boxInedx =
@@ -65,7 +66,7 @@ const PlaceMarker = ({
         src={'/images/marker.png'}
         alt={title}
         onClick={(e) => {
-          e.preventDefault()
+          e.stopPropagation()
           if (document.querySelector('.map-info-open')) {
             if (
               document.querySelector('.map-info-open') ===
@@ -271,7 +272,7 @@ function BigMap({
 
   return (
     <div className="map-comp-wrapper">
-      <div className="map-search-wrapper">
+      <div className="map-search-wrapper custom-box-shadow">
         <input
           className="form-custom"
           ref={inputRef}
@@ -290,9 +291,9 @@ function BigMap({
                   >
                     　{item.structured_formatting.main_text}
                   </div>
-                  <div className="map-search-plus">
+                  {/* <div className="map-search-plus">
                     <FaPlus />
-                  </div>
+                  </div> */}
                 </div>
               ))
             : null}

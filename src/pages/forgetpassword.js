@@ -4,13 +4,17 @@ import { FaUserAlt, FaFacebook, FaGoogle } from 'react-icons/fa'
 import { Form, Button, Col, InputGroup } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import '../pages/sign/sign.scss'
+import { message } from 'antd'
 // import ContactUsfrom from './ContactUs'
 
 import emailjs from 'emailjs-com'
 function Login(props) {
   let history = useHistory()
+  // const [email, setEmail] = useState([])
+  const success = () => {
+    message.success('成功寄出!')
+  }
   // const [validated, setValidated] = useState(false)
-  // const [email, setEmail] = useState('')
 
   // const handleSubmit = (event) => {
   //   const form = event.currentTarget
@@ -39,7 +43,8 @@ function Login(props) {
           console.log(error.text)
         }
       )
-    alert('成功寄出!')
+    // alert('成功寄出!')
+    success()
     history.push('/login')
   }
   return (
@@ -59,7 +64,7 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
-                    type="text"
+                    type="email"
                     placeholder="您的信箱"
                     aria-describedby="inputGroupPrepend"
                     required
@@ -74,13 +79,7 @@ function Login(props) {
                 </InputGroup>
               </Form.Group>
             </Form.Row>
-            <Button
-              type="submit"
-              className="login-btn"
-              // onClick={() => {
-              //   history.push('/login')
-              // }}
-            >
+            <Button type="submit" className="login-btn">
               送出
             </Button>
             <div className="sogin-samp-text d-flex">

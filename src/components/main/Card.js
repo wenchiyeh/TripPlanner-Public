@@ -10,6 +10,8 @@ import {
   FaRegCalendarCheck,
   FaDollarSign,
   FaHeart,
+  FaRegHeart,
+  FaBookmark,
   FaRegBookmark,
 } from 'react-icons/fa'
 
@@ -32,6 +34,8 @@ function Card({
   const backImage = 'http://localhost:5000/images/' + image
   const [nowLike, setNowLike] = useState(like)
   const [nowMark, setNowMark] = useState(mark)
+  const [isLike, setIsLike] = useState(0)
+  const [isFollow, setIsFollow] = useState(0)
   let handelTitle = StrCutter(title, 15)
   let handelText = text && StrCutter(text, 42)
   let type = 'itinerary'
@@ -98,19 +102,38 @@ function Card({
           </Link>
         </p>
         <div className="buttonWrap d-flex">
-          <div role="button" className="card-button">
-            <p>
-              <FaHeart />
+          <div
+            role="button"
+            className="card-button card-like"
+            onClick={(e) => {
+              console.log(e.target)
+              if (e.target.classList.contains('card-like')) {
+                isLike ? setIsLike(0) : setIsLike(1)
+              }
+            }}
+          >
+            <p
+              onClick={(e) => {
+                console.log(e.target)
+                isLike ? setIsLike(0) : setIsLike(1)
+              }}
+            >
+              {isLike ? <FaHeart /> : <FaRegHeart />}
               &emsp;
-              {nowLike}
+              {isLike ? nowLike + 1 : nowLike}
             </p>
           </div>
           <div className="card-slice"></div>
-          <div role="button" className="card-button">
-            <p>
-              <FaRegBookmark />
-              &ensp;
-              {nowMark}
+          <div role="button" className="card-button  card-follow">
+            <p
+              onClick={(e) => {
+                console.log(e.target)
+                isFollow ? setIsFollow(0) : setIsFollow(1)
+              }}
+            >
+              {isFollow ? <FaBookmark /> : <FaRegBookmark />}
+              &emsp;
+              {isFollow ? nowMark + 1 : nowMark}
             </p>
           </div>
         </div>

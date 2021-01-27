@@ -33,21 +33,6 @@ function TBMineButtonDelete(props) {
     }
   }
 
-  // async function gettbMine() {
-  //   try {
-  //     const response = await fetch('http://localhost:5000/tbmyaccount/tbmine', {
-  //       method: 'get',
-  //     })
-  //     if (response.ok) {
-  //       const data = await response.json()
-  //       settbMine(data)
-  //     }
-  //   } catch (err) {
-  //     alert('無法得到伺服器資料，請稍後再重試-刷新的問題')
-  //     console.log(err)
-  //   }
-  // }
-
   return (
     <>
       <Button
@@ -61,6 +46,7 @@ function TBMineButtonDelete(props) {
         show={tbMineDelete}
         onHide={() => settbMineDelete(false)}
         aria-labelledby="tbMineDelete"
+        centered={true}
       >
         <div>
           <Modal.Header closeButton>

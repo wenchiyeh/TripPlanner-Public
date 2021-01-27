@@ -4,15 +4,15 @@ import Pages from '../../main/Pages'
 import TBButtonRead from './TBButtonRead'
 import TBButtonChatroom from './TBButtonChatroom'
 import TBHistoryButtonRating from './TBHistoryButtonRating'
-import TBHistoryButtonRatingNo from './TBHistoryButtonRatingNo'
 import TBHistoryButtonGiveRating from './TBHistoryButtonGiveRating'
 
 function TravelBuddiesHistory() {
   const [tbHistory, settbHistory] = useState([])
+  const id = JSON.parse(localStorage.getItem('userData')).newsId
   async function gettbHistory(props) {
     try {
       const response = await fetch(
-        'http://localhost:5000/tbmyaccount/tbhistory',
+        `http://localhost:5000/tbmyaccount/tbhistory/${id}`,
         {
           method: 'get',
         }
@@ -66,9 +66,9 @@ function TravelBuddiesHistory() {
                         v.tb_dateEnd.slice(8, 10)}
                     </td>
                     {/* 這邊判斷式要拉session */}
-                    <td>{v.tb_ownerId === 1 ? '揪團主' : '團員'}</td>
+                    <td>{v.tb_ownerId === id ? '揪團主' : '團員'}</td>
                     <td>
-                      <TBButtonRead id={v.id} /> <TBButtonChatroom />{' '}
+                      <TBButtonRead id={v.id} /> <TBButtonChatroom id={v.id} />{' '}
                       <TBHistoryButtonRating id={v.id} />
                       <TBHistoryButtonGiveRating id={v.id} />{' '}
                     </td>

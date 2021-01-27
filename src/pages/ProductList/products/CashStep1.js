@@ -1,17 +1,20 @@
 import { FaCcVisa, FaCcApplePay } from 'react-icons/fa'
 import { SiJcb, SiMastercard } from 'react-icons/si'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai'
+import { useParams } from 'react-router-dom'
 import { MdLocalAtm } from 'react-icons/md'
 import Icons from './Icons'
 import './cash.scss'
 import { useHistory } from 'react-router-dom'
 import ShowCreditCard from './ShowCreditCard'
+
 function CashStep1({ className, classDate, ticket_price, ticketData }) {
   const [tichectButton, setTichectButton] = useState(true)
+  let { product_id } = useParams()
 
-  const aboutClass = JSON.parse(localStorage.getItem('product_Data'))
+  const aboutClass = JSON.parse(localStorage.getItem(product_id))
 
   const earlyTicket = aboutClass.early
   const singleTicket = aboutClass.single
@@ -223,6 +226,17 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
 
   const [buttontype, setButtontype] = useState(false)
   const aboutuser = JSON.parse(localStorage.getItem('userData'))
+
+  function removeCar() {
+    const productIDdata = JSON.parse(localStorage.getItem(product_id))
+    const delproductData = localStorage.removeItem(product_id)
+    const productIDarray = JSON.parse(localStorage.getItem('product_id'))
+    const IDarray = productIDarray.split(',')
+    const findID = IDarray.indexOf(product_id)
+    const cutID = IDarray.splice(findID, 1)
+    const strArray = IDarray.toString()
+    const newIDarray = localStorage.setItem('product_id', strArray)
+  }
 
   const step2 = (
     <>
@@ -451,7 +465,7 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       </span>
                     </Form.Check>
                   </div>
-                  {credit == 'visa' ? <ShowCreditCard /> : <span></span>}
+                  {credit === 'visa' ? <ShowCreditCard /> : <span></span>}
                 </div>
               </div>
               <div className="check-and-btn">
@@ -472,15 +486,9 @@ function CashStep1({ className, classDate, ticket_price, ticketData }) {
                       user_name === '' && user_phone === '' && user_mail === ''
                         ? console.log('還有資料還沒填寫喔')
                         : () => {
-                            // getUser()
-
-                            if (credit === 'visa') {
-                              window.location = 'https://p.ecpay.com.tw/6708411'
-                            } else if (credit === 'atm') {
-                              window.location = 'https://p.ecpay.com.tw/39F39C9'
-                            } else if (credit === 'applepay') {
-                              return carThree()
-                            }
+                            getUser()
+                            carThree()
+                            removeCar()
                           }
                     }
                   >

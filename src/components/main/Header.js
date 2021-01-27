@@ -6,6 +6,7 @@ import Logo from '../../logo.svg'
 import { FiShoppingCart } from 'react-icons/fi'
 // import { FaCoins } from 'react-icons/fa'
 import MebPopover from './MebPopover'
+import LogoutHooks from '../../pages/Login/LogoutHooks'
 
 function Header({ auth, setAuth }) {
   // const imagePath = '/images/testImage.jpg'
@@ -16,13 +17,17 @@ function Header({ auth, setAuth }) {
     JSON.parse(localStorage.getItem('userData'))
   )
   useEffect(() => {
-    console.log(location)
+    setMemberData(JSON.parse(localStorage.getItem('userData')))
+    console.log('hhhhhuserData', memberData)
+  }, [auth])
+  useEffect(() => {
+    // console.log(location)
     if (location.pathname === '/') {
       setHeaderStyle(0)
     } else {
       setHeaderStyle(1)
     }
-  }, [location.pathname])
+  }, [location.pathname, auth])
   //有登入
   const login = (
     <>
@@ -44,9 +49,14 @@ function Header({ auth, setAuth }) {
             {memberData && (
               <img
                 className="header-img-br"
-                src={'images/userphoto/' + memberData.member_photo_id}
-                // src={imagePath}
-                alt="User Avatar"
+                src={
+                  'http://localhost:5000/images/member/' +
+                  memberData.member_photo_id
+                }
+                alt={
+                  'http://localhost:5000/images/member/' +
+                  memberData.member_photo_id
+                }
               />
             )}
           </figure>
@@ -65,7 +75,7 @@ function Header({ auth, setAuth }) {
             setAuth(false)
           }}
         >
-          登出
+          <LogoutHooks />
         </NavDropdown.Item>
       </NavDropdown>
     </>
@@ -73,6 +83,8 @@ function Header({ auth, setAuth }) {
   //登出狀態
   const loginout = (
     <>
+      {/* <LogoutHooks />
+      testgoogle登出用 */}
       <Nav.Link as={NavLink} to="/productList/car">
         <FiShoppingCart className="Navbar-icon" />
         {/* <Badge variant="light">2</Badge> */}

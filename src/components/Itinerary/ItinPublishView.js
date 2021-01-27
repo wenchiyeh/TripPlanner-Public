@@ -4,6 +4,8 @@ import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditorBasicData from './itinEditorBasicData'
 import ItinEditor from './ItinEditor'
 import ItinEditorDetail from './ItinEditorDetail'
+import Spinner from '../main/Spinner'
+import NoData from '../main/NoData'
 //測試用假資料區
 // import fakeTestingData from './testBoxData' //純box陣列
 // let memberData = require('../member/member.json')
@@ -37,7 +39,6 @@ function ItinPublishView({ isEdit = false }) {
             JSON.parse(localStorage.getItem('userData')).newsId
           ) {
             setIsMe(true)
-            console.log('isMe')
           }
         }
         if (data[0].publish_time === null) {
@@ -119,7 +120,20 @@ function ItinPublishView({ isEdit = false }) {
       const response = await fetch(reqUrl, reqBody)
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
+        let tempData = dataFromDB
+        tempData[0].publish_time = data.time
+        tempData[0].info = dataToDB[0].info
+        dataToDB[1].forEach((item) => {
+          if (item.text !== tempData[1][item.day].data[item.order].info) {
+            tempData[1][item.day].data[item.order].info = item.text
+          }
+          if (item.image !== null) {
+            tempData[1][item.day].data[item.order].image = item.image
+          }
+        })
+        setgDataFromDB(tempData)
+        setIsPublish(true)
+        isEdit = false
         history.push(`/itinerary/view/${itin_id}`)
       }
     } catch (err) {
@@ -148,14 +162,18 @@ function ItinPublishView({ isEdit = false }) {
     <div className="itin-editor-frame">
       <ItinEditorHeader
         isEdit={isEdit}
-        isPublish={isPublish}
+        isPublish={true}
         isMe={isMe}
         title={dataFromDB[0].title}
         handleSubmit={isEdit ? handleDataToDB : unPublish}
       />
       <main className="d-flex justify-content-between">
         <div>
-          <ItinEditorBasicData isEdit={isEdit} itinData={dataFromDB[0]} />
+          <ItinEditorBasicData
+            isEdit={isEdit}
+            isPublish={isPublish}
+            itinData={dataFromDB[0]}
+          />
           <ItinEditor
             isEdit={false} //任何情況下的publish頁都不需要修改功能
             tempData={dataFromDB[1]}
@@ -175,9 +193,9 @@ function ItinPublishView({ isEdit = false }) {
   if (isLoading === 0) {
     return displayView
   } else if (isLoading === 1) {
-    return <h1>讀取中</h1>
+    return <Spinner text={'讀取中'} />
   } else {
-    return <h1>查無此行程</h1>
+    return <NoData text={'查無此行程'} />
   }
 }
 

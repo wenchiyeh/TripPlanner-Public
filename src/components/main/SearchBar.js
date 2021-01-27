@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
 import { debounce } from 'lodash'
 //利用debounce來避免敏感的onchange
 //
@@ -16,6 +17,9 @@ function SearchBar({
   day = ['不限', '1日', '2-3日', '4-5日', '6-7日', '8日以上'],
   setSearchFilter = () => {},
 }) {
+  let history = useHistory()
+  let location = useLocation()
+  console.log(location)
   let inputRef = useRef(null) // 建立輸入框參考點
   //建立回傳用物件
   const [returnObject, setReturnObject] = useState({
@@ -30,27 +34,7 @@ function SearchBar({
   const [selectTown, setSelectTown] = useState('全部')
   const [selectDay, setSelectDay] = useState(0)
   const [nowArea, setNowArea] = useState(0)
-  //偵測地區變化
-  //首頁快速搜尋--網址取值
-  useEffect(() => {
-    let HomeSearchbURL = new URL(window.location)
-    let params = HomeSearchbURL.searchParams
-    const area = params.get('area')
-    const town = params.get('town')
-    const day = params.get('day')
-    const keyword = params.get('keyword')
-    let HomeSearchstr = {
-      area: area,
-      town: town,
-      day: day,
-      keyword: keyword,
-    }
-    if (HomeSearchstr) {
-      setSearchFilter(HomeSearchstr)
-    }
-  }, [selectArea])
 
-  //**********************
   useEffect(() => {
     let currentValue = {
       keyword: inputText,
@@ -92,7 +76,6 @@ function SearchBar({
         break
     }
   }
-
   //
   return (
     <>
@@ -148,6 +131,9 @@ function SearchBar({
           role="button"
           onClick={() => {
             setSearchFilter(returnObject)
+            history.push(
+              location.pathname + '?' + new URLSearchParams(returnObject)
+            )
           }}
           className="do-search-button"
         ></div>

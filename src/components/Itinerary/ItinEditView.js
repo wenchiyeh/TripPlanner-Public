@@ -3,7 +3,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import ItinEditorHeader from './ItinEditorHeader'
 import ItinEditor from './ItinEditor'
 import BigMap from './BigMap'
-
+import Spinner from '../main/Spinner'
+import NoData from '../main/NoData'
 function ItinEditView({ isNew = true }) {
   let history = useHistory()
   const [dataFromUser, setDataFromUser] = useState([
@@ -66,8 +67,6 @@ function ItinEditView({ isNew = true }) {
       })
     })
     dataToDB = [itinData, boxData]
-    console.log(dataToDB)
-    console.log(boxData)
     sendDataToDB(dataToDB)
   }
   async function sendDataToDB(dataToDB) {
@@ -87,7 +86,7 @@ function ItinEditView({ isNew = true }) {
       if (response.ok) {
         const data = await response.json()
         console.log(data)
-        history.push(`/itinerary/view/${data.itin_id}`)
+        history.push(`/itinerary/my/${data.itin_id}`)
       }
     } catch (err) {
       console.log('fetch err')
@@ -119,11 +118,11 @@ function ItinEditView({ isNew = true }) {
     return displayNewView
   } else {
     if (isLoading === 1) {
-      return <h1>讀取中</h1>
+      return <Spinner text={'讀取中'} />
     } else if (isLoading === 0) {
       return displayNewView
     } else {
-      return <h1>查無資料</h1>
+      return <NoData text={'查無此行程'} />
     }
   }
 }

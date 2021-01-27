@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react'
 import { FaMapMarkerAlt, FaUsers, FaRegCalendarCheck } from 'react-icons/fa'
 import { IoMdTime } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import Pages from '../../main/Pages'
 
 function MeFavoritesstroke({
   id = 1, //資料的id
   time1 = -1, //第一個日期
   time2 = -1, //第二個日期
   price = -1, //價格})
+  itemPerPage = 9,
+  // map1 = '北部',
 }) {
   let type = 'travelBuddies'
   if (time1 === -1) {
@@ -40,9 +43,9 @@ function MeFavoritesstroke({
     getProductCard()
   }, [])
 
-  function cityToRegion(city) {
+  function cityToRegion(location) {
     let region = '北部'
-    switch (city) {
+    switch (location) {
       case '台北':
       case '新北':
       case '基隆':
@@ -79,53 +82,84 @@ function MeFavoritesstroke({
     }
     return region
   }
-  return (
-    <>
-      {meitinerary.map((element, index) => (
-        <div key={index} className="card-ingroup-box mb-3">
-          <div className="row no-gutters me-favorites-back-style">
-            <div className="col-md-4">
-              <Link to={detailUrl}>
-                <img
-                  src={'/images/' + element.image}
-                  className="card-img img-fluid"
-                  alt={element.image}
-                />
-              </Link>
-            </div>
-            <div className="col-md-8 align-items-end">
-              <div className="card-body">
-                <h3 className="card-title">{element.title}</h3>
-                <span className="mef-icno-style">
-                  <IoMdTime />
-                  {element.publish_time} - {element.publish_time}
-                </span>
-                <span className="mef-icno-style d-flex justify-content-between">
-                  {/* 地圖位置1 */}
-                  {/* <p className="card-style-mef ">
-                    <FaMapMarkerAlt />
-                    {element.region.cityToRegion()}
-                  </p> */}
-                  <p className="card-style-mef">
-                    <FaMapMarkerAlt />
-                    {element.location}
-                  </p>
-                  <FaUsers />
-                  &emsp;
-                  {element.nickname}
-                  &emsp;&emsp;
-                  <FaRegCalendarCheck />
-                  &emsp;
-                  {/* {duration + '天'} */}
-                  {element.duration - element.duration + 1 + '天'}
-                  {/* {price !== -1 && priceMark} */}
-                </span>
-                <br />
+
+  let [showRange, setShowRange] = useState([0, itemPerPage])
+  let dataLength = meitinerary.length
+  let totalPage = Math.floor(dataLength / itemPerPage)
+  function changePage(orderPage) {
+    setShowRange([(orderPage - 1) * itemPerPage, orderPage * itemPerPage])
+    window.scrollTo(0, 0)
+  }
+  let display = <></>
+
+  if (type === 'itinerary') {
+    display = meitinerary.map((element, index) => {
+      if (index < showRange[0] || index >= showRange[1]) {
+        return null
+      } else {
+        return (
+          <div key={index} className="card-ingroup-box mb-3">
+            <div className="row no-gutters me-favorites-back-style">
+              <div className="col-md-4">
+                <Link to={detailUrl}>
+                  <img
+                    src={'http://localhost:5000/images/' + element.image}
+                    className="card-img img-fluid"
+                    alt={element.image}
+                  />
+                </Link>
+              </div>
+              <div className="col-md-8 align-items-end">
+                <div className="card-body">
+                  <h3 className="card-title">{element.title}</h3>
+                  <span className="mef-icno-style">
+                    <IoMdTime />{' '}
+                    {meitinerary[0].publish_time.slice(0, 4) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(5, 7) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(8, 10) +
+                      '-' +
+                      meitinerary[0].publish_time.slice(0, 4) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(5, 7) +
+                      '/' +
+                      meitinerary[0].publish_time.slice(8, 10)}
+                  </span>
+                  <span className="mef-icno-style d-flex justify-content-between">
+                    {/* 地圖位置1 */}
+                    <p className="card-style-mef ">
+                      <FaMapMarkerAlt />
+                      {cityToRegion()}
+                    </p>
+                    <p className="card-style-mef">
+                      <FaMapMarkerAlt />
+                      {element.location}
+                    </p>
+                    <FaUsers />
+                    &emsp;
+                    {element.nickname}
+                    &emsp;&emsp;
+                    <FaRegCalendarCheck />
+                    &emsp;
+                    {/* {duration + '天'} */}
+                    {element.duration - element.duration + 1 + '天'}
+                    {/* {price !== -1 && priceMark} */}
+                  </span>
+                  <br />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      }
+    })
+  }
+
+  return (
+    <>
+      {display}
+      <Pages pages={totalPage} changePage={changePage} />
     </>
   )
 }

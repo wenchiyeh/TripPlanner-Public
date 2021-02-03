@@ -8,13 +8,10 @@ import { ImManWoman } from 'react-icons/im'
 import { IoIosPeople } from 'react-icons/io'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
-import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
-
 function TravelBuddiesReadPage(props) {
   let { id } = useParams()
   let history = useHistory()
   const [travelBuddies, setTravelBuddies] = useState([])
-  const [signedUp, setSignedUp] = useState(0)
   async function getTravelBuddies(props) {
     try {
       const response = await fetch(
@@ -156,9 +153,6 @@ function TravelBuddiesReadPage(props) {
                 <div className="d-flex tb-mainpage-date">
                   <AiOutlineClockCircle className="tb-mainpage-maincontent-icons" />
                   <div>{travelBuddies[0].tb_daysCategory}</div>
-                </div>
-                <div className="tb-mainpage-liked">
-                  <TravelBuddiesLiked />
                 </div>
               </div>
               <hr />

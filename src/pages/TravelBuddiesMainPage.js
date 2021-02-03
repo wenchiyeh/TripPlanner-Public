@@ -8,7 +8,6 @@ import { ImManWoman } from 'react-icons/im'
 import { IoIosPeople } from 'react-icons/io'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
-import TravelBuddiesLiked from '../components/TravelBuddies/TravelBuddiesLiked'
 import TBButtonSignedUp from '../components/TravelBuddies/TBButtonSignedUp'
 import TBMineButtonEditMain from '../components/member/MyTravelBuddies/TBMineButtonEditMain'
 
@@ -17,7 +16,6 @@ function TravelBuddiesMainPage(props) {
   const user = userData.member_name
   let { id } = useParams()
   const [travelBuddies, setTravelBuddies] = useState([])
-  const [signedUp, setSignedUp] = useState(0)
 
   async function getTravelBuddies(props) {
     try {
@@ -179,9 +177,6 @@ function TravelBuddiesMainPage(props) {
                   <AiOutlineClockCircle className="tb-mainpage-maincontent-icons" />
                   <div>{travelBuddies[0].tb_daysCategory}</div>
                 </div>
-                {/* <div className="tb-mainpage-liked">
-                  <TravelBuddiesLiked />
-                </div> */}
               </div>
               <hr />
               <div className="tb-mainpage-intro">

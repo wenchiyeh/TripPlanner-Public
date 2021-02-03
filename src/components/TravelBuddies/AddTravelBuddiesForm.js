@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Col, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import FormControl from 'react-bootstrap/FormControl'
-import FormCheck from 'react-bootstrap/FormCheck'
-import FormFile from 'react-bootstrap/FormFile'
-import TBPicUploadRect from './TBPicUploadRect'
 import Modal from 'react-bootstrap/Modal'
 import $ from 'jquery'
 
@@ -15,7 +11,6 @@ function AddTravelBuddiesForm() {
   const [importFromCollection, setImportFromCollection] = useState(false)
   const [tbThemeName, settbThemeName] = useState('')
   const [tbThemePhotoToBack, settbThemePhotoToBack] = useState('')
-  // const [tbThemePhoto, settbThemePhoto] = useState('')
   const [tbCityCategory, settbCityCategory] = useState([])
   const [tbDateBegin, settbDateBegin] = useState('')
   const [tbDateEnd, settbDateEnd] = useState('')
@@ -26,12 +21,6 @@ function AddTravelBuddiesForm() {
   const [tbGenderNeeded, settbGenderNeeded] = useState('')
   const [tbThemeIntro, settbThemeIntro] = useState('')
   const [buttonDemo, setButtonDemo] = useState(false)
-
-  // settbCityCategory(
-  //   $('input:checkbox:checked[name="tbCityCategory"]').each(function (i) {
-  //     tbCityCategory[i] = this.value
-  //   })
-  // )
 
   function checkChange(e) {
     $('input[name="tbCityCategory[]"]:checked').each(function (i) {
